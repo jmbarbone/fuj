@@ -12,7 +12,7 @@
 #' @export
 set_names <- function(x, nm = x) {
   if (is.null(x)) return(NULL)
-  `names<-`(x, nm)
+  `names<-`(x, validate_names(nm))
 }
 
 #' @rdname names
@@ -24,10 +24,17 @@ remove_names <- function(x) {
 #' @rdname names
 #' @export
 `%names%` <- function(x, nm) {
-  set_names(x, nm)
+  set_names(x, validate_names(nm))
 }
 
 #' @rdname names
-is_named <- function(x) {
-  !is.null(names(x))
+#' @param zero_ok If `TRUE` allows use of `""` as a _special_ name
+is_named <- function(x, zero_ok = TRUE) {
+  nm <- names(x)
+  !is.null(nm) && if (zero_ok) TRUE else all(nzchar(nm))
+}
+
+validate_names <- function(x) {
+  x[lengths(x) == 0L] <- NA_character_
+  as.character(x)
 }
