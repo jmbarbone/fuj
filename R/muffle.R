@@ -4,7 +4,7 @@
 #'
 #' @param expr An expression to evaluate
 #' @param fun A function to _muffle_ (or _wuffle_)
-#' @param classes A character vector if ckasses to suppress
+#' @param classes A character vector if classes to suppress
 #' @export
 #' @examples
 #'

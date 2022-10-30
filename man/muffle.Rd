@@ -14,7 +14,7 @@ wuffle(expr, fun, classes = "warning")
 
 \item{fun}{A function to \emph{muffle} (or \emph{wuffle})}
 
-\item{classes}{A character vector if ckasses to suppress}
+\item{classes}{A character vector if classes to suppress}
 }
 \description{
 Aliases for \code{\link[base:message]{base::suppressMessages()}} and \code{\link[base:warning]{base::suppressWarnings()}}
