@@ -10,13 +10,17 @@
 #' try(list(1,))
 #' list0(1,)
 list0 <- function(...) {
-  parent <- parent.frame()
   mc <- match.call()
-  n <- vapply(mc, nzchar, NA)
+  parent <- parent.frame()
+  tryCatch(
+    list(...),
+    error = function(e) {
+      if (identical(e$message, "argument is missing, with no default")) {
+        return(eval(mc[seq_len(...length())], envir = parent))
+      }
 
-  if (all(n)) {
-    list(...)
-  } else {
-   eval(mc[n], envir = parent)
-  }
+      mc[1] <- call("list")
+      eval(mc, envir = parent)
+    }
+  )
 }
