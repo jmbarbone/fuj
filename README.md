@@ -11,7 +11,7 @@ coverage](https://codecov.io/gh/jmbarbone/fuj/branch/main/graph/badge.svg)](http
 <!-- badges: end -->
 
 The goal of `{fuj}` is to provide low level tools for other packages by
-[Jordan](github.com/jmbarbone).
+[Jordan](https://github.com/jmbarbone).
 
 ## Installation
 
