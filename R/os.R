@@ -2,7 +2,6 @@
 #' Determine operating systems
 #'
 #' @returns `TRUE` or `FALSE`
-#' @export
 #' @name os
 NULL
 
