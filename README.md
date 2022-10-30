@@ -4,6 +4,8 @@
 # fuj
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/jmbarbone/fuj/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jmbarbone/fuj/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of `{fuj}` is to provide low level tools for other packages by
