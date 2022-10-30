@@ -5,7 +5,7 @@
 #' @name os
 NULL
 
-# ncov start
+# nocov start
 
 #' @export
 #' @rdname os
