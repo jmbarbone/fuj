@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/jmbarbone/fuj/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/jmbarbone/fuj/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/jmbarbone/fuj/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jmbarbone/fuj?branch=main)
 <!-- badges: end -->
 
 The goal of `{fuj}` is to provide low level tools for other packages by
