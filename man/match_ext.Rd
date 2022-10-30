@@ -4,6 +4,7 @@
 \alias{match_ext}
 \alias{is_in}
 \alias{is_out}
+\alias{\%out\%}
 \alias{is_within}
 \alias{\%wi\%}
 \alias{is_without}
@@ -15,6 +16,8 @@
 is_in(x, table)
 
 is_out(x, table)
+
+x \%out\% table
 
 is_within(x, table)
 

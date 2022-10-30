@@ -43,6 +43,8 @@ is_out <- function(x, table) {
   match(x, table, nomatch = 0L) == 0L
 }
 
+#' @rdname match_ext
+#' @export
 `%out%` <- function(x, table) {
   is_out(x, table)
 }
