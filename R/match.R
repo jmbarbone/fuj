@@ -31,20 +31,44 @@
 #'
 #' @name match_ext
 
-`%out%` <- function(x, table) {
-  match(x, table, nomatch = 0L) == 0L
+#' @rdname match_ext
+#' @export
+is_in <- function(x, table) {
+  x %in% table
 }
 
 #' @rdname match_ext
 #' @export
-`%wo%` <- function(x, table) {
-  x[x %out% table]
+is_out <- function(x, table) {
+  match(x, table, nomatch = 0L) == 0L
+}
+
+`%out%` <- function(x, table) {
+  is_out(x, table)
+}
+
+#' @rdname match_ext
+#' @export
+is_within <- function(x, table) {
+  x[match(table, x, nomatch = 0L)]
 }
 
 #' @rdname match_ext
 #' @export
 `%wi%` <- function(x, table) {
-  x[match(table, x, nomatch = 0L)]
+  is_within(x, table)
+}
+
+#' @rdname match_ext
+#' @export
+is_without <- function(x, table) {
+  x[x %out% table]
+}
+
+#' @rdname match_ext
+#' @export
+`%wo%` <- function(x, table) {
+  is_without(x, table)
 }
 
 #' @rdname match_ext

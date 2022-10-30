@@ -2,18 +2,27 @@
 % Please edit documentation in R/match.R
 \name{match_ext}
 \alias{match_ext}
-\alias{\%out\%}
-\alias{\%wo\%}
+\alias{is_in}
+\alias{is_out}
+\alias{is_within}
 \alias{\%wi\%}
+\alias{is_without}
+\alias{\%wo\%}
 \alias{no_match}
 \alias{any_match}
 \title{Value matching - Extensions}
 \usage{
-x \%out\% table
+is_in(x, table)
 
-x \%wo\% table
+is_out(x, table)
+
+is_within(x, table)
 
 x \%wi\% table
+
+is_without(x, table)
+
+x \%wo\% table
 
 no_match(x, table)
 
