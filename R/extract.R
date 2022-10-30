@@ -1,6 +1,5 @@
 #' Extract and replace aliases
 #'
-#' @inheritParams base::Extract
 #' @name alias_extract
 NULL
 

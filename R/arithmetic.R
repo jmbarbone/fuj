@@ -1,6 +1,5 @@
 #' Arithmetic wrappers
 #'
-#' @inheritParams base::Arithmetic
 #' @name alias_arithmetic
 NULL
 
