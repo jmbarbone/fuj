@@ -26,10 +26,11 @@ muffle <- function(expr, fun, classes = "message") {
   if (missing(fun)) {
     suppressMessages(expr, classes = classes)
   } else if (missing(expr)) {
+    fun <- match.fun(fun)
     out <- function(...) {}
     body(out) <- substitute(
-      fuj::muffle(expr = match.fun(fun)(...), classes = classes),
-      environment()
+      fuj::muffle(expr = fun(...), classes = classes),
+      parent.frame(2)
     )
     out
   } else {
@@ -43,10 +44,11 @@ wuffle <- function(expr, fun, classes = "warning") {
   if (missing(fun)) {
     suppressWarnings(expr, classes = classes)
   } else if (missing(expr)) {
+    fun <- match.fun(fun)
     out <- function(...) {}
     body(out) <- substitute(
-      fuj::wuffle(expr = match.fun(fun)(...), classes = classes),
-      environment()
+      fuj::wuffle(expr = fun(...), classes = classes),
+      parent.frame(2)
     )
     out
   } else {
