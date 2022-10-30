@@ -14,12 +14,14 @@ remove_names(x)
 
 x \%names\% nm
 
-is_named(x)
+is_named(x, zero_ok = TRUE)
 }
 \arguments{
 \item{x}{A vector of values}
 
 \item{nm}{A vector of names}
+
+\item{zero_ok}{If \code{TRUE} allows use of \code{""} as a \emph{special} name}
 }
 \value{
 \code{x} with \code{nm} values assigned to names (if \code{x} is \code{NULL}, \code{NULL} is
