@@ -74,3 +74,19 @@ struct(list(a = 1, b = 2), class = "foo", c = 3, d = 3)
 #> attr(,"class")
 #> [1] "foo"
 ```
+
+Suppress messages and warnings:
+
+``` r
+foo <- function(...) { message(paste0(list(...))) ; c(...) }
+muffle(foo(1:3))
+#> [1] 1 2 3
+sapply(1:3, muffle(fun = foo))
+#> [1] 1 2 3
+
+x <- list("a", 1)
+wuffle(as.integer(x))
+#> [1] NA  1
+sapply(x, wuffle(fun = as.integer))
+#> [1] NA  1
+```
