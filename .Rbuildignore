@@ -9,3 +9,4 @@
 ^pkgdown$
 ^\.covrignore$
 ^\.lintr$
+^cran-comments\.md$
