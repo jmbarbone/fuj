@@ -1,4 +1,5 @@
 Package: fuj
+Type: Package
 Title: Functions and Utilities for Jordan
 Version: 0.0.0.9000
 Authors@R: 
@@ -9,6 +10,7 @@ Authors@R:
       role = c("aut", "cph", "cre"),
       comment = c(ORCID = "0000-0001-9788-3628")
     )
+Maintainer: Jordan Mark Barbone <jmbarbone@gmail.com>
 Description: Provides core functions and utilities for packages and other code
     developed by Jordan Mark Barbone.
 License: MIT + file LICENSE
