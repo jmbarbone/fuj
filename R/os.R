@@ -1,11 +1,8 @@
-
 #' Determine operating systems
 #'
 #' @returns `TRUE` or `FALSE`
 #' @name os
 NULL
-
-# nocov start
 
 #' @export
 #' @rdname os
@@ -24,5 +21,3 @@ is_macos <- function() {
 is_linux <- function() {
   Sys.info()[["sysname"]] == "Linux"
 }
-
-# nocov end

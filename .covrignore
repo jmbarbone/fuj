@@ -1,1 +1,4 @@
+R/arithmetic.R
 R/condition-utils.R
+R/extract.R
+R/os.R

@@ -3,8 +3,6 @@
 #' @name alias_arithmetic
 NULL
 
-# nocov start
-
 #' @export
 #' @rdname alias_arithmetic
 add <- `+`
@@ -32,5 +30,3 @@ remainder <- `%%`
 #' @export
 #' @rdname alias_arithmetic
 divide_int <- `%/%`
-
-# nocov end

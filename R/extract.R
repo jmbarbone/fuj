@@ -3,8 +3,6 @@
 #' @name alias_extract
 NULL
 
-# nocov start
-
 #' @export
 #' @rdname alias_extract
 subset1 <- `[`
@@ -28,5 +26,3 @@ subassign2 <- `[[<-`
 #' @export
 #' @rdname alias_extract
 subassign3 <- `$<-`
-
-# nocov end
