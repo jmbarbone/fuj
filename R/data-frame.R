@@ -30,18 +30,20 @@ quick_df <- function(x = NULL) {
   }
 
   if (!is.list(x)) {
-    stop("x is not a list", call. = FALSE)
+    stop(quickdfInputCondition())
   }
 
   n <- unique(lengths(x))
 
   if (length(n) != 1L) {
-    stop("List does not have an equal length", call. = FALSE)
+    stop(quickdfListCondition())
   }
 
-  struct(x, "data.frame",
-         names = names(x) %||% make.names(1:length(x)),
-         row.names = c(NA_integer_, -n)
+  struct(
+    x  = x,
+    class ="data.frame",
+    names = names(x) %||% make.names(1:length(x)),
+    row.names = c(NA_integer_, -n)
   )
 }
 
@@ -54,4 +56,15 @@ empty_df <- function() {
 #' @param ... Columns as `tag = value` (passed to `list()`)
 quick_dfl <- function(...) {
   quick_df(list(...))
+}
+
+
+# conditions --------------------------------------------------------------
+
+quickdfListCondition <- function() {
+  new_condition("`x` does not have equal length", class = "quickdfList")
+}
+
+quickdfInputCondition <- function() {
+  new_condition("`x` is not a list", class = "quickdfInput")
 }
