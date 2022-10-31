@@ -34,7 +34,7 @@
 #' @rdname match_ext
 #' @export
 is_in <- function(x, table) {
-  x %in% table
+  match(x, table, nomatch = 0L) > 0L
 }
 
 #' @rdname match_ext

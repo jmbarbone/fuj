@@ -18,9 +18,6 @@ list0 <- function(...) {
       if (identical(e$message, "argument is missing, with no default")) {
         return(eval(mc[seq_len(...length())], envir = parent))
       }
-
-      mc[1] <- call("list")
-      eval(mc, envir = parent)
     }
   )
 }
