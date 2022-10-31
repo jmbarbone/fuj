@@ -25,7 +25,7 @@ test_that("flip.data.frame", {
 
   # test with 0 cols
   df <- struct(list(), "data.frame", row.names = c(NA_integer_, -3L))
-  expect_identical(flip(df, by_row = FALSE), df)
+  expect_identical(flip(df, by = "columns"), df)
 })
 
 test_that("flip.matrix", {
@@ -34,7 +34,7 @@ test_that("flip.matrix", {
   expect_equal(flip(mat), res1)
 
   res2 <- mat[, 5:1]
-  expect_equal(flip(mat, by_row = FALSE), res2)
+  expect_equal(flip(mat, by = "columns"), res2)
 
   mat2 <- mat
   dimnames(mat2) <- list(letters[1:5])
@@ -50,17 +50,17 @@ test_that("flip.matrix", {
   expect_identical(res, exp)
 
   mat <- structure(integer(), class = "matrix")
-  expect_identical(flip(mat, by_row = FALSE), mat)
+  expect_identical(flip(mat, by = "columns"), mat)
 })
 
 test_that("flip doesn't coerce into lower object [36]", {
   x <- data.frame(x = 1)
   expect_identical(x, flip(x))
-  expect_identical(x, flip(x, by_row = FALSE))
+  expect_identical(x, flip(x, by = "columns"))
 
   x <- matrix(1:4, nrow = 2)
   expect_identical(dim(flip(x)), c(2L, 2L))
-  expect_identical(dim(flip(x, by_row = FALSE)), c(2L, 2L))
+  expect_identical(dim(flip(x, by = "columns")), c(2L, 2L))
 
   expect_identical(flip(matrix(1)), matrix(1))
 })

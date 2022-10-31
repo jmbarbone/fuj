@@ -3,7 +3,7 @@
 #' Flip an object.
 #'
 #' @param x An object
-#' @param by_row `TRUE`, flips by row, otherwise by column
+#' @param by Flip by `"rows"` or `"columns"` (partial matches accepted)
 #' @param keep_rownames Logical, if `TRUE` will not reset rownames; `NULL`
 #' @param ... Additional arguments passed to methods
 #' @return A vector of values, equal length of `x` that is reversed or a
@@ -36,69 +36,78 @@ flip.default <- function(x, ...) {
 
 #' @export
 #' @rdname flip
-flip.matrix <- function(x, by_row = TRUE, keep_rownames = NULL, ...) {
-  if (by_row) {
-    rows <- nrow(x)
-    dims <- dimnames(x)
+flip.matrix <- function(x, by = c("rows", "columns"), keep_rownames = NULL, ...) {
+  switch(
+    match.arg(by),
+    rows =  {
+      rows <- nrow(x)
+      dims <- dimnames(x)
 
-    if (rows < 2) {
-      return(x)
-    }
+      if (rows < 2) {
+        return(x)
+      }
 
-    out <- x[rows:1, , drop = FALSE]
-    rn <- dims[[1]]
+      out <- x[rows:1, , drop = FALSE]
+      rn <- dims[[1]]
 
-    if (is.null(keep_rownames)) {
-      keep_rownames <- !identical(rn, 1:rows)
-    }
+      if (is.null(keep_rownames)) {
+        keep_rownames <- !identical(rn, 1:rows)
+      }
 
-    if (!keep_rownames) {
-      dims[[1]] <- rn
-      dimnames(out) <- dims
-    }
+      if (!keep_rownames) {
+        dims[[1]] <- rn
+        dimnames(out) <- dims
+      }
+    },
+    columns = {
+      cols <- ncol(x)
 
-  } else {
-    cols <- ncol(x)
+      if (length(x) == 0L) {
+        return(x)
+      }
 
-    if (length(x) == 0L) {
-      return(x)
-    }
-
-    out <- x[, cols:1L, drop = FALSE]
-  }
+      out <- x[, cols:1L, drop = FALSE]
+    },
+    stop(internalSwitchCondition()) # nocov
+  )
 
   out
 }
 
 #' @export
 #' @rdname flip
-flip.data.frame <- function(x, by_row = TRUE, keep_rownames = NULL, ...) {
-  if (by_row) {
-    rows <- nrow(x)
+flip.data.frame <- function(x, by = c("rows", "columns"), keep_rownames = NULL, ...) {
+  switch(
+    match.arg(by),
+    rows = {
+      rows <- nrow(x)
 
-    if (rows < 2) {
-      return(x)
-    }
+      if (rows < 2) {
+        return(x)
+      }
 
-    out <- x[rows:1, , drop = FALSE]
-    rn <- attr(x, "row.names")
+      out <- x[rows:1, , drop = FALSE]
+      rn <- attr(x, "row.names")
 
-    if (is.null(keep_rownames)) {
-      keep_rownames <- !identical(rn, 1:rows)
-    }
+      if (is.null(keep_rownames)) {
+        keep_rownames <- !identical(rn, 1:rows)
+      }
 
-    if (!keep_rownames) {
-      attr(out, "row.names") <- rn
-    }
-  } else {
-    cols <- ncol(x)
+      if (!keep_rownames) {
+        attr(out, "row.names") <- rn
+      }
+    },
+    columns = {
+      cols <- ncol(x)
 
-    if (!cols) {
-      return(x)
-    }
+      if (!cols) {
+        return(x)
+      }
 
-    out <- x[, cols:1L, drop = FALSE]
-  }
+      out <- x[, cols:1L, drop = FALSE]
+    },
+    stop(switchCondition()) # nocov
+  )
 
   out
 }

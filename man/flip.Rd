@@ -11,16 +11,16 @@ flip(x, ...)
 
 \method{flip}{default}(x, ...)
 
-\method{flip}{matrix}(x, by_row = TRUE, keep_rownames = NULL, ...)
+\method{flip}{matrix}(x, by = c("rows", "columns"), keep_rownames = NULL, ...)
 
-\method{flip}{data.frame}(x, by_row = TRUE, keep_rownames = NULL, ...)
+\method{flip}{data.frame}(x, by = c("rows", "columns"), keep_rownames = NULL, ...)
 }
 \arguments{
 \item{x}{An object}
 
 \item{...}{Additional arguments passed to methods}
 
-\item{by_row}{\code{TRUE}, flips by row, otherwise by column}
+\item{by}{Flip by \code{"rows"} or \code{"columns"} (partial matches accepted)}
 
 \item{keep_rownames}{Logical, if \code{TRUE} will not reset rownames; \code{NULL}}
 }
