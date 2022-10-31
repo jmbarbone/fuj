@@ -1,5 +1,3 @@
-# Like rlang::`%||%` but uses base is.null -- same thing
-
 #' Default value for NULL
 #'
 #' Replace if `NULL`

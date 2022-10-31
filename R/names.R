@@ -1,4 +1,3 @@
-
 #' Set names
 #'
 #' Sets or removes names

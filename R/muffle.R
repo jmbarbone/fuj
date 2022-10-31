@@ -32,7 +32,6 @@ wuffle <- function(expr, fun, classes = "warning") {
   do_muffle("wuffle", expr, fun, classes)
 }
 
-
 # helpers -----------------------------------------------------------------
 
 do_muffle <- function(

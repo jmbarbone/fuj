@@ -60,7 +60,6 @@ quick_dfl <- function(...) {
   quick_df(list(...))
 }
 
-
 # conditions --------------------------------------------------------------
 
 cond_quick_df_list <- function() {

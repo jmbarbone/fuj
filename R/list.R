@@ -1,4 +1,3 @@
-
 #' Listing for dots
 #'
 #' Tries to not complain about empty arguments

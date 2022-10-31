@@ -1,4 +1,3 @@
-
 #' Require namespace
 #'
 #' @param package The name of a package
