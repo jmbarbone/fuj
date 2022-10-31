@@ -23,47 +23,47 @@
 #' wuffle(as.integer("a"))
 #' sapply(list(1, "a", "0", ".2"), wuffle(fun = as.integer))
 muffle <- function(expr, fun, classes = "message") {
-  if (missing(fun)) {
-    suppressMessages(expr, classes = classes)
-  } else if (missing(expr)) {
-    fun <- match.fun(fun)
-    out <- function(...) {}
-    body(out) <- substitute(
-      fuj::muffle(expr = fun(...), classes = classes),
-      parent.frame(2)
-    )
-    out
-  } else {
-    stop(muffleCondition("muffle"))
-  }
+  do_muffle("muffle", expr, fun, classes)
 }
 
 #' @export
 #' @rdname muffle
 wuffle <- function(expr, fun, classes = "warning") {
-  if (missing(fun)) {
-    suppressWarnings(expr, classes = classes)
-  } else if (missing(expr)) {
-    fun <- match.fun(fun)
-    out <- function(...) {}
-    body(out) <- substitute(
-      fuj::wuffle(expr = fun(...), classes = classes),
-      parent.frame(2)
-    )
-    out
-  } else {
-    stop(muffleCondition("wuffle"))
-  }
+  do_muffle("wuffle", expr, fun, classes)
 }
 
-muffleCondition <- function(class = c("muffle", "wuffle"), call = NULL) {
-  class <- paste0(match.arg(class), "Error")
-  struct(
-    list0(
-      message = paste(class, ": only either `expr` or `fun` must be used"),
-      call = NULL,
-    ),
-    class = c(class, "error", "condition"),
-    names = c("message", "call")
-  )
+
+# helpers -----------------------------------------------------------------
+
+do_muffle <- function(
+    type = c("muffle", "wuffle"),
+    expr,
+    fun,
+    classes,
+    env = parent.frame()
+) {
+  type <- match.arg(type)
+
+  if (missing(fun)) {
+    fun <- switch(type, muffle = suppressMessages, wuffle = suppressWarnings)
+    return(fun(expr = expr, classes = classes))
+  }
+
+  if (missing(expr)) {
+    out <- as.function(alist(... = , ))
+    out_body <- alist()
+    out_body[[1]] <- substitute(get(type, asNamespace("fuj")))
+    out_body$expr <- substitute(match.fun(fun)(...), env = env)
+    out_body$classes <- classes
+    body(out) <- as.call(out_body)
+    environment(out) <- parent.frame(2)
+    return(out)
+  }
+
+  stop(muffleCondition(type))
+}
+
+muffleCondition <- function(class = c("muffle", "wuffle")) {
+  class <- match.arg(class)
+  new_condition("only either `expr` or `fun` must be used", class = class)
 }
