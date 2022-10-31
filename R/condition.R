@@ -8,7 +8,7 @@
 #' @param type The type (additional class) of condition: either `error"`,
 #'   `"warning"` or `NA`, which is treated as `NULL`
 #' @export
-#' @returns A condition with the classes specified from the params
+#' @return A `condition` with the classes specified from `class` and `type`
 new_condition <- function(
     msg = "",
     class = NULL,

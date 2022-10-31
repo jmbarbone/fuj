@@ -5,7 +5,7 @@
 \alias{\%||\%}
 \alias{\%|||\%}
 \alias{\%len\%}
-\title{Default value for NULL}
+\title{Default value for \code{NULL} or no length}
 \usage{
 x \%||\% y
 
@@ -17,14 +17,12 @@ x \%len\% y
 \item{x, y}{If \code{x} is \code{NULL} returns \code{y}; otherwise \code{x}}
 }
 \value{
-\code{x} if it is not \code{NULL} (or has length)
+\code{x} if it is not \code{NULL} or has length, depending on check
 }
 \description{
-Replace if \code{NULL}
+Replace if \code{NULL} or not length
 }
 \details{
 A mostly copy of \code{rlang}'s \verb{\%||\%} except does not use \code{rlang::is_null()},
-which, currently, calls the same primitive \code{is.null} function as
-\code{\link[base:NULL]{base::is.null()}}.
-This is not to be exported due to conflicts with \code{purrr}
+which, currently, calls the same primitive \link[base:NULL]{base::is.null} function.
 }

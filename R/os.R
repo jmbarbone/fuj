@@ -1,6 +1,6 @@
 #' Determine operating systems
 #'
-#' @returns `TRUE` or `FALSE`
+#' @return `TRUE` or `FALSE`
 #' @name os
 NULL
 

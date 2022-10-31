@@ -1,18 +1,16 @@
-#' Default value for NULL
+#' Default value for `NULL` or no length
 #'
-#' Replace if `NULL`
+#' Replace if `NULL` or not length
 #'
 #' @details
 #' A mostly copy of `rlang`'s `%||%` except does not use `rlang::is_null()`,
-#'   which, currently, calls the same primitive `is.null` function as
-#'   [base::is.null()].
-#' This is not to be exported due to conflicts with `purrr`
+#'   which, currently, calls the same primitive [base::is.null] function.
 #'
 #' @param x,y If `x` is `NULL` returns `y`; otherwise `x`
 #'
 #' @name if_null
 #' @export
-#' @returns `x` if it is not `NULL` (or has length)
+#' @return `x` if it is not `NULL` or has length, depending on check
 `%||%` <- function(x, y) {
   if (is.null(x)) y else x
 }

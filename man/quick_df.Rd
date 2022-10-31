@@ -19,7 +19,8 @@ quick_dfl(...)
 }
 \value{
 A \code{data.frame}; if \code{x} is \code{NULL} a \code{data.frame} with \code{0} rows and \code{0}
-columns is returned (similar to calling \code{data.frame()} but faster)
+columns is returned (similar to calling \code{data.frame()} but faster).
+\code{empty_df()} returns a \code{data.frame} with \code{0} rows and \code{0} columns.
 }
 \description{
 This is a speedier implementation of \code{as.data.frame()} but does not provide

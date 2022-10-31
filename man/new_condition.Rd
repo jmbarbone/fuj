@@ -23,7 +23,7 @@ new_condition(
 \code{"warning"} or \code{NA}, which is treated as \code{NULL}}
 }
 \value{
-A condition with the classes specified from the params
+A \code{condition} with the classes specified from \code{class} and \code{type}
 }
 \description{
 Template for a new condition.  See more at \link[base:conditions]{base::conditions}

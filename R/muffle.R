@@ -6,6 +6,7 @@
 #' @param fun A function to _muffle_ (or _wuffle_)
 #' @param classes A character vector if classes to suppress
 #' @export
+#' @return The result of `expr` or a `function` wrapping `fun`
 #' @examples
 #'
 #' # load function

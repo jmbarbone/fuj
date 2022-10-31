@@ -4,7 +4,8 @@
 #' the same sort of checks. It should be used with caution.
 #'
 #' @return A `data.frame`; if `x` is `NULL` a `data.frame` with `0` rows and `0`
-#'   columns is returned (similar to calling `data.frame()` but faster)
+#'   columns is returned (similar to calling `data.frame()` but faster).
+#'   `empty_df()` returns a `data.frame` with `0` rows and `0` columns.
 #' @examples
 #'
 #' # unnamed will use make.names()

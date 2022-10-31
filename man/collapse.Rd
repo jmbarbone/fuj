@@ -12,6 +12,10 @@ collapse(..., sep = "")
 \item{sep}{a character string to separate the terms.  Not
     \code{\link[base]{NA_character_}}.}
 }
+\value{
+A \code{character} vector of concatenated values.  See \link[base:paste]{base::paste} for
+more details.
+}
 \description{
 Simple wrapper for concatenating strings
 }

@@ -2,7 +2,7 @@
 #'
 #' @param package The name of a package
 #' @export
-#' @returns `TRUE` (invisibly) if found; otherwise errors
+#' @return `TRUE` (invisibly) if found; otherwise errors
 require_namespace <- function(package) {
   ok <- try(wuffle(requireNamespace)(package, quietly = TRUE), silent = TRUE)
 

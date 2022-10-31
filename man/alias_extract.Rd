@@ -21,6 +21,9 @@ subassign2()
 
 subassign3()
 }
+\value{
+See \link[base:Extract]{base::Extract}
+}
 \description{
 Extract and replace aliases
 }

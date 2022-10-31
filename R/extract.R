@@ -1,6 +1,7 @@
 #' Extract and replace aliases
 #'
 #' @name alias_extract
+#' @return See [base::Extract]
 NULL
 
 #' @export

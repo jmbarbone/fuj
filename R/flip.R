@@ -4,9 +4,9 @@
 #'
 #' @param x An object
 #' @param by Flip by `"rows"` or `"columns"` (partial matches accepted)
-#' @param keep_rownames Logical, if `TRUE` will not reset rownames; `NULL`
+#' @param keep_rownames Logical, if `TRUE` will not reset row names; `NULL`
 #' @param ... Additional arguments passed to methods
-#' @return A vector of values, equal length of `x` that is reversed or a
+#' @return A `vector` of values, equal length of `x` that is reversed or a
 #'   `data frame` with flipped rows/columns
 #'
 #' @examples

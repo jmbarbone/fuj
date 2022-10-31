@@ -1,4 +1,4 @@
-# unepxorted helper conditions
+# unexported helper conditions
 
 cond_internal_switch <- function() {
   s <- sys.call()

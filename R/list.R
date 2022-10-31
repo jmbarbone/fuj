@@ -3,7 +3,7 @@
 #' Tries to not complain about empty arguments
 #'
 #' @param ... Arguments to collect in a list
-#' @returns A `list` of `...`
+#' @return A `list` of `...`
 #' @export
 #' @examples
 #' try(list(1,))

@@ -1,6 +1,7 @@
 #' Arithmetic wrappers
 #'
 #' @name alias_arithmetic
+#' @return See [base::Arithmetic]
 NULL
 
 #' @export

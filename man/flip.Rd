@@ -22,10 +22,10 @@ flip(x, ...)
 
 \item{by}{Flip by \code{"rows"} or \code{"columns"} (partial matches accepted)}
 
-\item{keep_rownames}{Logical, if \code{TRUE} will not reset rownames; \code{NULL}}
+\item{keep_rownames}{Logical, if \code{TRUE} will not reset row names; \code{NULL}}
 }
 \value{
-A vector of values, equal length of \code{x} that is reversed or a
+A \code{vector} of values, equal length of \code{x} that is reversed or a
 \verb{data frame} with flipped rows/columns
 }
 \description{
