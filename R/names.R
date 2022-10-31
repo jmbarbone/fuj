@@ -37,6 +37,7 @@ remove_names <- function(x) {
 
 #' @rdname names
 #' @param zero_ok If `TRUE` allows use of `""` as a _special_ name
+#' @export
 is_named <- function(x, zero_ok = TRUE) {
   nm <- names(x)
   !is.null(nm) && if (zero_ok) TRUE else all(nzchar(nm))

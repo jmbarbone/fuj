@@ -21,6 +21,6 @@ Determine operating systems
 }
 \examples{
 is_windows()
-is_macoc()
+is_macos()
 is_linux()
 }

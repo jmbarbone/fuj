@@ -3,7 +3,7 @@
 #' @return `TRUE` or `FALSE`
 #' @examples
 #' is_windows()
-#' is_macoc()
+#' is_macos()
 #' is_linux()
 #' @name os
 NULL

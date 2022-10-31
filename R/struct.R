@@ -25,7 +25,6 @@
 #'   will be used
 #' @return An object with class defined as `class` and attributes `...`
 #'
-#' @export
 #' @examples
 #' x <- list(a = 1, b = 2)
 #' # structure() retains the $names attribute of x but struct() does not
@@ -73,6 +72,7 @@
 #'
 #' # assignment in ... overwrites attributes
 #' struct(x, "data.frame", names = c("var1", "var2"), .keep_attr = TRUE)
+#' @export
 
 struct <- function(x, class, ..., .keep_attr = FALSE) {
   attributes(x) <- if (isTRUE(.keep_attr)) {
