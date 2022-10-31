@@ -11,10 +11,10 @@ require_namespace <- function(package) {
     return(invisible(TRUE))
   }
 
-  stop(namespaceCondition(package))
+  stop(cond_namespace(package))
 }
 
-namespaceCondition <- function(package) {
+cond_namespace <- function(package) {
   new_condition(
     msg = sprintf(
       "No package found called '%s'",

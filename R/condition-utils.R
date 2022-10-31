@@ -1,6 +1,6 @@
 # unepxorted helper conditions
 
-internalSwitchCondition <- function() {
+cond_internal_switch <- function() {
   s <- sys.call()
   switches <- as.list(str2lang(as.character(attr(s, "srcref"))))
   selected <- switches[[2]]
@@ -13,6 +13,6 @@ internalSwitchCondition <- function() {
       collapse(selected, sep = ", "),
       collapse(provided, sep = ", ")
     ),
-    class = "internalSwitch"
+    class = "internal_switch"
   )
 }

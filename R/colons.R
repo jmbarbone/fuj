@@ -28,13 +28,13 @@
   res <- try(get(name, envir = asNamespace(package)), silent = TRUE)
 
   if (inherits(res, "try-error")) {
-    stop(colonsCondition(package, name))
+    stop(cond_colons(package, name))
   }
 
   res
 }
 
-colonsCondition <- function(package, name) {
+cond_colons <- function(package, name) {
   new_condition(
     msg = sprintf(
       "`%s:::%s` not found",

@@ -36,7 +36,12 @@ flip.default <- function(x, ...) {
 
 #' @export
 #' @rdname flip
-flip.matrix <- function(x, by = c("rows", "columns"), keep_rownames = NULL, ...) {
+flip.matrix <- function(
+    x,
+    by = c("rows", "columns"),
+    keep_rownames = NULL,
+    ...
+) {
   switch(
     match.arg(by),
     rows =  {
@@ -68,7 +73,7 @@ flip.matrix <- function(x, by = c("rows", "columns"), keep_rownames = NULL, ...)
 
       out <- x[, cols:1L, drop = FALSE]
     },
-    stop(internalSwitchCondition()) # nocov
+    stop(cond_internal_switch()) # nocov
   )
 
   out
@@ -76,7 +81,12 @@ flip.matrix <- function(x, by = c("rows", "columns"), keep_rownames = NULL, ...)
 
 #' @export
 #' @rdname flip
-flip.data.frame <- function(x, by = c("rows", "columns"), keep_rownames = NULL, ...) {
+flip.data.frame <- function(
+    x,
+    by = c("rows", "columns"),
+    keep_rownames = NULL,
+    ...
+) {
   switch(
     match.arg(by),
     rows = {
@@ -94,7 +104,7 @@ flip.data.frame <- function(x, by = c("rows", "columns"), keep_rownames = NULL, 
       }
 
       if (!keep_rownames) {
-        attr(out, "row.names") <- rn
+        attr(out, "row.names") <- rn # nolint object_name_linter
       }
     },
     columns = {
@@ -106,7 +116,7 @@ flip.data.frame <- function(x, by = c("rows", "columns"), keep_rownames = NULL, 
 
       out <- x[, cols:1L, drop = FALSE]
     },
-    stop(switchCondition()) # nocov
+    stop(cond_internal_switch()) # nocov
   )
 
   out

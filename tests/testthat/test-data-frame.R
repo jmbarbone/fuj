@@ -1,6 +1,6 @@
 test_that("quick_df()", {
-  expect_error(quick_df(1L), class = "quickdfInputError")
-  expect_error(quick_df(list(a = 1:2, b = 1:3)), class = "quickdfListError")
+  expect_error(quick_df(1L), class = "quickDfInputError")
+  expect_error(quick_df(list(a = 1:2, b = 1:3)), class = "quickDfListError")
 
   expect_identical(
     quick_df(list(a = NULL)),

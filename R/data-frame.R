@@ -30,19 +30,19 @@ quick_df <- function(x = NULL) {
   }
 
   if (!is.list(x)) {
-    stop(quickdfInputCondition())
+    stop(cond_quick_df_input())
   }
 
   n <- unique(lengths(x))
 
   if (length(n) != 1L) {
-    stop(quickdfListCondition())
+    stop(cond_quick_df_list())
   }
 
   struct(
     x  = x,
-    class ="data.frame",
-    names = names(x) %||% make.names(1:length(x)),
+    class = "data.frame",
+    names = names(x) %||% make.names(1:length(x)), # nolint seq_linter
     row.names = c(NA_integer_, -n)
   )
 }
@@ -63,10 +63,10 @@ quick_dfl <- function(...) {
 
 # conditions --------------------------------------------------------------
 
-quickdfListCondition <- function() {
-  new_condition("`x` does not have equal length", class = "quickdfList")
+cond_quick_df_list <- function() {
+  new_condition("`x` does not have equal length", class = "quick_df_list")
 }
 
-quickdfInputCondition <- function() {
-  new_condition("`x` is not a list", class = "quickdfInput")
+cond_quick_df_input <- function() {
+  new_condition("`x` is not a list", class = "quick_df_input")
 }

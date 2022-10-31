@@ -1,9 +1,9 @@
 test_that("is_in(), %out%", {
-  res <- is_in(1:10, c(1,3,5,9))
+  res <- is_in(1:10, c(1, 3, 5, 9))
   exp <- c(TRUE, FALSE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE)
   expect_identical(res, exp)
 
-  res <- 1:10 %out% c(1,3,5,9)
+  res <- 1:10 %out% c(1, 3, 5, 9)
   expect_identical(res, !exp)
 })
 

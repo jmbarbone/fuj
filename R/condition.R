@@ -20,12 +20,12 @@ new_condition <- function(
   type <- as.character(type)
   type <- match.arg(type)
   class <- as.character(class)
-  class <- switch(
-    type,
-    error = collapse(class, "Error"),
-    warning = collapse(class, "Warning"),
-    class
-  )
+
+  if (length(type) == 1L && !is.na(type)) {
+    class <- collapse(class, "_", type)
+    class <- gsub("_([a-z])", "\\U\\1", class, perl = TRUE)
+  }
+
   message <- sprintf("<%s> %s", class, collapse(message))
   class <- unique(c(class, type %|||% NULL, "condition"))
   struct(list(message, call), class = class, names = c("message", "call"))

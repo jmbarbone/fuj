@@ -30,4 +30,3 @@
 `%len%` <- function(x, y) {
   if (length(x)) x else y
 }
-
