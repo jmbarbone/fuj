@@ -7,6 +7,15 @@
 #' @return `x` with `nm` values assigned to names (if `x` is `NULL`, `NULL` is
 #'   returned)
 #'
+#' @examples
+#' set_names(1:5)
+#' set_names(1:5, c("a", "b", "c", "d", "e"))
+#'
+#' x <- c(a = 1, b = 2)
+#' remove_names(x)
+#' x %names% c("c", "d")
+#' is_named(x)
+#'
 #' @name names
 #' @export
 set_names <- function(x, nm = x) {

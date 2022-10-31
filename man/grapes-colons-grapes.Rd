@@ -27,3 +27,8 @@ your code as it will retrieve non-exported objects that may be more
 likely to change in their functionality that exported objects.
 }
 
+\examples{
+identical("base" \%colons\% "mean", base::mean)
+"fuj" \%colons\% "colons_example" # unexported value
+
+}

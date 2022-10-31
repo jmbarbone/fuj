@@ -19,3 +19,8 @@ more details.
 \description{
 Simple wrapper for concatenating strings
 }
+\examples{
+collapse(1:10)
+collapse(list("a", b = 1:2))
+collapse(quick_dfl(a = 1:3, b = 4:6), sep = "-")
+}

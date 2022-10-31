@@ -28,3 +28,9 @@ A \code{condition} with the classes specified from \code{class} and \code{type}
 \description{
 Template for a new condition.  See more at \link[base:conditions]{base::conditions}
 }
+\examples{
+# empty condition
+x <- new_condition("informative error message", class = "foo")
+try(stop(x))
+
+}

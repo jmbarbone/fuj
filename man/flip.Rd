@@ -36,6 +36,6 @@ flip(letters[1:3])
 flip(seq.int(9, -9, by = -3))
 flip(head(iris))
 flip(head(iris), keep_rownames = TRUE)
-flip(head(iris), by_row = FALSE)
+flip(head(iris), by = "col")
 
 }

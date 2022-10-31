@@ -5,7 +5,6 @@
 #' @param expr An expression to evaluate
 #' @param fun A function to _muffle_ (or _wuffle_)
 #' @param classes A character vector if classes to suppress
-#' @export
 #' @return The result of `expr` or a `function` wrapping `fun`
 #' @examples
 #'
@@ -23,6 +22,7 @@
 #' # silence warnings
 #' wuffle(as.integer("a"))
 #' sapply(list(1, "a", "0", ".2"), wuffle(fun = as.integer))
+#' @export
 muffle <- function(expr, fun, classes = "message") {
   do_muffle("muffle", expr, fun, classes)
 }

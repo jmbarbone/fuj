@@ -13,6 +13,9 @@
 #' @param package Name of the package
 #' @param name Name to retrieve
 #' @return The variable `name` from package `package`
+#' @examples
+#' identical("base" %colons% "mean", base::mean)
+#' "fuj" %colons% "colons_example" # unexported value
 #'
 #' @export
 `%colons%` <- function(package, name) {
@@ -44,3 +47,5 @@ cond_colons <- function(package, name) {
     class = "colons"
   )
 }
+
+colons_example <- "Hello, world"

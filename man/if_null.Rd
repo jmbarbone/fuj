@@ -26,3 +26,17 @@ Replace if \code{NULL} or not length
 A mostly copy of \code{rlang}'s \verb{\%||\%} except does not use \code{rlang::is_null()},
 which, currently, calls the same primitive \link[base:NULL]{base::is.null} function.
 }
+\examples{
+# replace NULL
+NULL \%||\% 1L
+2L   \%||\% 1L
+
+# replace empty
+""       \%|||\% 1L
+NA       \%|||\% 1L
+double() \%|||\% 1L
+NULL     \%|||\% 1L
+
+# replace no length
+logical() \%len\% TRUE
+}

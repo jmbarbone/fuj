@@ -9,8 +9,23 @@
 #' @param x,y If `x` is `NULL` returns `y`; otherwise `x`
 #'
 #' @name if_null
-#' @export
 #' @return `x` if it is not `NULL` or has length, depending on check
+#'
+#' @examples
+#' # replace NULL
+#' NULL %||% 1L
+#' 2L   %||% 1L
+#'
+#' # replace empty
+#' ""       %|||% 1L
+#' NA       %|||% 1L
+#' double() %|||% 1L
+#' NULL     %|||% 1L
+#'
+#' # replace no length
+#' logical() %len% TRUE
+#" FALSE     %len% TRUE
+#' @export
 `%||%` <- function(x, y) {
   if (is.null(x)) y else x
 }

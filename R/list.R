@@ -4,10 +4,10 @@
 #'
 #' @param ... Arguments to collect in a list
 #' @return A `list` of `...`
-#' @export
 #' @examples
-#' try(list(1,))
-#' list0(1,)
+#' try(list(1, ))
+#' list0(1, )
+#' @export
 list0 <- function(...) {
   mc <- match.call()
   parent <- parent.frame()

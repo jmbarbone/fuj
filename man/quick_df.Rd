@@ -27,7 +27,6 @@ This is a speedier implementation of \code{as.data.frame()} but does not provide
 the same sort of checks. It should be used with caution.
 }
 \examples{
-
 # unnamed will use make.names()
 x <- list(1:10, letters[1:10])
 quick_df(x)
@@ -37,6 +36,6 @@ names(x) <- c("numbers", "letters")
 quick_df(x)
 
 # empty data.frame
-quick_df(NULL)
+empty_df() # or quick_df(NULL)
 
 }
