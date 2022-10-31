@@ -47,6 +47,8 @@ quick_df <- function(x = NULL) {
   )
 }
 
+#' @export
+#' @rdname quick_df
 empty_df <- function() {
   struct(list(), "data.frame", row.names = integer(), names = character())
 }

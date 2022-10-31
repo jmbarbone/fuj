@@ -2,10 +2,13 @@
 % Please edit documentation in R/data-frame.R
 \name{quick_df}
 \alias{quick_df}
+\alias{empty_df}
 \alias{quick_dfl}
 \title{Quick DF}
 \usage{
 quick_df(x = NULL)
+
+empty_df()
 
 quick_dfl(...)
 }
