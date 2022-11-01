@@ -3,11 +3,11 @@
 #' Tries to not complain about empty arguments
 #'
 #' @param ... Arguments to collect in a list
-#' @returns A `list` of `...`
-#' @export
+#' @return A `list` of `...`
 #' @examples
-#' try(list(1,))
-#' list0(1,)
+#' try(list(1, ))
+#' list0(1, )
+#' @export
 list0 <- function(...) {
   mc <- match.call()
   parent <- parent.frame()

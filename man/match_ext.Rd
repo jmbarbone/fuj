@@ -43,29 +43,31 @@ any_match(x, table)
 \item \verb{\%out\%}: A \code{logical} vector of equal length of \code{x}, \code{table}
 \item \verb{\%wo\%}, \verb{\%wi\%}: A vector of values of \code{x}
 \item \code{any_match()}, \code{no_match()}: \code{TRUE} or \code{FALSE}
+\item \code{is_in()}: see \code{\link[base:match]{base::\%in\%()}}
 }
 }
 \description{
 Non matching alternatives and supplementary functions.
 }
 \details{
-Contrast with \code{\link[base:match]{base::match()}}, \code{\link[base:sets]{base::intersect()}}, and \code{\%in\%}
-The functions of \verb{\%wi\%} and \verb{\%wo\%} can be used in lieu of \code{intersect()} and
-\code{setdiff()}.  The primary difference is that the base functions return only
-unique values, which may not be a desired behavior.
+Contrast with \code{\link[base:match]{base::match()}}, \code{\link[base:sets]{base::intersect()}}, and
+\code{\link[base:match]{base::\%in\%()}} The functions of \verb{\%wi\%} and \verb{\%wo\%} can be used in lieu of
+\code{\link[base:sets]{base::intersect()}} and \code{\link[base:sets]{base::setdiff()}}.  The primary difference is that
+the base functions return only unique values, which may not be a desired
+behavior.
 }
 \examples{
-1:10 \%in\% c(1,3,5,9)
-1:10 \%out\% c(1,3,5,9)
+1:10 \%in\% c(1, 3, 5, 9)
+1:10 \%out\% c(1, 3, 5, 9)
 letters[1:5] \%wo\% letters[3:7]
 letters[1:5] \%wi\% letters[3:7]
 
 # base functions only return unique values
 
-          c(1:6,7:2) \%wo\% c(3,7,12)  # -> keeps duplicates
-  setdiff(c(1:6,7:2),     c(3,7,12)) # -> unique values
+          c(1:6, 7:2) \%wo\% c(3, 7, 12)  # -> keeps duplicates
+  setdiff(c(1:6, 7:2),     c(3, 7, 12)) # -> unique values
 
-          c(1:6,7:2) \%wi\% c(3,7,12)  # -> keeps duplicates
-intersect(c(1:6,7:2),     c(3,7,12)) # -> unique values
+          c(1:6, 7:2) \%wi\% c(3, 7, 12)  # -> keeps duplicates
+intersect(c(1:6, 7:2),     c(3, 7, 12)) # -> unique values
 
 }

@@ -16,6 +16,9 @@ wuffle(expr, fun, classes = "warning")
 
 \item{classes}{A character vector if classes to suppress}
 }
+\value{
+The result of \code{expr} or a \code{function} wrapping \code{fun}
+}
 \description{
 Aliases for \code{\link[base:message]{base::suppressMessages()}} and \code{\link[base:warning]{base::suppressWarnings()}}
 }

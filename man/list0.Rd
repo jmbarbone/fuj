@@ -16,6 +16,6 @@ A \code{list} of \code{...}
 Tries to not complain about empty arguments
 }
 \examples{
-try(list(1,))
-list0(1,)
+try(list(1, ))
+list0(1, )
 }

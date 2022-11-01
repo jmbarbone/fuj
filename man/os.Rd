@@ -19,3 +19,8 @@ is_linux()
 \description{
 Determine operating systems
 }
+\examples{
+is_windows()
+is_macos()
+is_linux()
+}

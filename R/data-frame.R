@@ -4,9 +4,10 @@
 #' the same sort of checks. It should be used with caution.
 #'
 #' @return A `data.frame`; if `x` is `NULL` a `data.frame` with `0` rows and `0`
-#'   columns is returned (similar to calling `data.frame()` but faster)
-#' @examples
+#'   columns is returned (similar to calling `data.frame()` but faster).
+#'   `empty_df()` returns a `data.frame` with `0` rows and `0` columns.
 #'
+#' @examples
 #' # unnamed will use make.names()
 #' x <- list(1:10, letters[1:10])
 #' quick_df(x)
@@ -16,7 +17,7 @@
 #' quick_df(x)
 #'
 #' # empty data.frame
-#' quick_df(NULL)
+#' empty_df() # or quick_df(NULL)
 #'
 #' @name quick_df
 NULL

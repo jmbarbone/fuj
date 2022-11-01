@@ -1,6 +1,10 @@
 #' Determine operating systems
 #'
-#' @returns `TRUE` or `FALSE`
+#' @return `TRUE` or `FALSE`
+#' @examples
+#' is_windows()
+#' is_macos()
+#' is_linux()
 #' @name os
 NULL
 

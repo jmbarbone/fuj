@@ -25,6 +25,9 @@ remainder()
 
 divide_int()
 }
+\value{
+See \link[base:Arithmetic]{base::Arithmetic}
+}
 \description{
 Arithmetic wrappers
 }

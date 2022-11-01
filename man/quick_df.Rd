@@ -19,14 +19,14 @@ quick_dfl(...)
 }
 \value{
 A \code{data.frame}; if \code{x} is \code{NULL} a \code{data.frame} with \code{0} rows and \code{0}
-columns is returned (similar to calling \code{data.frame()} but faster)
+columns is returned (similar to calling \code{data.frame()} but faster).
+\code{empty_df()} returns a \code{data.frame} with \code{0} rows and \code{0} columns.
 }
 \description{
 This is a speedier implementation of \code{as.data.frame()} but does not provide
 the same sort of checks. It should be used with caution.
 }
 \examples{
-
 # unnamed will use make.names()
 x <- list(1:10, letters[1:10])
 quick_df(x)
@@ -36,6 +36,6 @@ names(x) <- c("numbers", "letters")
 quick_df(x)
 
 # empty data.frame
-quick_df(NULL)
+empty_df() # or quick_df(NULL)
 
 }

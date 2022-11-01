@@ -4,9 +4,9 @@
 #'
 #' @param x An object
 #' @param by Flip by `"rows"` or `"columns"` (partial matches accepted)
-#' @param keep_rownames Logical, if `TRUE` will not reset rownames; `NULL`
+#' @param keep_rownames Logical, if `TRUE` will not reset row names; `NULL`
 #' @param ... Additional arguments passed to methods
-#' @return A vector of values, equal length of `x` that is reversed or a
+#' @return A `vector` of values, equal length of `x` that is reversed or a
 #'   `data frame` with flipped rows/columns
 #'
 #' @examples
@@ -14,7 +14,7 @@
 #' flip(seq.int(9, -9, by = -3))
 #' flip(head(iris))
 #' flip(head(iris), keep_rownames = TRUE)
-#' flip(head(iris), by_row = FALSE)
+#' flip(head(iris), by = "col")
 #'
 #' @export
 
@@ -72,8 +72,7 @@ flip.matrix <- function(
       }
 
       out <- x[, cols:1L, drop = FALSE]
-    },
-    stop(cond_internal_switch()) # nocov
+    }
   )
 
   out
@@ -115,8 +114,7 @@ flip.data.frame <- function(
       }
 
       out <- x[, cols:1L, drop = FALSE]
-    },
-    stop(cond_internal_switch()) # nocov
+    }
   )
 
   out

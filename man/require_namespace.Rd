@@ -15,3 +15,7 @@ require_namespace(package)
 \description{
 Require namespace
 }
+\examples{
+isTRUE(require_namespace("base")) # returns invisibly
+try(require_namespace("1package")) # (using a purposefully bad name)
+}

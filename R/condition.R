@@ -7,8 +7,13 @@
 #' @param call A call expression
 #' @param type The type (additional class) of condition: either `error"`,
 #'   `"warning"` or `NA`, which is treated as `NULL`
+#' @return A `condition` with the classes specified from `class` and `type`
+#' @examples
+#' # empty condition
+#' x <- new_condition("informative error message", class = "foo")
+#' try(stop(x))
+#'
 #' @export
-#' @returns A condition with the classes specified from the params
 new_condition <- function(
     msg = "",
     class = NULL,
