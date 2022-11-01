@@ -72,8 +72,7 @@ flip.matrix <- function(
       }
 
       out <- x[, cols:1L, drop = FALSE]
-    },
-    stop(cond_internal_switch()) # nocov
+    }
   )
 
   out
@@ -115,8 +114,7 @@ flip.data.frame <- function(
       }
 
       out <- x[, cols:1L, drop = FALSE]
-    },
-    stop(cond_internal_switch()) # nocov
+    }
   )
 
   out
