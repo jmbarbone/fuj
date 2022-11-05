@@ -4,26 +4,34 @@
 \alias{alias_extract}
 \alias{subset1}
 \alias{subset2}
+\alias{subset3}
 \alias{subassign1}
 \alias{subassign2}
 \alias{subassign3}
 \title{Extract and replace aliases}
-\usage{
-subset1()
-
-subset2()
-
-subset2()
-
-subassign1()
-
-subassign2()
-
-subassign3()
-}
 \value{
 See \link[base:Extract]{base::Extract}
 }
 \description{
 Extract and replace aliases
+}
+\examples{
+df <- quick_dfl(a = 1:5, b = 6:10)
+# alias of `[`
+subset1(df, 1)
+subset1(df, 1, )
+subset1(df, , 1)
+subset1(df, , 1, drop = FALSE)
+
+# alias of `[[`
+subset2(df, 1)
+subset2(df, 1, 2)
+
+# alias of `$`
+subset3(df, a)
+subset3(df, "b")
+subset3(df, "foo")
+
+# alias of `[<-`
+subassign1(df, "a", , 2)
 }

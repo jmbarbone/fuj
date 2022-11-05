@@ -10,24 +10,18 @@
 \alias{remainder}
 \alias{divide_int}
 \title{Arithmetic wrappers}
-\usage{
-add()
-
-subtract()
-
-multiply()
-
-divide()
-
-raise_power()
-
-remainder()
-
-divide_int()
-}
 \value{
 See \link[base:Arithmetic]{base::Arithmetic}
 }
 \description{
 Arithmetic wrappers
+}
+\examples{
+        add(7, 2) # +
+   subtract(7, 2) # -
+   multiply(7, 2) # *
+     divide(7, 2) # /
+raise_power(7, 2) # ^
+  remainder(7, 2) # \%\%
+ divide_int(7, 2) # \%/\%
 }
