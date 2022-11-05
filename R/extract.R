@@ -14,7 +14,7 @@ subset2 <- `[[`
 
 #' @export
 #' @rdname alias_extract
-subset2 <- `$`
+subset3 <- `$`
 
 #' @export
 #' @rdname alias_extract
