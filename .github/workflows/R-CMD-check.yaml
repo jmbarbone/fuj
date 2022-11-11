@@ -43,6 +43,8 @@ jobs:
         with:
           extra-packages: any::rcmdcheck
           needs: check
+        env:
+          GH_ACTIONS_OS:  ${{ matrix.config.os }}
 
       - uses: r-lib/actions/check-r-package@v2
         with:
