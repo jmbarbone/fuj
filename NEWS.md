@@ -2,6 +2,7 @@
 
 * `subset2` is now exported as an alias of `[[` and `subset3` is added as an alias of `$`
 * improved documentation for aliases [#3](https://github.com/jmbarbone/fuj/issues/3)
+* improved test coverage -- no longer skipping any functions [#7](https://github.com/jmbarbone/fuj/issues/7)
 
 # fuj 0.1.0
 

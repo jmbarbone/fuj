@@ -34,6 +34,8 @@ jobs:
             install_path = file.path(Sys.getenv("RUNNER_TEMP"), "package")
           )
         shell: Rscript {0}
+        env:
+          GH_ACTIONS_OS: ubuntu-latest
 
       - name: Show testthat output
         if: always()
