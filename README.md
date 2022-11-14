@@ -17,13 +17,17 @@ The goal of `{fuj}` is to provide low level tools for other packages by
 
 ## Installation
 
-You can install the development version of `{fuj}`
-[GitHub](https://github.com/) with:
+Install `{fuj}` from CRAN with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("jmbarbone/fuj")
+install.packages("vctrs")
 ```
+
+Alternatively, you can install the development version of `{fuj}`
+[GitHub](https://github.com/) with:
+
+    # install.packages("devtools")
+    devtools::install_github("jmbarbone/fuj")
 
 ## Example
 
