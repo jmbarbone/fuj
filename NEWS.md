@@ -1,4 +1,4 @@
-# fuj (development version)
+# fuj 0.1.1
 
 * `subset2` is now exported as an alias of `[[` and `subset3` is added as an alias of `$` [#3](https://github.com/jmbarbone/fuj/issues/3)
 * improved documentation for aliases [#3](https://github.com/jmbarbone/fuj/issues/3)
