@@ -1,6 +1,9 @@
 test_that("os", {
   env <- Sys.getenv("GH_ACTIONS_OS")
+  skip_if(env == "", "GH_ACTIONS_OS not set")
+
   env <- regmatches(env, regexpr("[a-z]+", env))
+
   switch(
     env,
     windows = {
