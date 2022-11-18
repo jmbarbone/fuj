@@ -1,6 +1,7 @@
 ## R CMD check results
 
-0 errors | 0 warnings | 0 note
+0 errors | 0 warnings | 1 note
 
-* This is a new release.
-* I assure you, my name is not misspelled.
+* This is a patch release
+* Includes correction in exported subset
+* Include more examples in documentation
