@@ -9,7 +9,8 @@ new_condition(
   class = NULL,
   call = NULL,
   type = c("error", "warning", NA_character_),
-  message = msg
+  message = msg,
+  pkg = TRUE
 )
 }
 \arguments{
@@ -21,12 +22,24 @@ new_condition(
 
 \item{type}{The type (additional class) of condition: either \verb{error"},
 \code{"warning"} or \code{NA}, which is treated as \code{NULL}}
+
+\item{pkg}{Control or adding package name to condition.  If \code{TRUE} will try
+to get the current package name (via \code{.packageName}) from, presumably, the
+developmental package.  Otherwise, no package name is prepended to the
+condition class.}
 }
 \value{
 A \code{condition} with the classes specified from \code{class} and \code{type}
 }
 \description{
 Template for a new condition.  See more at \link[base:conditions]{base::conditions}
+}
+\details{
+The use of \code{.packageName} when \code{pkg = TRUE} may not be valid during
+active development.  When the attempt to retrieve the \code{.packageName} object
+is unsuccessful, the error is quietly ignored.  However, this should be
+successful once the package is build and functions can then utilize this
+created object.
 }
 \examples{
 # empty condition
