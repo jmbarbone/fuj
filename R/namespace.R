@@ -1,19 +1,20 @@
 #' Require namespace
 #'
-#' @param package The name of a package
+#' @param package,... Package names
 #' @return `TRUE` (invisibly) if found; otherwise errors
 #' @examples
 #' isTRUE(require_namespace("base")) # returns invisibly
 #' try(require_namespace("1package")) # (using a purposefully bad name)
 #' @export
-require_namespace <- function(package) {
-  ok <- try(wuffle(requireNamespace)(package, quietly = TRUE), silent = TRUE)
-
-  if (isTRUE(ok)) {
-    return(invisible(TRUE))
+require_namespace <- function(package, ...) {
+  pkgs <- c(package, ...)
+  for (pkg in pkgs) {
+    if (!isTRUE(try(requireNamespace(pkg, quietly = TRUE), silent = TRUE))) {
+      stop(cond_namespace(pkg))
+    }
   }
 
-  stop(cond_namespace(package))
+  invisible(TRUE)
 }
 
 cond_namespace <- function(package) {
