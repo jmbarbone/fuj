@@ -44,7 +44,8 @@ new_condition <- function(
 
   if (isTRUE(pkg)) {
     # may fail to get the package during development
-    pkg <- try(eval(substitute(.packageName), parent.frame(1)), silent = TRUE)
+    env <- parent.frame()
+    pkg <- try(eval(substitute(.packageName), env), silent = TRUE)
     if (!inherits(pkg, "try-error")) {
       class <- paste0(pkg, ":", class)
     }
