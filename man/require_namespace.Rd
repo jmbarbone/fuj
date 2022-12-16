@@ -4,10 +4,10 @@
 \alias{require_namespace}
 \title{Require namespace}
 \usage{
-require_namespace(package)
+require_namespace(package, ...)
 }
 \arguments{
-\item{package}{The name of a package}
+\item{package, ...}{Package names}
 }
 \value{
 \code{TRUE} (invisibly) if found; otherwise errors
