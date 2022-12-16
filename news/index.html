@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,6 +41,9 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="fuj-development-version">fuj (development version)<a class="anchor" aria-label="anchor" href="#fuj-development-version"></a></h2>
 <ul><li>
+<code><a href="../reference/new_condition.html">new_condition()</a></code> gains a <code>pkg</code> argument to control for prepending a package name to the condition call. The default value of <code>TRUE</code> will try to find the <code>.packageName</code> object from your package. Change the default setting of <code>pkg</code> to prevent this addition. <a href="https://github.com/jmbarbone/fuj/issues/12" class="external-link">#12</a>
+</li>
+<li>
 <code><a href="../reference/require_namespace.html">require_namespace()</a></code> can now accept multiple namespaces. The first namespace not found will throw an error <a href="https://github.com/jmbarbone/fuj/issues/14" class="external-link">#14</a>
 </li>
 </ul></div>

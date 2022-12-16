@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.1.9001</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,7 +50,8 @@
 <span>  class <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  call <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"error"</span>, <span class="st">"warning"</span>, <span class="cn">NA_character_</span><span class="op">)</span>,</span>
-<span>  message <span class="op">=</span> <span class="va">msg</span></span>
+<span>  message <span class="op">=</span> <span class="va">msg</span>,</span>
+<span>  pkg <span class="op">=</span> <span class="cn">TRUE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -72,6 +73,13 @@
 <dd><p>The type (additional class) of condition: either <code>error"</code>,
 <code>"warning"</code> or <code>NA</code>, which is treated as <code>NULL</code></p></dd>
 
+
+<dt>pkg</dt>
+<dd><p>Control or adding package name to condition.  If <code>TRUE</code> will try
+to get the current package name (via <code>.packageName</code>) from, presumably, the
+developmental package.  Otherwise, no package name is prepended to the
+condition class.</p></dd>
+
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
@@ -80,6 +88,14 @@
 <p>A <code>condition</code> with the classes specified from <code>class</code> and <code>type</code></p>
 
 
+    </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>The use of <code>.packageName</code> when <code>pkg = TRUE</code> may not be valid during
+active development.  When the attempt to retrieve the <code>.packageName</code> object
+is unsuccessful, the error is quietly ignored.  However, this should be
+successful once the package is build and functions can then utilize this
+created object.</p>
     </div>
 
     <div class="section level2">
