@@ -8,7 +8,7 @@ test_that("muffle()", {
   expect_message(muffle(fun = foo)(1, 2), NA)
   expect_message(sapply(1:3, muffle(fun = foo)), NA)
 
-  expect_error(muffle(1, as.integer), class = "muffleError")
+  expect_error(muffle(1, as.integer), class = "fuj:muffleError")
 })
 
 test_that("muffle()", {
@@ -17,5 +17,5 @@ test_that("muffle()", {
   expect_warning(wuffle(fun = as.integer)(x), NA)
   expect_warning(sapply(x, wuffle(fun = as.integer)), NA)
 
-  expect_error(wuffle(1, as.integer), class = "wuffleError")
+  expect_error(wuffle(1, as.integer), class = "fuj:wuffleError")
 })
