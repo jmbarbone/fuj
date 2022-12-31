@@ -86,13 +86,13 @@ new_condition <- function(
 }
 
 #' @export
-conditionMessage.fujCondition <- function(x, ...) {
-  pkg <- attr(x, "package")
+conditionMessage.fujCondition <- function(c) {
+  pkg <- attr(c, "package")
   if (!is.null(pkg)) {
-    x$message <- paste0(x$message, sprintf("\npackage:%s", pkg))
+    x$message <- paste0(c$message, sprintf("\npackage:%s", pkg))
   }
 
-  NextMethod(x)
+  NextMethod(c)
 }
 
 cond_new_conditional_class <- function() {
