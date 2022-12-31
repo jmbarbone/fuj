@@ -31,7 +31,7 @@
 #' # message contains package information at the end
 #' try(stop(x))
 #' @export
-new_condition <- function(
+new_condition <- function( # nolint cyclocomp_linter,
     msg = "",
     class = NULL,
     call = NULL,
@@ -89,7 +89,7 @@ new_condition <- function(
 conditionMessage.fujCondition <- function(c) {
   pkg <- attr(c, "package")
   if (!is.null(pkg)) {
-    x$message <- paste0(c$message, sprintf("\npackage:%s", pkg))
+    c$message <- paste0(c$message, sprintf("\npackage:%s", pkg))
   }
 
   NextMethod(c)
