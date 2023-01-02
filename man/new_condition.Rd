@@ -25,8 +25,9 @@ new_condition(
 
 \item{pkg}{Control or adding package name to condition.  If \code{TRUE} will try
 to get the current package name (via \code{.packageName}) from, presumably, the
-developmental package.  Otherwise, no package name is prepended to the
-condition class.}
+developmental package.  If \code{FALSE}, no package name is prepended to the
+condition class as a new class.  Otherwise, a package can be explicitly set
+with a single length character.}
 }
 \value{
 A \code{condition} with the classes specified from \code{class} and \code{type}
@@ -46,4 +47,10 @@ created object.
 x <- new_condition("informative error message", class = "foo")
 try(stop(x))
 
+# with pkg
+x <- new_condition("msg", class = "foo", pkg = "bar")
+# class contains multiple identifiers, including a "bar:fooError"
+class(x)
+# message contains package information at the end
+try(stop(x))
 }
