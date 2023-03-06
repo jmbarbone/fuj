@@ -10,13 +10,19 @@
 #' @export
 list0 <- function(...) {
   mc <- match.call()
-  parent <- parent.frame()
-  tryCatch(
-    list(...),
-    error = function(e) {
-      if (identical(e$message, "argument is missing, with no default")) {
-        return(eval(mc[seq_len(...length())], envir = parent))
+  out <- list()
+
+  for (i in seq_len(...length())) {
+    tryCatch(
+      out <- append(out, ...elt(i)),
+      error = function(e) {
+        if (!identical(e$message, "argument is missing, with no default")) {
+          e$call <- mc
+          stop(e)
+        }
       }
-    }
-  )
+    )
+  }
+
+  out
 }
