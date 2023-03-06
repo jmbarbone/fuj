@@ -20,7 +20,7 @@ The goal of `{fuj}` is to provide low level tools for other packages by
 Install `{fuj}` from CRAN with:
 
 ``` r
-install.packages("vctrs")
+install.packages("fuj")
 ```
 
 Alternatively, you can install the development version of `{fuj}`
