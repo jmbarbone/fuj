@@ -8,3 +8,13 @@ test_that("list0", {
   expect_error(list0(1, `__not_a_variable__`))
   expect_error(list0(1, `__not_a_variable__`, ))
 })
+
+test_that("handles names [#25]", {
+  obj <- list0(a = 1, 2, c = 3)
+  exp <- list(a = 1, 2, c = 3)
+  expect_identical(obj, exp)
+
+  obj <- list0(a = 1, 2, c = 3, )
+  exp <- list(a = 1, 2, c = 3)
+  expect_identical(obj, exp)
+})
