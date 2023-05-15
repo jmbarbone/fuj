@@ -7,10 +7,12 @@
 #' @examples
 #' try(list(1, ))
 #' list0(1, )
+#' list0(a = 1, )
 #' @export
 list0 <- function(...) {
   mc <- match.call()
   out <- list()
+  off <- 0L
 
   for (i in seq_len(...length())) {
     tryCatch(
@@ -20,9 +22,12 @@ list0 <- function(...) {
           e$call <- mc
           stop(e)
         }
+
+        assign("off", 1L, parent.frame()$parentenv)
       }
     )
   }
 
+  names(out) <- names(mc)[-1L][seq_len(i - off)]
   out
 }
