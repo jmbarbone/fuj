@@ -1,6 +1,6 @@
 ## Test environments
 
-* local R installation, R 4.2.2
+* local R installation, R 4.3.0
 * windows-latest, release
 * macOS-latest release
 * ubuntu-latest devel, release, oldrel-1
@@ -10,4 +10,4 @@
 0 errors | 0 warnings | 1 note
 
 * This is a patch release
-* Includes minor correction, typo fix, and minor enhancement
+* Includes a single minor fix with accompanying test
