@@ -1,4 +1,4 @@
-# fuj (development version)
+# fuj 0.1.3
 
 * `list0()` now accepts `named` arguments in `...` [#25](https://github.com/jmbarbone/fuj/issues/25)
 
