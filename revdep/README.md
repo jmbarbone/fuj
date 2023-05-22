@@ -1,24 +1,30 @@
 # Platform
 
-|field    |value                                                         |
-|:--------|:-------------------------------------------------------------|
-|version  |R version 4.2.2 (2022-10-31)                                  |
-|os       |Ubuntu 22.04.1 LTS                                            |
-|system   |x86_64, linux-gnu                                             |
-|ui       |RStudio                                                       |
-|language |(EN)                                                          |
-|collate  |en_US.UTF-8                                                   |
-|ctype    |en_US.UTF-8                                                   |
-|tz       |America/New_York                                              |
-|date     |2022-11-13                                                    |
-|rstudio  |2022.07.1+554 Spotted Wakerobin (desktop)                     |
-|pandoc   |2.18 @ /usr/lib/rstudio/bin/quarto/bin/tools/ (via rmarkdown) |
+|field    |value                                  |
+|:--------|:--------------------------------------|
+|version  |R version 4.3.0 (2023-04-21)           |
+|os       |Ubuntu 23.04                           |
+|system   |x86_64, linux-gnu                      |
+|ui       |RStudio                                |
+|language |(EN)                                   |
+|collate  |en_US.UTF-8                            |
+|ctype    |en_US.UTF-8                            |
+|tz       |America/New_York                       |
+|date     |2023-05-21                             |
+|rstudio  |2023.03.1+446 Cherry Blossom (desktop) |
+|pandoc   |2.19.2 @ /usr/bin/pandoc               |
 
 # Dependencies
 
-|package |old   |new   |Δ  |
-|:-------|:-----|:-----|:--|
-|fuj     |0.1.0 |0.1.1 |*  |
+|package |old   |new        |Δ  |
+|:-------|:-----|:----------|:--|
+|fuj     |0.1.2 |0.1.2.9001 |*  |
 
 # Revdeps
+
+## Failed to check (1)
+
+|package |version |error |warning |note |
+|:-------|:-------|:-----|:-------|:----|
+|mark    |?       |      |        |     |
 
