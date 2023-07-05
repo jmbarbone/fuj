@@ -1,0 +1,10 @@
+test_that("verbose()", {
+  op <- options(verbose = FALSE)
+  expect_invisible(verbose("message"))
+  options(verbose = TRUE)
+  expect_message(verbose("message"))
+  expect_message(verbose("message", "message"))
+  expect_invisible(verbose(NULL))
+  expect_invisible(verbose(character()))
+  options(op)
+})
