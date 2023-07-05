@@ -1,5 +1,7 @@
 # fuj (development version)
 
+* `verbose()` added for conditionally printing messages [#29](https://github.com/jmbarbone/fuj/issues/29)
+
 # fuj 0.1.3
 
 * `list0()` now accepts `named` arguments in `...` [#25](https://github.com/jmbarbone/fuj/issues/25)
