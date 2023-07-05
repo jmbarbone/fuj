@@ -16,7 +16,7 @@
 verbose <- function(..., .fun = "message") {
   if (isTRUE(getOption("verbose"))) {
     if (!(is.null(..1) && ...length() == 1L)) {
-      return(match.fun(.fn)(...))
+      return(match.fun(.fun)(...))
     }
   }
 
