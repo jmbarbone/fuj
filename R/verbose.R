@@ -52,4 +52,3 @@ verbose_message <- function(..., call = NULL) {
     class = c("verboseMessage", "message", "condition")
   )
 }
-
