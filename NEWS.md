@@ -1,5 +1,6 @@
 # fuj (development version)
 
+* adds `%::%` and `%:::%` (which now aliases `%colons$`) or retrieving exported and non-exported values from namespaces [#31](https://github.com/jmbarbone/fuj/issues/31)
 * adds `verbose()` for conditional message printing [#29](https://github.com/jmbarbone/fuj/issues/29)
 
 # fuj 0.1.3
