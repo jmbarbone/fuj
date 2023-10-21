@@ -23,7 +23,7 @@
 #' op <- options(fuj.verbose = function() TRUE)
 #' verbose("function will evaluate")
 #' verbose(NULL) # nothing
-#' verbose(NULL, "something)
+#' verbose(NULL, "something")
 #' verbose(if (FALSE) {
 #' "`if` returns `NULL` when not `TRUE`, which makes for additional control"
 #' })
@@ -47,7 +47,7 @@ verbose <- function(...) {
 
 verbose_message <- function(..., call = NULL) {
   struct(
-    list(.makeMessage("[verbose] ", ...), call),
+    list(.makeMessage("[verbose] ", ..., appendLF = TRUE), call),
     names = c("message", "call"),
     class = c("verboseMessage", "message", "condition")
   )
