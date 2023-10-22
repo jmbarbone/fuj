@@ -3,7 +3,7 @@
 <details>
 
 * Version: 
-* GitHub: NA
+* GitHub: https://github.com/jmbarbone/fuj
 * Source code: NA
 * Number of recursive dependencies: 0
 

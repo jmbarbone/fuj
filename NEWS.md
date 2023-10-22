@@ -1,7 +1,8 @@
-# fuj (development version)
+# fuj 0.1.4
 
 * adds `%::%` and `%:::%` (which now aliases `%colons$`) or retrieving exported and non-exported values from namespaces [#31](https://github.com/jmbarbone/fuj/issues/31)
 * adds `verbose()` for conditional message printing [#29](https://github.com/jmbarbone/fuj/issues/29)
+* GitHub workflow added to maintain version bumps on merge [`jmbarbone/actions/r-check-version`](https://github.com/jmbarbone/actions/blob/main/examples/r-check-version.yaml)
 
 # fuj 0.1.3
 

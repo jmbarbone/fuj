@@ -23,3 +23,21 @@ message conditions.  \code{\link[=verbose]{verbose()}} can be controlled with \c
 (the default) and an override, \code{options(fuj.verbose)}.  The latter can be
 set to a function whose result will be used for conditional evaluation.
 }
+\examples{
+op <- options(verbose = FALSE)
+verbose("will not show")
+
+options(verbose = TRUE)
+verbose("message printed")
+verbose("multiple lines ", "will be ", "combined")
+options(op)
+
+op <- options(fuj.verbose = function() TRUE)
+verbose("function will evaluate")
+verbose(NULL) # nothing
+verbose(NULL, "something")
+verbose(if (FALSE) {
+"`if` returns `NULL` when not `TRUE`, which makes for additional control"
+})
+options(op)
+}
