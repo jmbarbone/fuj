@@ -1,4 +1,8 @@
 test_that("os", {
+  # basic testing to hit coverage
+  expect_identical(sum(is_windows(), is_macos(), is_linux()), 1L)
+
+  # more exact testing
   env <- Sys.getenv("GH_ACTIONS_OS")
   skip_if(env == "", "GH_ACTIONS_OS not set")
 
