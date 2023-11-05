@@ -1,3 +1,7 @@
+# fuj (developmental version)
+
+* `{covr}` dropped as a `suggest` 
+
 # fuj 0.1.4
 
 * adds `%::%` and `%:::%` (which now aliases `%colons$`) or retrieving exported and non-exported values from namespaces [#31](https://github.com/jmbarbone/fuj/issues/31)
