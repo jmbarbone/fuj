@@ -1,5 +1,6 @@
-# fuj (developmental version)
+# fuj (development version)
 
+* additional local testing for os version
 * `{covr}` dropped as a `suggest` 
 
 # fuj 0.1.4
