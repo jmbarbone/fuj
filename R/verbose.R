@@ -76,7 +76,8 @@ make_verbose <- function(opt) {
       .fill = getOption("fuj.verbose.fill", FALSE),
       .label = getOption("fuj.verbose.label", "[verbose]")
     ), substitute({
-      op <- options(fuj.verbose = isTRUE(getOption(opt)))
+      # reported issue: https://github.com/r-lib/lintr/issues/2255
+      op <- options(fuj.verbose = isTRUE(getOption(opt))) # nolint: object_usage_linter, line_length_linter.
       on.exit(options(op))
       verbose(
         ...,
