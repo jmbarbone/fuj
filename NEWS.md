@@ -1,4 +1,4 @@
-# fuj (developmental version)
+# fuj (development version)
 
 * `verbose()` has additional options for controlling the message output [#36](https://github.com/jmbarbone/fuj/issues/36)
   * `.label` can be set to a string to prepend to the message (defaults to `"[verbose]"`)
@@ -16,6 +16,10 @@ my_verbose <- make_verbose("my.verbose")
 my_verbose("will show")
 #> [verbose] will show
 ```
+
+* `%||%` is now set to only export in **R** versions < 4.4 [#35](https://github.com/jmbarbone/fuj/issues/35)
+* additional local testing for os version
+* `{covr}` dropped as a `suggest` 
 
 # fuj 0.1.4
 
