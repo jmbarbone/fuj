@@ -1,5 +1,6 @@
 test_that("verbose() works", {
-  op <- options(verbose = FALSE)
+  op <- options(fuj.verbose = NULL, verbose = FALSE)
+  on.exit(options(op))
   expect_silent(verbose("will not show"))
 
   options(verbose = TRUE)
@@ -22,4 +23,41 @@ test_that("verbose() works", {
   )
 
   options(op)
+})
+
+test_that("verbose.label as function works", {
+  op <- options(
+    fuj.verbose.label = function() "[function]",
+    fuj.verbose = TRUE
+  )
+
+  on.exit(options(op))
+
+  expect_message(
+    verbose("message printed"),
+    class = "verboseMessage",
+    regexp = "[function]",
+    fixed = TRUE
+  )
+})
+
+test_that("verbose.fill works", {
+  op <- options(fuj.verbose.fill = TRUE, fuj.verbose = TRUE)
+  on.exit(options(op))
+
+  expect_message(
+    verbose("one\ntwo"),
+    class = "verboseMessage",
+    regexp = "[verbose] one\n[verbose] two",
+    fixed = TRUE
+  )
+})
+
+test_that("make_verbose() works", {
+  verb <- make_verbose("fuj.testthat.verbose")
+  expect_silent(verb("will not show"))
+
+  op <- options(fuj.testthat.verbose = TRUE)
+  on.exit(options(op))
+  expect_condition(verb("will show"), class = "verboseMessage")
 })

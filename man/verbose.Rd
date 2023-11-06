@@ -2,13 +2,32 @@
 % Please edit documentation in R/verbose.R
 \name{verbose}
 \alias{verbose}
+\alias{make_verbose}
 \title{Verbose}
 \usage{
-verbose(...)
+verbose(
+  ...,
+  .fill = getOption("fuj.verbose.fill", FALSE),
+  .label = getOption("fuj.verbose.label", "[verbose]")
+)
+
+make_verbose(opt)
 }
 \arguments{
 \item{...}{A message to display.  When \code{...} is \code{NULL} (and only \code{NULL}), no
 message will display.}
+
+\item{.fill}{When \code{TRUE}, each new line will be prefixed with the verbose
+label (controlled through \code{options(fuj.verbose.fill)})}
+
+\item{.label}{A label to prefix the message with (controlled through
+\code{options(fuj.verbose.label)}).  Note: label always ends with a single
+space.  Trailing spaces are stripped, and a single space is added, if
+needed.}
+
+\item{opt}{An option to use in lieu of \code{fun.verbose}.  Note:
+\code{options(fuj.verbose)} is temporarily set to \code{isTRUE(getOption(opt))} when
+the function is evaluate, but is reset to its original value on exit.}
 }
 \value{
 None, called for its side-effects.  When conditions are met, will
@@ -22,6 +41,8 @@ Simple verbose condition handling
 message conditions.  \code{\link[=verbose]{verbose()}} can be controlled with \code{options(verbose)}
 (the default) and an override, \code{options(fuj.verbose)}.  The latter can be
 set to a function whose result will be used for conditional evaluation.
+
+\code{\link[=make_verbose]{make_verbose()}} allows for the creation of a custom verbose function.
 }
 \examples{
 op <- options(verbose = FALSE)
@@ -40,4 +61,10 @@ verbose(if (FALSE) {
 "`if` returns `NULL` when not `TRUE`, which makes for additional control"
 })
 options(op)
+
+# make your own verbose
+verb <- make_verbose("fuj.foo.bar")
+verb("will not show")
+options(fuj.foo.bar = TRUE)
+verb("will show")
 }
