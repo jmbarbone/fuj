@@ -1,5 +1,6 @@
 # fuj (development version)
 
+* `%||%` is now set to only export in **R** versions < 4.4 [#35](https://github.com/jmbarbone/fuj/issues/35)
 * additional local testing for os version
 * `{covr}` dropped as a `suggest` 
 

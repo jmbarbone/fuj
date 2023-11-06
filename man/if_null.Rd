@@ -25,9 +25,11 @@ Replace if \code{NULL} or not length
 \details{
 A mostly copy of \code{rlang}'s \verb{\%||\%} except does not use \code{rlang::is_null()},
 which, currently, calls the same primitive \link[base:NULL]{base::is.null} function.
+
+Note: \verb{\%||\%} is not exported in versions of \strong{R} < 4.4.
 }
 \examples{
-# replace NULL
+# replace NULL (for R < 4.4)
 NULL \%||\% 1L
 2L   \%||\% 1L
 
@@ -39,4 +41,5 @@ NULL     \%|||\% 1L
 
 # replace no length
 logical() \%len\% TRUE
+FALSE     \%len\% TRUE
 }
