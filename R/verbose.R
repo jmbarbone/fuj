@@ -14,9 +14,7 @@
 #' @param .fill When `TRUE`, each new line will be prefixed with the verbose
 #'   label (controlled through `options(fuj.verbose.fill)`)
 #' @param .label A label to prefix the message with (controlled through
-#'   `options(fuj.verbose.label)`).  Note: label always ends with a single
-#'   space.  Trailing spaces are stripped, and a single space is added, if
-#'   needed.
+#'   `options(fuj.verbose.label)`)
 #' @returns None, called for its side-effects.  When conditions are met, will
 #'   signal a `verboseMessage` condition.
 #' @examples
@@ -46,7 +44,7 @@
 verbose <- function(
     ...,
     .fill = getOption("fuj.verbose.fill", FALSE),
-    .label = getOption("fuj.verbose.label", "[verbose]")
+    .label = getOption("fuj.verbose.label", "[verbose] ")
 ) {
   op <- getOption("fuj.verbose", getOption("verbose"))
 
@@ -76,8 +74,7 @@ make_verbose <- function(opt) {
       .fill = getOption("fuj.verbose.fill", FALSE),
       .label = getOption("fuj.verbose.label", "[verbose]")
     ), substitute({
-      # reported issue: https://github.com/r-lib/lintr/issues/2255
-      op <- options(fuj.verbose = isTRUE(getOption(opt))) # nolint: object_usage_linter, line_length_linter.
+      op <- options(fuj.verbose = isTRUE(getOption(opt)))
       on.exit(options(op))
       verbose(
         ...,
@@ -100,15 +97,12 @@ verbose_message <- function(
     stopifnot(length(.label) == 1L)
   }
 
-  # make sure to add a space
-  .label <- sub("[[:space:]]{0,}$", " ", .label)
-
   msg <-
     if (isTRUE(.fill)) {
         con <- file()
         on.exit(close(con))
         cat(..., file = con)
-        paste0(.label, readLines(con, warn = FALSE), collapse = "\n")
+        paste(.label, readLines(con, warn = FALSE), collapse = "\n")
     } else {
       .makeMessage(.label, ...)
     }
