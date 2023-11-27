@@ -8,7 +8,7 @@
 verbose(
   ...,
   .fill = getOption("fuj.verbose.fill", FALSE),
-  .label = getOption("fuj.verbose.label", "[verbose]")
+  .label = getOption("fuj.verbose.label", "[verbose] ")
 )
 
 make_verbose(opt)
@@ -21,9 +21,7 @@ message will display.}
 label (controlled through \code{options(fuj.verbose.fill)})}
 
 \item{.label}{A label to prefix the message with (controlled through
-\code{options(fuj.verbose.label)}).  Note: label always ends with a single
-space.  Trailing spaces are stripped, and a single space is added, if
-needed.}
+\code{options(fuj.verbose.label)})}
 
 \item{opt}{An option to use in lieu of \code{fun.verbose}.  Note:
 \code{options(fuj.verbose)} is temporarily set to \code{isTRUE(getOption(opt))} when
