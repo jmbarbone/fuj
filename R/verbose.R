@@ -102,7 +102,7 @@ verbose_message <- function(
         con <- file()
         on.exit(close(con))
         cat(..., file = con)
-        paste(.label, readLines(con, warn = FALSE), collapse = "\n")
+        paste0(.label, readLines(con, warn = FALSE), collapse = "\n")
     } else {
       .makeMessage(.label, ...)
     }
