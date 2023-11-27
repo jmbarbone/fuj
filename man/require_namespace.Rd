@@ -18,4 +18,6 @@ Require namespace
 \examples{
 isTRUE(require_namespace("base")) # returns invisibly
 try(require_namespace("1package")) # (using a purposefully bad name)
+require_namespace("base", "utils")
+try(require_namespace("base>=3.5", "utils>4.0", "fuj==10.0"))
 }
