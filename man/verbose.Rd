@@ -7,8 +7,8 @@
 \usage{
 verbose(
   ...,
-  .fill = getOption("fuj.verbose.fill", FALSE),
-  .label = getOption("fuj.verbose.label", "[verbose] ")
+  .fill = getOption("fuj.verbose.fill"),
+  .label = getOption("fuj.verbose.label")
 )
 
 make_verbose(opt)
