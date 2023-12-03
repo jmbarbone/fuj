@@ -19,3 +19,8 @@ op.fuj <- list(
   fuj.verbose.fill = FALSE,
   fuj.verbose.label = "<verboseMessage> "
 )
+
+.onLoad <- function(libname, pkgname) {
+  # set options
+  options(op.fuj[!names(op.fuj) %in% names(options())])
+}
