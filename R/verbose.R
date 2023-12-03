@@ -43,8 +43,8 @@
 #' @export
 verbose <- function(
     ...,
-    .fill = getOption("fuj.verbose.fill", FALSE),
-    .label = getOption("fuj.verbose.label", "[verbose] ")
+    .fill = getOption("fuj.verbose.fill"),
+    .label = getOption("fuj.verbose.label")
 ) {
   op <- getOption("fuj.verbose", getOption("verbose"))
 
@@ -71,15 +71,15 @@ make_verbose <- function(opt) {
   as.function(
     c(alist(
       ... = ,
-      .fill = getOption("fuj.verbose.fill", FALSE),
-      .label = getOption("fuj.verbose.label", "[verbose]")
+      .fill = getOption("fuj.verbose.fill"),
+      .label = getOption("fuj.verbose.label")
     ), substitute({
       op <- options(fuj.verbose = isTRUE(getOption(opt)))
       on.exit(options(op))
       verbose(
         ...,
-        .fill = getOption("fuj.verbose.fill", FALSE),
-        .label = getOption("fuj.verbose.label", "[verbose]")
+        .fill = getOption("fuj.verbose.fill"),
+        .label = getOption("fuj.verbose.label")
       )
     }))
   )
@@ -87,8 +87,8 @@ make_verbose <- function(opt) {
 
 verbose_message <- function(
     ...,
-    .fill = getOption("fuj.verbose.fill", FALSE),
-    .label = getOption("fuj.verbose.label", "[verbose]"),
+    .fill = getOption("fuj.verbose.fill"),
+    .label = getOption("fuj.verbose.label"),
     .call = NULL
 ) {
   if (is.function(.label)) {
