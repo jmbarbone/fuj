@@ -29,7 +29,7 @@ my_verbose("will show")
 * `%||%` is now set to only export in **R** versions < 4.4 [#35](https://github.com/jmbarbone/fuj/issues/35)
 * additional local testing for os version
 * `{covr}` dropped as a `suggest` 
-* `require_namespace()` now allow for version requirements (e.g., `require_namespace("fuj>=0.1.4")`).  When the version requirement is not met, an error of class `namespaceVersionError` is returned
+* `require_namespace()` now allows for version requirements (e.g., `require_namespace("fuj>=0.1.4")`).  When the version requirement is not met, an error of class `namespaceVersionError` is returned [#41](https://github.com/jmbarbone/fuj/issues/41)
 
 # fuj 0.1.4
 
