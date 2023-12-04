@@ -48,7 +48,7 @@ test_that("verbose.fill works", {
   expect_message(
     verbose("one\ntwo"),
     class = "verboseMessage",
-    regexp = "[verbose] one\n[verbose] two",
+    regexp = "<verboseMessage> one\n<verboseMessage> two",
     fixed = TRUE
   )
 })
