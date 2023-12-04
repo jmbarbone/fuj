@@ -37,6 +37,9 @@
     <loc>https://jmbarbone.github.io/fuj/reference/flip.html</loc>
   </url>
   <url>
+    <loc>https://jmbarbone.github.io/fuj/reference/fuj-package.html</loc>
+  </url>
+  <url>
     <loc>https://jmbarbone.github.io/fuj/reference/if_null.html</loc>
   </url>
   <url>
@@ -56,6 +59,9 @@
   </url>
   <url>
     <loc>https://jmbarbone.github.io/fuj/reference/new_condition.html</loc>
+  </url>
+  <url>
+    <loc>https://jmbarbone.github.io/fuj/reference/op.fuj.html</loc>
   </url>
   <url>
     <loc>https://jmbarbone.github.io/fuj/reference/os.html</loc>
