@@ -1,5 +1,11 @@
 # fuj (development version)
 
+## Fixes
+
+* `%wi%` no longer drops duplicated in `x` [#44](https://github.com/jmbarbone/fuj/issues/44)
+
+## New features
+
 * `op.fuj`, a named list of default options for `{fuj}` is now exported
 * `verbose()` has additional options for controlling the message output [#36](https://github.com/jmbarbone/fuj/issues/36)
   * `.label` can be set to a string to prepend to the message (defaults to `"[verbose]"`)
@@ -18,6 +24,7 @@ my_verbose <- make_verbose("my.verbose")
 my_verbose("will show")
 #> [verbose] will show
 ```
+## Internals
 
 * `%||%` is now set to only export in **R** versions < 4.4 [#35](https://github.com/jmbarbone/fuj/issues/35)
 * additional local testing for os version

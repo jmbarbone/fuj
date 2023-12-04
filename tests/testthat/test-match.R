@@ -8,15 +8,15 @@ test_that("is_in(), %out%", {
 })
 
 test_that("%wo%", {
-  res <- letters[1:5] %wo% letters[3:7]
-  exp <- c("a", "b")
+  res <- rep(letters[1:5], 2) %wo% letters[3:7]
+  exp <- rep(c("a", "b"), 2)
   expect_identical(res, exp)
 
 })
 
 test_that("%wi%", {
-  res <- letters[1:5] %wi% letters[3:7]
-  exp <- c("c", "d", "e")
+  res <- rep(letters[1:5], 2) %wi% letters[3:7]
+  exp <- rep(c("c", "d", "e"), 2)
   expect_identical(res, exp)
 
 })

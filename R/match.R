@@ -53,7 +53,7 @@ is_out <- function(x, table) {
 #' @rdname match_ext
 #' @export
 is_within <- function(x, table) {
-  x[match(table, x, nomatch = 0L)]
+  x[x %in% table]
 }
 
 #' @rdname match_ext
