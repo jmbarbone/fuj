@@ -7,8 +7,8 @@
 \usage{
 verbose(
   ...,
-  .fill = getOption("fuj.verbose.fill", FALSE),
-  .label = getOption("fuj.verbose.label", "[verbose] ")
+  .fill = getOption("fuj.verbose.fill"),
+  .label = getOption("fuj.verbose.label")
 )
 
 make_verbose(opt)
@@ -18,14 +18,14 @@ make_verbose(opt)
 message will display.}
 
 \item{.fill}{When \code{TRUE}, each new line will be prefixed with the verbose
-label (controlled through \code{options(fuj.verbose.fill)})}
+label (controlled through \code{options("fuj.verbose.fill")})}
 
 \item{.label}{A label to prefix the message with (controlled through
-\code{options(fuj.verbose.label)})}
+\code{options("fuj.verbose.label")})}
 
 \item{opt}{An option to use in lieu of \code{fun.verbose}.  Note:
-\code{options(fuj.verbose)} is temporarily set to \code{isTRUE(getOption(opt))} when
-the function is evaluate, but is reset to its original value on exit.}
+\code{options("fuj.verbose")} is temporarily set to \code{isTRUE(getOption(opt))}
+when the function is evaluate, but is reset to its original value on exit.}
 }
 \value{
 None, called for its side-effects.  When conditions are met, will
@@ -36,9 +36,10 @@ Simple verbose condition handling
 }
 \details{
 \code{\link[=verbose]{verbose()}} can be safely placed in scripts to signal additional
-message conditions.  \code{\link[=verbose]{verbose()}} can be controlled with \code{options(verbose)}
-(the default) and an override, \code{options(fuj.verbose)}.  The latter can be
-set to a function whose result will be used for conditional evaluation.
+message conditions.  \code{\link[=verbose]{verbose()}} can be controlled with
+\code{options("verbose")} (the default) and an override,
+\code{options("fuj.verbose")}.  The latter can be set to a function whose result
+will be used for conditional evaluation.
 
 \code{\link[=make_verbose]{make_verbose()}} allows for the creation of a custom verbose function.
 }
