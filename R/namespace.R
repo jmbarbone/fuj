@@ -15,8 +15,8 @@ require_namespace <- function(package, ...) {
 
   for (i in seq_along(package)) {
     do_require_namespace(
-      package = splits[[i]][1],
-      version = splits[[i]][2],
+      package = splits[[i]][1L],
+      version = splits[[i]][2L],
       operator = comparisons[[i]]
     )
   }
@@ -27,6 +27,8 @@ require_namespace <- function(package, ...) {
 # helpers -----------------------------------------------------------------
 
 do_require_namespace <- function(package, version, operator) {
+  package <- trimws(package)
+
   tryCatch(
     loadNamespace(package),
     packageNotFoundError = function(e) {
@@ -39,7 +41,7 @@ do_require_namespace <- function(package, version, operator) {
   }
 
   operator <- match.arg(trimws(operator), c(">", ">=", "==", "<=", "<"))
-  version <- as.package_version(version)
+  version <- as.package_version(trimws(version))
 
   package_version <- function(package) {
     # already loaded the namespace
@@ -52,16 +54,17 @@ do_require_namespace <- function(package, version, operator) {
     )
   }
 
-  if (switch(
+  found <- package_version(package)
+  if (!switch(
     operator,
-    `>` = package_version(package) > version,
-    `>=` = package_version(package) >= version,
-    `==` = package_version(package) == version,
-    `<=` = package_version(package) <= version,
-    `<` = package_version(package) < version,
+    `>`  = found >  version,
+    `>=` = found >= version,
+    `==` = found == version,
+    `<=` = found <= version,
+    `<`  = found <  version,
     any = TRUE
   )) {
-    stop(cond_namespace_version(package, version, operator))
+    stop(cond_namespace_version(package, version, operator, found))
   }
 }
 
@@ -69,21 +72,19 @@ do_require_namespace <- function(package, version, operator) {
 
 cond_namespace <- function(package) {
   new_condition(
-    msg = sprintf(
-      "No package found called '%s'",
-      as.character(package)
-    ),
+    msg = sprintf("No package found called '%s'", as.character(package)),
     class = "namespace"
   )
 }
 
-cond_namespace_version <- function(package, version, operator) {
+cond_namespace_version <- function(package, version, operator, found) {
   new_condition(
     msg = sprintf(
-      "Package '%s' not found with version %s%s",
+      "Package version requirement not meet:\n%s: %s %s %s",
       package,
+      format(version),
       operator,
-      format(version)
+      format(found)
     ),
     class = "namespace_version"
   )
