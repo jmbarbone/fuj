@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9005</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,6 +46,14 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="fuj-development-version">fuj (development version)<a class="anchor" aria-label="anchor" href="#fuj-development-version"></a></h2>
+<div class="section level3">
+<h3 id="fixes-development-version">Fixes<a class="anchor" aria-label="anchor" href="#fixes-development-version"></a></h3>
+<ul><li>
+<code>%wi%</code> no longer drops duplicated in <code>x</code> <a href="https://github.com/jmbarbone/fuj/issues/44" class="external-link">#44</a>
+</li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-features-development-version">New features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
 <ul><li>
 <code>op.fuj</code>, a named list of default options for <a href="https://jmbarbone.github.io/fuj/">fuj</a> is now exported</li>
 <li>
@@ -70,6 +78,9 @@
 <span><span class="va">my_verbose</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/verbose.html">make_verbose</a></span><span class="op">(</span><span class="st">"my.verbose"</span><span class="op">)</span></span>
 <span><span class="fu">my_verbose</span><span class="op">(</span><span class="st">"will show"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [verbose] will show</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="internals-development-version">Internals<a class="anchor" aria-label="anchor" href="#internals-development-version"></a></h3>
 <ul><li>
 <code>%||%</code> is now set to only export in <strong>R</strong> versions &lt; 4.4 <a href="https://github.com/jmbarbone/fuj/issues/35" class="external-link">#35</a>
 </li>
@@ -78,6 +89,7 @@
 <a href="https://covr.r-lib.org" class="external-link">covr</a> dropped as a <code>suggest</code>
 </li>
 </ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.4" id="fuj-014">fuj 0.1.4<a class="anchor" aria-label="anchor" href="#fuj-014"></a></h2><p class="text-muted">CRAN release: 2023-10-22</p>
 <ul><li>adds <code>%::%</code> and <code>%:::%</code> (which now aliases <code>%colons$</code>) or retrieving exported and non-exported values from namespaces <a href="https://github.com/jmbarbone/fuj/issues/31" class="external-link">#31</a>
