@@ -3,20 +3,19 @@
 #' Simple verbose condition handling
 #'
 #' @details [verbose()] can be safely placed in scripts to signal additional
-#'   message conditions.  [verbose()] can be controlled with `options(verbose)`
-#'   (the default) and an override, `options(fuj.verbose)`.  The latter can be
-#'   set to a function whose result will be used for conditional evaluation.
+#'   message conditions.  [verbose()] can be controlled with
+#'   `options("verbose")` (the default) and an override,
+#'   `options("fuj.verbose")`.  The latter can be set to a function whose result
+#'   will be used for conditional evaluation.
 #'
 #'   [make_verbose()] allows for the creation of a custom verbose function.
 #'
 #' @param ... A message to display.  When `...` is `NULL` (and only `NULL`), no
 #'   message will display.
 #' @param .fill When `TRUE`, each new line will be prefixed with the verbose
-#'   label (controlled through `options(fuj.verbose.fill)`)
+#'   label (controlled through `options("fuj.verbose.fill")`)
 #' @param .label A label to prefix the message with (controlled through
-#'   `options(fuj.verbose.label)`).  Note: label always ends with a single
-#'   space.  Trailing spaces are stripped, and a single space is added, if
-#'   needed.
+#'   `options("fuj.verbose.label")`)
 #' @returns None, called for its side-effects.  When conditions are met, will
 #'   signal a `verboseMessage` condition.
 #' @examples
@@ -45,8 +44,8 @@
 #' @export
 verbose <- function(
     ...,
-    .fill = getOption("fuj.verbose.fill", FALSE),
-    .label = getOption("fuj.verbose.label", "[verbose]")
+    .fill = getOption("fuj.verbose.fill"),
+    .label = getOption("fuj.verbose.label")
 ) {
   op <- getOption("fuj.verbose", getOption("verbose"))
 
@@ -64,8 +63,8 @@ verbose <- function(
 }
 
 #' @param opt An option to use in lieu of `fun.verbose`.  Note:
-#'   `options(fuj.verbose)` is temporarily set to `isTRUE(getOption(opt))` when
-#'   the function is evaluate, but is reset to its original value on exit.
+#'   `options("fuj.verbose")` is temporarily set to `isTRUE(getOption(opt))`
+#'   when the function is evaluate, but is reset to its original value on exit.
 #' @rdname verbose
 #' @export
 make_verbose <- function(opt) {
@@ -73,16 +72,16 @@ make_verbose <- function(opt) {
   as.function(
     c(alist(
       ... = ,
-      .fill = getOption("fuj.verbose.fill", FALSE),
-      .label = getOption("fuj.verbose.label", "[verbose]")
+      .fill = getOption("fuj.verbose.fill"),
+      .label = getOption("fuj.verbose.label")
     ), substitute({
-      # reported issue: https://github.com/r-lib/lintr/issues/2255
-      op <- options(fuj.verbose = isTRUE(getOption(opt))) # nolint: object_usage_linter, line_length_linter.
+      # nolint next: object_usage_linter.
+      op <- options(fuj.verbose = isTRUE(getOption(opt)))
       on.exit(options(op))
       verbose(
         ...,
-        .fill = getOption("fuj.verbose.fill", FALSE),
-        .label = getOption("fuj.verbose.label", "[verbose]")
+        .fill = getOption("fuj.verbose.fill"),
+        .label = getOption("fuj.verbose.label")
       )
     }))
   )
@@ -90,8 +89,8 @@ make_verbose <- function(opt) {
 
 verbose_message <- function(
     ...,
-    .fill = getOption("fuj.verbose.fill", FALSE),
-    .label = getOption("fuj.verbose.label", "[verbose]"),
+    .fill = getOption("fuj.verbose.fill"),
+    .label = getOption("fuj.verbose.label"),
     .call = NULL
 ) {
   if (is.function(.label)) {
@@ -99,9 +98,6 @@ verbose_message <- function(
     .label <- as.character(.label)
     stopifnot(length(.label) == 1L)
   }
-
-  # make sure to add a space
-  .label <- sub("[[:space:]]{0,}$", " ", .label)
 
   msg <-
     if (isTRUE(.fill)) {
