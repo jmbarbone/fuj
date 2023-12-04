@@ -75,6 +75,7 @@ make_verbose <- function(opt) {
       .fill = getOption("fuj.verbose.fill"),
       .label = getOption("fuj.verbose.label")
     ), substitute({
+      # nolint next: object_usage_linter.
       op <- options(fuj.verbose = isTRUE(getOption(opt)))
       on.exit(options(op))
       verbose(
