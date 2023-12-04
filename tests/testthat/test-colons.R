@@ -2,8 +2,8 @@ test_that("%colons%", {
   expect_identical(`%colons%`, `%:::%`)
 
   # errors
-  expect_error("fuj" %:::% "not_in_fuj", class = "fuj:colonsError")
-  expect_error("fuj" %::% "colons_example", class = "fuj:colonsError")
+  expect_error("fuj" %:::% "not_in_fuj", class = "colonsError")
+  expect_error("fuj" %::% "colons_example", class = "colonsError")
   expect_error("1" %::% "foo", class = "fuj:namespaceError")
 
   # successes
