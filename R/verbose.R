@@ -95,16 +95,19 @@ verbose_message <- function(
 ) {
   if (is.function(.label)) {
     .label <- eval(.label(), envir = parent.frame())
-    .label <- as.character(.label)
-    stopifnot(length(.label) == 1L)
+  }
+
+  .label <- format(.label)
+  if (length(.label) != 1L || !is.character(.label)) {
+    stop(cond_verbose_label())
   }
 
   msg <-
     if (isTRUE(.fill)) {
-        con <- file()
-        on.exit(close(con))
-        cat(..., file = con)
-        paste0(.label, readLines(con, warn = FALSE), collapse = "\n")
+      con <- file()
+      on.exit(close(con))
+      cat(..., file = con)
+      paste0(.label, readLines(con, warn = FALSE), collapse = "\n")
     } else {
       .makeMessage(.label, ...)
     }
@@ -113,5 +116,12 @@ verbose_message <- function(
     list(msg, call),
     names = c("message", "call"),
     class = c("verboseMessage", "message", "condition")
+  )
+}
+
+cond_verbose_label <- function() {
+  new_condition(
+    "`.label` must be a string of length 1",
+    class = "verbose_message_label"
   )
 }
