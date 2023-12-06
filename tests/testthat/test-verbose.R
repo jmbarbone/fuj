@@ -1,5 +1,5 @@
 test_that("verbose() works", {
-  op <- options(fuj.verbose = NULL, verbose = FALSE)
+  op <- options(c(op.fuj, verbose = FALSE))
   on.exit(options(op))
   expect_silent(verbose("will not show"))
 
@@ -9,8 +9,6 @@ test_that("verbose() works", {
     verbose("multiple lines ", "will be ", "combined"),
     class = "verboseMessage"
   )
-
-  options(op)
 
   op <- options(fuj.verbose = function() TRUE)
   expect_condition(verbose("function will evaluate"), class = "verboseMessage")
@@ -22,7 +20,8 @@ test_that("verbose() works", {
     })
   )
 
-  options(op)
+  options(fuj.verbose = TRUE)
+  expect_error(verbose("error", .label = 1:2), class = "verboseMessageLabelError")
 })
 
 test_that("verbose.label as function works", {
