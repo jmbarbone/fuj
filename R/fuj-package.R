@@ -23,5 +23,5 @@ op.fuj <- list(
 
 .onLoad <- function(libname, pkgname) {
   # set options
-  options(op.fuj[!names(op.fuj) %in% names(options())])
+  options(op.fuj[!names(op.fuj) %in% names(options())]) # nocov
 }
