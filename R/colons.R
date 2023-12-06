@@ -57,14 +57,26 @@ cond_colons <- function(package, name, n) {
 }
 
 colons_check <- function(package, name) {
-  stopifnot(
-    length(package) == 1,
-    is.character(package),
-    length(name) == 1,
-    is.character(name)
-  )
+  ok <- wuffle(try({
+    length(package) == 1 &&
+      is.character(package) &&
+      length(name) == 1 &&
+      is.character(name)
+  }, silent = TRUE))
+
+
+  if (!isTRUE(ok)) {
+    stop(cond_colons_package_name())
+  }
 
   require_namespace(package)
 }
 
 colons_example <- "Hello, world"
+
+cond_colons_package_name <- function() {
+  new_condition(
+    msg = "`package` and `name` must be strings of length 1",
+    class = "colons_package_name"
+  )
+}
