@@ -21,7 +21,7 @@ test_that("verbose() works", {
   )
 
   options(fuj.verbose = TRUE)
-  expect_error(verbose("error", .label = 1:2), class = "verboseMessageLabelError")
+  expect_error(verbose("", .label = 1:2), class = "verboseMessageLabelError")
 })
 
 test_that("verbose.label as function works", {
