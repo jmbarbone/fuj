@@ -102,18 +102,21 @@ verbose_message <- function(
     stop(cond_verbose_label())
   }
 
-  msg <-
-    if (isTRUE(.fill)) {
-      con <- file()
-      on.exit(close(con))
-      cat(..., file = con)
-      paste0(.label, readLines(con, warn = FALSE), collapse = "\n")
-    } else {
-      .makeMessage(.label, ...)
-    }
+  msg <- if (isTRUE(.fill)) {
+    collapse(
+      strwrap(
+        strsplit(collapse(..., sep = " "), "\n", fixed = TRUE)[[1]],
+        getOption("width") - nchar(.label),
+        prefix = .label
+      ),
+      sep = "\n"
+    )
+  } else {
+    .makeMessage(.label, ...)
+  }
 
   struct(
-    list(msg, call),
+    list(paste0(msg, "\n"), call),
     names = c("message", "call"),
     class = c("verboseMessage", "message", "condition")
   )
