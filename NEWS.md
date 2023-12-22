@@ -6,6 +6,7 @@
 
 ## New features
 
+* `include()` added as a means of partially attaching a package with specific exports [#49](https://github.com/jmbarbone/fuj/issues/49)
 * `op.fuj`, a named list of default options for `{fuj}` is now exported
 * `verbose()` has additional options for controlling the message output [#36](https://github.com/jmbarbone/fuj/issues/36)
   * `.label` can be set to a string to prepend to the message (defaults to `"[verbose]"`)
@@ -24,6 +25,7 @@ my_verbose <- make_verbose("my.verbose")
 my_verbose("will show")
 #> [verbose] will show
 ```
+
 ## Internals
 
 * `%||%` is now set to only export in **R** versions < 4.4 [#35](https://github.com/jmbarbone/fuj/issues/35)
