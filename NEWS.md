@@ -7,11 +7,12 @@
 ## New features
 
 * `op.fuj`, a named list of default options for `{fuj}` is now exported
-* `verbose()` has additional options for controlling the message output [#36](https://github.com/jmbarbone/fuj/issues/36)
-  * `.label` can be set to a string to prepend to the message (defaults to `"[verbose]"`)
-  * `.fill` can be set to repeat `.label` on each line of the message (defaults to `FALSE`)
-* `verbose()` messages are now slightly improved; prints prepended with `"<verboseMessage> "` instead of `"[verbose] "` [#42](https://github.com/jmbarbone/fuj/issues/42)
-* `make_verbose()` is included to create a verbose function that will be triggered with a configured option, rather than the default `getOption("fuj.verbose", getOption("verbose"))` pattern.
+* multiple improvements for `verbose()`
+  * `verbose()` has additional options for controlling the message output [#36](https://github.com/jmbarbone/fuj/issues/36)
+    * `.label` can be set to a string to prepend to the message (defaults to `"[verbose]"`)
+    * `.fill` can be set to repeat `.label` on each line of the message (defaults to `FALSE`)
+  * `verbose()` prints prepended with `"verbose "` instead of `"[verbose] "` [#42](https://github.com/jmbarbone/fuj/issues/42)
+  * `make_verbose()` is included to create a verbose function that will be triggered with a configured option, rather than the default `getOption("fuj.verbose", getOption("verbose"))` pattern.
 This can be used to define your own custom verbose function:
 
 ```r
@@ -24,6 +25,7 @@ my_verbose <- make_verbose("my.verbose")
 my_verbose("will show")
 #> [verbose] will show
 ```
+
 ## Internals
 
 * `%||%` is now set to only export in **R** versions < 4.4 [#35](https://github.com/jmbarbone/fuj/issues/35)
