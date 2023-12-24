@@ -44,10 +44,17 @@ test_that("verbose.fill works", {
   op <- options(fuj.verbose.fill = TRUE, fuj.verbose = TRUE)
   on.exit(options(op))
 
+  regexp <- paste(
+    getOption("fuj.verbose.label"),
+    c("one", "two"),
+    sep = "",
+    collapse = "\n"
+  )
+
   expect_message(
     verbose("one\ntwo"),
     class = "verboseMessage",
-    regexp = "<verboseMessage> one\n<verboseMessage> two",
+    regexp = regexp,
     fixed = TRUE
   )
 })

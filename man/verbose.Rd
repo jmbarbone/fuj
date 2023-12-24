@@ -8,7 +8,8 @@
 verbose(
   ...,
   .fill = getOption("fuj.verbose.fill"),
-  .label = getOption("fuj.verbose.label")
+  .label = getOption("fuj.verbose.label"),
+  .verbose = getOption("fuj.verbose", getOption("verbose"))
 )
 
 make_verbose(opt)
@@ -22,6 +23,9 @@ label (controlled through \code{options("fuj.verbose.fill")})}
 
 \item{.label}{A label to prefix the message with (controlled through
 \code{options("fuj.verbose.label")})}
+
+\item{.verbose}{When \code{TRUE} (or is a function when returns \code{TRUE}) prints out
+the message.}
 
 \item{opt}{An option to use in lieu of \code{fun.verbose}.  Note:
 \code{options("fuj.verbose")} is temporarily set to \code{isTRUE(getOption(opt))}
