@@ -18,7 +18,7 @@ NULL
 op.fuj <- list(
   fuj.verbose = NULL,
   fuj.verbose.fill = FALSE,
-  fuj.verbose.label = "<verboseMessage> "
+  fuj.verbose.label = "verbose: "
 )
 
 .onLoad <- function(libname, pkgname) {
