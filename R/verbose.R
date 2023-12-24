@@ -16,6 +16,8 @@
 #'   label (controlled through `options("fuj.verbose.fill")`)
 #' @param .label A label to prefix the message with (controlled through
 #'   `options("fuj.verbose.label")`)
+#' @param .verbose When `TRUE` (or is a function when returns `TRUE`) prints out
+#'   the message.
 #' @returns None, called for its side-effects.  When conditions are met, will
 #'   signal a `verboseMessage` condition.
 #' @examples
@@ -45,15 +47,14 @@
 verbose <- function(
     ...,
     .fill = getOption("fuj.verbose.fill"),
-    .label = getOption("fuj.verbose.label")
+    .label = getOption("fuj.verbose.label"),
+    .verbose = getOption("fuj.verbose", getOption("verbose"))
 ) {
-  op <- getOption("fuj.verbose", getOption("verbose"))
-
-  if (is.function(op)) {
-    op <- op()
+  if (is.function(.verbose)) {
+    .verbose <- .verbose()
   }
 
-  if (isTRUE(op)) {
+  if (isTRUE(.verbose)) {
     if (!(is.null(..1) && ...length() == 1L)) {
       message(verbose_message(..., .fill = .fill, .label = .label))
     }

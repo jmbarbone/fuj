@@ -7,10 +7,11 @@
 ## New features
 
 * `op.fuj`, a named list of default options for `{fuj}` is now exported
-* multiple improvements for `verbose()`
+* multiple improvements for `verbose()` [#50](https://github.com/jmbarbone/fuj/pull/50)
   * `verbose()` has additional options for controlling the message output [#36](https://github.com/jmbarbone/fuj/issues/36)
     * `.label` can be set to a string to prepend to the message (defaults to `"[verbose]"`)
     * `.fill` can be set to repeat `.label` on each line of the message (defaults to `FALSE`)
+    * `.verbose` can be set to `TRUE` to print the message rather than relying on `options()`
   * `verbose()` prints prepended with `"verbose "` instead of `"[verbose] "` [#42](https://github.com/jmbarbone/fuj/issues/42)
   * `make_verbose()` is included to create a verbose function that will be triggered with a configured option, rather than the default `getOption("fuj.verbose", getOption("verbose"))` pattern.
 This can be used to define your own custom verbose function:
