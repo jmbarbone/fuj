@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9007</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.4.9008</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,18 +56,23 @@
 <h3 id="new-features-development-version">New features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
 <ul><li>
 <code>op.fuj</code>, a named list of default options for <a href="https://jmbarbone.github.io/fuj/">fuj</a> is now exported</li>
-<li>
+<li>multiple improvements for <code><a href="../reference/verbose.html">verbose()</a></code> <a href="https://github.com/jmbarbone/fuj/pull/50" class="external-link">#50</a>
+<ul><li>
 <code><a href="../reference/verbose.html">verbose()</a></code> has additional options for controlling the message output <a href="https://github.com/jmbarbone/fuj/issues/36" class="external-link">#36</a>
 <ul><li>
 <code>.label</code> can be set to a string to prepend to the message (defaults to <code>"[verbose]"</code>)</li>
 <li>
 <code>.fill</code> can be set to repeat <code>.label</code> on each line of the message (defaults to <code>FALSE</code>)</li>
+<li>
+<code>.verbose</code> can be set to <code>TRUE</code> to print the message rather than relying on <code><a href="https://rdrr.io/r/base/options.html" class="external-link">options()</a></code>
+</li>
 </ul></li>
 <li>
-<code><a href="../reference/verbose.html">verbose()</a></code> messages are now slightly improved; prints prepended with <code>"&lt;verboseMessage&gt; "</code> instead of <code>"[verbose] "</code> <a href="https://github.com/jmbarbone/fuj/issues/42" class="external-link">#42</a>
+<code><a href="../reference/verbose.html">verbose()</a></code> prints prepended with <code>"verbose "</code> instead of <code>"[verbose] "</code> <a href="https://github.com/jmbarbone/fuj/issues/42" class="external-link">#42</a>
 </li>
 <li>
 <code><a href="../reference/verbose.html">make_verbose()</a></code> is included to create a verbose function that will be triggered with a configured option, rather than the default <code>getOption("fuj.verbose", getOption("verbose"))</code> pattern. This can be used to define your own custom verbose function:</li>
+</ul></li>
 </ul><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://jmbarbone.github.io/fuj/">fuj</a></span><span class="op">)</span></span>
