@@ -18,8 +18,8 @@
 #' @inheritParams base::loadNamespace
 #' @inheritParams base::attach
 #' @param lib See `lib.loc` in [base::loadNamespace()]
-#' @param warn_conflicts See `warn.conflicts` in [base::attach()].  The default
-#'   `NA` converts all `packageStartupMessage`s to `verboseMessage`s
+#' @param warn See `warn.conflicts` in [base::attach()].  The default `NA`
+#'   converts all `packageStartupMessage`s to `verboseMessage`s
 #' @returns Nothing, called for its side-effects
 #' @examples
 #' # include(package) will ensure that the entire package is attached

@@ -16,8 +16,8 @@ be aliases as such.}
 
 \item{pos}{integer specifying position to attach.}
 
-\item{warn_conflicts}{See \code{warn.conflicts} in \code{\link[base:attach]{base::attach()}}.  The default
-\code{NA} converts all \code{packageStartupMessage}s to \code{verboseMessage}s}
+\item{warn}{See \code{warn.conflicts} in \code{\link[base:attach]{base::attach()}}.  The default \code{NA}
+converts all \code{packageStartupMessage}s to \code{verboseMessage}s}
 }
 \value{
 Nothing, called for its side-effects
