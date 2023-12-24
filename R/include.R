@@ -96,9 +96,9 @@ include <- function(
     on.exit(if (!success) {
       ("base" %::% "detach")(attach_name, character.only = TRUE)
     })
+    m <- pos
   } else {
     verbose("'", attach_name, "' found in search path at position ", m)
-    m <- pos
   }
 
   package <- asNamespace(package)
@@ -106,7 +106,7 @@ include <- function(
   for (i in seq_along(exports)) {
     assign(nm[i], getExportedValue(package, exports[i]), m)
   }
-
+  success <- TRUE
   invisible()
 }
 
