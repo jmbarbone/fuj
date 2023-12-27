@@ -60,11 +60,7 @@ include <- function(
 
   if (is.null(exports)) {
     attach_name <- paste0("include:", package)
-
-    if (attach_name %in% search()) {
-      detach2(attach_name)
-    }
-
+    detach2(attach_name)
     verbose("attaching '", attach_name, "' to the search path")
     attach2(
       x = asNamespace(package),
@@ -75,12 +71,7 @@ include <- function(
     return(invisible())
   }
 
-  nm <- names(exports)
-
-  if (is.null(nm)) {
-    nm <- exports
-  }
-
+  nm <- names(exports) %||% exports
   attach_name <- paste0("include:", package)
   env <- match(attach_name, search())
   success <- FALSE
@@ -165,9 +156,9 @@ check_conflicts <- function(name, warn = NULL) {
 
   # typically attach() uses 'by = FALSE'
   msg <- sprintf(
-    "the following objects are masked by '%s':\n  %s",
+    "the following objects are masked from '%s':\n  %s",
     name,
-    collapse(cons, "\n  ")
+    collapse(cons, sep = "\n  ")
   )
 
   if (is.null(warn)) {
