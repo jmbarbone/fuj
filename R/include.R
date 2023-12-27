@@ -62,12 +62,12 @@ include <- function(
     attach_name <- paste0("include:", package)
 
     if (attach_name %in% search()) {
-      ("base" %::% "detach")(attach_name, character.only = TRUE)
+      detach2(attach_name)
     }
 
     verbose("attaching '", attach_name, "' to the search path")
     attach2(
-      what = asNamespace(package),
+      x = asNamespace(package),
       pos = pos,
       name = attach_name,
       warn = warn
@@ -82,59 +82,99 @@ include <- function(
   }
 
   attach_name <- paste0("include:", package)
-  m <- match(attach_name, search())
+  env <- match(attach_name, search())
   success <- FALSE
 
-  if (is.na(m)) {
+  if (is.na(env)) {
     success <- FALSE
-    attach2(
-      what = NULL,
-      pos = pos,
-      name = attach_name,
-      warn = warn
-    )
-    on.exit(if (!success) {
-      ("base" %::% "detach")(attach_name, character.only = TRUE)
-    })
-    m <- pos
+    attach2(pos = pos, name = attach_name, warn = warn)
+    on.exit(if (!success) detach2(attach_name))
+    env <- pos
   } else {
-    verbose("'", attach_name, "' found in search path at position ", m)
+    verbose("'", attach_name, "' found in search path at position ", env)
   }
 
   package <- asNamespace(package)
-
+  env <- as.environment(env)
   for (i in seq_along(exports)) {
-    assign(nm[i], getExportedValue(package, exports[i]), m)
+    assign(nm[i], getExportedValue(package, exports[i]), env)
   }
+  check_conflicts(attach_name, warn = warn)
   success <- TRUE
   invisible()
 }
 
+detach2 <- function(
+    name = search()[pos],
+    pos = if (is.null(pattern)) 2 else grep(pattern, search(), ...),
+    pattern = NULL,
+    ...
+) {
+  force(pattern)
+  force(pos)
+  force(name)
+
+  if (name %out% search()) {
+    return()
+  }
+
+  ("base" %::% "detach")(name, character.only = TRUE)
+}
+
 attach2 <- function(
-    what,
+    x = NULL,
     pos = 2L,
-    name = deparse1(substitute(what)),
+    name = deparse1(substitute(x)),
     warn = NULL
 ) {
+  if (name %in% search()) {
+    return()
+  }
   # the purpose of `include()` is to add it to the search path, so we do need to
   # use `attach()` here
   tryCatch({
     ("base" %::% "attach")(
-      what = what,
+      what = x,
       pos = pos,
       name = name,
       warn.conflicts = !isFALSE(warn)
     )
-  }, packageStartupMessage = function(e)
+  }, packageStartupMessage = function(e) {
+    # TODO this needs to be documented
     if (is.null(warn)) {
       verbose(e$message)
     } else if (isTRUE(warn)) {
       warning(cond_include_conflicts(e$message))
     } else if (isTRUE(is.na(warn))) {
-      verbose(e$message)
+      packageStartupMessage(e$message)
+    }
+  }, simpleMessage = function(e) {
+    verbose(e$message)
   })
 }
 
 cond_include_conflicts <- function(msg) {
   new_condition(message = msg, class = "includeConflicts", type = "warning")
+}
+
+check_conflicts <- function(name, warn = NULL) {
+  cons <- conflicts(detail = TRUE)[[name]]
+  if (!length(cons)) {
+    return()
+  }
+
+  # typically attach() uses 'by = FALSE'
+  msg <- sprintf(
+    "the following objects are masked by '%s':\n  %s",
+    name,
+    collapse(cons, "\n  ")
+  )
+
+  if (is.null(warn)) {
+    verbose(msg)
+  } else if (isTRUE(warn)) {
+    warning(cond_include_conflicts(msg))
+  } else if (isTRUE(is.na(warn))) {
+    packageStartupMessage(msg)
+  }
 }
