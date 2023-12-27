@@ -65,3 +65,28 @@ test_that("include() works with conflicts", {
     expect_silent(include("fuj", c(foo = "include"), warn = FALSE))
   })
 })
+
+test_that("attach2() works", {
+  with_attach <- function(warn = NULL) {
+    on.exit({
+      detach2("foo")
+      detach2("bar")
+    })
+    with_verbose({
+      attach2(list(foo = 1), name = "foo")
+      attach2(list(foo = 2), name = "bar", warn = warn)
+    })
+  }
+
+  expect_message(with_attach(NULL), class = "verboseMessage")
+  expect_message(with_attach(NA), class = "packageStartupMessage")
+  expect_warning(with_attach(TRUE), class = "includeConflictsWarning")
+
+  do_attach <- function() {
+    on.exit(detach2("foo"))
+    attach2(list(a = 1), name = "foo")
+    attach2(list(a = 1), name = "foo")
+  }
+
+  expect_silent(do_attach())
+})

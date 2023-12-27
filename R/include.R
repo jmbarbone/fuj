@@ -121,6 +121,7 @@ attach2 <- function(
   if (name %in% search()) {
     return()
   }
+
   # the purpose of `include()` is to add it to the search path, so we do need to
   # use `attach()` here
   tryCatch({
@@ -130,18 +131,11 @@ attach2 <- function(
       name = name,
       warn.conflicts = !isFALSE(warn)
     )
-  }, packageStartupMessage = function(e) {
-    # TODO this needs to be documented
-    if (is.null(warn)) {
-      verbose(e$message)
-    } else if (isTRUE(warn)) {
-      warning(cond_include_conflicts(e$message))
-    } else if (isTRUE(is.na(warn))) {
-      packageStartupMessage(e$message)
-    }
-  }, simpleMessage = function(e) {
-    verbose(e$message)
-  })
+  },
+  # simpleMessage = function(e) verbose(e$message), # nocov
+  # TODO this needs to be documented
+  packageStartupMessage = function(e) attach_warn(warn, e$message)
+  )
 }
 
 cond_include_conflicts <- function(msg) {
@@ -161,6 +155,10 @@ check_conflicts <- function(name, warn = NULL) {
     collapse(cons, sep = "\n  ")
   )
 
+  attach_warn(warn, msg)
+}
+
+attach_warn <- function(warn, msg) {
   if (is.null(warn)) {
     verbose(msg)
   } else if (isTRUE(warn)) {
