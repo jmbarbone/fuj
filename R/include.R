@@ -18,8 +18,10 @@
 #' @inheritParams base::loadNamespace
 #' @inheritParams base::attach
 #' @param lib See `lib.loc` in [base::loadNamespace()]
-#' @param warn See `warn.conflicts` in [base::attach()].  The default `NA`
-#'   converts all `packageStartupMessage`s to `verboseMessage`s
+#' @param warn See `warn.conflicts` in [base::attach()], generally.  The default
+#'   `NULL` converts all `packageStartupMessage`s to `verboseMessage`s, `TRUE`
+#'   converts to `includeConflictsWarning` messages, `NA` continues using
+#'   `packageStartupMessages`, and `FALSE` silently ignores conflicts.
 #' @returns Nothing, called for its side-effects
 #' @examples
 #' # include(package) will ensure that the entire package is attached
@@ -132,8 +134,6 @@ attach2 <- function(
       warn.conflicts = !isFALSE(warn)
     )
   },
-  # simpleMessage = function(e) verbose(e$message), # nocov
-  # TODO this needs to be documented
   packageStartupMessage = function(e) attach_warn(warn, e$message)
   )
 }

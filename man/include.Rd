@@ -16,8 +16,10 @@ be aliases as such.}
 
 \item{pos}{integer specifying position to attach.}
 
-\item{warn}{See \code{warn.conflicts} in \code{\link[base:attach]{base::attach()}}.  The default \code{NA}
-converts all \code{packageStartupMessage}s to \code{verboseMessage}s}
+\item{warn}{See \code{warn.conflicts} in \code{\link[base:attach]{base::attach()}}, generally.  The default
+\code{NULL} converts all \code{packageStartupMessage}s to \code{verboseMessage}s, \code{TRUE}
+converts to \code{includeConflictsWarning} messages, \code{NA} continues using
+\code{packageStartupMessages}, and \code{FALSE} silently ignores conflicts.}
 }
 \value{
 Nothing, called for its side-effects
