@@ -134,8 +134,11 @@ attach2 <- function(
       warn.conflicts = !isFALSE(warn)
     )
   },
-  packageStartupMessage = function(e) attach_warn(warn, e$message)
-  )
+  message = function(e) {
+    if (grepl("following object", e$message, fixed = TRUE)) {
+      attach_warn(warn, e$message)
+    }
+  })
 }
 
 cond_include_conflicts <- function(msg) {
