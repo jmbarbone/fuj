@@ -19,8 +19,8 @@
 #' @inheritParams base::attach
 #' @param lib See `lib.loc` in [base::loadNamespace()]
 #' @param warn See `warn.conflicts` in [base::attach()], generally.  The default
-#'   `NULL` converts all `packageStartupMessage`s to `verboseMessage`s, `TRUE`
-#'   converts to `includeConflictsWarning` messages, `NA` continues using
+#'   `NULL` converts all `messages`s with masking errors to `verboseMessage`s,
+#'   `TRUE` converts to `includeConflictsWarning` messages, `NA` uses
 #'   `packageStartupMessages`, and `FALSE` silently ignores conflicts.
 #' @returns Nothing, called for its side-effects
 #' @examples

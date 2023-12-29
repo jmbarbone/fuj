@@ -17,8 +17,8 @@ be aliases as such.}
 \item{pos}{integer specifying position to attach.}
 
 \item{warn}{See \code{warn.conflicts} in \code{\link[base:attach]{base::attach()}}, generally.  The default
-\code{NULL} converts all \code{packageStartupMessage}s to \code{verboseMessage}s, \code{TRUE}
-converts to \code{includeConflictsWarning} messages, \code{NA} continues using
+\code{NULL} converts all \code{messages}s with masking errors to \code{verboseMessage}s,
+\code{TRUE} converts to \code{includeConflictsWarning} messages, \code{NA} uses
 \code{packageStartupMessages}, and \code{FALSE} silently ignores conflicts.}
 }
 \value{
