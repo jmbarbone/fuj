@@ -6,6 +6,7 @@
 
 ## New features
 
+* `include()` added as a means of partially attaching a package with specific exports [#49](https://github.com/jmbarbone/fuj/issues/49)
 * `op.fuj`, a named list of default options for `{fuj}` is now exported
 * multiple improvements for `verbose()` [#50](https://github.com/jmbarbone/fuj/pull/50)
   * `verbose()` has additional options for controlling the message output [#36](https://github.com/jmbarbone/fuj/issues/36)
