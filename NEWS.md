@@ -34,7 +34,7 @@ my_verbose("will show")
 * additional local testing for os version
 * `{covr}` dropped as a `suggest` 
 * `require_namespace()` now allows for version requirements (e.g., `require_namespace("fuj>=0.1.4")`).  When the version requirement is not met, an error of class `namespaceVersionError` is returned [#41](https://github.com/jmbarbone/fuj/issues/41)
-* `simpleError`s converted to custom errors [#43](https:://github.com/jmbarbone/fuj/issues/43)
+* `simpleError`s converted to custom errors [#43](https://github.com/jmbarbone/fuj/issues/43)
 
 # fuj 0.1.4
 
