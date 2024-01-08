@@ -1,4 +1,4 @@
-# fuj (development version)
+# fuj 0.2.0
 
 ## Fixes
 
