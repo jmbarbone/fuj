@@ -57,8 +57,34 @@ include <- function(
     pos = 2L,
     warn = NULL
 ) {
-  package <- as.character(substitute(package))
-  loadNamespace(package, lib.loc = lib)
+  if (is.name(match.call()$package)) {
+    path <- FALSE
+    package <- as.character(substitute(package))
+  } else if (inherits(package, "AsIs")) {
+    path <- FALSE
+  } else {
+    path <- is_path(package) || file.exists(package)
+  }
+
+  if (path) {
+    name <- basename(x)
+    name <- gsub("\\.R$", "", name, ignore.case = TRUE)
+    name <- paste0("include:", name)
+    if (name %in% search()) {
+      return(invisible())
+    }
+
+    env <- new.env()
+    source(package, local = env, echo = FALSE, verbose = FALSE)
+    attach2(
+      x = env,
+      pos = pos,
+      name = get0(".AttachName", env, ifnotfound = name)
+    )
+    return(invisible(env))
+  }
+
+  loadNamespace(x, lib.loc = lib)
 
   if (is.null(exports)) {
     attach_name <- paste0("include:", package)
@@ -87,14 +113,15 @@ include <- function(
     verbose("'", attach_name, "' found in search path at position ", env)
   }
 
-  package <- asNamespace(package)
+  ns <- asNamespace(package)
   env <- as.environment(env)
   for (i in seq_along(exports)) {
-    assign(nm[i], getExportedValue(package, exports[i]), env)
+    assign(nm[i], getExportedValue(ns, exports[i]), env)
   }
+
   check_conflicts(attach_name, warn = warn)
   success <- TRUE
-  invisible()
+  invisible(env)
 }
 
 detach2 <- function(
