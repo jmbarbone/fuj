@@ -13,16 +13,29 @@
 #'   path.  Use `options(fuj.verbose = TRUE)` or `options(verbose = TRUE)` for
 #'   more information.
 #'
+#' @section `package` class handling: When `package` is a [name] or [AsIs],
+#'   assumed an installed package.  When `package` is a file path (via
+#'   [is_path()]) then `package` is assumed a file path.  When just a string, a
+#'   viable path is checked first; if it doesn't exist, then it is assumed a
+#'   package.
+#'
+#'   When the package is [source()]'d the name of the environment defaults to
+#'   the base name of `x` (file extension removed).  However, if the object
+#'   `.AttachName` is found in the sourced file, then that is used as the
+#'   environment name for the [search()] path.
+#'
+#' @param package A package name.  This can be given as a [name] or a character
+#'   string. See section `package` class handling.
 #' @param exports A character vector of exports.  When named, these exports will
 #'   be aliases as such.
-#' @inheritParams base::loadNamespace
-#' @inheritParams base::attach
-#' @param lib See `lib.loc` in [base::loadNamespace()]
+#' @param lib See `lib.loc` in [base::loadNamespace()].
+#' @param pos An integer specifying the position in the [search()] path to
+#'   attach the new environment.
 #' @param warn See `warn.conflicts` in [base::attach()], generally.  The default
 #'   `NULL` converts all `messages`s with masking errors to `verboseMessage`s,
 #'   `TRUE` converts to `includeConflictsWarning` messages, `NA` uses
 #'   `packageStartupMessages`, and `FALSE` silently ignores conflicts.
-#' @returns Nothing, called for its side-effects
+#' @returns The attached environment, invisibly.
 #' @examples
 #' # include(package) will ensure that the entire package is attached
 #' include("fuj")
