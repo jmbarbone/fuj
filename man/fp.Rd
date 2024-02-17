@@ -2,12 +2,18 @@
 % Please edit documentation in R/fs.R
 \name{fp}
 \alias{fp}
+\alias{file_path}
 \alias{is_path}
+\alias{is_file_path}
 \title{File path}
 \usage{
 fp(...)
 
+file_path(...)
+
 is_path(x)
+
+is_file_path(x)
 }
 \arguments{
 \item{...}{Path components, passed to \code{\link[=file.path]{file.path()}}}
@@ -16,13 +22,17 @@ is_path(x)
 }
 \value{
 \itemize{
-\item \code{\link[=fp]{fp()}}: A \code{character} vector of the normalized path with a "path" class
-\item \code{\link[=is_path]{is_path()}}: A \code{TRUE} or \code{FALSE} value
+\item \code{\link[=fp]{fp()}}/\code{\link[=file_path]{file_path()}}: A \code{character} vector of the normalized path with a
+\code{"file_path"} class
+\item \code{\link[=is_path]{is_path()}}/\code{\link[=is_file_path]{is_file_path()}}: A \code{TRUE} or \code{FALSE} value
 }
 }
 \description{
-\code{\link[=is_path]{is_path()}} checks for either a \code{path} class or an \code{fs_path},
-the latter useful for the \code{fs} package.
+\code{\link[=is_path]{is_path()}} checks for either a \code{file_path} class or an
+\code{fs_path}, the latter useful for the \code{fs} package.
+
+\code{\link[=file_path]{file_path()}} is an alias for \code{\link[=fp]{fp()}} and \code{\link[=is_file_path]{is_file_path()}} is an alias for
+\code{\link[=is_path]{is_path()}}.
 }
 \details{
 Lightweight file path functions
@@ -30,4 +40,7 @@ Lightweight file path functions
 \examples{
 fp("here")
 fp("~/there")
+fp("back\\\\slash")
+fp("remove//extra\\\\\\\\slashes")
+fp("a", c("b", "c"), "d")
 }
