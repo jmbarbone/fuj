@@ -15,10 +15,10 @@
 #' fp("here")
 #' fp("~/there")
 fp <- function(...) {
-  struct(
-    normalizePath(file.path(..., fsep = "/"), "/", mustWork = FALSE),
-    class = c("path", "character")
-  )
+  x <- normalizePath(file.path(..., fsep = "/"), "/", FALSE)
+  x <- gsub("\\", "/", x, fixed = TRUE)
+  x <- gsub("/+", "/", x)
+  struct(x, class = c("file_path", "character"))
 }
 
 #' @export
