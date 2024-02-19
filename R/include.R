@@ -24,6 +24,11 @@
 #'   `.AttachName` is found in the sourced file, then that is used as the
 #'   environment name for the [search()] path.
 #'
+#'   **Note:** [include()] won't try to _attach_ an environment a second time,
+#'   however, when `package` is a path, it must be [source()]ed each time to
+#'   check for the `.AttachName` object.  If there are any side effects, they
+#'   will be repeated each time `include(path)` is called.
+#'
 #' @param package A package name.  This can be given as a [name] or a character
 #'   string. See section `package` class handling.
 #' @param exports A character vector of exports.  When named, these exports will
@@ -80,15 +85,21 @@ include <- function(
   }
 
   if (path) {
-    name <- basename(x)
-    name <- gsub("\\.R$", "", name, ignore.case = TRUE)
-    name <- paste0("include:", name)
+    env <- new.env()
+    # Because the .AttachName variable needs to be searched, we need to source
+    # the file first and then determine what the name is
+    source(package, local = env, echo = FALSE, verbose = FALSE)
+
+    name <- get0(
+      ".AttachName",
+      envir = env,
+      ifnotfound = paste0("include:", gsub("\\.[Rr]$", "", basename(package)))
+    )
+
     if (name %in% search()) {
       return(invisible())
     }
 
-    env <- new.env()
-    source(package, local = env, echo = FALSE, verbose = FALSE)
     attach2(
       x = env,
       pos = pos,
@@ -97,7 +108,7 @@ include <- function(
     return(invisible(env))
   }
 
-  loadNamespace(x, lib.loc = lib)
+  loadNamespace(package, lib.loc = lib)
 
   if (is.null(exports)) {
     attach_name <- paste0("include:", package)
