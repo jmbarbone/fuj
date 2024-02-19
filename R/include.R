@@ -43,21 +43,21 @@
 #' @returns The attached environment, invisibly.
 #' @examples
 #' # include(package) will ensure that the entire package is attached
-#' include("fuj")
+#' include(fuj)
 #' head(ls("include:fuj"), 20)
 #' detach("include:fuj", character.only = TRUE)
 #'
 #' # include a single export
-#' include("fuj", "collapse")
+#' include(fuj, "collapse")
 #'
 #' # include multiple exports, and alias
-#' include("fuj", c(
+#' include(fuj, c(
 #'   no_names = "remove_names",
 #'   match_any = "any_match"
 #' ))
 #'
 #' # include an export where the alias has a warn conflict
-#' include("fuj", c(attr = "exattr"))
+#' include(fuj, c(attr = "exattr"))
 #'
 #' # note that all 4 exports are included
 #' ls("include:fuj")
