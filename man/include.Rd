@@ -52,6 +52,11 @@ When the package is \code{\link[=source]{source()}}'d the name of the environmen
 the base name of \code{x} (file extension removed).  However, if the object
 \code{.AttachName} is found in the sourced file, then that is used as the
 environment name for the \code{\link[=search]{search()}} path.
+
+\strong{Note:} \code{\link[=include]{include()}} won't try to \emph{attach} an environment a second time,
+however, when \code{package} is a path, it must be \code{\link[=source]{source()}}ed each time to
+check for the \code{.AttachName} object.  If there are any side effects, they
+will be repeated each time \code{include(path)} is called.
 }
 
 \examples{
