@@ -13,33 +13,51 @@
 #'   path.  Use `options(fuj.verbose = TRUE)` or `options(verbose = TRUE)` for
 #'   more information.
 #'
+#' @section `package` class handling: When `package` is a [name] or [AsIs],
+#'   assumed an installed package.  When `package` is a file path (via
+#'   [is_path()]) then `package` is assumed a file path.  When just a string, a
+#'   viable path is checked first; if it doesn't exist, then it is assumed a
+#'   package.
+#'
+#'   When the package is [source()]'d the name of the environment defaults to
+#'   the base name of `x` (file extension removed).  However, if the object
+#'   `.AttachName` is found in the sourced file, then that is used as the
+#'   environment name for the [search()] path.
+#'
+#'   **Note:** [include()] won't try to _attach_ an environment a second time,
+#'   however, when `package` is a path, it must be [source()]ed each time to
+#'   check for the `.AttachName` object.  If there are any side effects, they
+#'   will be repeated each time `include(path)` is called.
+#'
+#' @param package A package name.  This can be given as a [name] or a character
+#'   string. See section `package` class handling.
 #' @param exports A character vector of exports.  When named, these exports will
 #'   be aliases as such.
-#' @inheritParams base::loadNamespace
-#' @inheritParams base::attach
-#' @param lib See `lib.loc` in [base::loadNamespace()]
+#' @param lib See `lib.loc` in [base::loadNamespace()].
+#' @param pos An integer specifying the position in the [search()] path to
+#'   attach the new environment.
 #' @param warn See `warn.conflicts` in [base::attach()], generally.  The default
 #'   `NULL` converts all `messages`s with masking errors to `verboseMessage`s,
 #'   `TRUE` converts to `includeConflictsWarning` messages, `NA` uses
 #'   `packageStartupMessages`, and `FALSE` silently ignores conflicts.
-#' @returns Nothing, called for its side-effects
+#' @returns The attached environment, invisibly.
 #' @examples
 #' # include(package) will ensure that the entire package is attached
-#' include("fuj")
+#' include(fuj)
 #' head(ls("include:fuj"), 20)
 #' detach("include:fuj", character.only = TRUE)
 #'
 #' # include a single export
-#' include("fuj", "collapse")
+#' include(fuj, "collapse")
 #'
 #' # include multiple exports, and alias
-#' include("fuj", c(
+#' include(fuj, c(
 #'   no_names = "remove_names",
 #'   match_any = "any_match"
 #' ))
 #'
 #' # include an export where the alias has a warn conflict
-#' include("fuj", c(attr = "exattr"))
+#' include(fuj, c(attr = "exattr"))
 #'
 #' # note that all 4 exports are included
 #' ls("include:fuj")
@@ -57,7 +75,39 @@ include <- function(
     pos = 2L,
     warn = NULL
 ) {
-  package <- as.character(substitute(package))
+  if (is.name(match.call()$package)) {
+    path <- FALSE
+    package <- as.character(substitute(package))
+  } else if (inherits(package, "AsIs")) {
+    path <- FALSE
+  } else {
+    path <- is_path(package) || file.exists(package)
+  }
+
+  if (path) {
+    env <- new.env()
+    # Because the .AttachName variable needs to be searched, we need to source
+    # the file first and then determine what the name is
+    source(package, local = env, echo = FALSE, verbose = FALSE)
+
+    name <- get0(
+      ".AttachName",
+      envir = env,
+      ifnotfound = paste0("include:", gsub("\\.[Rr]$", "", basename(package)))
+    )
+
+    if (name %in% search()) {
+      return(invisible())
+    }
+
+    attach2(
+      x = env,
+      pos = pos,
+      name = get0(".AttachName", env, ifnotfound = name)
+    )
+    return(invisible(env))
+  }
+
   loadNamespace(package, lib.loc = lib)
 
   if (is.null(exports)) {
@@ -87,14 +137,15 @@ include <- function(
     verbose("'", attach_name, "' found in search path at position ", env)
   }
 
-  package <- asNamespace(package)
+  ns <- asNamespace(package)
   env <- as.environment(env)
   for (i in seq_along(exports)) {
-    assign(nm[i], getExportedValue(package, exports[i]), env)
+    assign(nm[i], getExportedValue(ns, exports[i]), env)
   }
+
   check_conflicts(attach_name, warn = warn)
   success <- TRUE
-  invisible()
+  invisible(env)
 }
 
 detach2 <- function(
