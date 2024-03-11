@@ -12,6 +12,5 @@
 #' collapse(quick_dfl(a = 1:3, b = 4:6), sep = "-")
 #' @export
 collapse <- function(..., sep = "") {
-  ls <- list(...)
-  paste0(unlist(ls), collapse = sep)
+  paste0(unlist(lst(...)), collapse = sep)
 }

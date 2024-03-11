@@ -76,11 +76,11 @@
 
 struct <- function(x, class, ..., .keep_attr = FALSE) {
   attributes(x) <- if (isTRUE(.keep_attr)) {
-    c(attributes(x), list(...))
+    c(attributes(x), list0(...))
   } else if (is.character(.keep_attr)) {
-    c(attributes(x)[.keep_attr], list(...))
+    c(attributes(x)[.keep_attr], list0(...))
   } else {
-    list(...)
+    list0(...)
   }
   class(x) <- class
   x
