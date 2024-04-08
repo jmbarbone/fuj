@@ -3,6 +3,7 @@
 ## Fixes
 
 * `%wi%` no longer drops duplicated in `x` [#44](https://github.com/jmbarbone/fuj/issues/44)
+* `list0()` now works better with some edge cases [#55](https://github.com/jmbarbone/fuj/issues/55)
 
 ## New features
 
