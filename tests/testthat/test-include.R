@@ -4,6 +4,33 @@ test_that("include() works", {
   include("parallel")
   expect_identical(setdiff(search(), old), "include:parallel")
   detach2("include:parallel")
+
+  old <- search()
+  include(parallel)
+  expect_identical(setdiff(search(), old), "include:parallel")
+  detach2("include:parallel")
+})
+
+test_that("include() doesn't add multiple times", {
+  old <- search()
+  include(test_path("include.R"))
+  include(test_path("include.R"))
+  expect_identical(search(), append(old, "include:include", 1))
+  detach2("include:include")
+  detach2("include:include") # in case of failure
+
+  include(test_path("include-name.R"))
+  include(test_path("include-name.R"))
+  expect_identical(search(), append(old, "attachName", 1))
+  detach2("attachName")
+  detach2("attachName") # in case of failure
+
+  skip_if_not_installed("parallel")
+  include("parallel")
+  include("parallel")
+  expect_identical(search(), append(old, "include:parallel", 1))
+  detach2("include:parallel")
+  detach2("include:parallel") # in case of failure
 })
 
 test_that("include() works with exports", {
@@ -64,6 +91,30 @@ test_that("include() works with conflicts", {
   with_include_fuj({
     expect_silent(include("fuj", c(foo = "include"), warn = FALSE))
   })
+})
+
+test_that("include path names", {
+  old <- search()
+  include(testthat::test_path("include.R"))
+  expect_identical(setdiff(search(), old), "include:include")
+  expect_identical(ls("include:include"), c("bar", "foo"))
+  detach2("include:include")
+
+  include(testthat::test_path("include-name.R"))
+  expect_identical(setdiff(search(), old), "attachName")
+  expect_identical(ls("attachName"), c("bar", "foo"))
+  expect_identical(
+    ls("attachName", all.names = TRUE),
+    c(".AttachName", "bar", "foo")
+  )
+  detach2("attachName")
+})
+
+test_that("include AsIs", {
+  old <- search()
+  include(I("parallel"))
+  expect_identical(setdiff(search(), old), "include:parallel")
+  detach2("include:parallel")
 })
 
 test_that("attach2() works", {
