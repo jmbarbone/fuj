@@ -58,7 +58,7 @@ empty_df <- function() {
 #' @rdname quick_df
 #' @param ... Columns as `tag = value` (passed to `list()`)
 quick_dfl <- function(...) {
-  quick_df(list(...))
+  quick_df(lst(...))
 }
 
 # conditions --------------------------------------------------------------
