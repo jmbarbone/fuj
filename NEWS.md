@@ -3,9 +3,11 @@
 ## Fixes
 
 * `%wi%` no longer drops duplicated in `x` [#44](https://github.com/jmbarbone/fuj/issues/44)
+* `list0()` now works better with some edge cases [#55](https://github.com/jmbarbone/fuj/issues/55)
 
 ## New features
 
+* `fp()` added for creating file path objects with `is_path()` as a means of checking for the class; `file_path()` and `is_file_path()` exported as aliases, respectively [#55](https://github.com/jmbarbone/fuj/issues/55)
 * `include()` added as a means of partially attaching a package with specific exports [#49](https://github.com/jmbarbone/fuj/issues/49)
 * `op.fuj`, a named list of default options for `{fuj}` is now exported
 * multiple improvements for `verbose()` [#50](https://github.com/jmbarbone/fuj/pull/50)

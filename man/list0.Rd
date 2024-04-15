@@ -2,9 +2,12 @@
 % Please edit documentation in R/list.R
 \name{list0}
 \alias{list0}
+\alias{lst}
 \title{Listing for dots}
 \usage{
 list0(...)
+
+lst(...)
 }
 \arguments{
 \item{...}{Arguments to collect in a list}
@@ -18,5 +21,8 @@ Tries to not complain about empty arguments
 \examples{
 try(list(1, ))
 list0(1, )
+try(list(a = 1, ))
 list0(a = 1, )
+try(list(a = 1, , c = 3, ))
+list0(a = 1, , c = 3, )
 }

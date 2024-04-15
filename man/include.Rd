@@ -7,14 +7,16 @@
 include(package, exports = NULL, lib = .libPaths(), pos = 2L, warn = NULL)
 }
 \arguments{
-\item{package}{string naming the package/name space to load.}
+\item{package}{A package name.  This can be given as a \link{name} or a character
+string. See section \code{package} class handling.}
 
 \item{exports}{A character vector of exports.  When named, these exports will
 be aliases as such.}
 
-\item{lib}{See \code{lib.loc} in \code{\link[base:ns-load]{base::loadNamespace()}}}
+\item{lib}{See \code{lib.loc} in \code{\link[base:ns-load]{base::loadNamespace()}}.}
 
-\item{pos}{integer specifying position to attach.}
+\item{pos}{An integer specifying the position in the \code{\link[=search]{search()}} path to
+attach the new environment.}
 
 \item{warn}{See \code{warn.conflicts} in \code{\link[base:attach]{base::attach()}}, generally.  The default
 \code{NULL} converts all \code{messages}s with masking errors to \code{verboseMessage}s,
@@ -22,7 +24,7 @@ be aliases as such.}
 \code{packageStartupMessages}, and \code{FALSE} silently ignores conflicts.}
 }
 \value{
-Nothing, called for its side-effects
+The attached environment, invisibly.
 }
 \description{
 \code{\link[=include]{include()}} checks whether or not the namespace has been loaded
@@ -39,23 +41,41 @@ more information.
 \details{
 Include (attach) a package and specific exports to Search Path
 }
+\section{\code{package} class handling}{
+ When \code{package} is a \link{name} or \link{AsIs},
+assumed an installed package.  When \code{package} is a file path (via
+\code{\link[=is_path]{is_path()}}) then \code{package} is assumed a file path.  When just a string, a
+viable path is checked first; if it doesn't exist, then it is assumed a
+package.
+
+When the package is \code{\link[=source]{source()}}'d the name of the environment defaults to
+the base name of \code{x} (file extension removed).  However, if the object
+\code{.AttachName} is found in the sourced file, then that is used as the
+environment name for the \code{\link[=search]{search()}} path.
+
+\strong{Note:} \code{\link[=include]{include()}} won't try to \emph{attach} an environment a second time,
+however, when \code{package} is a path, it must be \code{\link[=source]{source()}}ed each time to
+check for the \code{.AttachName} object.  If there are any side effects, they
+will be repeated each time \code{include(path)} is called.
+}
+
 \examples{
 # include(package) will ensure that the entire package is attached
-include("fuj")
+include(fuj)
 head(ls("include:fuj"), 20)
 detach("include:fuj", character.only = TRUE)
 
 # include a single export
-include("fuj", "collapse")
+include(fuj, "collapse")
 
 # include multiple exports, and alias
-include("fuj", c(
+include(fuj, c(
   no_names = "remove_names",
   match_any = "any_match"
 ))
 
 # include an export where the alias has a warn conflict
-include("fuj", c(attr = "exattr"))
+include(fuj, c(attr = "exattr"))
 
 # note that all 4 exports are included
 ls("include:fuj")
