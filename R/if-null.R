@@ -6,7 +6,7 @@
 #' A mostly copy of `rlang`'s `%||%` except does not use `rlang::is_null()`,
 #'   which, currently, calls the same primitive [base::is.null] function.
 #'
-#'   Note: `%||%` is not exported in versions of **R** < 4.4.
+#'   Note: `%||%` is copied from `{base}` if available (**R** versions >= 4.4)
 #'
 #' @param x,y If `x` is `NULL` returns `y`; otherwise `x`
 #'
@@ -29,10 +29,9 @@
 NULL
 
 #' @rdname if_null
-#' @rawNamespace if (getRversion() < "4.4")  export("%||%")
-`%||%` <- function(x, y) {
+`%||%` <- get0("%||%", baseenv(), "function", ifnotfound = function(x, y) {
   if (is.null(x)) y else x
-}
+})
 
 #' @rdname if_null
 #' @export
