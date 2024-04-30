@@ -29,6 +29,7 @@
 NULL
 
 #' @rdname if_null
+#' @export
 `%||%` <- get0("%||%", baseenv(), "function", ifnotfound = function(x, y) {
   if (is.null(x)) y else x
 })
