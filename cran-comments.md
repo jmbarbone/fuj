@@ -7,7 +7,8 @@
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+0 errors | 0 warnings | 0 notes
 
-* This is a patch release
-* Includes a new function and a new alias
+* This is a minor release
+* %||% copied from base when available
+* extra suggested dependencies dropped
