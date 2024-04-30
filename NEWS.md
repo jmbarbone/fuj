@@ -18,6 +18,7 @@
   * `verbose()` prints prepended with `"verbose "` instead of `"[verbose] "` [#42](https://github.com/jmbarbone/fuj/issues/42)
   * `make_verbose()` is included to create a verbose function that will be triggered with a configured option, rather than the default `getOption("fuj.verbose", getOption("verbose"))` pattern.
 This can be used to define your own custom verbose function:
+* `lst()` exported as an alias for `list0()`
 
 ```r
 library(fuj)
@@ -34,7 +35,7 @@ my_verbose("will show")
 
 * `%||%` is now set to only export in **R** versions < 4.4 [#35](https://github.com/jmbarbone/fuj/issues/35)
 * additional local testing for os version
-* `{covr}` dropped as a `suggest` 
+* `{covr}` dropped as a `suggest` dependency
 * `require_namespace()` now allows for version requirements (e.g., `require_namespace("fuj>=0.1.4")`).  When the version requirement is not met, an error of class `namespaceVersionError` is returned [#41](https://github.com/jmbarbone/fuj/issues/41)
 * `simpleError`s converted to custom errors [#43](https://github.com/jmbarbone/fuj/issues/43)
 
