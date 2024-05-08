@@ -1,4 +1,8 @@
-# fuj (development version)
+# fuj 0.2.1
+
+## Fixes
+
+* `lst()` again works with `NA_character_` [#60](https://github.com/jmbarbone/fuj/issues/60)
 
 # fuj 0.2.0
 
