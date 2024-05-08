@@ -18,3 +18,7 @@ test_that("handles names [#25]", {
   exp <- list(a = 1, 2, c = 3)
   expect_identical(obj, exp)
 })
+
+test_that("handles NA_character_ [#60]", {
+  expect_identical(lst(NA_character_), list(NA_character_))
+})
