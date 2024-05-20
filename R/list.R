@@ -22,6 +22,7 @@ list0 <- function(...) {
 lst <- list0
 
 is_not_empty <- function(x) {
+  # https://jmbarbone.github.io/posts/wat-na-list/
   x <- x != substitute()
   x | is.na(x)
 }
