@@ -9,6 +9,5 @@
 
 0 errors | 0 warnings | 0 notes
 
-* This is a minor release
-* %||% copied from base when available
-* extra suggested dependencies dropped
+* This is a patch release
+* Fixes a single issue that was glossed over in the previous release and causing failures in another package
