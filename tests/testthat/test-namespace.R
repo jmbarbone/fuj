@@ -26,6 +26,16 @@ test_that("require_namespace", {
   expect_error(require_namespace("utils>=1.0"), NA)
   expect_error(require_namespace("utils>1.0"), NA)
   expect_error(require_namespace(paste0("utils==", getRversion())), NA)
-  expect_error(require_namespace("utils<1.0"), class = "namespaceVersionError")
-  expect_error(require_namespace("utils<=1.0"), class = "namespaceVersionError")
+  expect_error(
+    require_namespace("utils<1.0"),
+    sprintf("utils: %s < 1.0", getRversion()),
+    fixed = TRUE,
+    class = "namespaceVersionError"
+  )
+  expect_error(
+    require_namespace("utils<=1.0"),
+    sprintf("utils: %s <= 1.0", getRversion()),
+    fixed = TRUE,
+    class = "namespaceVersionError"
+  )
 })
