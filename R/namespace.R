@@ -82,9 +82,9 @@ cond_namespace_version <- function(package, version, operator, found) {
     msg = sprintf(
       "Package version requirement not meet:\n%s: %s %s %s",
       package,
-      format(version),
+      format(found),
       operator,
-      format(found)
+      format(version)
     ),
     class = "namespace_version"
   )
