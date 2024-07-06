@@ -1,24 +1,25 @@
 #' Yes-no promprt
-#' 
+#'
 #' Prompts the user to make a yes/no selection
-#' 
+#'
 #' @param ... text to display
 #' @param na Text for an NA response.  When NULL, will not provide a possible NA
-#' response.  When 
+#' response.  When
 #' @param n_yes,n_no The number of yes/no selections
 #' @param noninteractive_error While `TRUE`, throws an error when the session
 #' is not interactive.  If `FALSE`, will return `NA` instead.
+# nolint next: cyclocomp_linter.
 yes_no <- function(
-    ..., 
+    ...,
     na = NULL,
     n_yes = 1,
     n_no = 2,
     noninteractive_error = TRUE
 ) {
-  
+
   override <- getOption("fuj..yes_no.interactive_override")
   is_override <- !is.null(override)
-  
+
   if (!is_override) {
     if (!interactive()) {
       if (noninteractive_error) {
@@ -39,16 +40,16 @@ yes_no <- function(
   yes <- c("Yes", "You betcha", "Certainly", "Absolutely", "Of course")
   no <- c("No", "Absolutely not", "Certainly not", "No way", "Not a chance",
   "Let me think about it", "Not sure", "I don't know")
-  
+
   choices <- c(
     sample(c(sample(yes, n_yes), sample(no, n_no))),
     if (length(na)) sample(na, 1)
   )
-  
+
   cat(msg)
   cat("\n")
   attempt <- 0
-  
+
   repeat {
     if (attempt > 20) {
       stop("What are you doing?")
@@ -71,13 +72,13 @@ yes_no <- function(
     if (res == 0) {
       return(NULL)
     }
-    
+
     res <- choices[res]
-    
+
     if (res %in% yes) {
       return(TRUE)
     }
-    
+
     if (res %in% no) {
       return(FALSE)
     }
@@ -100,6 +101,7 @@ cond_yes_no_interactive <- function() {
   )
 }
 
+# nolint next: object_length_linter.
 cond_yes_no_interactive_override <- function() {
   new_condition(
     collapse(
