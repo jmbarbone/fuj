@@ -4,14 +4,18 @@
 \alias{yes_no}
 \title{Yes-no promprt}
 \usage{
-yes_no(..., na = NULL, n_yes = 1, n_no = 2)
+yes_no(..., na = NULL, n_yes = 1, n_no = 2, noninteractive_error = TRUE)
 }
 \arguments{
 \item{...}{text to display}
 
-\item{na}{Text for an NA response}
+\item{na}{Text for an NA response.  When NULL, will not provide a possible NA
+response.  When}
 
 \item{n_yes, n_no}{The number of yes/no selections}
+
+\item{noninteractive_error}{While \code{TRUE}, throws an error when the session
+is not interactive.  If \code{FALSE}, will return \code{NA} instead.}
 }
 \description{
 Prompts the user to make a yes/no selection
