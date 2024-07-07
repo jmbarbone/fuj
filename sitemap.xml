@@ -1,87 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/404.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/LICENSE.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/authors.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/index.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/news/index.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/alias_arithmetic.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/alias_extract.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/collapse.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/colons.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/exattr.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/flip.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/fp.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/fuj-package.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/if_null.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/include.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/list0.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/match_ext.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/muffle.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/names.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/new_condition.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/op.fuj.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/os.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/quick_df.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/require_namespace.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/struct.html</loc>
-  </url>
-  <url>
-    <loc>https://jmbarbone.github.io/fuj/reference/verbose.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://jmbarbone.github.io/fuj/404.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/LICENSE-text.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/LICENSE.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/authors.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/index.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/news/index.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/alias_arithmetic.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/alias_extract.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/collapse.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/colons.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/exattr.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/flip.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/fp.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/fuj-package.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/if_null.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/include.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/index.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/list0.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/match_ext.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/muffle.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/names.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/new_condition.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/op.fuj.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/os.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/quick_df.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/require_namespace.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/struct.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/verbose.html</loc></url>
+<url><loc>https://jmbarbone.github.io/fuj/reference/yes_no.html</loc></url>
 </urlset>
+
