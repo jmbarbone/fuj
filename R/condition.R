@@ -37,7 +37,7 @@ new_condition <- function( # nolint cyclocomp_linter,
     call = NULL,
     type = c("error", "warning", NA_character_),
     message = msg,
-    pkg = TRUE
+    pkg = package()
 ) {
   if (!length(class) == 1L && !is.character(class)) {
     stop(cond_new_conditional_class())
@@ -109,4 +109,11 @@ cond_new_conditional_pkg <- function() {
     class = "newConditionPackage",
     pkg = "fuj"
   )
+}
+
+package <- function() {
+  top <- topenv(parent.frame())
+  if (isNamespace(top)) {
+    getNamespaceName(top)
+  }
 }
