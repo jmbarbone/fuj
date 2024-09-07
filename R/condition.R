@@ -98,22 +98,20 @@ conditionMessage.fujCondition <- function(c) {
 cond_new_conditional_class <- function() {
   new_condition(
     "`class` must be a single length character",
-    class = "newConditionClass",
-    pkg = "fuj"
+    class = "newConditionClass"
   )
 }
 
 cond_new_conditional_pkg <- function() {
   new_condition(
     "`pkg` must be TRUE, FALSE, or a single length character",
-    class = "newConditionPackage",
-    pkg = "fuj"
+    class = "newConditionPackage"
   )
 }
 
-package <- function() {
-  top <- topenv(parent.frame())
+package <- function(env = parent.frame()) {
+  top <- topenv(env)
   if (isNamespace(top)) {
-    getNamespaceName(top)
+    unname(getNamespaceName(top))
   }
 }
