@@ -2,6 +2,7 @@
 
 * `require_namespace()` now produces a more reasonable error when specifying a version [#63](https://github.com/jmbarbone/fuj/issues/63)
 * adds `yes_no()` prompting [#64](https://github.com/jmbarbone/fuj/issues/64)
+* adds internal `package()` utility as the default for `new_condition(pkg = package())` [#67](https://github.com/jmbarbone/fuj/issues/67)
 
 # fuj 0.2.1
 
