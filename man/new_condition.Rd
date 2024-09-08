@@ -10,7 +10,7 @@ new_condition(
   call = NULL,
   type = c("error", "warning", NA_character_),
   message = msg,
-  pkg = TRUE
+  pkg = package()
 )
 }
 \arguments{

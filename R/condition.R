@@ -37,7 +37,7 @@ new_condition <- function( # nolint cyclocomp_linter,
     call = NULL,
     type = c("error", "warning", NA_character_),
     message = msg,
-    pkg = TRUE
+    pkg = package()
 ) {
   if (!length(class) == 1L && !is.character(class)) {
     stop(cond_new_conditional_class())
@@ -98,15 +98,20 @@ conditionMessage.fujCondition <- function(c) {
 cond_new_conditional_class <- function() {
   new_condition(
     "`class` must be a single length character",
-    class = "newConditionClass",
-    pkg = "fuj"
+    class = "newConditionClass"
   )
 }
 
 cond_new_conditional_pkg <- function() {
   new_condition(
     "`pkg` must be TRUE, FALSE, or a single length character",
-    class = "newConditionPackage",
-    pkg = "fuj"
+    class = "newConditionPackage"
   )
+}
+
+package <- function(env = parent.frame()) {
+  top <- topenv(env)
+  if (isNamespace(top)) {
+    unname(getNamespaceName(top))
+  }
 }
