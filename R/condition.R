@@ -31,7 +31,8 @@
 #' # message contains package information at the end
 #' try(stop(x))
 #' @export
-new_condition <- function( # nolint cyclocomp_linter,
+# nolint next: cyclocomp_linter,
+new_condition <- function( 
     msg = "",
     class = NULL,
     call = NULL,
