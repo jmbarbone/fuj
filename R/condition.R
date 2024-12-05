@@ -42,7 +42,8 @@ new_condition <- function( # nolint cyclocomp_linter,
   if (!length(class) == 1L && !is.character(class)) {
     stop(cond_new_conditional_class())
   }
-
+  
+  force(package)
   type <- as.character(type)
   type <- match.arg(type)
   class <- as.character(class)
@@ -109,7 +110,7 @@ cond_new_conditional_pkg <- function() {
   )
 }
 
-package <- function(env = parent.frame()) {
+package <- function(env = parent.frame(2L)) {
   top <- topenv(env)
   if (isNamespace(top)) {
     unname(getNamespaceName(top))
