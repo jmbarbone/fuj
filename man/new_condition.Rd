@@ -25,9 +25,9 @@ new_condition(
 
 \item{pkg}{Control or adding package name to condition.  If \code{TRUE} will try
 to get the current package name (via \code{.packageName}) from, presumably, the
-developmental package.  If \code{FALSE}, no package name is prepended to the
-condition class as a new class.  Otherwise, a package can be explicitly set
-with a single length character.}
+developmental package.  If \code{FALSE} or \code{NULL}, no package name is prepended
+to the condition class as a new class.  Otherwise, a package can be
+explicitly set with a single length character.}
 }
 \value{
 A \code{condition} with the classes specified from \code{class} and \code{type}
