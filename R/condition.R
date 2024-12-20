@@ -54,7 +54,7 @@ new_condition <- function(
     class <- gsub("_([a-z])", "\\U\\1", class, perl = TRUE)
   }
 
-  if (!isFALSE(pkg)) {
+  if (!(is.null(pkg) || isFALSE(pkg))) {
     if (isTRUE(pkg)) {
       # may fail to get the package during development
       env <- parent.frame()
