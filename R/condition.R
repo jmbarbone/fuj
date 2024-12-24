@@ -15,8 +15,8 @@
 #'   `"warning"` or `NA`, which is treated as `NULL`
 #' @param pkg Control or adding package name to condition.  If `TRUE` will try
 #'   to get the current package name (via `.packageName`) from, presumably, the
-#'   developmental package.  If `FALSE` or `NULL`, no package name is prepended 
-#'   to the condition class as a new class.  Otherwise, a package can be 
+#'   developmental package.  If `FALSE` or `NULL`, no package name is prepended
+#'   to the condition class as a new class.  Otherwise, a package can be
 #'   explicitly set with a single length character.
 #' @return A `condition` with the classes specified from `class` and `type`
 #' @examples
@@ -43,7 +43,7 @@ new_condition <- function(
   if (!length(class) == 1L && !is.character(class)) {
     stop(cond_new_conditional_class())
   }
-  
+
   force(package)
   type <- as.character(type)
   type <- match.arg(type)
