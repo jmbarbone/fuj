@@ -11,8 +11,8 @@
 #' @param msg,message A message to print
 #' @param class Character string of a single condition class
 #' @param call A call expression
-#' @param type The type (additional class) of condition: either `error"`,
-#'   `"warning"` or `NA`, which is treated as `NULL`
+#' @param type The type (additional class) of condition: `error"`, `"warning"`,
+#'   `"message"`, or `NA`, which is treated as `NULL`.
 #' @param pkg Control or adding package name to condition.  If `TRUE` will try
 #'   to get the current package name (via `.packageName`) from, presumably, the
 #'   developmental package.  If `FALSE` or `NULL`, no package name is prepended
@@ -36,7 +36,7 @@ new_condition <- function(
     msg = "",
     class = NULL,
     call = NULL,
-    type = c("error", "warning", NA_character_),
+    type = c("error", "warning", "message", NA_character_),
     message = msg,
     pkg = package()
 ) {
