@@ -103,7 +103,8 @@ flip.data.frame <- function(
       }
 
       if (!keep_rownames) {
-        attr(out, "row.names") <- rn # nolint object_name_linter
+        # nolint next: object_name_linter
+        attr(out, "row.names") <- rn 
       }
     },
     columns = {

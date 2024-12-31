@@ -43,7 +43,8 @@ quick_df <- function(x = NULL) {
   struct(
     x  = x,
     class = "data.frame",
-    names = names(x) %||% make.names(1:length(x)), # nolint seq_linter
+    # # nolint next: seq_linter
+    names = names(x) %||% make.names(1:length(x)), 
     row.names = c(NA_integer_, -n)
   )
 }

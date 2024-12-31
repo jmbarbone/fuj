@@ -8,7 +8,7 @@ new_condition(
   msg = "",
   class = NULL,
   call = NULL,
-  type = c("error", "warning", NA_character_),
+  type = c("error", "warning", "message", NA_character_),
   message = msg,
   pkg = package()
 )
@@ -20,14 +20,14 @@ new_condition(
 
 \item{call}{A call expression}
 
-\item{type}{The type (additional class) of condition: either \verb{error"},
-\code{"warning"} or \code{NA}, which is treated as \code{NULL}}
+\item{type}{The type (additional class) of condition: \verb{error"}, \code{"warning"},
+\code{"message"}, or \code{NA}, which is treated as \code{NULL}.}
 
 \item{pkg}{Control or adding package name to condition.  If \code{TRUE} will try
 to get the current package name (via \code{.packageName}) from, presumably, the
-developmental package.  If \code{FALSE}, no package name is prepended to the
-condition class as a new class.  Otherwise, a package can be explicitly set
-with a single length character.}
+developmental package.  If \code{FALSE} or \code{NULL}, no package name is prepended
+to the condition class as a new class.  Otherwise, a package can be
+explicitly set with a single length character.}
 }
 \value{
 A \code{condition} with the classes specified from \code{class} and \code{type}

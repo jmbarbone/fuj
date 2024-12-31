@@ -11,13 +11,13 @@
 #' @param msg,message A message to print
 #' @param class Character string of a single condition class
 #' @param call A call expression
-#' @param type The type (additional class) of condition: either `error"`,
-#'   `"warning"` or `NA`, which is treated as `NULL`
+#' @param type The type (additional class) of condition: `error"`, `"warning"`,
+#'   `"message"`, or `NA`, which is treated as `NULL`.
 #' @param pkg Control or adding package name to condition.  If `TRUE` will try
 #'   to get the current package name (via `.packageName`) from, presumably, the
-#'   developmental package.  If `FALSE`, no package name is prepended to the
-#'   condition class as a new class.  Otherwise, a package can be explicitly set
-#'   with a single length character.
+#'   developmental package.  If `FALSE` or `NULL`, no package name is prepended
+#'   to the condition class as a new class.  Otherwise, a package can be
+#'   explicitly set with a single length character.
 #' @return A `condition` with the classes specified from `class` and `type`
 #' @examples
 #' # empty condition
@@ -31,11 +31,12 @@
 #' # message contains package information at the end
 #' try(stop(x))
 #' @export
-new_condition <- function( # nolint cyclocomp_linter,
+# nolint next: cyclocomp_linter,
+new_condition <- function( 
     msg = "",
     class = NULL,
     call = NULL,
-    type = c("error", "warning", NA_character_),
+    type = c("error", "warning", "message", NA_character_),
     message = msg,
     pkg = package()
 ) {
@@ -43,6 +44,7 @@ new_condition <- function( # nolint cyclocomp_linter,
     stop(cond_new_conditional_class())
   }
 
+  force(package)
   type <- as.character(type)
   type <- match.arg(type)
   class <- as.character(class)
@@ -52,7 +54,7 @@ new_condition <- function( # nolint cyclocomp_linter,
     class <- gsub("_([a-z])", "\\U\\1", class, perl = TRUE)
   }
 
-  if (!isFALSE(pkg)) {
+  if (!(is.null(pkg) || isFALSE(pkg))) {
     if (isTRUE(pkg)) {
       # may fail to get the package during development
       env <- parent.frame()
@@ -109,7 +111,7 @@ cond_new_conditional_pkg <- function() {
   )
 }
 
-package <- function(env = parent.frame()) {
+package <- function(env = parent.frame(2L)) {
   top <- topenv(env)
   if (isNamespace(top)) {
     unname(getNamespaceName(top))
