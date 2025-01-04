@@ -36,16 +36,17 @@ quick_df <- function(x = NULL) {
 
   n <- unique(lengths(x))
 
-  if (length(n) != 1L) {
+  switch(
+    length(n) + 1L,
+    empty_df(),
+    struct(
+      x = x,
+      class = "data.frame",
+      # # nolint next: seq_linter
+      names = names(x) %||% make.names(1:length(x)), 
+      row.names = c(NA_integer_, -n)
+    ),
     stop(cond_quick_df_list())
-  }
-
-  struct(
-    x  = x,
-    class = "data.frame",
-    # # nolint next: seq_linter
-    names = names(x) %||% make.names(1:length(x)), 
-    row.names = c(NA_integer_, -n)
   )
 }
 
