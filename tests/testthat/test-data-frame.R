@@ -18,4 +18,5 @@ test_that("quick_df()", {
   )
 
   expect_identical(quick_df(NULL), empty_df())
+  expect_identical(quick_df(list()), empty_df())
 })
