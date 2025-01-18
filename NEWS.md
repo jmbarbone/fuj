@@ -4,6 +4,7 @@
 * adds `yes_no()` prompting [#64](https://github.com/jmbarbone/fuj/issues/64)
 * adds internal `package()` utility as the default for `new_condition(pkg = package())` [#67](https://github.com/jmbarbone/fuj/issues/67)
 * `new_condition()` now allows `type = "message"` [#74](https://github.com/jmbarbone/fuj/issues/74)
+* workflows updated
 
 # fuj 0.2.1
 
