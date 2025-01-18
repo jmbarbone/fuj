@@ -27,7 +27,7 @@ NULL
 #' @param x A list or `NULL` (see return)
 quick_df <- function(x = NULL) {
   if (is.null(x)) {
-    return(empty_df())
+    return(.empty_df)
   }
 
   if (!is.list(x)) {
@@ -38,12 +38,11 @@ quick_df <- function(x = NULL) {
 
   switch(
     length(n) + 1L,
-    empty_df(),
+    .empty_df,
     struct(
       x = x,
       class = "data.frame",
-      # # nolint next: seq_linter
-      names = names(x) %||% make.names(1:length(x)), 
+      names = names(x) %||% seq_along(x),
       row.names = c(NA_integer_, -n)
     ),
     stop(cond_quick_df_list())
@@ -55,6 +54,13 @@ quick_df <- function(x = NULL) {
 empty_df <- function() {
   struct(list(), "data.frame", row.names = integer(), names = character())
 }
+
+.empty_df <- structure(
+  list(),
+  class = "data.frame",
+  names = character(),
+  row.names = integer()
+)
 
 #' @export
 #' @rdname quick_df
