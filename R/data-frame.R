@@ -69,6 +69,15 @@ quick_dfl <- function(...) {
   quick_df(lst(...))
 }
 
+#' Data frame
+#'
+#' Unsure if I want to export this
+#'
+#' @rdname quick_df
+#' @noRd
+dataframe <- quick_dfl
+
+
 # conditions --------------------------------------------------------------
 
 cond_quick_df_list <- function() {
