@@ -1,7 +1,7 @@
 Package: fuj
 Type: Package
 Title: Functions and Utilities for Jordan
-Version: 0.2.1.9006
+Version: 0.2.1.9007
 Authors@R:
     person(
       given = "Jordan Mark",
