@@ -21,6 +21,7 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           packages: any::gh, any::fuj
+          install-pandoc: false
 
       - uses: jmbarbone/actions/r-check-version@main
         with:

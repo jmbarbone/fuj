@@ -10,6 +10,8 @@
 coverage](https://codecov.io/gh/jmbarbone/fuj/branch/main/graph/badge.svg)](https://app.codecov.io/gh/jmbarbone/fuj?branch=main)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/fuj)](https://CRAN.R-project.org/package=fuj)
+[![Codecov test
+coverage](https://codecov.io/gh/jmbarbone/fuj/graph/badge.svg)](https://app.codecov.io/gh/jmbarbone/fuj)
 <!-- badges: end -->
 
 The goal of `{fuj}` is to provide low level tools for other packages by
