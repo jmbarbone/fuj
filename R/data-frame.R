@@ -52,14 +52,15 @@ quick_df <- function(x = NULL) {
 #' @export
 #' @rdname quick_df
 empty_df <- function() {
-  struct(list(), "data.frame", row.names = integer(), names = character())
+  .empty_df
 }
 
-.empty_df <- structure(
-  list(),
-  class = "data.frame",
-  names = character(),
-  row.names = integer()
+# pre-build a `data.frame` with the `struct()` utility from fuj.  Is this
+# really necessary?  Only if we want the absolute best times for
+.empty_df <- NULL
+delayedAssign(
+  ".empty_df",
+  struct(list(), "data.frame", row.names = integer(), names = character())
 )
 
 #' @export
