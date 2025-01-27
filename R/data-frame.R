@@ -27,7 +27,7 @@ NULL
 #' @param x A list or `NULL` (see return)
 quick_df <- function(x = NULL) {
   if (is.null(x)) {
-    return(empty_df())
+    return(.empty_df)
   }
 
   if (!is.list(x)) {
@@ -36,24 +36,32 @@ quick_df <- function(x = NULL) {
 
   n <- unique(lengths(x))
 
-  if (length(n) != 1L) {
+  switch(
+    length(n) + 1L,
+    .empty_df,
+    struct(
+      x = x,
+      class = "data.frame",
+      names = names(x) %||% seq_along(x),
+      row.names = c(NA_integer_, -n)
+    ),
     stop(cond_quick_df_list())
-  }
-
-  struct(
-    x  = x,
-    class = "data.frame",
-    # # nolint next: seq_linter
-    names = names(x) %||% make.names(1:length(x)), 
-    row.names = c(NA_integer_, -n)
   )
 }
 
 #' @export
 #' @rdname quick_df
 empty_df <- function() {
-  struct(list(), "data.frame", row.names = integer(), names = character())
+  .empty_df
 }
+
+# pre-build a `data.frame` with the `struct()` utility from fuj.  Is this
+# really necessary?  Only if we want the absolute best times for
+.empty_df <- NULL
+delayedAssign(
+  ".empty_df",
+  struct(list(), "data.frame", row.names = integer(), names = character())
+)
 
 #' @export
 #' @rdname quick_df
@@ -61,6 +69,15 @@ empty_df <- function() {
 quick_dfl <- function(...) {
   quick_df(lst(...))
 }
+
+#' Data frame
+#'
+#' Unsure if I want to export this
+#'
+#' @rdname quick_df
+#' @noRd
+dataframe <- quick_dfl
+
 
 # conditions --------------------------------------------------------------
 
