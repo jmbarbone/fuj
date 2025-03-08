@@ -32,13 +32,13 @@
 #' try(stop(x))
 #' @export
 # nolint next: cyclocomp_linter,
-new_condition <- function( 
-    msg = "",
-    class = NULL,
-    call = NULL,
-    type = c("error", "warning", "message", NA_character_),
-    message = msg,
-    pkg = package()
+new_condition <- function(
+  msg = "",
+  class = NULL,
+  call = NULL,
+  type = c("error", "warning", "message", NA_character_),
+  message = msg,
+  pkg = package()
 ) {
   if (!length(class) == 1L && !is.character(class)) {
     stop(cond_new_conditional_class())

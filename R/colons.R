@@ -57,13 +57,15 @@ cond_colons <- function(package, name, n) {
 }
 
 colons_check <- function(package, name) {
-  ok <- wuffle(try({
-    length(package) == 1 &&
-      is.character(package) &&
-      length(name) == 1 &&
-      is.character(name)
-  }, silent = TRUE))
-
+  ok <- wuffle(try(
+    {
+      length(package) == 1 &&
+        is.character(package) &&
+        length(name) == 1 &&
+        is.character(name)
+    },
+    silent = TRUE
+  ))
 
   if (!isTRUE(ok)) {
     stop(cond_colons_package_name())

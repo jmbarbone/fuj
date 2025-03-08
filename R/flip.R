@@ -37,14 +37,14 @@ flip.default <- function(x, ...) {
 #' @export
 #' @rdname flip
 flip.matrix <- function(
-    x,
-    by = c("rows", "columns"),
-    keep_rownames = NULL,
-    ...
+  x,
+  by = c("rows", "columns"),
+  keep_rownames = NULL,
+  ...
 ) {
   switch(
     match.arg(by),
-    rows =  {
+    rows = {
       rows <- nrow(x)
       dims <- dimnames(x)
 
@@ -81,10 +81,10 @@ flip.matrix <- function(
 #' @export
 #' @rdname flip
 flip.data.frame <- function(
-    x,
-    by = c("rows", "columns"),
-    keep_rownames = NULL,
-    ...
+  x,
+  by = c("rows", "columns"),
+  keep_rownames = NULL,
+  ...
 ) {
   switch(
     match.arg(by),
@@ -104,7 +104,7 @@ flip.data.frame <- function(
 
       if (!keep_rownames) {
         # nolint next: object_name_linter
-        attr(out, "row.names") <- rn 
+        attr(out, "row.names") <- rn
       }
     },
     columns = {

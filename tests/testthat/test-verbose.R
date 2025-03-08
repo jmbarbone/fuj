@@ -18,9 +18,11 @@ test_that("verbose() works", {
       expect_silent(verbose(NULL))
       expect_message(verbose(NULL, "something"))
       expect_silent(
-        verbose(if (FALSE) {
-          "`if` returns `NULL` when not `TRUE`, for additional control"
-        })
+        verbose(
+          if (FALSE) {
+            "`if` returns `NULL` when not `TRUE`, for additional control"
+          }
+        )
       )
     })
 
@@ -38,14 +40,16 @@ test_that("verbose.label as function works", {
     list(
       fuj.verbose.label = function() "[function]",
       fuj.verbose = TRUE
-    ), {
+    ),
+    {
       expect_message(
         verbose("message printed"),
         class = "verboseMessage",
         regexp = "[function]",
         fixed = TRUE
       )
-    })
+    }
+  )
 })
 
 test_that("verbose.fill works", {

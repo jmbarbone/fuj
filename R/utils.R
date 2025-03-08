@@ -1,4 +1,3 @@
-
 # nocov start
 # only used in testing
 with_verbose <- function(code) {

@@ -36,11 +36,11 @@ wuffle <- function(expr, fun, classes = "warning") {
 # helpers -----------------------------------------------------------------
 
 do_muffle <- function(
-    type = c("muffle", "wuffle"),
-    expr,
-    fun,
-    classes,
-    env = parent.frame()
+  type = c("muffle", "wuffle"),
+  expr,
+  fun,
+  classes,
+  env = parent.frame()
 ) {
   type <- match.arg(type)
 

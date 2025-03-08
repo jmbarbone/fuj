@@ -69,11 +69,11 @@
 #' identical(attr, fuj::exattr)
 #' @export
 include <- function(
-    package,
-    exports = NULL,
-    lib = .libPaths(),
-    pos = 2L,
-    warn = NULL
+  package,
+  exports = NULL,
+  lib = .libPaths(),
+  pos = 2L,
+  warn = NULL
 ) {
   if (is.name(match.call()$package)) {
     path <- FALSE
@@ -149,10 +149,10 @@ include <- function(
 }
 
 detach2 <- function(
-    name = search()[pos],
-    pos = if (is.null(pattern)) 2 else grep(pattern, search(), ...),
-    pattern = NULL,
-    ...
+  name = search()[pos],
+  pos = if (is.null(pattern)) 2 else grep(pattern, search(), ...),
+  pattern = NULL,
+  ...
 ) {
   force(pattern)
   force(pos)
@@ -166,10 +166,10 @@ detach2 <- function(
 }
 
 attach2 <- function(
-    x = NULL,
-    pos = 2L,
-    name = deparse1(substitute(x)),
-    warn = NULL
+  x = NULL,
+  pos = 2L,
+  name = deparse1(substitute(x)),
+  warn = NULL
 ) {
   if (name %in% search()) {
     return()
@@ -177,19 +177,19 @@ attach2 <- function(
 
   # the purpose of `include()` is to add it to the search path, so we do need to
   # use `attach()` here
-  tryCatch({
-    ("base" %::% "attach")(
-      what = x,
-      pos = pos,
-      name = name,
-      warn.conflicts = !isFALSE(warn)
-    )
-  },
-  message = function(e) {
-    if (grepl("following object", e$message, fixed = TRUE)) {
-      attach_warn(warn, e$message)
-    }
-  })
+  tryCatch(
+    {
+      ("base" %::% "attach")(
+        what = x,
+        pos = pos,
+        name = name,
+        warn.conflicts = !isFALSE(warn)
+      )
+    },
+    message = function(e)
+      if (grepl("following object", e$message, fixed = TRUE))
+        attach_warn(warn, e$message)
+  )
 }
 
 cond_include_conflicts <- function(msg) {

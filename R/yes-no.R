@@ -10,13 +10,12 @@
 #' is not interactive.  If `FALSE`, will return `NA` instead.
 # nolint next: cyclocomp_linter.
 yes_no <- function(
-    ...,
-    na = NULL,
-    n_yes = 1,
-    n_no = 2,
-    noninteractive_error = TRUE
+  ...,
+  na = NULL,
+  n_yes = 1,
+  n_no = 2,
+  noninteractive_error = TRUE
 ) {
-
   override <- getOption("fuj..yes_no.interactive_override")
   is_override <- !is.null(override)
 
@@ -37,9 +36,25 @@ yes_no <- function(
 
   # basically a rewrite of yesno::yesno()
   msg <- paste0(..., collapse = "")
-  yes <- c("Yes", "You betcha", "Certainly", "Absolutely", "Of course")
-  no <- c("No", "Absolutely not", "Certainly not", "No way", "Not a chance",
-  "Let me think about it", "Not sure", "I don't know")
+
+  yes <- c(
+    "Yes",
+    "You betcha",
+    "Certainly",
+    "Absolutely",
+    "Of course"
+  )
+
+  no <- c(
+    "No",
+    "Absolutely not",
+    "Certainly not",
+    "No way",
+    "Not a chance",
+    "Let me think about it",
+    "Not sure",
+    "I don't know"
+  )
 
   choices <- c(
     sample(c(sample(yes, n_yes), sample(no, n_no))),

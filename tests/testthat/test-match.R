@@ -11,14 +11,12 @@ test_that("%wo%", {
   res <- rep(letters[1:5], 2) %wo% letters[3:7]
   exp <- rep(c("a", "b"), 2)
   expect_identical(res, exp)
-
 })
 
 test_that("%wi%", {
   res <- rep(letters[1:5], 2) %wi% letters[3:7]
   exp <- rep(c("c", "d", "e"), 2)
   expect_identical(res, exp)
-
 })
 
 test_that("any_match", {

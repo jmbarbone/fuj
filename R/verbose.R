@@ -45,10 +45,10 @@
 #' verb("will show")
 #' @export
 verbose <- function(
-    ...,
-    .fill = getOption("fuj.verbose.fill"),
-    .label = getOption("fuj.verbose.label"),
-    .verbose = getOption("fuj.verbose", getOption("verbose"))
+  ...,
+  .fill = getOption("fuj.verbose.fill"),
+  .label = getOption("fuj.verbose.label"),
+  .verbose = getOption("fuj.verbose", getOption("verbose"))
 ) {
   if (is.function(.verbose)) {
     .verbose <- .verbose()
@@ -71,28 +71,31 @@ verbose <- function(
 make_verbose <- function(opt) {
   force(opt)
   as.function(
-    c(alist(
-      ... = ,
-      .fill = getOption("fuj.verbose.fill"),
-      .label = getOption("fuj.verbose.label")
-    ), substitute({
-      # nolint next: object_usage_linter.
-      op <- options(fuj.verbose = isTRUE(getOption(opt)))
-      on.exit(options(op))
-      verbose(
-        ...,
+    c(
+      alist(
+        ... = ,
         .fill = getOption("fuj.verbose.fill"),
         .label = getOption("fuj.verbose.label")
-      )
-    }))
+      ),
+      substitute({
+        # nolint next: object_usage_linter.
+        op <- options(fuj.verbose = isTRUE(getOption(opt)))
+        on.exit(options(op))
+        verbose(
+          ...,
+          .fill = getOption("fuj.verbose.fill"),
+          .label = getOption("fuj.verbose.label")
+        )
+      })
+    )
   )
 }
 
 verbose_message <- function(
-    ...,
-    .fill = getOption("fuj.verbose.fill"),
-    .label = getOption("fuj.verbose.label"),
-    .call = NULL
+  ...,
+  .fill = getOption("fuj.verbose.fill"),
+  .label = getOption("fuj.verbose.label"),
+  .call = NULL
 ) {
   if (is.function(.label)) {
     .label <- eval(.label(), envir = parent.frame())
