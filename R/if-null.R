@@ -30,9 +30,13 @@ NULL
 
 #' @rdname if_null
 #' @export
-`%||%` <- get0("%||%", baseenv(), "function", ifnotfound = function(x, y) {
-  if (is.null(x)) y else x
-})
+`%||%` <- get0(
+  "%||%",
+  envir = baseenv(),
+  mode = "function",
+  inherits = FALSE,
+  ifnotfound = function(x, y) if (is.null(x)) y else x
+)
 
 #' @rdname if_null
 #' @export
