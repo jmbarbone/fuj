@@ -55,15 +55,18 @@ do_require_namespace <- function(package, version, operator) {
   }
 
   found <- package_version(package)
-  if (!switch(
-    operator,
-    `>`  = found >  version,
-    `>=` = found >= version,
-    `==` = found == version,
-    `<=` = found <= version,
-    `<`  = found <  version,
-    any = TRUE
-  )) {
+  if (
+    # fmt: skip
+    !switch(
+      operator,
+      `>`  = found >  version,
+      `>=` = found >= version,
+      `==` = found == version,
+      `<=` = found <= version,
+      `<`  = found <  version,
+      any = TRUE
+    )
+  ) {
     stop(cond_namespace_version(package, version, operator, found))
   }
 }

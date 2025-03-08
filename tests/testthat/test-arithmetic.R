@@ -1,3 +1,4 @@
+# fmt: skip
 test_that("alises are correct", {
   expect_identical(add,         `+`)
   expect_identical(subtract,    `-`)

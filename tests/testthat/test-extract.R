@@ -1,3 +1,4 @@
+# fmt: skip
 test_that("alises are correct", {
   expect_identical(subset1,    `[`)
   expect_identical(subset2,    `[[`)
