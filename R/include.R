@@ -186,6 +186,7 @@ attach2 <- function(
         warn.conflicts = !isFALSE(warn)
       )
     },
+    # nolint next: brace_linter.
     message = function(e)
       if (grepl("following object", e$message, fixed = TRUE))
         attach_warn(warn, e$message)

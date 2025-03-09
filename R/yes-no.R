@@ -8,7 +8,6 @@
 #' @param n_yes,n_no The number of yes/no selections
 #' @param noninteractive_error While `TRUE`, throws an error when the session
 #' is not interactive.  If `FALSE`, will return `NA` instead.
-# nolint next: cyclocomp_linter.
 yes_no <- function(
   ...,
   na = NULL,
