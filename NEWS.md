@@ -6,6 +6,7 @@
 * `new_condition()` now allows `type = "message"` [#74](https://github.com/jmbarbone/fuj/issues/74)
 * workflows updated
 * `quick_df(list())` now works [#72](https://github.com/jmbarbone/fuj/issues/72)
+* removes tests for `struct()` [#78](https://github.com/jmbarbone/fuj/issues/78)
 
 # fuj 0.2.1
 

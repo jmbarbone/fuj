@@ -39,8 +39,6 @@ test_that("NULL handling", {
 })
 
 test_that("examples", {
-  expect_warning(structure(NULL))
-  expect_identical(wuffle(structure(NULL)), NULL)
   expect_identical(struct(NULL, NULL), list())
 
   x <- NULL
