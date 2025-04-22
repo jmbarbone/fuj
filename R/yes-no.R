@@ -1,4 +1,4 @@
-#' Yes-no promprt
+#' Yes-no prompt
 #'
 #' Prompts the user to make a yes/no selection
 #'
