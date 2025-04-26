@@ -2,7 +2,7 @@
 % Please edit documentation in R/yes-no.R
 \name{yes_no}
 \alias{yes_no}
-\title{Yes-no promprt}
+\title{Yes-no prompt}
 \usage{
 yes_no(..., na = NULL, n_yes = 1, n_no = 2, noninteractive_error = TRUE)
 }
