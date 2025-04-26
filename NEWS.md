@@ -1,3 +1,5 @@
+# fuj (development version)
+
 # fuj 0.2.2
 
 * `require_namespace()` now produces a more reasonable error when specifying a version [#63](https://github.com/jmbarbone/fuj/issues/63)
