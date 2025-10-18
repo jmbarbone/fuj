@@ -13,7 +13,7 @@
 #' list0(a = 1, , c = 3, )
 #' @export
 list0 <- function(...) {
-  e <- as.list(substitute({...}))[-1L] # nolint: brace_linter.
+  e <- as.list(substitute((...)))[-1L] # nolint: brace_linter.
   do.call(list, e[!is_empty(e)], envir = parent.frame(2))
 }
 
