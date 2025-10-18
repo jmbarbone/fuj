@@ -56,8 +56,8 @@ new_condition <- function(
   if (!(is.null(pkg) || isFALSE(pkg))) {
     if (isTRUE(pkg)) {
       # may fail to get the package during development
-      env <- parent.frame()
-      pkg <- try(eval(substitute(.packageName), env), silent = TRUE)
+      env <- parent.frame() # nocov
+      pkg <- try(eval(substitute(.packageName), env), silent = TRUE) # nocov
     }
 
     if (inherits(pkg, "try-error")) {
