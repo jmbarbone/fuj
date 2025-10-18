@@ -13,7 +13,7 @@
 #' list0(a = 1, , c = 3, )
 #' @export
 list0 <- function(...) {
-  e <- as.list(substitute(list(...)))[-1L]
+  e <- as.list(substitute((...)))[-1L]
   do.call(list, e[!is_empty(e)], envir = parent.frame(2))
 }
 
@@ -23,5 +23,5 @@ lst <- list0
 
 is_empty <- function(x) {
   # https://jmbarbone.github.io/posts/wat-na-list/
-  vapply(x, identical, NA, substitute())
+  vapply(x, identical, NA, quote(expr = ))
 }

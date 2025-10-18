@@ -39,14 +39,17 @@ quick_df <- function(x = NULL) {
   switch(
     length(n) + 1L,
     .empty_df,
-    struct(
-      x = x,
-      class = "data.frame",
-      names = names(x) %||% seq_along(x),
-      row.names = c(NA_integer_, -n)
-    ),
+    {
+      x <- x[!vapply(x, is.null, NA)]
+      struct(
+        x = x,
+        class = "data.frame",
+        names = names(x) %||% seq_along(x),
+        row.names = c(NA_integer_, -n)
+      )
+    }
+  ) %||%
     stop(cond_quick_df_list())
-  )
 }
 
 #' @export

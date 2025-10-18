@@ -1,5 +1,7 @@
 # fuj (development version)
 
+* `quick_df()` no longer allows `NULL` values in the input list [#81](https://github.com/jmbarbone/fuj/issues/81)
+
 # fuj 0.2.2
 
 * `require_namespace()` now produces a more reasonable error when specifying a version [#63](https://github.com/jmbarbone/fuj/issues/63)
