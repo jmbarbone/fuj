@@ -23,5 +23,5 @@ lst <- list0
 
 is_empty <- function(x) {
   # https://jmbarbone.github.io/posts/wat-na-list/
-  vapply(x, identical, NA, substitute())
+  vapply(x, identical, NA, quote(expr = ))
 }
