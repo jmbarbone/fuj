@@ -5,28 +5,31 @@ library(bench)
 library(purrr)
 
 mark_vap_int <- mark::vap_int
+mark_vap_dbl <- mark::vap_dbl
 
-x <- 1:1e5
-y <- 1:1e5
-z <- 1:1e5
+n <- 1e4
+x <- runif(n)
+y <- runif(n)
+z <- runif(n)
 
 autoplot(print(mark(
-  vap_int(x, force),
-  map_int(x, force),
-  mark_vap_int(x, force),
-  vapply(x, force, NA_integer_),
+  vap_dbl(x, force),
+  map_dbl(x, force),
+  mark_vap_dbl(x, force),
+  vapply(x, force, NA_real_),
   iterations = 99
 )))
 
 autoplot(print(mark(
-  vap2_int(x, y, sum),
-  map2_int(x, y, sum),
+  vap2_dbl(x, y, sum),
+  map2_dbl(x, y, sum),
   iterations = 99
 )))
 
 autoplot(print(mark(
-  vapp_int(list(x, y, z), sum),
-  pmap_int(list(x, y, z), sum),
+  vapp_dbl(list(x, y, z), sum),
+  with_vap_indexed_error(vapp_dbl(list(x, y, z), sum)),
+  pmap_dbl(list(x, y, z), sum),
   iterations = 99
 )))
 
@@ -60,3 +63,13 @@ autoplot(print(mark(
     fuj::vap_chr(paste0, ":suffix"),
   iterations = 99
 )))
+
+local({
+  x <- y <- z <- runif(1e5)
+  autoplot(print(mark(
+    mapply(sum, x, y, z, SIMPLIFY = FALSE),
+    .mapply(sum, list(x, y, z), list()),
+    .mapply(sum, list(x, y, z), NULL),
+    iterations = 50
+  )))
+})
