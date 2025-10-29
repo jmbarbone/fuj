@@ -26,3 +26,5 @@ Suggests:
 Config/testthat/edition: 3
 URL: https://jmbarbone.github.io/fuj/, https://github.com/jmbarbone/fuj
 BugReports: https://github.com/jmbarbone/fuj/issues
+Imports: 
+    utils

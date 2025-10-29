@@ -1,0 +1,434 @@
+
+# builders ----------------------------------------------------------------
+
+# nocov start
+vap_ <- function(type) {
+  # nolint next: object_usage_linter.
+  expr <- substitute(
+    set_vap_names(as.vector(vap(x, f, ...), ..type..), x),
+    list(..type.. = type)
+  )
+  eval(substitute(as.function(alist(x = , f = , ... = , expr))))
+}
+
+vapi_ <- function(type) {
+  # nolint next: object_usage_linter.
+  expr <- substitute(
+    set_vap_names(
+      as.vector(vap2(x, names(x) %||% seq_along(x), f, ...), ..type..),
+      x
+    ),
+    list(..type.. = type)
+  )
+  eval(substitute(as.function(alist(x = , f = , ... = , expr))))
+}
+
+vap2_ <- function(type) {
+  # nolint next: object_usage_linter.
+  expr <- substitute(
+    set_vap_names(as.vector(vap2(x, y, f, ...), ..type..), x),
+    list(..type.. = type)
+  )
+  eval(substitute(as.function(alist(x = , y = , f = , ... = , expr))))
+}
+
+vap3_ <- function(type) {
+  # nolint next: object_usage_linter.
+  expr <- substitute(
+    set_vap_names(as.vector(vap3(x, y, z, f, ...), ..type..), x),
+    list(..type.. = type)
+  )
+  eval(substitute(as.function(alist(x = , y = , z = , f = , ... = , expr))))
+}
+
+vapp_ <- function(type) {
+  # nolint next: object_usage_linter.
+  expr <- substitute(
+    as.vector(vapp(p, f, ...), ..type..),
+    list(..type.. = type)
+  )
+  eval(substitute(as.function(alist(p = , f = , ... = , expr))))
+}
+
+vap_dates_ <- function(fun, type) {
+  fun <- substitute(fun)
+  func <- as.character(fun)
+
+  fun_call <- switch(
+    func,
+    vap = quote(vap_dbl(x, f, ...)),
+    vapi = quote(vapi_dbl(x, f, ...)),
+    vap2 = quote(vap2_dbl(x, y, f, ...)),
+    vap3 = quote(vap3_dbl(x, y, z, f, ...)),
+    vapp = quote(vapp_dbl(p, f, ...))
+  )
+
+  fun <- match.fun(fun)
+
+  # nolint next: object_usage_linter.
+  expr <- substitute(
+    {
+      res <- ..FUN_CALL.. # nolint: object_usage_linter.
+      res <- ..TYPE..
+      ..NAME..
+    },
+    list(
+      ..FUN_CALL.. = fun_call,
+      ..TYPE.. = switch(
+        type,
+        date = quote(as.Date(res, origin = "1970-01-01")),
+        dttm = quote(as.POSIXct(res, origin = "1970-01-01", tz = "UTC"))
+      ),
+      ..NAME.. = if (func == "vapp") {
+        quote(res)
+      } else {
+        quote(set_vap_names(res, x))
+      }
+    )
+  )
+
+  out <- function() NULL
+  formals(out) <- formals(fun)
+  body(out) <- substitute(expr)
+  out
+}
+# nocov end
+
+#' Vector applies
+#'
+#' Alternative to [lapply()], [sapply()], [vapply()], and [mapply()]
+#'
+#' @details Also includes `_date`, `_dttm` variants that work with `Date` and
+#' `POSIXct`.
+#'
+#' - `vap()` uses a single `x` argument
+#' - `vapi()` uses a single `x` argument and passes the names (when available,
+#' otherwise index) as the second argument
+#' - `vap2()`, `vap3()` use two and three arguments respectively
+#' - `vapp()` uses a pairlist of arguments
+#'
+#' @param x,y,z Values to map over
+#' @param f Function or specification of function to apply.
+#' @param p Pairlist of values to map over
+#' @param ... Additional arguments passed to `f`
+#' @param expr The expression to evaluate.
+#'
+#' @returns Return for `vap2`, `vap3`, and `vapp` variants, return length is
+#' determined by how `...` is recycled inside [mapply()].  For `vap`, `vapi`,
+#' variants, a vector the length of `x` is returned.
+#'
+#' `vap_*()` variants return a vector of the specified type.
+#'
+#' [vap_progress()] sets an option `vap.progress` to `TRUE` for the duration of
+#' `expr`, which causes a progress bar to be displayed for any `vap*` calls
+#' inside `expr`.
+#'
+#' @examples
+#' vap(letters, toupper)
+#' vapi(letters, function(x, i) paste0(i, ": ", toupper(x)))
+#' vap_int(set_names(month.name, month.abb), nchar)
+#' vap2_dbl(1:5, 6:10, `+`)
+#' vapp_int(list(x = 1:5, y = 6:10, z = 11:15), sum)
+#'
+#' # when f is a character or number, subsetting is performed
+#' x <- list(list(a = 1, b = 3), list(a = 2, b = 4))
+#' vap_int(x, "a")
+#' vap_int(x, 2)
+#'
+#' # wrap in `vap_progress()` to show a progress bar
+#' invisible(
+#'   vap_progress(
+#'     vap(1:10, function(x) Sys.sleep(x / 2))
+#'   )
+#' )
+#'
+#' @name vap
+NULL
+
+# vaps --------------------------------------------------------------------
+
+#' @export
+#' @rdname vap
+vap <- function(x, f, ...) {
+  f <- vapper(f, list(x))
+  lapply(x, f, ...)
+  # withCallingHandlers(
+  #   lapply(x, f, ...),
+  #   error = function(con) {
+  #     msg <- sprintf(
+  #       "error at index [%i]:\n %s",
+  #       environment(f)$..i,
+  #       conditionMessage(con)
+  #     )
+  #     cond <- struct(
+  #       list(msg, environment(f)$..call),
+  #       class = c("vap_error", "error", "condition"),
+  #       index = environment(f)$..i,
+  #       names = c("message", "call")
+  #     )
+  #
+  #     stop(cond)
+  #   }
+  # )
+}
+
+#' @export
+#' @rdname vap
+vapi <- function(x, f, ...) {
+  i <- names(x) %||% seq_along(x)
+  f <- vapper(f, list(x))
+  out <- mapply(f, x, i, MoreArgs = list(...), SIMPLIFY = FALSE)
+  set_vap_names(out, x)
+}
+
+#' @export
+#' @rdname vap
+vap2 <- function(x, y, f, ...) {
+  f <- vapper(f, list(x, y))
+  out <- mapply(f, x, y, MoreArgs = list(...), SIMPLIFY = FALSE)
+  set_vap_names(out, x)
+}
+
+#' @export
+#' @rdname vap
+vap3 <- function(x, y, z, f, ...) {
+  f <- vapper(f, list(x, y, z))
+  out <- mapply(f, x, y, z, MoreArgs = list(...), SIMPLIFY = FALSE)
+  set_vap_names(out, x)
+}
+
+#' @export
+#' @rdname vap
+vapp <- function(p, f, ...) {
+  f <- vapper(f, p)
+  p <- as.pairlist(p)
+  args <- c(f, p, MoreArgs = list(...), SIMPLIFY = FALSE)
+  do.call(mapply, args)
+}
+
+# vap ---------------------------------------------------------------------
+
+#' @export
+#' @rdname vap
+vap_lgl <- vap_("logical")
+
+#' @export
+#' @rdname vap
+vap_int <- vap_("integer")
+
+#' @export
+#' @rdname vap
+vap_dbl <- vap_("double")
+
+#' @export
+#' @rdname vap
+vap_chr <- vap_("character")
+
+#' @export
+#' @rdname vap
+vap_raw <- vap_("raw")
+
+#' @export
+#' @rdname vap
+vap_cpl <- vap_("complex")
+
+#' @export
+#' @rdname vap
+vap_date <- vap_dates_(vap, "date")
+
+#' @export
+#' @rdname vap
+vap_dttm <- vap_dates_(vap, "dttm")
+
+# vapi --------------------------------------------------------------------
+
+#' @export
+#' @rdname vap
+vapi_lgl <- vapi_("logical")
+
+#' @export
+#' @rdname vap
+vapi_int <- vapi_("integer")
+
+#' @export
+#' @rdname vap
+vapi_dbl <- vapi_("double")
+
+#' @export
+#' @rdname vap
+vapi_chr <- vapi_("character")
+
+#' @export
+#' @rdname vap
+vapi_raw <- vapi_("raw")
+
+#' @export
+#' @rdname vap
+vapi_cpl <- vapi_("complex")
+
+#' @export
+#' @rdname vap
+vapi_date <- vap_dates_(vapi, "date")
+
+#' @export
+#' @rdname vap
+vapi_dttm <- vap_dates_(vapi, "dttm")
+
+# vap2 --------------------------------------------------------------------
+
+#' @export
+#' @rdname vap
+vap2_lgl <- vap2_("logical")
+
+#' @export
+#' @rdname vap
+vap2_int <- vap2_("integer")
+
+#' @export
+#' @rdname vap
+vap2_dbl <- vap2_("double")
+
+#' @export
+#' @rdname vap
+vap2_chr <- vap2_("character")
+
+#' @export
+#' @rdname vap
+vap2_raw <- vap2_("raw")
+
+#' @export
+#' @rdname vap
+vap2_cpl <- vap2_("complex")
+
+#' @export
+#' @rdname vap
+vap2_date <- vap_dates_(vap2, "date")
+
+#' @export
+#' @rdname vap
+vap2_dttm <- vap_dates_(vap2, "dttm")
+
+# vap3 --------------------------------------------------------------------
+
+#' @export
+#' @rdname vap
+vap3_lgl <- vap3_("logical")
+
+#' @export
+#' @rdname vap
+vap3_int <- vap3_("integer")
+
+#' @export
+#' @rdname vap
+vap3_dbl <- vap3_("double")
+
+#' @export
+#' @rdname vap
+vap3_chr <- vap3_("character")
+
+#' @export
+#' @rdname vap
+vap3_raw <- vap3_("raw")
+
+#' @export
+#' @rdname vap
+vap3_cpl <- vap3_("complex")
+
+#' @export
+#' @rdname vap
+vap3_date <- vap_dates_(vap3, "date")
+
+#' @export
+#' @rdname vap
+vap3_dttm <- vap_dates_(vap3, "dttm")
+
+# vapp --------------------------------------------------------------------
+
+#' @export
+#' @rdname vap
+vapp_lgl <- vapp_("logical")
+
+#' @export
+#' @rdname vap
+vapp_int <- vapp_("integer")
+
+#' @export
+#' @rdname vap
+vapp_dbl <- vapp_("double")
+
+#' @export
+#' @rdname vap
+vapp_chr <- vapp_("character")
+
+#' @export
+#' @rdname vap
+vapp_raw <- vapp_("raw")
+
+#' @export
+#' @rdname vap
+vapp_cpl <- vapp_("complex")
+
+#' @export
+#' @rdname vap
+vapp_date <- vap_dates_(vapp, "date")
+
+#' @export
+#' @rdname vap
+vapp_dttm <- vap_dates_(vapp, "dttm")
+
+# progress ----------------------------------------------------------------
+
+#' @export
+#' @rdname vap
+vap_progress <- function(expr) {
+  op <- options(vap.progress = TRUE)
+  on.exit(options(op), add = TRUE)
+  expr
+}
+
+# helpers -----------------------------------------------------------------
+
+vapper <- function(f, l) {
+  # could just do an S3 dispatch, but I don't feel like exporting this
+
+  fun <- if (is.function(f)) {
+    f
+  } else if (is.character(f)) {
+    eval(substitute(as.function(alist(x = , subset2(x, f)))))
+  } else if (is.numeric(f)) {
+    f <- as.integer(f)
+    eval(substitute(as.function(alist(x = , subset2(x, f)))))
+  } else {
+    match.fun(f)
+  }
+
+  if (getOption("vap.progress", FALSE)) {
+    n <- do.call(max, as.list(lengths(l)))
+    ..i <- 0L # nolint: object_name_linter.
+    # nolint next: object_name_linter.
+    ..pb <- as.environment(utils::txtProgressBar(max = n, style = 3))
+    reg.finalizer(..pb, function(e) ..pb$kill(), onexit = TRUE)
+    function(...) {
+      ..i <<- ..i + 1L # nolint: object_name_linter.
+      on.exit(..pb$up(..i), add = TRUE)
+      fun(...)
+    }
+  } else {
+    # potentially return something that could track the index
+    # ..i <- 0L
+    # ..call <- NULL
+    # function(...) {
+    #   ..i <<- ..i + 1L
+    #   ..call <<- sys.call(-3L)
+    #   fun(...)
+    # }
+    fun
+  }
+}
+
+set_vap_names <- function(x, y) {
+  if (length(x) == length(y)) {
+    names(x) <- names(y)
+  }
+  x
+}
