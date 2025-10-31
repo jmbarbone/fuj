@@ -1,8 +1,8 @@
 progress_bar <- function(
-    max = 1,
-    char = "=",
-    width = NA,
-    con = stdout()
+  max = 1,
+  char = "=",
+  width = NA,
+  con = stdout()
 ) {
   local({
     self <- environment()
