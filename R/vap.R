@@ -366,17 +366,13 @@ vapp_dttm <- vap_dates_(vapp, "dttm")
 #' @export
 #' @rdname vap
 with_vap_progress <- function(expr) {
-  op <- options(vap.progress = TRUE)
-  on.exit(options(op), add = TRUE)
-  force(expr)
+  with_options(list(vap.progress = TRUE), expr)
 }
 
 #' @export
 #' @rdname vap
 with_vap_indexed_error <- function(expr) {
-  op <- options(vap.index.errors = TRUE)
-  on.exit(options(op), add = TRUE)
-  force(expr)
+  with_options(list(vap.indexed_errors = TRUE), expr)
 }
 
 # helpers -----------------------------------------------------------------
