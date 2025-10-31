@@ -405,7 +405,7 @@ vapper <- function(f, l) {
       on.exit(..pb$set(..i), add = TRUE)
       fun(...)
     }
-  } else if (getOption("vap.index.errors", FALSE)) {
+  } else if (getOption("vap.indexed_errors", FALSE)) {
     function(...) {
       ..i <<- ..i + 1L# nolint: object_name_linter.
       if (is.null(..call)) {
@@ -423,6 +423,10 @@ vapping_handler <- function(expr, fun) {
     expr,
     # TODO include warning?
     error = function(con) {
+      if (!getOption("vap.indexed_errors", FALSE)) {
+        return()
+      }
+
       e <- environment(fun)
       msg <-  if (exists("..i", e, inherits = FALSE)) {
         sprintf(
