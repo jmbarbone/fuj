@@ -75,6 +75,36 @@ test_that("as_vap_fun() works", {
 
 test_that("vap_progress() works", {
   expect_output(
-    vap_progress(vap_int(1:100, force))
+    with_vap_progress(vap_int(1:100, force))
+  )
+})
+
+test_that("index reporting works", {
+  expect_error(
+    with_vap_handlers(
+      vap(10:1, function(x) if (x == 3) stop("bad"))
+    ),
+    "index: 8",
+    fixed = TRUE
+  )
+
+  my_erroring_fun <- function(x) {
+    if (x == 3) stop("this is an error message")
+  }
+
+  expect_snapshot_error(
+    with_vap_handlers(
+      vap(10:1, my_erroring_fun)
+    )
+  )
+
+  foo <- function() {
+    with_vap_handlers(
+      vap(10:1, my_erroring_fun)
+    )
+  }
+
+  expect_snapshot_error(
+    foo()
   )
 })
