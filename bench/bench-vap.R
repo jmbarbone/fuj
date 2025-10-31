@@ -1,5 +1,10 @@
 devtools::load_all(here::here())
 
+options(
+  fuj.vap.progress = FALSE,
+  fuj.vap.indexed_errors = FALSE
+)
+
 library(ggplot2)
 library(bench)
 library(purrr)
@@ -17,6 +22,7 @@ autoplot(print(mark(
   map_dbl(x, force),
   mark_vap_dbl(x, force),
   vapply(x, force, NA_real_),
+  as.vector(lapply(x, force), "double"),
   iterations = 99
 )))
 
@@ -28,7 +34,7 @@ autoplot(print(mark(
 
 autoplot(print(mark(
   vapp_dbl(list(x, y, z), sum),
-  with_vap_indexed_error(vapp_dbl(list(x, y, z), sum)),
+  with_vap_handlers(vapp_dbl(list(x, y, z), sum)),
   pmap_dbl(list(x, y, z), sum),
   iterations = 99
 )))
@@ -38,13 +44,11 @@ local({
     mtcars |>
     split(mtcars$cyl)
   autoplot(print(mark(
-    purrr =
-      x |>
+    purrr = x |>
       map(\(df) lm(mpg ~ wt, data = df)) |>
       map(summary) |>
       map_dbl("r.squared"),
-    fuj =
-      x |>
+    fuj = x |>
       vap(\(df) lm(mpg ~ wt, data = df)) |>
       vap(summary) |>
       vap_dbl("r.squared"),
@@ -53,12 +57,10 @@ local({
 })
 
 autoplot(print(mark(
-  purrr =
-    c("foo", "bar") |>
+  purrr = c("foo", "bar") |>
     purrr::set_names() |>
     purrr::map_chr(paste0, ":suffix"),
-  fuj =
-    c("foo", "bar") |>
+  fuj = c("foo", "bar") |>
     fuj::set_names() |>
     fuj::vap_chr(paste0, ":suffix"),
   iterations = 99
