@@ -46,7 +46,8 @@
 \alias{vapp_cpl}
 \alias{vapp_date}
 \alias{vapp_dttm}
-\alias{vap_progress}
+\alias{with_vap_progress}
+\alias{with_vap_handlers}
 \title{Vector applies}
 \usage{
 vap(x, f, ...)
@@ -139,7 +140,9 @@ vapp_date(p, f, ...)
 
 vapp_dttm(p, f, ...)
 
-vap_progress(expr)
+with_vap_progress(expr)
+
+with_vap_handlers(expr)
 }
 \arguments{
 \item{x, y, z}{Values to map over}
@@ -159,9 +162,13 @@ variants, a vector the length of \code{x} is returned.
 
 \verb{vap_*()} variants return a vector of the specified type.
 
-\code{\link[=vap_progress]{vap_progress()}} sets an option \code{vap.progress} to \code{TRUE} for the duration of
-\code{expr}, which causes a progress bar to be displayed for any \verb{vap*} calls
-inside \code{expr}.
+\code{\link[=with_vap_progress]{with_vap_progress()}} sets an option \code{vap.progress} to \code{TRUE} for the
+duration of \code{expr}, which causes a progress bar to be displayed for any
+\verb{vap*} calls inside \code{expr}.
+
+\code{\link[=with_vap_handlers]{with_vap_handlers()}} sets an option \code{vap.indexed_errors} to \code{TRUE}
+for the duration of \code{expr}, which causes errors inside \verb{vap*} calls to
+include the index at which the error occurred.
 }
 \description{
 Alternative to \code{\link[=lapply]{lapply()}}, \code{\link[=sapply]{sapply()}}, \code{\link[=vapply]{vapply()}}, and \code{\link[=mapply]{mapply()}}
@@ -191,8 +198,8 @@ vap_int(x, 2)
 
 # wrap in `vap_progress()` to show a progress bar
 invisible(
-  vap_progress(
-    vap(1:10, function(x) Sys.sleep(x / 2))
+  with_vap_progress(
+    vap(1:10 / 20, Sys.sleep)
   )
 )
 
