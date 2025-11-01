@@ -1,6 +1,11 @@
 # fuj (development version)
 
 * `quick_df()` no longer allows `NULL` values in the input list [#81](https://github.com/jmbarbone/fuj/issues/81)
+* `vap()` functions added [#83]
+  * `vaps` are vector apply functions, with certain presets to assist with common cases
+  * `vap_chr()`, `vap_dbl()`, `vap_int()`, `vap_lgl()`, and `vap_raw()` for type-stable outputs
+  * `vap()` for type-unstable outputs
+  
 
 # fuj 0.2.2
 
