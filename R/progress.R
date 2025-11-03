@@ -71,15 +71,15 @@ progress_bar <- function(
     # nolint next: object_usage_linter.
     kill <- function() {
       invisible()
-      # not needed
-      # if (self$killed) {
-      #   return(invisible(self))
-      # }
-      #
-      # cat("\n", file = self$con)
-      # flush(stdout())
-      # self$killed <- TRUE
-      # invisible(self)
+      #> not needed
+      #> if (self$killed) {
+      #>   return(invisible(self))
+      #> }
+      #>
+      #> cat("\n", file = self$con)
+      #> flush(stdout())
+      #> self$killed <- TRUE
+      #> invisible(self)
     }
 
     self$set(0L)
