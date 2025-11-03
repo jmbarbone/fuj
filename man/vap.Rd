@@ -166,24 +166,34 @@ variants, a vector the length of \code{x} is returned.
 duration of \code{expr}, which causes a progress bar to be displayed for any
 \verb{vap*} calls inside \code{expr}.
 
-\code{\link[=with_vap_handlers]{with_vap_handlers()}} sets an option \code{vap.indexed_errors} to \code{TRUE}
-for the duration of \code{expr}, which causes errors inside \verb{vap*} calls to
-include the index at which the error occurred.
+\code{\link[=with_vap_handlers]{with_vap_handlers()}} sets an option \code{vap.indexed_errors} to \code{TRUE} for the
+duration of \code{expr}, which causes errors inside \verb{vap*} calls to include the
+index at which the error occurred.
 }
 \description{
 Alternative to \code{\link[=lapply]{lapply()}}, \code{\link[=sapply]{sapply()}}, \code{\link[=vapply]{vapply()}}, and \code{\link[=mapply]{mapply()}}
 }
 \details{
 Also includes \verb{_date}, \verb{_dttm} variants that work with \code{Date} and
-\code{POSIXct}.
+\code{POSIXct} types.
 \itemize{
 \item \code{vap()} uses a single \code{x} argument
 \item \code{vapi()} uses a single \code{x} argument and passes the names (when available,
 otherwise index) as the second argument
-\item \code{vap2()}, \code{vap3()} use two and three arguments respectively
+\item \code{vap2()}, \code{vap3()} use two and three arguments, respectively
 \item \code{vapp()} uses a pairlist of arguments
 }
 }
+\section{Extras}{
+ Two helper functions are provided to set options for a
+progress bars (\code{options(fuj.vap.progress)}) and reporting an index during
+and error (\code{options(fuj.vap.index_error)}).  Two wrapper functions are
+provided: \code{\link[=with_vap_progress]{with_vap_progress()}} and \code{\link[=with_vap_handlers]{with_vap_handlers()}}, respectively;
+the latter may include other handlers in the future.  These are not turned
+on by default (or rather, the option settings are set to \code{FALSE} within
+\code{{fuj}}) as they incur some additional overhead.
+}
+
 \examples{
 vap(letters, toupper)
 vapi(letters, function(x, i) paste0(i, ": ", toupper(x)))

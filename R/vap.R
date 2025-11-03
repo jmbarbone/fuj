@@ -107,13 +107,21 @@ vap_dates_ <- function(fun, type) {
 #' Alternative to [lapply()], [sapply()], [vapply()], and [mapply()]
 #'
 #' @details Also includes `_date`, `_dttm` variants that work with `Date` and
-#'   `POSIXct`.
+#'   `POSIXct` types.
 #'
 #' - `vap()` uses a single `x` argument
 #' - `vapi()` uses a single `x` argument and passes the names (when available,
 #'   otherwise index) as the second argument
-#' - `vap2()`, `vap3()` use two and three arguments respectively
+#' - `vap2()`, `vap3()` use two and three arguments, respectively
 #' - `vapp()` uses a pairlist of arguments
+#'
+#' @section Extras: Two helper functions are provided to set options for a
+#'   progress bars (`options(fuj.vap.progress)`) and reporting an index during
+#'   and error (`options(fuj.vap.index_error)`).  Two wrapper functions are
+#'   provided: [with_vap_progress()] and [with_vap_handlers()], respectively;
+#'   the latter may include other handlers in the future.  These are not turned
+#'   on by default (or rather, the option settings are set to `FALSE` within
+#'   `{fuj}`) as they incur some additional overhead.
 #'
 #' @param x,y,z Values to map over
 #' @param f Function or specification of function to apply.
@@ -131,9 +139,9 @@ vap_dates_ <- function(fun, type) {
 #'   duration of `expr`, which causes a progress bar to be displayed for any
 #'   `vap*` calls inside `expr`.
 #'
-#'   [with_vap_handlers()] sets an option `vap.indexed_errors` to `TRUE`
-#'   for the duration of `expr`, which causes errors inside `vap*` calls to
-#'   include the index at which the error occurred.
+#'   [with_vap_handlers()] sets an option `vap.indexed_errors` to `TRUE` for the
+#'   duration of `expr`, which causes errors inside `vap*` calls to include the
+#'   index at which the error occurred.
 #'
 #' @examples
 #' vap(letters, toupper)
