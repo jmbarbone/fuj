@@ -206,11 +206,17 @@ x <- list(list(a = 1, b = 3), list(a = 2, b = 4))
 vap_int(x, "a")
 vap_int(x, 2)
 
-# wrap in `vap_progress()` to show a progress bar
+# wrap in [with_vap_progress()] to show a progress bar
 invisible(
   with_vap_progress(
     vap(1:10 / 20, Sys.sleep)
   )
 )
 
+# wrap in [with_vap_handlers()] to report index on error
+try(
+  with_vap_handlers(
+    vap(10:1, function(x) if (x == 3) stop("bad"))
+  )
+)
 }
