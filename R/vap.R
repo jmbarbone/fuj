@@ -5,7 +5,7 @@ vap_ <- function(type) {
   # nolint next: object_usage_linter.
   expr <- substitute(
     {
-      ..call <- sys.call() # nolint: object_name_linter, object_usage_linter.
+      delayedAssign("..call", sys.call())
       set_vap_names(as.vector(vap(x, f, ...), ..type..), x)
     },
     list(..type.. = type)
@@ -18,7 +18,7 @@ vapi_ <- function(type) {
   expr <- substitute(
     set_vap_names(
       {
-        ..call <- sys.call() # nolint: object_name_linter, object_usage_linter.
+        delayedAssign("..call", sys.call())
         as.vector(vap2(x, names(x) %||% seq_along(x), f, ...), ..type..)
       },
       x
@@ -32,7 +32,7 @@ vap2_ <- function(type) {
   # nolint next: object_usage_linter.
   expr <- substitute(
     {
-      ..call <- sys.call() # nolint: object_name_linter, object_usage_linter.
+      delayedAssign("..call", sys.call())
       set_vap_names(as.vector(vap2(x, y, f, ...), ..type..), x)
     },
     list(..type.. = type)
@@ -44,7 +44,7 @@ vap3_ <- function(type) {
   # nolint next: object_usage_linter.
   expr <- substitute(
     {
-      ..call <- sys.call() # nolint: object_name_linter, object_usage_linter.
+      delayedAssign("..call", sys.call())
       set_vap_names(as.vector(vap3(x, y, z, f, ...), ..type..), x)
     },
     list(..type.. = type)
@@ -56,7 +56,7 @@ vapp_ <- function(type) {
   # nolint next: object_usage_linter.
   expr <- substitute(
     {
-      ..call <- sys.call() # nolint: object_name_linter, object_usage_linter.
+      delayedAssign("..call", sys.call())
       set_vap_names(as.vector(vapp(p, f, ...), ..type..), p[[1L]])
     },
     list(..type.. = type)
@@ -155,7 +155,7 @@ vap_dates_ <- function(fun, type) {
 #' vap_int(x, "a")
 #' vap_int(x, 2)
 #'
-#' # wrap in `vap_progress()` to show a progress bar
+#' # wrap in [with_vap_progress()] to show a progress bar
 #' invisible(
 #'   with_vap_progress(
 #'     vap(1:10 / 20, Sys.sleep)
@@ -170,7 +170,7 @@ NULL
 #' @export
 #' @rdname vap
 vap <- function(x, f, ...) {
-  ..call <- vap_sys_call(f) # nolint: object_name_linter, object_usage_linter.
+  delayedAssign("..call", sys.call()) # nolint: object_name_linter, object_usage_linter.
   f <- vapper(f, list(x))
   vapping_handler(lapply(x, f, ...), f)
 }
@@ -178,7 +178,7 @@ vap <- function(x, f, ...) {
 #' @export
 #' @rdname vap
 vapi <- function(x, f, ...) {
-  ..call <- vap_sys_call(f) # nolint: object_name_linter, object_usage_linter.
+  delayedAssign("..call", sys.call()) # nolint: object_name_linter, object_usage_linter.
   i <- names(x) %||% seq_along(x)
   f <- vapper(f, list(x))
   out <- vapping_handler(.mapply(f, list(x, i), list(...)), f)
@@ -188,7 +188,7 @@ vapi <- function(x, f, ...) {
 #' @export
 #' @rdname vap
 vap2 <- function(x, y, f, ...) {
-  ..call <- vap_sys_call(f) # nolint: object_name_linter, object_usage_linter.
+  delayedAssign("..call", sys.call()) # nolint: object_name_linter, object_usage_linter.
   f <- vapper(f, list(x, y))
   out <- vapping_handler(.mapply(f, list(x, y), list(...)), f)
   set_vap_names(out, x)
@@ -197,7 +197,7 @@ vap2 <- function(x, y, f, ...) {
 #' @export
 #' @rdname vap
 vap3 <- function(x, y, z, f, ...) {
-  ..call <- vap_sys_call(f) # nolint: object_name_linter, object_usage_linter.
+  delayedAssign("..call", sys.call()) # nolint: object_name_linter, object_usage_linter.
   f <- vapper(f, list(x, y, z))
   out <- vapping_handler(.mapply(f, list(x, y, z), list(...)), f)
   set_vap_names(out, x)
@@ -206,7 +206,7 @@ vap3 <- function(x, y, z, f, ...) {
 #' @export
 #' @rdname vap
 vapp <- function(p, f, ...) {
-  ..call <- vap_sys_call(f) # nolint: object_name_linter, object_usage_linter.
+  delayedAssign("..call", sys.call()) # nolint: object_name_linter, object_usage_linter.
   f <- vapper(f, p)
   p <- as.pairlist(p)
   out <- vapping_handler(.mapply(f, p, list(...)), f)
@@ -401,9 +401,8 @@ with_vap_handlers <- function(expr) {
 
 vapper <- function(f, l) {
   # could just do an S3 dispatch, but I don't feel like exporting this
-
-  ..i <- 0L # nolint: object_name_linter.
-  ..call <- vap_sys_call(f) # nolint: object_name_linter, object_usage_linter.
+  delayedAssign("..i", 0L) # nolint: object_name_linter.
+  delayedAssign("..call", dynGet("..call")) # nolint: object_name_linter, object_usage_linter.)
 
   fun <- if (is.function(f)) {
     f
@@ -473,9 +472,4 @@ set_vap_names <- function(x, y) {
     names(x) <- names(y)
   }
   x
-}
-
-vap_sys_call <- function(f) {
-  # FIXME when would environment(f) be null?
-  get0("..call", envir = environment(f) %||% new.env()) %||% sys.call(-1L)
 }
