@@ -439,6 +439,31 @@ vapping_handler <- function(expr, fun) {
   withCallingHandlers(
     expr,
     # TODO include warning?
+    warning = function(con) {
+      if (!getOption("fuj.vap.indexed_errors", FALSE)) {
+        return()
+      }
+
+      e <- environment(fun)
+      msg <- if (exists("..i", e, inherits = FALSE)) {
+        sprintf(
+          "warning at index: %i:\n %s",
+          get("..i", e, inherits = FALSE),
+          conditionMessage(con)
+        )
+      } else {
+        conditionMessage(con)
+      }
+
+      cond <- struct(
+        list(msg, environment(fun)$..call),
+        class = c("vap_warning", class(con)),
+        index = environment(fun)$..i,
+        names = c("message", "call")
+      )
+
+      warning(cond)
+    },
     error = function(con) {
       if (!getOption("fuj.vap.indexed_errors", FALSE)) {
         return()
