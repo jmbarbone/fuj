@@ -1,6 +1,7 @@
 # builders ----------------------------------------------------------------
 
 # nocov start
+# nolint next: object_usage_linter.
 vap_ <- function(type) {
   # nolint next: object_usage_linter.
   expr <- substitute(
@@ -13,6 +14,7 @@ vap_ <- function(type) {
   eval(substitute(as.function(alist(x = , f = , ... = , expr))))
 }
 
+# nolint next: object_usage_linter.
 vapi_ <- function(type) {
   # nolint next: object_usage_linter.
   expr <- substitute(
@@ -28,6 +30,7 @@ vapi_ <- function(type) {
   eval(substitute(as.function(alist(x = , f = , ... = , expr))))
 }
 
+# nolint next: object_usage_linter.
 vap2_ <- function(type) {
   # nolint next: object_usage_linter.
   expr <- substitute(
@@ -40,6 +43,7 @@ vap2_ <- function(type) {
   eval(substitute(as.function(alist(x = , y = , f = , ... = , expr))))
 }
 
+# nolint next: object_usage_linter.
 vap3_ <- function(type) {
   # nolint next: object_usage_linter.
   expr <- substitute(
@@ -52,6 +56,7 @@ vap3_ <- function(type) {
   eval(substitute(as.function(alist(x = , y = , z = , f = , ... = , expr))))
 }
 
+# nolint next: object_usage_linter.
 vapp_ <- function(type) {
   # nolint next: object_usage_linter.
   expr <- substitute(
@@ -175,16 +180,18 @@ NULL
 
 #' @export
 #' @rdname vap
+# nolint next: object_usage_linter.
 vap <- function(x, f, ...) {
-  delayedAssign("..call", sys.call()) # nolint: object_name_linter, object_usage_linter.
+  delayedAssign("..call", sys.call())
   f <- vapper(f, list(x))
   vapping_handler(lapply(x, f, ...), f)
 }
 
 #' @export
 #' @rdname vap
+# nolint next: object_usage_linter.
 vapi <- function(x, f, ...) {
-  delayedAssign("..call", sys.call()) # nolint: object_name_linter, object_usage_linter.
+  delayedAssign("..call", sys.call())
   i <- names(x) %||% seq_along(x)
   f <- vapper(f, list(x))
   out <- vapping_handler(.mapply(f, list(x, i), list(...)), f)
@@ -193,8 +200,9 @@ vapi <- function(x, f, ...) {
 
 #' @export
 #' @rdname vap
+# nolint next: object_usage_linter.
 vap2 <- function(x, y, f, ...) {
-  delayedAssign("..call", sys.call()) # nolint: object_name_linter, object_usage_linter.
+  delayedAssign("..call", sys.call())
   f <- vapper(f, list(x, y))
   out <- vapping_handler(.mapply(f, list(x, y), list(...)), f)
   set_vap_names(out, x)
@@ -202,8 +210,9 @@ vap2 <- function(x, y, f, ...) {
 
 #' @export
 #' @rdname vap
+# nolint next: object_usage_linter.
 vap3 <- function(x, y, z, f, ...) {
-  delayedAssign("..call", sys.call()) # nolint: object_name_linter, object_usage_linter.
+  delayedAssign("..call", sys.call())
   f <- vapper(f, list(x, y, z))
   out <- vapping_handler(.mapply(f, list(x, y, z), list(...)), f)
   set_vap_names(out, x)
@@ -211,8 +220,9 @@ vap3 <- function(x, y, z, f, ...) {
 
 #' @export
 #' @rdname vap
+# nolint next: object_usage_linter.
 vapp <- function(p, f, ...) {
-  delayedAssign("..call", sys.call()) # nolint: object_name_linter, object_usage_linter.
+  delayedAssign("..call", sys.call())
   f <- vapper(f, p)
   p <- as.pairlist(p)
   out <- vapping_handler(.mapply(f, p, list(...)), f)
@@ -405,10 +415,11 @@ with_vap_handlers <- function(expr) {
 
 # helpers -----------------------------------------------------------------
 
+# nolint next: object_usage_linter.
 vapper <- function(f, l) {
   # could just do an S3 dispatch, but I don't feel like exporting this
-  delayedAssign("..i", 0L) # nolint: object_name_linter.
-  delayedAssign("..call", dynGet("..call")) # nolint: object_name_linter, object_usage_linter.)
+  delayedAssign("..i", 0L)
+  delayedAssign("..call", dynGet("..call"))
 
   fun <- if (is.function(f)) {
     f
