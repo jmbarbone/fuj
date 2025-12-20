@@ -162,6 +162,12 @@ vap_dates_ <- function(fun, type) {
 #'   )
 #' )
 #'
+#' # wrap in [with_vap_handlers()] to report index on error
+#' try(
+#'   with_vap_handlers(
+#'     vap(10:1, function(x) if (x == 3) stop("bad"))
+#'   )
+#' )
 #' @name vap
 NULL
 
