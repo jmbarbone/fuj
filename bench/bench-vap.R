@@ -37,6 +37,7 @@ autoplot(print(mark(
   vapp_dbl(list(x, y, z), sum),
   with_vap_handlers(vapp_dbl(list(x, y, z), sum)),
   pmap_dbl(list(x, y, z), sum),
+  as.vector(vapp(list(x, y, z), sum), "double"),
   iterations = I
 )))
 
@@ -49,6 +50,7 @@ local({
       map(\(df) lm(mpg ~ wt, data = df)) |>
       map(summary) |>
       map_dbl("r.squared"),
+    # fuj wins a bit here; more consistent
     fuj = x |>
       vap(\(df) lm(mpg ~ wt, data = df)) |>
       vap(summary) |>
@@ -61,17 +63,19 @@ autoplot(print(mark(
   purrr = c("foo", "bar") |>
     purrr::set_names() |>
     purrr::map_chr(paste0, ":suffix"),
+  # fuj wins a bit here
   fuj = c("foo", "bar") |>
     fuj::set_names() |>
     fuj::vap_chr(paste0, ":suffix"),
   iterations = I
 )))
 
+
 local({
-  x <- y <- z <- runif(1e5)
+  x <- y <- z <- runif(n)
   autoplot(print(mark(
     mapply(sum, x, y, z, SIMPLIFY = FALSE),
-    .mapply(sum, list(x, y, z), list()),
+    .mapply(sum, list(x, y, z), list()), # best, barely
     .mapply(sum, list(x, y, z), NULL),
     iterations = I / 2
   )))
