@@ -6,28 +6,28 @@
   * all `vap` functions have type-stable variants:
 
 The below table shows inputs for `vap` functions and how they behave with the provided functions (`f`).
-Exact naming of arguments is not required.
+Arguments to `f())` can use any name.
 
   | `vap` function     | `f` args     |
-  |--------------------|--------------|
+  |:-------------------|:-------------|
   | `vap(x, f)`        | `f(x)`       |
   | `vap2(x, y, f)`    | `f(x, y)`    |
   | `vap3(x, y, z, f)` | `f(x, y, z)` |
   | `vapi(x, f)`       | `f(x, i)`    |
   | `vapp(p, f)`       | `f(...)`     |
   
-Note: `vapi()` uses either the index or names of `x` as the second argument to `f`.
+_Note_: `vapi()` uses either the index or names of `x` as the second argument to `f`.
 
 Each `vap` function comes with the following type variants:
   
-  | Function  | Output Type     |
-  |-----------|-----------------|
+  | Function   | Output Type    |
+  |:-----------|----------------|
   | `*_chr()`  | character      |
   | `*_dbl()`  | double/numeric |
   | `*_int()`  | integer        |
   | `*_lgl()`  | logical        |
-  | `*_raw()`  | raw vector     |
-  | `*_cpl()`  | complex vector |
+  | `*_raw()`  | raw            |
+  | `*_cpl()`  | complex        |
   | `*_date()` | Date           |
   | `*_dttm()` | POSIXct        |
   
