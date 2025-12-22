@@ -138,7 +138,10 @@ vap_dates_ <- function(fun, type) {
 #'   determined by how `...` is recycled inside [mapply()].  For `vap`, `vapi`,
 #'   variants, a vector the length of `x` is returned.
 #'
-#'   `vap_*()` variants return a vector of the specified type.
+#'   `vap_*()` variants return a vector of the specified type.  These returns
+#'   are _coerced_, rather than _checked_, and may result in unexpected outputs.
+#'   Likely, warnings or errors will be signaled when coercion fails.
+#'
 #'
 #'   [with_vap_progress()] sets an option `vap.progress` to `TRUE` for the
 #'   duration of `expr`, which causes a progress bar to be displayed for any
@@ -453,14 +456,14 @@ vapper <- function(f, l) {
 }
 
 vapping_handler <- function(expr, fun) {
+  if (!getOption("fuj.vap.indexed_errors", FALSE)) {
+    return(expr)
+  }
+
   withCallingHandlers(
     expr,
     # TODO include warning?
     warning = function(con) {
-      if (!getOption("fuj.vap.indexed_errors", FALSE)) {
-        return()
-      }
-
       e <- environment(fun)
       msg <- if (exists("..i", e, inherits = FALSE)) {
         sprintf(
@@ -482,10 +485,6 @@ vapping_handler <- function(expr, fun) {
       warning(cond)
     },
     error = function(con) {
-      if (!getOption("fuj.vap.indexed_errors", FALSE)) {
-        return()
-      }
-
       e <- environment(fun)
       msg <- if (exists("..i", e, inherits = FALSE)) {
         sprintf(

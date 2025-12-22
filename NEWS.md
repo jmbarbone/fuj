@@ -1,10 +1,37 @@
 # fuj (development version)
 
 * `quick_df()` no longer allows `NULL` values in the input list [#81](https://github.com/jmbarbone/fuj/issues/81)
-* `vap()` functions added [#83]
+* `vap` family functions added [#83](https://github.com/jmbarbone/fuj/issues/83)
   * `vaps` are vector apply functions, with certain presets to assist with common cases
-  * `vap_chr()`, `vap_dbl()`, `vap_int()`, `vap_lgl()`, and `vap_raw()` for type-stable outputs
-  * `vap()` for type-unstable outputs
+  * all `vap` functions have type-stable variants:
+
+The below table shows inputs for `vap` functions and how they behave with the provided functions (`f`).
+Exact naming of arguments is not required.
+
+  | `vap` function     | `f` args     |
+  |--------------------|--------------|
+  | `vap(x, f)`        | `f(x)`       |
+  | `vap2(x, y, f)`    | `f(x, y)`    |
+  | `vap3(x, y, z, f)` | `f(x, y, z)` |
+  | `vapi(x, f)`       | `f(x, i)`    |
+  | `vapp(p, f)`       | `f(...)`     |
+  
+Note: `vapi()` uses either the index or names of `x` as the second argument to `f`.
+
+Each `vap` function comes with the following type variants:
+  
+  | Function  | Output Type     |
+  |-----------|-----------------|
+  | `*_chr()`  | character      |
+  | `*_dbl()`  | double/numeric |
+  | `*_int()`  | integer        |
+  | `*_lgl()`  | logical        |
+  | `*_raw()`  | raw vector     |
+  | `*_cpl()`  | complex vector |
+  | `*_date()` | Date           |
+  | `*_dttm()` | POSIXct        |
+  
+_Note_: these variants do not perform _checks_ on output results, but rather coerce the output to the specified type.
   
 
 # fuj 0.2.2

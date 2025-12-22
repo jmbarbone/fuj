@@ -160,7 +160,9 @@ Return for \code{vap2}, \code{vap3}, and \code{vapp} variants, return length is
 determined by how \code{...} is recycled inside \code{\link[=mapply]{mapply()}}.  For \code{vap}, \code{vapi},
 variants, a vector the length of \code{x} is returned.
 
-\verb{vap_*()} variants return a vector of the specified type.
+\verb{vap_*()} variants return a vector of the specified type.  These returns
+are \emph{coerced}, rather than \emph{checked}, and may result in unexpected outputs.
+Likely, warnings or errors will be signaled when coercion fails.
 
 \code{\link[=with_vap_progress]{with_vap_progress()}} sets an option \code{vap.progress} to \code{TRUE} for the
 duration of \code{expr}, which causes a progress bar to be displayed for any
