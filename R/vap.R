@@ -62,7 +62,7 @@ vapp_ <- function(type) {
   expr <- substitute(
     {
       delayedAssign("..call", sys.call())
-      set_vap_names(as.vector(vapp(p, f, ...), ..type..), p[[1L]])
+      set_vapp_names(as.vector(vapp(p, f, ...), ..type..), p[[1L]])
     },
     list(..type.. = type)
   )
@@ -226,7 +226,7 @@ vapp <- function(p, f, ...) {
   f <- vapper(f, p)
   p <- as.pairlist(p)
   out <- vapping_handler(.mapply(f, p, list(...)), f)
-  set_vap_names(out, p[[1L]])
+  set_vapp_names(out, p[[1L]])
 }
 
 # vap ---------------------------------------------------------------------
@@ -510,6 +510,11 @@ vapping_handler <- function(expr, fun) {
 }
 
 set_vap_names <- function(x, y) {
+  names(x) <- names(y)
+  x
+}
+
+set_vapp_names <- function(x, y) {
   if (length(x) == length(y)) {
     names(x) <- names(y)
   }
