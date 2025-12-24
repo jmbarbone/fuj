@@ -109,10 +109,13 @@ vap_dates_ <- function(fun, type) {
 
 #' Vector applies
 #'
-#' Alternative to [lapply()], [sapply()], [vapply()], and [mapply()]
+#' Apply a function over elements of a `vector`.
 #'
-#' @details Also includes `_date`, `_dttm` variants that work with `Date` and
-#'   `POSIXct` types.
+#' @details Like [lapply()], [mapply()], and family, the `vap` functions provide
+#'   a means of applying a function to each element of a `vector`, and
+#'   controlling return types.  The `vap` family provides extra tools and
+#'   controls, as well as _date_ outputs (i.e., `_date`, `_dttm` variants that
+#'   work with `Date` and `POSIXct` types).
 #'
 #' - `vap()` uses a single `x` argument
 #' - `vapi()` uses a single `x` argument and passes the names (when available,
@@ -130,33 +133,40 @@ vap_dates_ <- function(fun, type) {
 #'
 #' @param x,y,z Values to map over
 #' @param f Function or specification of function to apply.
-#' @param p Pairlist of values to map over
+#' @param p A list of values (i.e., parameters) to map over
 #' @param ... Additional arguments passed to `f`
 #' @param expr The expression to evaluate.
 #'
-#' @returns Return for `vap2`, `vap3`, and `vapp` variants, return length is
-#'   determined by how `...` is recycled inside [mapply()].  For `vap`, `vapi`,
-#'   variants, a vector the length of `x` is returned.
+#' @returns For [vap()], [vapi()], returns a `list` with length of `x`. For
+#'   [vap2()], [vap3()], and [vap()], return length is determined by how `...`
+#'   is recycled inside [mapply()].
 #'
-#'   `vap_*()` variants return a vector of the specified type.  These returns
-#'   are _coerced_, rather than _checked_, and may result in unexpected outputs.
-#'   Likely, warnings or errors will be signaled when coercion fails.
-#'
+#'   All have type variants (e.g., [vap_chr()], [vapi_int()], [vap3_dbl()])
+#'   which return a vector of the corresponding class, with the same length of
+#'   `x`, or following the same recycling rules as [mapply()] for multiple
+#'   inputs. These returns are _coerced_, rather than _checked_, and may result
+#'   in unexpected outputs. Likely, warnings or errors will be signaled
+#'   accordingly.
 #'
 #'   [with_vap_progress()] sets an option `vap.progress` to `TRUE` for the
 #'   duration of `expr`, which causes a progress bar to be displayed for any
 #'   `vap*` calls inside `expr`.
 #'
-#'   [with_vap_handlers()] sets an option `vap.indexed_errors` to `TRUE` for the
-#'   duration of `expr`, which causes errors inside `vap*` calls to include the
+#'   [with_vap_handlers()] sets an `options(vap.indexed_errors = TRUE)` for the
+#'   duration of `expr`, which causes errors inside `vap` calls to include the
 #'   index at which the error occurred.
 #'
 #' @examples
-#' vap(letters, toupper)
-#' vapi(letters, function(x, i) paste0(i, ": ", toupper(x)))
+#' fruits <- c("apple", "banana", "pear")
+#' vap(fruits, toupper)
+#' vapi(fruits, function(x, i) paste0(i, ": ", toupper(x)))
 #' vap_int(set_names(month.name, month.abb), nchar)
 #' vap2_dbl(1:5, 6:10, `+`)
 #' vapp_int(list(x = 1:5, y = 6:10, z = 11:15), sum)
+#'
+#' # return type is coerced:
+#' vap_int(1:5, paste0, "9")  # character -> integer
+#' vap_date(month.name, nchar) # integer -> Date
 #'
 #' # when f is a character or number, subsetting is performed
 #' x <- list(list(a = 1, b = 3), list(a = 2, b = 4))
