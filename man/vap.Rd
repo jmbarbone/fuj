@@ -151,33 +151,39 @@ with_vap_handlers(expr)
 
 \item{...}{Additional arguments passed to \code{f}}
 
-\item{p}{Pairlist of values to map over}
+\item{p}{A list of values (i.e., parameters) to map over}
 
 \item{expr}{The expression to evaluate.}
 }
 \value{
-Return for \code{vap2}, \code{vap3}, and \code{vapp} variants, return length is
-determined by how \code{...} is recycled inside \code{\link[=mapply]{mapply()}}.  For \code{vap}, \code{vapi},
-variants, a vector the length of \code{x} is returned.
+For \code{\link[=vap]{vap()}}, \code{\link[=vapi]{vapi()}}, returns a \code{list} with length of \code{x}. For
+\code{\link[=vap2]{vap2()}}, \code{\link[=vap3]{vap3()}}, and \code{\link[=vap]{vap()}}, return length is determined by how \code{...}
+is recycled inside \code{\link[=mapply]{mapply()}}.
 
-\verb{vap_*()} variants return a vector of the specified type.  These returns
-are \emph{coerced}, rather than \emph{checked}, and may result in unexpected outputs.
-Likely, warnings or errors will be signaled when coercion fails.
+All have type variants (e.g., \code{\link[=vap_chr]{vap_chr()}}, \code{\link[=vapi_int]{vapi_int()}}, \code{\link[=vap3_dbl]{vap3_dbl()}})
+which return a vector of the corresponding class, with the same length of
+\code{x}, or following the same recycling rules as \code{\link[=mapply]{mapply()}} for multiple
+inputs. These returns are \emph{coerced}, rather than \emph{checked}, and may result
+in unexpected outputs. Likely, warnings or errors will be signaled
+accordingly.
 
 \code{\link[=with_vap_progress]{with_vap_progress()}} sets an option \code{vap.progress} to \code{TRUE} for the
 duration of \code{expr}, which causes a progress bar to be displayed for any
 \verb{vap*} calls inside \code{expr}.
 
-\code{\link[=with_vap_handlers]{with_vap_handlers()}} sets an option \code{vap.indexed_errors} to \code{TRUE} for the
-duration of \code{expr}, which causes errors inside \verb{vap*} calls to include the
+\code{\link[=with_vap_handlers]{with_vap_handlers()}} sets an \code{options(vap.indexed_errors = TRUE)} for the
+duration of \code{expr}, which causes errors inside \code{vap} calls to include the
 index at which the error occurred.
 }
 \description{
-Alternative to \code{\link[=lapply]{lapply()}}, \code{\link[=sapply]{sapply()}}, \code{\link[=vapply]{vapply()}}, and \code{\link[=mapply]{mapply()}}
+Apply a function over elements of a \code{vector}.
 }
 \details{
-Also includes \verb{_date}, \verb{_dttm} variants that work with \code{Date} and
-\code{POSIXct} types.
+Like \code{\link[=lapply]{lapply()}}, \code{\link[=mapply]{mapply()}}, and family, the \code{vap} functions provide
+a means of applying a function to each element of a \code{vector}, and
+controlling return types.  The \code{vap} family provides extra tools and
+controls, as well as \emph{date} outputs (i.e., \verb{_date}, \verb{_dttm} variants that
+work with \code{Date} and \code{POSIXct} types).
 \itemize{
 \item \code{vap()} uses a single \code{x} argument
 \item \code{vapi()} uses a single \code{x} argument and passes the names (when available,
@@ -197,11 +203,16 @@ on by default (or rather, the option settings are set to \code{FALSE} within
 }
 
 \examples{
-vap(letters, toupper)
-vapi(letters, function(x, i) paste0(i, ": ", toupper(x)))
+fruits <- c("apple", "banana", "pear")
+vap(fruits, toupper)
+vapi(fruits, function(x, i) paste0(i, ": ", toupper(x)))
 vap_int(set_names(month.name, month.abb), nchar)
 vap2_dbl(1:5, 6:10, `+`)
 vapp_int(list(x = 1:5, y = 6:10, z = 11:15), sum)
+
+# return type is coerced:
+vap_int(1:5, paste0, "9")  # character -> integer
+vap_date(month.name, nchar) # integer -> Date
 
 # when f is a character or number, subsetting is performed
 x <- list(list(a = 1, b = 3), list(a = 2, b = 4))
