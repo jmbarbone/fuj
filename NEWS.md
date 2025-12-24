@@ -20,16 +20,16 @@ _Note_: `vapi()` uses either the index or names of `x` as the second argument to
 
 Each `vap` function comes with the following type variants:
   
-  | Function   | Output Type    |
-  |:-----------|----------------|
-  | `*_chr()`  | character      |
-  | `*_dbl()`  | double/numeric |
-  | `*_int()`  | integer        |
-  | `*_lgl()`  | logical        |
-  | `*_raw()`  | raw            |
-  | `*_cpl()`  | complex        |
-  | `*_date()` | Date           |
-  | `*_dttm()` | POSIXct        |
+  | Function   | Output Type    | Conversion
+  |:-----------|----------------|----------------|
+  | `*_chr()`  | character      | `as.vector(_, "character")` |
+  | `*_dbl()`  | double/numeric | `as.vector(_, "double")`    |
+  | `*_int()`  | integer        | `as.vector(_, "integer")`   |
+  | `*_lgl()`  | logical        | `as.vector(_, "logical")`   |
+  | `*_raw()`  | raw            | `as.vector(_, "raw")`       |
+  | `*_cpl()`  | complex        | `as.vector(_, "complex")`   |
+  | `*_date()` | Date           | `as.Date(as.vector(_, "double"), origin = "1970-01-01")` |
+  | `*_dttm()` | POSIXct        | `as.POSIXct(as.vector(_, "double"), origin = "1970-01-01", tz = "UTC")` |
   
 _Note_: these variants do not perform _checks_ on output results, but rather coerce the output to the specified type.
   
