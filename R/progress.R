@@ -1,12 +1,17 @@
 progress_bar <- function(
   max = 1,
   char = "=",
-  width = NA,
+  width = NULL,
   con = stdout()
 ) {
   local({
+    # browser()
     self <- environment()
-    reg.finalizer(self, function(e) e$kill(), onexit = TRUE)
+    reg.finalizer(
+      self,
+      function(e) if (is.function(e$kill)) e$kill(),
+      onexit = TRUE
+    )
 
     self$con <- con
 
@@ -20,17 +25,22 @@ progress_bar <- function(
     self$nb <- 0L
     self$pc <- -1L
     self$nw <- nchar(char, "w")
+    char <- as.character(char)
 
-    if (self$nw == 0) {
+    if (!length(char) == 1) {
+      stop("'char' must be a single character")
+    }
+
+    if (is.na(char) || self$nw == 0) {
       stop("'char' must have a non-zero width")
     }
 
-    if (is.na(width)) {
+    if (is.null(width)) {
       width <- getOption("width")
       width <- width - 10L
 
       if (self$nw > 1) {
-        width <- trunc(width / self$nw)
+        width <- trunc(width / self$nw) # nocov
       }
     }
 
