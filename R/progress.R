@@ -5,7 +5,6 @@ progress_bar <- function(
   con = stdout()
 ) {
   local({
-    # browser()
     self <- environment()
     reg.finalizer(
       self,
