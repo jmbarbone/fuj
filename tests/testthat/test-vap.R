@@ -88,23 +88,46 @@ test_that("index reporting works", {
     fixed = TRUE
   )
 
+  expect_warning(
+    with_vap_handlers(
+      vap(10:1, function(x) if (x == 3) warning("bad"))
+    ),
+    "index: 8",
+    fixed = TRUE
+  )
+
   my_erroring_fun <- function(x) {
     if (x == 3) stop("this is an error message")
   }
 
+  my_warninging_fun <- function(x) {
+    if (x == 3) warning("this is a warning message")
+  }
+
   expect_snapshot_error(
     with_vap_handlers(
       vap(10:1, my_erroring_fun)
     )
   )
 
-  foo <- function() {
+  expect_snapshot_warning(
+    with_vap_handlers(
+      vap(10:1, my_warninging_fun)
+    )
+  )
+
+  foo_error <- function() {
     with_vap_handlers(
       vap(10:1, my_erroring_fun)
     )
   }
 
-  expect_snapshot_error(
-    foo()
-  )
+  foo_warning <- function() {
+    with_vap_handlers(
+      vap(10:1, my_warninging_fun)
+    )
+  }
+
+  expect_snapshot_error(foo_error())
+  expect_snapshot_warning(foo_warning())
 })
