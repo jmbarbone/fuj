@@ -1,5 +1,6 @@
 test_that("progress_bar()", {
   con <- file()
+  on.exit(if (isOpen(con)) close(con))
   pb <- progress_bar(con = con)
   for (i in 1:10 / 10) {
     pb$set(i)
