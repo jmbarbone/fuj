@@ -475,15 +475,11 @@ vapping_handler <- function(expr, fun) {
     # TODO include warning?
     warning = function(con) {
       e <- environment(fun)
-      msg <- if (exists("..i", e, inherits = FALSE)) {
-        sprintf(
-          "warning at index: %i:\n %s",
-          get("..i", e, inherits = FALSE),
-          conditionMessage(con)
-        )
-      } else {
+      msg <- sprintf(
+        "warning at index: %i:\n %s",
+        get("..i", e, inherits = FALSE),
         conditionMessage(con)
-      }
+      )
 
       cond <- struct(
         list(msg, environment(fun)$..call),
@@ -493,18 +489,15 @@ vapping_handler <- function(expr, fun) {
       )
 
       warning(cond)
+      tryInvokeRestart("muffleWarning")
     },
     error = function(con) {
       e <- environment(fun)
-      msg <- if (exists("..i", e, inherits = FALSE)) {
-        sprintf(
-          "error at index: %i:\n %s",
-          get("..i", e, inherits = FALSE),
-          conditionMessage(con)
-        )
-      } else {
+      msg <- sprintf(
+        "error at index: %i:\n %s",
+        get("..i", e, inherits = FALSE),
         conditionMessage(con)
-      }
+      )
 
       cond <- struct(
         list(msg, environment(fun)$..call),
