@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.2.2.9001/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/jmbarbone/fuj/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
@@ -36,7 +36,58 @@
 <ul><li>
 <code><a href="../reference/quick_df.html">quick_df()</a></code> no longer allows <code>NULL</code> values in the input list <a href="https://github.com/jmbarbone/fuj/issues/81" class="external-link">#81</a>
 </li>
-</ul></div>
+<li>
+<code>vap</code> family functions added <a href="https://github.com/jmbarbone/fuj/issues/83" class="external-link">#83</a>
+<ul><li>
+<code>vaps</code> are vector apply functions, with certain presets to assist with common cases</li>
+<li>all <code>vap</code> functions have type-stable variants:</li>
+</ul></li>
+</ul><p>The below table shows inputs for <code>vap</code> functions and how they behave with the provided functions (<code>f</code>). Arguments to <code>f())</code> can use any name.</p>
+<table class="table"><thead><tr class="header"><th align="left">
+<code>vap</code> function</th>
+<th align="left">
+<code>f</code> args</th>
+</tr></thead><tbody><tr class="odd"><td align="left"><code>vap(x, f)</code></td>
+<td align="left"><code>f(x)</code></td>
+</tr><tr class="even"><td align="left"><code>vap2(x, y, f)</code></td>
+<td align="left"><code>f(x, y)</code></td>
+</tr><tr class="odd"><td align="left"><code>vap3(x, y, z, f)</code></td>
+<td align="left"><code>f(x, y, z)</code></td>
+</tr><tr class="even"><td align="left"><code>vapi(x, f)</code></td>
+<td align="left"><code>f(x, i)</code></td>
+</tr><tr class="odd"><td align="left"><code>vapp(p, f)</code></td>
+<td align="left"><code>f(...)</code></td>
+</tr></tbody></table><p><em>Note</em>: <code><a href="../reference/vap.html">vapi()</a></code> uses either the index or names of <code>x</code> as the second argument to <code>f</code>.</p>
+<p>Each <code>vap</code> function comes with the following type variants:</p>
+<table class="table"><colgroup><col width="27%"><col width="36%"><col width="36%"></colgroup><thead><tr class="header"><th align="left">Function</th>
+<th>Output Type</th>
+<th>Conversion</th>
+</tr></thead><tbody><tr class="odd"><td align="left"><code>*_chr()</code></td>
+<td>character</td>
+<td><code>as.vector(_, "character")</code></td>
+</tr><tr class="even"><td align="left"><code>*_dbl()</code></td>
+<td>double/numeric</td>
+<td><code>as.vector(_, "double")</code></td>
+</tr><tr class="odd"><td align="left"><code>*_int()</code></td>
+<td>integer</td>
+<td><code>as.vector(_, "integer")</code></td>
+</tr><tr class="even"><td align="left"><code>*_lgl()</code></td>
+<td>logical</td>
+<td><code>as.vector(_, "logical")</code></td>
+</tr><tr class="odd"><td align="left"><code>*_raw()</code></td>
+<td>raw</td>
+<td><code>as.vector(_, "raw")</code></td>
+</tr><tr class="even"><td align="left"><code>*_cpl()</code></td>
+<td>complex</td>
+<td><code>as.vector(_, "complex")</code></td>
+</tr><tr class="odd"><td align="left"><code>*_date()</code></td>
+<td>Date</td>
+<td><code>as.Date(as.vector(_, "double"), origin = "1970-01-01")</code></td>
+</tr><tr class="even"><td align="left"><code>*_dttm()</code></td>
+<td>POSIXct</td>
+<td><code>as.POSIXct(as.vector(_, "double"), origin = "1970-01-01", tz = "UTC")</code></td>
+</tr></tbody></table><p><em>Note</em>: these variants do not perform <em>checks</em> on output results, but rather coerce the output to the specified type.</p>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.2" id="fuj-022">fuj 0.2.2<a class="anchor" aria-label="anchor" href="#fuj-022"></a></h2><p class="text-muted">CRAN release: 2025-04-23</p>
 <ul><li>
@@ -185,7 +236,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>
