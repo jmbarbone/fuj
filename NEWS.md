@@ -1,6 +1,38 @@
 # fuj (development version)
 
 * `quick_df()` no longer allows `NULL` values in the input list [#81](https://github.com/jmbarbone/fuj/issues/81)
+* `vap` family functions added [#83](https://github.com/jmbarbone/fuj/issues/83)
+  * `vaps` are vector apply functions, with certain presets to assist with common cases
+  * all `vap` functions have type-stable variants:
+
+The below table shows inputs for `vap` functions and how they behave with the provided functions (`f`).
+Arguments to `f())` can use any name.
+
+  | `vap` function     | `f` args     |
+  |:-------------------|:-------------|
+  | `vap(x, f)`        | `f(x)`       |
+  | `vap2(x, y, f)`    | `f(x, y)`    |
+  | `vap3(x, y, z, f)` | `f(x, y, z)` |
+  | `vapi(x, f)`       | `f(x, i)`    |
+  | `vapp(p, f)`       | `f(...)`     |
+  
+_Note_: `vapi()` uses either the index or names of `x` as the second argument to `f`.
+
+Each `vap` function comes with the following type variants:
+  
+  | Function   | Output Type    | Conversion
+  |:-----------|----------------|----------------|
+  | `*_chr()`  | character      | `as.vector(_, "character")` |
+  | `*_dbl()`  | double/numeric | `as.vector(_, "double")`    |
+  | `*_int()`  | integer        | `as.vector(_, "integer")`   |
+  | `*_lgl()`  | logical        | `as.vector(_, "logical")`   |
+  | `*_raw()`  | raw            | `as.vector(_, "raw")`       |
+  | `*_cpl()`  | complex        | `as.vector(_, "complex")`   |
+  | `*_date()` | Date           | `as.Date(as.vector(_, "double"), origin = "1970-01-01")` |
+  | `*_dttm()` | POSIXct        | `as.POSIXct(as.vector(_, "double"), origin = "1970-01-01", tz = "UTC")` |
+  
+_Note_: these variants do not perform _checks_ on output results, but rather coerce the output to the specified type.
+  
 
 # fuj 0.2.2
 

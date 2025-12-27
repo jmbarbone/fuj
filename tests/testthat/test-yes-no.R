@@ -1,4 +1,5 @@
 test_that("yes_no()", {
+  skip_if(interactive())
   options(fuj..yes_no.interactive_override = NULL)
   expect_error(yes_no(), class = "yesNoInteractiveError")
   expect_identical(yes_no(noninteractive_error = FALSE), NA)
