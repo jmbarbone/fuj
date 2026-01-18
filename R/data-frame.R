@@ -99,6 +99,14 @@ dataframe <- function(...) {
 
 cond_quick_df_list <- function() {
   new_condition("`x` does not have equal length", class = "quick_df_list")
+mutframe <- function(...) {
+  exprs <- as.list(substitute(list(...))[-1L])
+  nms <- names(exprs)
+  .x <- list()
+  for (i in which(nms != "")) {
+    .x[[nms[i]]] <- eval(exprs[[i]], .x, parent.frame())
+  }
+  quick_df(.x)
 }
 
 cond_quick_df_input <- function() {
