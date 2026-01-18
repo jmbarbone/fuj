@@ -81,11 +81,21 @@ quick_dfl <- function(...) {
 #' Unsure if I want to export this
 #'
 #' @rdname quick_df
-#' @noRd
-dataframe <- quick_dfl
-
-
 # conditions --------------------------------------------------------------
+#' @examples
+#' b <- 3:4
+#' dataframe(
+#'   a = 1:2,
+#'   b = b,
+#'   c, # dropped
+#' )
+#' @export
+dataframe <- function(...) {
+  columns <- as.list(substitute(list(...))[-1L])
+  columns <- columns[names(columns) != ""]
+  columns <- lapply(columns, eval, envir = parent.frame(1L))
+  quick_df(columns)
+}
 
 cond_quick_df_list <- function() {
   new_condition("`x` does not have equal length", class = "quick_df_list")
