@@ -67,6 +67,12 @@ names(.empty_df) <- character()
 #' @rdname quick_df
 #' @param ... Columns as `tag = value` (passed to `list()`)
 quick_dfl <- function(...) {
+  .Deprecated(
+    msg = paste0(
+      "quick_dfl(...) is deprecated in {fuj} 0.9.0 and will be removed in a",
+      " future version.  Please use quick_df(list(...)), dataframe(...) instead"
+    )
+  )
   quick_df(lst(...))
 }
 

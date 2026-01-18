@@ -17,9 +17,12 @@ test_that("quick_df()", {
     data.frame(a = integer(), stringsAsFactors = FALSE)
   )
 
-  expect_equal(
-    quick_df(list(a = integer())),
-    quick_dfl(a = integer())
+  expect_warning(
+    expect_equal(
+      quick_df(list(a = integer())),
+      quick_dfl(a = integer())
+    ),
+    class = "deprecatedWarning"
   )
 
   expect_identical(quick_df(NULL), empty_df())
