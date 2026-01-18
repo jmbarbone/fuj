@@ -14,7 +14,7 @@
 #' @export
 list0 <- function(...) {
   e <- as.list(substitute((...)))[-1L]
-  do.call(list, e[!is_empty(e)], envir = parent.frame(2))
+  eval(as.call(c(list, e[!is_empty(e)])), envir = parent.frame(2L))
 }
 
 #' @export
