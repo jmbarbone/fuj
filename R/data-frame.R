@@ -41,12 +41,10 @@ quick_df <- function(x = NULL) {
     .empty_df,
     {
       x <- x[!vapply(x, is.null, NA)]
-      struct(
-        x = x,
-        class = "data.frame",
-        names = names(x) %||% seq_along(x),
-        row.names = c(NA_integer_, -n)
-      )
+      names(x) <- names(x) %||% seq_along(x)
+      class(x) <- "data.frame"
+      attr(x, "row.names") <- c(NA_integer_, -n)
+      x
     }
   ) %||%
     stop(cond_quick_df_list())
