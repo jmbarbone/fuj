@@ -1,11 +1,11 @@
 #' Quick DF
 #'
-#' This is a speedier implementation of `as.data.frame()` but does not provide
-#' the same sort of checks. It should be used with caution.
+#' This is a speedier implementation of [base::as.data.frame()] but does not
+#' provide the same sort of checks. It should be used with caution.
 #'
 #' @return A `data.frame`; if `x` is `NULL` a `data.frame` with `0` rows and `0`
-#'   columns is returned (similar to calling `data.frame()` but faster).
-#'   `empty_df()` returns a `data.frame` with `0` rows and `0` columns.
+#'   columns is returned (similar to calling [base::data.frame()] but faster).
+#'   [fuj::empty_df()] returns a `data.frame` with `0` rows and `0` columns.
 #'
 #' @examples
 #' # unnamed will use make.names()
@@ -31,7 +31,7 @@ quick_df <- function(x = NULL) {
   }
 
   if (!is.list(x)) {
-    stop(cond_quick_df_input())
+    stop(type_error(sprintf("`x` must be type 'list' not '%s'", typeof(x))))
   }
 
   n <- unique(lengths(x))
@@ -49,7 +49,7 @@ quick_df <- function(x = NULL) {
       )
     }
   ) %||%
-    stop(cond_quick_df_list())
+    stop(input_error("`x` must have equal length elements"))
 }
 
 #' @export
@@ -68,8 +68,13 @@ delayedAssign(
 
 #' @export
 #' @rdname quick_df
-#' @param ... Columns as `tag = value` (passed to `list()`)
+#' @param ... Columns as `tag = value` (passed to [fuj::lst()])
 quick_dfl <- function(...) {
+  # TODO this might need to be deprecated
+  warning(deprecated_warning(
+    "quick_dfl(...) is deprecated in {fuj} 0.9.0 and will be removed in a",
+    " future version.  Please use quick_df(list(...)), dataframe(...) instead"
+  ))
   quick_df(lst(...))
 }
 
@@ -77,17 +82,8 @@ quick_dfl <- function(...) {
 #'
 #' Unsure if I want to export this
 #'
+#' @param ... Columns as `tag = value`.  Unnamed columns are (silently)
+#'   dropped.
 #' @rdname quick_df
 #' @noRd
 dataframe <- quick_dfl
-
-
-# conditions --------------------------------------------------------------
-
-cond_quick_df_list <- function() {
-  new_condition("`x` does not have equal length", class = "quick_df_list")
-}
-
-cond_quick_df_input <- function() {
-  new_condition("`x` is not a list", class = "quick_df_input")
-}
