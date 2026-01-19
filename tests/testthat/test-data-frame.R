@@ -1,6 +1,6 @@
 test_that("quick_df()", {
-  expect_error(quick_df(1L), class = "fuj:quickDfInputError")
-  expect_error(quick_df(list(a = 1:2, b = 1:3)), class = "fuj:quickDfListError")
+  expect_error(quick_df(1L), class = "fuj:type_error")
+  expect_error(quick_df(list(a = 1:2, b = 1:3)), class = "fuj:input_error")
 
   expect_identical(
     quick_df(list(a = logical())),
@@ -17,9 +17,12 @@ test_that("quick_df()", {
     data.frame(a = integer(), stringsAsFactors = FALSE)
   )
 
-  expect_equal(
-    quick_df(list(a = integer())),
-    quick_dfl(a = integer())
+  expect_warning(
+    expect_equal(
+      quick_df(list(a = integer())),
+      quick_dfl(a = integer())
+    ),
+    class = "fuj:deprecated_warning"
   )
 
   expect_identical(quick_df(NULL), empty_df())

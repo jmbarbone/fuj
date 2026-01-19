@@ -3,17 +3,20 @@ test_that("verbose() works", {
     expect_silent(verbose("will not show"))
 
     with_options(list(verbose = TRUE), {
-      expect_condition(verbose("message printed"), class = "verboseMessage")
+      expect_condition(
+        verbose("message printed"),
+        class = "fuj:verbose_message"
+      )
       expect_message(
         verbose("multiple lines ", "will be ", "combined"),
-        class = "verboseMessage"
+        class = "fuj:verbose_message"
       )
     })
 
     with_options(list(fuj.verbose = function() TRUE), {
       expect_condition(
         verbose("function will evaluate"),
-        class = "verboseMessage"
+        class = "fuj:verbose_message"
       )
       expect_silent(verbose(NULL))
       expect_message(verbose(NULL, "something"))
@@ -29,7 +32,7 @@ test_that("verbose() works", {
     with_options(list(fuj.verbose = TRUE), {
       expect_error(
         verbose("", .label = 1:2),
-        class = "verboseMessageLabelError"
+        class = "fuj:verbose_message_label"
       )
     })
   })
@@ -44,7 +47,7 @@ test_that("verbose.label as function works", {
     {
       expect_message(
         verbose("message printed"),
-        class = "verboseMessage",
+        class = "fuj:verbose_message",
         regexp = "[function]",
         fixed = TRUE
       )
@@ -63,7 +66,7 @@ test_that("verbose.fill works", {
 
     expect_message(
       verbose("one\ntwo"),
-      class = "verboseMessage",
+      class = "fuj:verbose_message",
       regexp = regexp,
       fixed = TRUE
     )
@@ -75,6 +78,6 @@ test_that("make_verbose() works", {
   expect_silent(verb("will not show"))
 
   with_options(list(fuj.testthat.verbose = TRUE), {
-    expect_condition(verb("will show"), class = "verboseMessage")
+    expect_condition(verb("will show"), class = "fuj:verbose_message")
   })
 })

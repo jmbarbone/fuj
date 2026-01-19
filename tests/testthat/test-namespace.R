@@ -4,20 +4,20 @@ test_that("require_namespace", {
   expect_true(require_namespace("base", "methods", "stats"))
 
   # custom error on failure
-  expect_error(require_namespace("1"), class = "namespaceError")
+  expect_error(require_namespace("1"), class = "namespace_error")
 
   # only the first package should cause an error
   expect_error(
     require_namespace("base", "1foo", "2foo"),
-    class = "namespaceError",
-    regexp = cond_namespace("1foo")$message,
+    class = "namespace_error",
+    regexp = namespace_error("1foo")$message,
     fixed = TRUE
   )
 
   # this should fail because we shouldn't see 2foo
   expect_error(expect_error(
     require_namespace("base", "1foo", "2foo"),
-    class = "namespaceError",
+    class = "namespace_error",
     regexp = "2foo",
     fixed = TRUE
   ))
@@ -30,12 +30,12 @@ test_that("require_namespace", {
     require_namespace("utils<1.0"),
     sprintf("utils: %s < 1.0", getRversion()),
     fixed = TRUE,
-    class = "namespaceVersionError"
+    class = "namespace_error"
   )
   expect_error(
     require_namespace("utils<=1.0"),
     sprintf("utils: %s <= 1.0", getRversion()),
     fixed = TRUE,
-    class = "namespaceVersionError"
+    class = "namespace_error"
   )
 })
