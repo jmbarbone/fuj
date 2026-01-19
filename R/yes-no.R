@@ -21,12 +21,19 @@ yes_no <- function(
   if (!is_override) {
     if (!interactive()) {
       if (noninteractive_error) {
-        stop(cond_yes_no_interactive())
+        stop(interactive_error(
+          "yes_no() must be used in an interactive session when",
+          "`noninteractive_error` is `TRUE`"
+        ))
       }
       return(NA)
     }
   } else {
-    warning(cond_yes_no_interactive_override())
+    warning(development_warning(
+      "options(fuj..yes_no.interactive_override) was set to ",
+      "TRUE.\n This should only be set by developers for testing.\n",
+      "Value is being reset to NULL."
+    ))
     # apply on exit so we can test continuous bad responses
     on.exit(options(fuj..yes_no.interactive_override = NULL))
     # do not produce any messages
@@ -103,27 +110,4 @@ yes_no <- function(
 
     cat("... select an appropriate item or 0 to exit\n")
   }
-}
-
-cond_yes_no_interactive <- function() {
-  new_condition(
-    collapse(
-      "yes_no() must be used in an interactive session when",
-      "`noninteractive_error` is `TRUE`"
-    ),
-    "yes_no_interactive"
-  )
-}
-
-# nolint next: object_length_linter.
-cond_yes_no_interactive_override <- function() {
-  new_condition(
-    collapse(
-      "options(fuj..yes_no.interactive_override) was set to TRUE.",
-      "\n This should only be set by developers for testing.",
-      "Value is being reset to NULL."
-    ),
-    "yes_no_interactive_override",
-    type = "warning"
-  )
 }
