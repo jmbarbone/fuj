@@ -13,3 +13,4 @@
 ^CRAN-SUBMISSION$
 ^revdep$
 ^bench$
+^air\.toml$
