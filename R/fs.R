@@ -21,6 +21,18 @@
 #' fp("back\\slash")
 #' fp("remove//extra\\\\slashes")
 #' fp("a", c("b", "c"), "d")
+#'
+#' # supports / and +
+#'
+#' (x <- fp("here") / "subdir" + "ext")
+#' file_ext(x) <- "txt"
+#' x
+#' file_ext(x) <- "txt"
+#' x
+#' file_ext(x) <- NULL
+#' x
+#' file_ext(x) <- NULL
+#' x
 fp <- function(...) {
   x <- normalizePath(file.path(..., fsep = "/"), "/", FALSE)
   x <- gsub("\\", "/", x, fixed = TRUE)
@@ -47,3 +59,35 @@ is_path <- function(x) {
 #' @export
 #' @rdname fp
 is_file_path <- is_path
+
+#' @export
+`file_ext<-` <- function(x, value) {
+  if (is.null(value)) {
+    # from tools::file_path_sans_ext
+    return(sub("([^.]+)\\.[[:alnum:]]+$", "\\1", x))
+  }
+
+  if (!startsWith(value, ".")) {
+    value <- paste0(".", value)
+  }
+
+  if (!endsWith(x, value)) {
+    if (inherits(x, "file_path")) {
+      x <- x + value
+    } else {
+      x <- paste0(x, value)
+    }
+  }
+
+  x
+}
+
+#' @export
+`+.file_path` <- function(e1, e2) {
+  fp(sprintf("%s%s%s", e1, if (startsWith(e2, ".")) "" else ".", e2))
+}
+
+#' @export
+`/.file_path` <- function(e1, e2) {
+  fp(e1, e2)
+}
