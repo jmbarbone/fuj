@@ -35,25 +35,29 @@ new_condition <- function(
   msg = "",
   class = NULL,
   call = NULL,
-  type = c("error", "warning", "message", NA_character_),
+  type = c("error", "warning", "message", "condition"),
   message = msg,
   pkg = package()
 ) {
   if (!length(class) == 1L && !is.character(class)) {
-    stop(cond_new_conditional_class())
+    # stop(cond_new_conditional_class())
+    stop(input_error("`class` must be a single length character"))
   }
 
   force(package)
+  if (is.null(package)) {
+    package <- FALSE
+  }
   type <- as.character(type)
   type <- match.arg(type)
   class <- as.character(class)
 
-  if (length(type) == 1L && !is.na(type)) {
-    class <- collapse(class, "_", type)
-    class <- gsub("_([a-z])", "\\U\\1", class, perl = TRUE)
-  }
+  # if (length(type) == 1L && !is.na(type)) {
+  #   class <- collapse(class, "_", type)
+  #   class <- gsub("_([a-z])", "\\U\\1", class, perl = TRUE)
+  # }
 
-  if (!(is.null(pkg) || isFALSE(pkg))) {
+  if (!isFALSE(pkg)) {
     if (isTRUE(pkg)) {
       # may fail to get the package during development
       env <- parent.frame() # nocov
@@ -65,7 +69,10 @@ new_condition <- function(
     } else if (is.character(pkg) && length(pkg) == 1L && !is.na(pkg)) {
       class <- c(paste0(pkg, ":", class), class)
     } else {
-      stop(cond_new_conditional_pkg())
+      # stop(cond_new_conditional_pkg())
+      stop(value_error(
+        "`pkg` must be TRUE, FALSE, or a single length character"
+      ))
     }
   } else {
     pkg <- NULL
@@ -77,7 +84,8 @@ new_condition <- function(
     collapse(message)
   )
 
-  class <- unique(c("fujCondition", class, type %|||% NULL, "condition"))
+  class <- unique(c(class, type, "fujCondition", "condition"))
+
   struct(
     list(message, call),
     class = class,
