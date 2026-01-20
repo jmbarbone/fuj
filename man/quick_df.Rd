@@ -4,6 +4,7 @@
 \alias{quick_df}
 \alias{empty_df}
 \alias{quick_dfl}
+\alias{dataframe}
 \title{Quick DF}
 \usage{
 quick_df(x = NULL)
@@ -11,6 +12,8 @@ quick_df(x = NULL)
 empty_df()
 
 quick_dfl(...)
+
+dataframe(...)
 }
 \arguments{
 \item{x}{A list or \code{NULL} (see return)}
@@ -25,6 +28,8 @@ columns is returned (similar to calling \code{data.frame()} but faster).
 \description{
 This is a speedier implementation of \code{as.data.frame()} but does not provide
 the same sort of checks. It should be used with caution.
+
+Unsure if I want to export this
 }
 \examples{
 # unnamed will use make.names()
@@ -38,4 +43,10 @@ quick_df(x)
 # empty data.frame
 empty_df() # or quick_df(NULL)
 
+b <- 3:4
+dataframe(
+  a = 1:2,
+  b = b,
+  c, # dropped
+)
 }
