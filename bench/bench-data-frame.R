@@ -33,3 +33,19 @@ local({
 })
 
 autoplot(.Last.value)
+
+local({
+  library(plyr, include.only = "quickdf")
+  on.exit(detach("package:plyr"))
+  n <- 1e4
+  sl <- sample(letters, n, TRUE)
+
+  microbenchmark::microbenchmark(
+    quick_df = quick_df(list(a = 1:n, b = 1:n, c = 1:n, x = sl)),
+    quickdf = quickdf(list(a = 1:n, b = 1:n, c = 1:n, x = sl)),
+    data.frame = data.frame(a = 1:n, b = 1:n, c = 1:n, x = sl),
+    dataframe = dataframe(a = 1:n, b = 1:n, c = 1:n, x = sl),
+    mutframe = mutframe(a = 1:n, b = 1:n, c = 1:n, x = sl),
+    times = 1000
+  )
+})
