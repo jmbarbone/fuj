@@ -8,7 +8,7 @@ new_condition(
   msg = "",
   class = NULL,
   call = NULL,
-  type = c("error", "warning", "message", NA_character_),
+  type = c("error", "warning", "message", "condition"),
   message = msg,
   pkg = package()
 )
