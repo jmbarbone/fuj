@@ -3,7 +3,8 @@
 * `quick_df()` no longer allows `NULL` values in the input list [#81](https://github.com/jmbarbone/fuj/issues/81)
 * `quick_df()` is now a little faster [#91](https://github.com/jmbarbone/fuj/issues/91)
 * `quick_dfl()` is now deprecated [#91](https://github.com/jmbarbone/fuj/issues/91)
-* `lst0()` is now a little faster [#91](https://github.com/jmbarbone/fuj/issues/91)
+* `list()` is now a little faster [#91](https://github.com/jmbarbone/fuj/issues/91)
+* `list0()`'s functionality to ignore empty inputs can be disabled if `options(fuj.list.active = FALSE)` before `{fuj}` is loaded [#91](https://github.com/jmbarbone/fuj/issues/91)
 * `vap` family functions added [#83](https://github.com/jmbarbone/fuj/issues/83)
   * `vaps` are vector apply functions, with certain presets to assist with common cases
   * all `vap` functions have type-stable variants:

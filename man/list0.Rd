@@ -18,6 +18,11 @@ A \code{list} of \code{...}
 \description{
 Tries to not complain about empty arguments
 }
+\details{
+If \code{options(fuj.list.active = FALSE)} is set to prior to package loading,
+this function becomes an alias for \code{\link[base:list]{base::list()}}, disabling the special
+behavior.
+}
 \examples{
 try(list(1, ))
 list0(1, )
