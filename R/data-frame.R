@@ -76,26 +76,32 @@ quick_dfl <- function(...) {
   quick_df(lst(...))
 }
 
-#' Data frame
-#'
-#' Unsure if I want to export this
-#'
-#' @rdname quick_df
-# conditions --------------------------------------------------------------
-#' @examples
-#' b <- 3:4
-#' dataframe(
-#'   a = 1:2,
-#'   b = b,
-#'   c, # dropped
-#' )
-#' @export
 dataframe <- function(...) {
   columns <- as.list(substitute(list(...))[-1L])
   columns <- columns[names(columns) != ""]
   columns <- lapply(columns, eval, envir = parent.frame(1L))
   columns <- expand_lengths(columns)
   quick_df(columns)
+}
+
+mutframe <- function(...) {
+  exprs <- as.list(substitute(list(...))[-1L])
+  nms <- names(exprs)
+  .x <- list()
+  for (i in which(nms != "")) {
+    .x[[nms[i]]] <- eval(exprs[[i]], .x, parent.frame())
+  }
+  .x <- expand_lengths(.x)
+  quick_df(.x)
+}
+
+cond_quick_df_list <- function() {
+  new_condition("`x` does not have equal length", class = "quick_df_list")
+}
+
+
+cond_quick_df_input <- function() {
+  new_condition("`x` is not a list", class = "quick_df_input")
 }
 
 expand_lengths <- function(x) {
@@ -110,23 +116,4 @@ expand_lengths <- function(x) {
     x[[i]] <- rep(x[[i]], length.out = m)
   }
   x
-}
-
-cond_quick_df_list <- function() {
-  new_condition("`x` does not have equal length", class = "quick_df_list")
-}
-
-mutframe <- function(...) {
-  exprs <- as.list(substitute(list(...))[-1L])
-  nms <- names(exprs)
-  .x <- list()
-  for (i in which(nms != "")) {
-    .x[[nms[i]]] <- eval(exprs[[i]], .x, parent.frame())
-  }
-  .x <- expand_lengths(.x)
-  quick_df(.x)
-}
-
-cond_quick_df_input <- function() {
-  new_condition("`x` is not a list", class = "quick_df_input")
 }
