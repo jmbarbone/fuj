@@ -94,13 +94,27 @@ dataframe <- function(...) {
   columns <- as.list(substitute(list(...))[-1L])
   columns <- columns[names(columns) != ""]
   columns <- lapply(columns, eval, envir = parent.frame(1L))
+  columns <- expand_lengths(columns)
   quick_df(columns)
+}
+
+expand_lengths <- function(x) {
+  # helper for dataframe() and mutframe(); quick_df() handles checks for bad
+  # lengths
+  lens <- lengths(x)
+  if (length(lens) == 0L) {
+    return(x)
+  }
+  m <- max(lens)
+  for (i in which(lens == 1L)) {
+    x[[i]] <- rep(x[[i]], length.out = m)
+  }
+  x
 }
 
 cond_quick_df_list <- function() {
   new_condition("`x` does not have equal length", class = "quick_df_list")
 }
-
 
 mutframe <- function(...) {
   exprs <- as.list(substitute(list(...))[-1L])
@@ -109,6 +123,7 @@ mutframe <- function(...) {
   for (i in which(nms != "")) {
     .x[[nms[i]]] <- eval(exprs[[i]], .x, parent.frame())
   }
+  .x <- expand_lengths(.x)
   quick_df(.x)
 }
 
