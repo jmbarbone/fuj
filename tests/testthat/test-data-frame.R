@@ -37,10 +37,12 @@ test_that("dataframe()", {
   x <- data.frame(a = 1, b = 2)
   y <- dataframe(a = 1, b = 2, 3)
   expect_identical(x, y)
+  expect_identical(dataframe(), quick_df())
 })
 
 test_that("mutframe()", {
   x <- data.frame(a = 1, b = 1)
   y <- mutframe(a = 1, b = a)
   expect_identical(x, y)
+  expect_identical(mutframe(), quick_df())
 })
