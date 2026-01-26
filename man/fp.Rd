@@ -5,7 +5,9 @@
 \alias{file_path}
 \alias{is_path}
 \alias{is_file_path}
-\title{File path}
+\alias{set_file_ext}
+\alias{file_ext<-}
+\title{File path operations}
 \usage{
 fp(...)
 
@@ -14,17 +16,27 @@ file_path(...)
 is_path(x)
 
 is_file_path(x)
+
+set_file_ext(x, value, compression = TRUE)
+
+file_ext(x, compression = TRUE) <- value
 }
 \arguments{
 \item{...}{Path components, passed to \code{\link[=file.path]{file.path()}}}
 
 \item{x}{An object to test}
+
+\item{value}{The new file extension.  When \code{NULL}, removes the current
+extension}
+
+\item{compression}{If \code{TRUE}, also removes common compression extensions}
 }
 \value{
 \itemize{
 \item \code{\link[=fp]{fp()}}/\code{\link[=file_path]{file_path()}}: A \code{character} vector of the normalized path with a
 \code{"file_path"} class
 \item \code{\link[=is_path]{is_path()}}/\code{\link[=is_file_path]{is_file_path()}}: A \code{TRUE} or \code{FALSE} value
+\item \code{\link[=set_file_ext]{set_file_ext()}}/\code{\link[=file_ext<-]{file_ext<-()}}: The file path with the updated extension
 }
 }
 \description{
@@ -33,6 +45,9 @@ is_file_path(x)
 
 \code{\link[=file_path]{file_path()}} is an alias for \code{\link[=fp]{fp()}} and \code{\link[=is_file_path]{is_file_path()}} is an alias for
 \code{\link[=is_path]{is_path()}}.
+
+\code{\link[=set_file_ext]{set_file_ext()}} changes the file extension of a file path, removing any
+existing extension first.  \code{\link[=file_ext<-]{file_ext<-()}} serves as an alias.
 }
 \details{
 Lightweight file path functions
@@ -43,4 +58,15 @@ fp("~/there")
 fp("back\\\\slash")
 fp("remove//extra\\\\\\\\slashes")
 fp("a", c("b", "c"), "d")
+
+# supports / and +
+(x <- fp("here") / "subdir" + "ext")
+
+# change file extension
+file_ext(x) <- "txt"
+x
+file_ext(x) <- ".txt.gz"
+x
+file_ext(x) <- NULL
+x
 }

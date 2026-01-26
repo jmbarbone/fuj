@@ -49,6 +49,51 @@ test_that("fs works on not windows", {
   )
 })
 
+test_that("file_ext<- works", {
+  expect_identical(
+    {
+      x <- fp("here/there/file.old")
+      file_ext(x) <- "new"
+      x
+    },
+    fp("here/there/file.new")
+  )
+
+  expect_identical(
+    {
+      x <- "here/there/file.old"
+      file_ext(x) <- "new"
+      x
+    },
+    "here/there/file.new"
+  )
+
+  expect_identical(
+    {
+      x <- fp("here/there/file.old")
+      file_ext(x) <- "new"
+      x
+    },
+    fp("here/there/file.new")
+  )
+
+  expect_identical(
+    {
+      x <- fp("here/there/file.one.two")
+      file_ext(x) <- NULL
+      x
+    },
+    fp("here/there/file.one")
+  )
+})
+
+test_that("/ and + works", {
+  expect_identical(
+    fp("this") / "file" + "here",
+    fp("this/file.here")
+  )
+})
+
 test_that("snapshots", {
   skip_if(is_windows())
   expect_snapshot(fp(c("here/there", "every/where", "good\\slash")))
