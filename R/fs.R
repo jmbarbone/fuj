@@ -1,4 +1,4 @@
-#' File path
+#' File path operations
 #'
 #' Lightweight file path functions
 #'
@@ -8,12 +8,16 @@
 #'   [file_path()] is an alias for [fp()] and [is_file_path()] is an alias for
 #'   [is_path()].
 #'
+#'   [set_file_ext()] changes the file extension of a file path, removing any
+#'   existing extension first.  [file_ext<-()] serves as an alias.
+#'
 #' @param ... Path components, passed to [file.path()]
 #' @param x An object to test
 #' @return
 #' - [fp()]/[file_path()]: A `character` vector of the normalized path with a
 #' `"file_path"` class
 #' - [is_path()]/[is_file_path()]: A `TRUE` or `FALSE` value
+#' - [set_file_ext()]/[file_ext<-()]: The file path with the updated extension
 #' @export
 #' @examples
 #' fp("here")
@@ -23,13 +27,12 @@
 #' fp("a", c("b", "c"), "d")
 #'
 #' # supports / and +
-#'
 #' (x <- fp("here") / "subdir" + "ext")
+#'
+#' # change file extension
 #' file_ext(x) <- "txt"
 #' x
-#' file_ext(x) <- "txt"
-#' x
-#' file_ext(x) <- NULL
+#' file_ext(x) <- ".txt.gz"
 #' x
 #' file_ext(x) <- NULL
 #' x
@@ -61,25 +64,38 @@ is_path <- function(x) {
 is_file_path <- is_path
 
 #' @export
-`file_ext<-` <- function(x, value) {
+#' @rdname fp
+#' @param value The new file extension.  When `NULL`, removes the current
+#'   extension
+#' @param compression If `TRUE`, also removes common compression extensions
+set_file_ext <- function(x, value, compression = TRUE) {
+  if (compression) {
+    x <- sub("([^.]+)\\.(gz|bz2|xz|zip|7z|zip)$", "\\1", x)
+  }
+
+  x <- sub("([^.]+)\\.[[:alnum:]]+$", "\\1", x)
+
   if (is.null(value)) {
-    # from tools::file_path_sans_ext
-    return(sub("([^.]+)\\.[[:alnum:]]+$", "\\1", x))
+    return(x)
   }
 
   if (!startsWith(value, ".")) {
-    value <- paste0(".", value)
+    value <- sprintf(".%s", value)
   }
 
-  if (!endsWith(x, value)) {
-    if (inherits(x, "file_path")) {
-      x <- x + value
-    } else {
-      x <- paste0(x, value)
-    }
+  if (inherits(x, "file_path")) {
+    x <- x + value
+  } else {
+    x <- sprintf("%s%s", x, value)
   }
 
   x
+}
+
+#' @export
+#' @rdname fp
+`file_ext<-` <- function(x, compression = TRUE, value) {
+  set_file_ext(x = x, value = value, compression = compression)
 }
 
 #' @export
