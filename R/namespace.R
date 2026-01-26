@@ -81,6 +81,6 @@ namespace_version_error <- function(package, version, operator, found) {
       format(version)
     ),
     class = c("namespace_version_error", "namespace_error"),
-    pkg = "fuj"
+    package = "fuj"
   )
 }

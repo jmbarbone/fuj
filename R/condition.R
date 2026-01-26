@@ -2,7 +2,7 @@
 #'
 #' Template for a new condition.  See more at [base::conditions]
 #'
-#' @details The use of `.packageName` when `pkg = TRUE` may not be valid during
+#' @details The use of `.packageName` when `package = TRUE` may not be valid during
 #'   active development.  When the attempt to retrieve the `.packageName` object
 #'   is unsuccessful, the error is quietly ignored.  However, this should be
 #'   successful once the package is build and functions can then utilize this
@@ -13,11 +13,12 @@
 #' @param call A call expression
 #' @param type The type (additional class) of condition: `error"`, `"warning"`,
 #'   `"message"`, or `NA`, which is treated as `NULL`.
-#' @param pkg Control or adding package name to condition.  If `TRUE` will try
-#'   to get the current package name (via `.packageName`) from, presumably, the
-#'   developmental package.  If `FALSE` or `NULL`, no package name is prepended
-#'   to the condition class as a new class.  Otherwise, a package can be
-#'   explicitly set with a single length character.
+#' @param package Control or adding package name to condition.  If `TRUE` will
+#'   try to get the current package name (via `.packageName`) from, presumably,
+#'   the developmental package.  If `FALSE` or `NULL`, no package name is
+#'   prepended to the condition class as a new class.  Otherwise, a package can
+#'   be explicitly set with a single length character.
+#' @param pkg Deprecated, see `package`
 #' @return A `condition` with the classes specified from `class` and `type`
 #' @examples
 #' # empty condition
@@ -25,7 +26,7 @@
 #' try(stop(x))
 #'
 #' # with pkg
-#' x <- new_condition("msg", class = "foo", pkg = "bar")
+#' x <- new_condition("msg", class = "foo", package = "bar")
 #' # class contains multiple identifiers, including a "bar:fooError"
 #' class(x)
 #' # message contains package information at the end
@@ -37,10 +38,20 @@ new_condition <- function(
   call = NULL,
   type = c("error", "warning", "message", "condition"),
   message = msg,
-  pkg = package()
+  package = find_package(),
+  pkg
 ) {
+  if (!missing(pkg)) {
+    warning(
+      deprecated_warning(
+        "`new_condition(pkg)` is deprecated; use `new_condition(package)`",
+        " instead"
+      )
+    )
+    package <- pkg
+  }
+
   if (!length(class) == 1L && !is.character(class)) {
-    # stop(cond_new_conditional_class())
     stop(input_error("`class` must be a single length character"))
   }
 
@@ -52,35 +63,34 @@ new_condition <- function(
   type <- match.arg(type)
   class <- as.character(class)
 
-  # if (length(type) == 1L && !is.na(type)) {
-  #   class <- collapse(class, "_", type)
-  #   class <- gsub("_([a-z])", "\\U\\1", class, perl = TRUE)
-  # }
-
-  if (!isFALSE(pkg)) {
-    if (isTRUE(pkg)) {
+  if (!isFALSE(package)) {
+    if (isTRUE(package)) {
       # may fail to get the package during development
       env <- parent.frame() # nocov
-      pkg <- try(eval(substitute(.packageName), env), silent = TRUE) # nocov
+      package <- try(eval(substitute(.packageName), env), silent = TRUE) # nocov
     }
 
-    if (inherits(pkg, "try-error")) {
-      pkg <- NULL # nocov
-    } else if (is.character(pkg) && length(pkg) == 1L && !is.na(pkg)) {
-      class <- c(paste0(pkg, ":", class), class)
+    # fmt: skip
+    if (inherits(package, "try-error")) {
+      package <- NULL # nocov
+    } else if (
+      is.character(package) &&
+      length(package) == 1L &&
+      !is.na(package)
+    ) {
+      class <- c(paste0(package, ":", class), class)
     } else {
-      # stop(cond_new_conditional_pkg())
       stop(value_error(
         "`pkg` must be TRUE, FALSE, or a single length character"
       ))
     }
   } else {
-    pkg <- NULL
+    package <- NULL
   }
 
   message <- sprintf(
     "<%s> %s",
-    if (is.null(pkg)) class else class[2L],
+    if (is.null(package)) class else class[2L],
     collapse(message)
   )
 
@@ -90,7 +100,7 @@ new_condition <- function(
     list(message, call),
     class = class,
     names = c("message", "call"),
-    package = pkg
+    package = package
   )
 }
 
@@ -104,21 +114,7 @@ conditionMessage.fujCondition <- function(c) {
   NextMethod(c)
 }
 
-cond_new_conditional_class <- function() {
-  new_condition(
-    "`class` must be a single length character",
-    class = "newConditionClass"
-  )
-}
-
-cond_new_conditional_pkg <- function() {
-  new_condition(
-    "`pkg` must be TRUE, FALSE, or a single length character",
-    class = "newConditionPackage"
-  )
-}
-
-package <- function(env = parent.frame(2L)) {
+find_package <- function(env = parent.frame(2L)) {
   top <- topenv(env)
   if (isNamespace(top)) {
     unname(getNamespaceName(top))

@@ -18,7 +18,7 @@ input_error <- function(msg = "invalid input") {
     msg = msg,
     class = "input_error",
     type = "error",
-    pkg = "fuj"
+    package = "fuj"
   )
 }
 
@@ -27,7 +27,7 @@ value_error <- function(msg = "invalid value") {
     msg = msg,
     class = "value_error",
     type = "error",
-    pkg = "fuj"
+    package = "fuj"
   )
 }
 
@@ -36,7 +36,7 @@ class_error <- function(msg = "invalid class", ...) {
     msg = c(msg, ...),
     class = "class_error",
     type = "error",
-    pkg = "fuj"
+    package = "fuj"
   )
 }
 
@@ -45,7 +45,7 @@ type_error <- function(msg = "invalid type", ...) {
     msg = c(msg, ...),
     class = "type_error",
     type = "error",
-    pkg = "fuj"
+    package = "fuj"
   )
 }
 
@@ -57,7 +57,7 @@ interactive_error <- function(
     msg = c(msg, ...),
     class = "interactive_error",
     type = "error",
-    pkg = "fuj"
+    package = "fuj"
   )
 }
 
@@ -76,7 +76,7 @@ development_warning <- function(...) {
     msg = c(...),
     class = "development_warning",
     type = "warning",
-    pkg = "fuj"
+    package = "fuj"
   )
 }
 
@@ -85,6 +85,6 @@ deprecated_warning <- function(...) {
     msg = c(...),
     class = c("deprecated_warning", "deprecatedWarning"),
     type = "warning",
-    pkg = "fuj"
+    package = "fuj"
   )
 }

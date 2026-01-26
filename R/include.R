@@ -200,7 +200,7 @@ include_conflicts_warning <- function(...) {
     message = c(...),
     class = "include_conflicts_warning",
     type = "warning",
-    pkg = "fuj"
+    package = "fuj"
   )
 }
 
