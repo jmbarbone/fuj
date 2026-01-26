@@ -1,5 +1,5 @@
 check_option <- function() {
-  skip_if_not(getOption("fuj.list.active", TRUE))
+  testthat::skip_if_not(getOption("fuj.list.active", TRUE))
 }
 
 test_that("list0", {
