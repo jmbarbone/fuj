@@ -41,12 +41,10 @@ quick_df <- function(x = NULL) {
     .empty_df,
     {
       x <- x[!vapply(x, is.null, NA)]
-      struct(
-        x = x,
-        class = "data.frame",
-        names = names(x) %||% seq_along(x),
-        row.names = c(NA_integer_, -n)
-      )
+      names(x) <- names(x) %||% seq_along(x)
+      class(x) <- "data.frame"
+      attr(x, "row.names") <- c(NA_integer_, -n)
+      x
     }
   ) %||%
     stop(input_error("`x` must have equal length elements"))
@@ -58,19 +56,17 @@ empty_df <- function() {
   .empty_df
 }
 
-# pre-build a `data.frame` with the `struct()` utility from fuj.  Is this
-# really necessary?  Only if we want the absolute best times for
-.empty_df <- NULL
-delayedAssign(
-  ".empty_df",
-  struct(list(), "data.frame", row.names = integer(), names = character())
-)
+# pre-build a `data.frame` with the `struct()` utility from fuj.  Is this really
+# necessary?  Only if we want the absolute best times for
+.empty_df <- list()
+class(.empty_df) <- "data.frame"
+attr(.empty_df, "row.names") <- integer()
+names(.empty_df) <- character()
 
 #' @export
 #' @rdname quick_df
 #' @param ... Columns as `tag = value` (passed to [fuj::lst()])
 quick_dfl <- function(...) {
-  # TODO this might need to be deprecated
   warning(deprecated_warning(
     "quick_dfl(...) is deprecated in {fuj} 0.9.0 and will be removed in a",
     " future version.  Please use quick_df(list(...)), dataframe(...) instead"
@@ -78,12 +74,35 @@ quick_dfl <- function(...) {
   quick_df(lst(...))
 }
 
-#' Data frame
-#'
-#' Unsure if I want to export this
-#'
-#' @param ... Columns as `tag = value`.  Unnamed columns are (silently)
-#'   dropped.
-#' @rdname quick_df
-#' @noRd
-dataframe <- quick_dfl
+dataframe <- function(...) {
+  columns <- as.list(substitute(list(...))[-1L])
+  columns <- columns[names(columns) != ""]
+  columns <- lapply(columns, eval, envir = parent.frame(1L))
+  columns <- expand_lengths(columns)
+  quick_df(columns)
+}
+
+mutframe <- function(...) {
+  exprs <- as.list(substitute(list(...))[-1L])
+  nms <- names(exprs)
+  .x <- list()
+  for (i in which(nms != "")) {
+    .x[[nms[i]]] <- eval(exprs[[i]], .x, parent.frame())
+  }
+  .x <- expand_lengths(.x)
+  quick_df(.x)
+}
+
+expand_lengths <- function(x) {
+  # helper for dataframe() and mutframe(); quick_df() handles checks for bad
+  # lengths
+  lens <- lengths(x)
+  if (length(lens) == 0L) {
+    return(x)
+  }
+  m <- max(lens)
+  for (i in which(lens == 1L)) {
+    x[[i]] <- rep(x[[i]], length.out = m)
+  }
+  x
+}

@@ -2,6 +2,10 @@
 #'
 #' Tries to not complain about empty arguments
 #'
+#' If `options(fuj.list.active = FALSE)` is set to prior to package loading,
+#' this function becomes an alias for [base::list()], disabling the special
+#' behavior.
+#'
 #' @param ... Arguments to collect in a list
 #' @return A `list` of `...`
 #' @examples
@@ -14,7 +18,7 @@
 #' @export
 list0 <- function(...) {
   e <- as.list(substitute((...)))[-1L]
-  do.call(list, e[!is_empty(e)], envir = parent.frame(2))
+  eval(as.call(c(list, e[!is_empty(e)])), envir = parent.frame(2L))
 }
 
 #' @export

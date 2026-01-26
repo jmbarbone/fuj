@@ -2,15 +2,26 @@
 % Please edit documentation in R/fuj-package.R
 \docType{package}
 \name{fuj-package}
-\alias{fuj}
 \alias{fuj-package}
 \title{fuj: Functions and Utilities for Jordan}
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
 Provides core functions and utilities for packages and other code developed by Jordan Mark Barbone.
+
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
+Provides core functions and utilities for packages and other code developed by Jordan Mark Barbone.
 }
 \seealso{
+Useful links:
+\itemize{
+  \item \url{https://jmbarbone.github.io/fuj/}
+  \item \url{https://github.com/jmbarbone/fuj}
+  \item Report bugs at \url{https://github.com/jmbarbone/fuj/issues}
+}
+
+
 Useful links:
 \itemize{
   \item \url{https://jmbarbone.github.io/fuj/}
