@@ -2,10 +2,10 @@
 #'
 #' Template for a new condition.  See more at [base::conditions]
 #'
-#' @details The use of `.packageName` when `package = TRUE` may not be valid during
-#'   active development.  When the attempt to retrieve the `.packageName` object
-#'   is unsuccessful, the error is quietly ignored.  However, this should be
-#'   successful once the package is build and functions can then utilize this
+#' @details The use of `.packageName` when `package = TRUE` may not be valid
+#'   during active development.  When the attempt to retrieve the `.packageName`
+#'   object is unsuccessful, the error is quietly ignored.  However, this should
+#'   be successful once the package is build and functions can then utilize this
 #'   created object.
 #'
 #' @param msg,message A message to print

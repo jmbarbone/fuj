@@ -39,10 +39,10 @@ A \code{condition} with the classes specified from \code{class} and \code{type}
 Template for a new condition.  See more at \link[base:conditions]{base::conditions}
 }
 \details{
-The use of \code{.packageName} when \code{package = TRUE} may not be valid during
-active development.  When the attempt to retrieve the \code{.packageName} object
-is unsuccessful, the error is quietly ignored.  However, this should be
-successful once the package is build and functions can then utilize this
+The use of \code{.packageName} when \code{package = TRUE} may not be valid
+during active development.  When the attempt to retrieve the \code{.packageName}
+object is unsuccessful, the error is quietly ignored.  However, this should
+be successful once the package is build and functions can then utilize this
 created object.
 }
 \examples{
