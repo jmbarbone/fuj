@@ -30,10 +30,7 @@ test_that("verbose() works", {
     })
 
     with_options(list(fuj.verbose = TRUE), {
-      expect_error(
-        verbose("", .label = 1:2),
-        class = "fuj:verbose_message_label"
-      )
+      expect_error(verbose("", .label = 1:2), class = "fuj:input_error")
     })
   })
 })
@@ -79,5 +76,17 @@ test_that("make_verbose() works", {
 
   with_options(list(fuj.testthat.verbose = TRUE), {
     expect_condition(verb("will show"), class = "fuj:verbose_message")
+  })
+})
+
+test_that("options(fuj.verbose = FALSE) works", {
+  with_options(list(fuj.verbose = function() FALSE), {
+    expect_message(
+      expect_condition(
+        message(verbose_message()),
+        class = "fuj:verbose_condition"
+      ),
+      NA
+    )
   })
 })

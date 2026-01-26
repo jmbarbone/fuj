@@ -2,13 +2,23 @@
 
 # nolint next: object_name_linter.
 verbose_message <- function(msg, call = NULL) {
-  new_condition(
-    msg = msg,
-    class = "verbose_message",
-    type = "message",
-    pkg = "fuj",
-    call = call
-  )
+  do_verbose <- getOption("fuj.verbose", getOption("verbose"))
+  if (is.function(do_verbose)) {
+    do_verbose <- do_verbose()
+  }
+
+  if (!isTRUE(do_verbose)) {
+    # returns a silent condition, I think
+    bare_condition("fuj:verbose_condition")
+  } else {
+    new_condition(
+      msg = msg,
+      class = "verbose_message",
+      type = "message",
+      package = "fuj",
+      call = call
+    )
+  }
 }
 
 # errors ------------------------------------------------------------------
@@ -31,6 +41,7 @@ value_error <- function(msg = "invalid value") {
   )
 }
 
+# NOTE currently not being used
 class_error <- function(msg = "invalid class", ...) {
   new_condition(
     msg = c(msg, ...),
@@ -86,5 +97,15 @@ deprecated_warning <- function(...) {
     class = c("deprecated_warning", "deprecatedWarning"),
     type = "warning",
     package = "fuj"
+  )
+}
+
+
+# conditions --------------------------------------------------------------
+
+bare_condition <- function(class = NULL) {
+  structure(
+    list(message = NULL, call = NULL),
+    class = unique(c(class, "condition"))
   )
 }

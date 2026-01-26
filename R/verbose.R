@@ -103,7 +103,7 @@ make_verbose_message <- function(
 
   .label <- format(.label)
   if (length(.label) != 1L || !is.character(.label)) {
-    stop(cond_verbose_label())
+    stop(input_error(".label must for a string of length 1L"))
   }
 
   msg <- if (isTRUE(.fill)) {
@@ -122,19 +122,6 @@ make_verbose_message <- function(
   verbose_message(paste0(msg, collapse = "\n"), .call)
 }
 
-cond_verbose_label <- function() {
-  new_condition(
-    "`.label` must be a string of length 1",
-    class = "verbose_message_label"
-  )
-}
-
-fuj_verbose_handler <- function(cnd) {
-  v <- getOption("fuj.verbose", getOption("verbose"))
-  if (is.function(v)) {
-    v <- v()
-  }
-  if (isTRUE(v)) {
-    invokeRestart("muffleMessage")
-  }
+with_verbose <- function(expr) {
+  with_options(c(fuj.verbose = TRUE), expr)
 }
