@@ -3,7 +3,18 @@
 Provides core functions and utilities for packages and other code
 developed by Jordan Mark Barbone.
 
+Provides core functions and utilities for packages and other code
+developed by Jordan Mark Barbone.
+
 ## See also
+
+Useful links:
+
+- <https://jmbarbone.github.io/fuj/>
+
+- <https://github.com/jmbarbone/fuj>
+
+- Report bugs at <https://github.com/jmbarbone/fuj/issues>
 
 Useful links:
 

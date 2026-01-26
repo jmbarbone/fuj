@@ -32,5 +32,6 @@ collapse(1:10)
 collapse(list("a", b = 1:2))
 #> [1] "a12"
 collapse(quick_dfl(a = 1:3, b = 4:6), sep = "-")
+#> Warning: quick_dfl(...) is deprecated in {fuj} 0.9.0 and will be removed in a future version.  Please use quick_df(list(...)), dataframe(...) instead
 #> [1] "1-2-3-4-5-6"
 ```

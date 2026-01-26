@@ -20,6 +20,13 @@ lst(...)
 
 A `list` of `...`
 
+## Details
+
+If `options(fuj.list.active = FALSE)` is set to prior to package
+loading, this function becomes an alias for
+[`base::list()`](https://rdrr.io/r/base/list.html), disabling the
+special behavior.
+
 ## Examples
 
 ``` r

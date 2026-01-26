@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9002</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9003</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,13 +28,25 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.2.2.9002/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/jmbarbone/fuj/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="fuj-development-version">fuj (development version)<a class="anchor" aria-label="anchor" href="#fuj-development-version"></a></h2>
 <ul><li>
 <code><a href="../reference/quick_df.html">quick_df()</a></code> no longer allows <code>NULL</code> values in the input list <a href="https://github.com/jmbarbone/fuj/issues/81" class="external-link">#81</a>
+</li>
+<li>
+<code><a href="../reference/quick_df.html">quick_df()</a></code> is now a little faster <a href="https://github.com/jmbarbone/fuj/issues/91" class="external-link">#91</a>
+</li>
+<li>
+<code><a href="../reference/quick_df.html">quick_dfl()</a></code> is now deprecated <a href="https://github.com/jmbarbone/fuj/issues/91" class="external-link">#91</a>
+</li>
+<li>
+<code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code> is now a little faster <a href="https://github.com/jmbarbone/fuj/issues/91" class="external-link">#91</a>
+</li>
+<li>
+<code><a href="../reference/list0.html">list0()</a></code>’s functionality to ignore empty inputs can be disabled if <code>options(fuj.list.active = FALSE)</code> before <a href="https://jmbarbone.github.io/fuj/">fuj</a> is loaded <a href="https://github.com/jmbarbone/fuj/issues/91" class="external-link">#91</a>
 </li>
 <li>
 <code>vap</code> family functions added <a href="https://github.com/jmbarbone/fuj/issues/83" class="external-link">#83</a>
