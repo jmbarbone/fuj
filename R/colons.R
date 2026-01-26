@@ -26,7 +26,7 @@ NULL
   colons_check(package, name)
   tryCatch(
     getExportedValue(asNamespace(package), name),
-    error = function(e) stop(colonsError(package, name, 2))
+    error = function(e) stop(colons_error(package, name, 2))
   )
 }
 
@@ -36,7 +36,7 @@ NULL
   colons_check(package, name)
   tryCatch(
     get(name, envir = asNamespace(package)),
-    error = function(e) stop(colonsError(package, name, 3))
+    error = function(e) stop(colons_error(package, name, 3))
   )
 }
 
@@ -44,7 +44,7 @@ NULL
 #' @export
 `%colons%` <- `%:::%`
 
-colonsError <- function(package, name, n) {
+colons_error <- function(package, name, n) {
   new_condition(
     msg = sprintf(
       "`%s%s%s` not found",
@@ -52,8 +52,9 @@ colonsError <- function(package, name, n) {
       strrep(":", n),
       as.character(name)
     ),
-    class = "colonsError",
-    type = "error"
+    class = "colons_error",
+    type = "error",
+    package = "fuj"
   )
 }
 
