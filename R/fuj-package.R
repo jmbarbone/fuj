@@ -56,7 +56,6 @@ op.fuj <- list(
 .onLoad <- function(libname, pkgname) {
   # set options
   options(op.fuj[!names(op.fuj) %in% names(options())]) # nocov
-  # try(globalCallingHandlers(`fuj:verbose_message` = fuj_verbose_handler))
 
   # nocov start
   if (isFALSE(getOption("fuj.list.active", TRUE))) {
