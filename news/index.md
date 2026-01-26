@@ -17,6 +17,12 @@
   `options(fuj.list.active = FALSE)` before
   [fuj](https://jmbarbone.github.io/fuj/) is loaded
   [\#91](https://github.com/jmbarbone/fuj/issues/91)
+- [`set_file_ext()`](https://jmbarbone.github.io/fuj/reference/fp.md)
+  and `file_ext<-()` added for controlling file extensions
+  [\#89](https://github.com/jmbarbone/fuj/issues/89)
+- `+` and `/` methods added for `file_path` classes, allowing path
+  creation (e.g., `fp("folder") / "subfolder" / "file" + "extension"`)
+  [\#89](https://github.com/jmbarbone/fuj/issues/89)
 - `vap` family functions added
   [\#83](https://github.com/jmbarbone/fuj/issues/83)
   - `vaps` are vector apply functions, with certain presets to assist

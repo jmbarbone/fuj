@@ -38,8 +38,10 @@
 - [`fp()`](https://jmbarbone.github.io/fuj/reference/fp.md)
   [`file_path()`](https://jmbarbone.github.io/fuj/reference/fp.md)
   [`is_path()`](https://jmbarbone.github.io/fuj/reference/fp.md)
-  [`is_file_path()`](https://jmbarbone.github.io/fuj/reference/fp.md) :
-  File path
+  [`is_file_path()`](https://jmbarbone.github.io/fuj/reference/fp.md)
+  [`set_file_ext()`](https://jmbarbone.github.io/fuj/reference/fp.md)
+  [`` `file_ext<-`() ``](https://jmbarbone.github.io/fuj/reference/fp.md)
+  : File path operations
 
 - [`` `%||%` ``](https://jmbarbone.github.io/fuj/reference/if_null.md)
   [`` `%|||%` ``](https://jmbarbone.github.io/fuj/reference/if_null.md)

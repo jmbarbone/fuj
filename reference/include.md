@@ -88,9 +88,9 @@ include(fuj)
 head(ls("include:fuj"), 20)
 #>  [1] "%::%"            "%:::%"           "%attr%"          "%colons%"       
 #>  [5] "%len%"           "%names%"         "%out%"           "%wi%"           
-#>  [9] "%wo%"            "%||%"            "%|||%"           "add"            
-#> [13] "any_match"       "attach2"         "attach_warn"     "check_conflicts"
-#> [17] "collapse"        "colons_check"    "colons_example"  "cond_colons"    
+#>  [9] "%wo%"            "%||%"            "%|||%"           "+.file_path"    
+#> [13] "/.file_path"     "add"             "any_match"       "attach2"        
+#> [17] "attach_warn"     "check_conflicts" "collapse"        "colons_check"   
 detach("include:fuj", character.only = TRUE)
 
 # include a single export
