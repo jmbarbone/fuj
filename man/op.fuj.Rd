@@ -5,15 +5,23 @@
 \alias{op.fuj}
 \title{\code{{fuj}} options}
 \format{
-An object of class \code{list} of length 5.
+An object of class \code{list} of length 6.
+
+An object of class \code{list} of length 6.
 }
 \usage{
+op.fuj
+
 op.fuj
 }
 \description{
 Options uses for \code{{fuj}} functions.
+
+Options uses for \code{{fuj}} functions.
 }
 \examples{
+names(op.fuj)
+op.fuj
 names(op.fuj)
 op.fuj
 }
