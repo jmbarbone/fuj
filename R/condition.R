@@ -94,7 +94,7 @@ new_condition <- function(
     collapse(message)
   )
 
-  class <- unique(c(class, type, "fujCondition", "condition"))
+  class <- unique(c(class, type, "fuj_condition", "condition"))
 
   struct(
     list(message, call),
@@ -105,7 +105,7 @@ new_condition <- function(
 }
 
 #' @export
-conditionMessage.fujCondition <- function(c) {
+conditionMessage.fuj_condition <- function(c) {
   pkg <- attr(c, "package")
   if (!is.null(pkg)) {
     c$message <- paste0(c$message, sprintf("\npackage:%s", pkg))

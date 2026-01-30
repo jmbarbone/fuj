@@ -2,7 +2,7 @@
 
 S3method("+",file_path)
 S3method("/",file_path)
-S3method(conditionMessage,fujCondition)
+S3method(conditionMessage,fuj_condition)
 S3method(flip,data.frame)
 S3method(flip,default)
 S3method(flip,matrix)
