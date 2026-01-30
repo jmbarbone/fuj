@@ -7,6 +7,14 @@
 * `list0()`'s functionality to ignore empty inputs can be disabled if `options(fuj.list.active = FALSE)` before `{fuj}` is loaded [#91](https://github.com/jmbarbone/fuj/issues/91)
 * `set_file_ext()` and `file_ext<-()` added for controlling file extensions [#89](https://github.com/jmbarbone/fuj/issues/89)
 * `+` and `/` methods added for `file_path` classes, allowing path creation (e.g., `fp("folder") / "subfolder" / "file" + "extension"`) [#89](https://github.com/jmbarbone/fuj/issues/89)
+
+* `new_condition()` no longer performs any transformations on `class`, retaining input as is [#90](https://github.com/jmbarbone/fuj/issues/90)
+* conditions within `{fuj}` have been simplified through the following:
+  * classes are now reported in `snake_case` rather than `camelCase`
+  * classes are generalized; rather than various, specific classes, general ones are deployed (mostly `input_error` and `type_error`)
+  * `verbose_message` will try to avoid printing a message when `options(fuj.verbose = FALSE)` is set
+  * `new_condition(pkg)` is deprecated in favor of `new_condition(package)`
+
 * `vap` family functions added [#83](https://github.com/jmbarbone/fuj/issues/83)
   * `vaps` are vector apply functions, with certain presets to assist with common cases
   * all `vap` functions have type-stable variants:
