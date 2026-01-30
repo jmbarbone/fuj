@@ -68,7 +68,7 @@ yes_no <- function(
   )
 
   cat(msg)
-  cat("\n")
+  catln()
   attempt <- 0
 
   repeat {
@@ -86,7 +86,7 @@ yes_no <- function(
     res <- wuffle(as.integer(res))
 
     if (is.na(res)) {
-      cat("... enter a numeric response\n")
+      catln("... enter a numeric response")
       next
     }
 
@@ -108,6 +108,6 @@ yes_no <- function(
       return(NA)
     }
 
-    cat("... select an appropriate item or 0 to exit\n")
+    catln("... select an appropriate item or 0 to exit")
   }
 }

@@ -3,3 +3,7 @@ with_options <- function(op, code) {
   on.exit(options(op))
   force(code)
 }
+
+catln <- function(...) {
+  cat(..., "\n", sep = "")
+}
