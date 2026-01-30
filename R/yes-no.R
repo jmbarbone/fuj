@@ -72,8 +72,13 @@ yes_no <- function(
   attempt <- 0
 
   repeat {
-    if (attempt > 20) {
-      stop("What are you doing?")
+    if (attempt == 20) {
+      stop(new_condition(
+        "I'm stumped.  What are you doing?",
+        class = "twenty_questions",
+        type = "error",
+        package = "fuj"
+      ))
     }
 
     if (attempt %% 5L == 0L) {
