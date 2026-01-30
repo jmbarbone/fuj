@@ -1,6 +1,7 @@
 test_that("yes_no()", {
   skip_if(interactive())
-  options(fuj..yes_no.interactive_override = NULL)
+  op <- options(fuj..yes_no.interactive_override = NULL)
+  on.exit(options(op))
   expect_error(yes_no(), class = "fuj:interactive_error")
   expect_identical(yes_no(noninteractive_error = FALSE), NA)
 
