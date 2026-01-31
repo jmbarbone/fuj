@@ -57,11 +57,8 @@ new_condition <- function(
   }
 
   # fmt: skip
-  if (!(
-    is.list(class) ||
-    (length(class) == 1L && is.character(class))
-  )) {
-    stop(input_error("`class` must be a single length character or list"))
+  if (!inherits(class, c("list", "character", "AsIs"))) {
+    stop(class_error("`class` must be a list, character, or AsIs"))
   }
 
   force(package)
@@ -71,23 +68,24 @@ new_condition <- function(
   type <- as.character(type)
   type <- match.arg(type)
 
-  class <- as.list(class)
-  class <- vapply(
-    class,
-    function(x) {
-      # fmt: skip
-      if (
-        inherits(x, "AsIs") ||
-        grepl(paste0(type, "$"), x, ignore.case = TRUE)
-      ) {
-        x
-      } else {
-        sprintf("%s_%s", x, type)
-      }
-    },
-    FUN.VALUE = NA_character_,
-    USE.NAMES = FALSE
-  )
+  if (!inherits(class, "AsIs")) {
+    class <- vapply(
+      class,
+      function(x) {
+        # fmt: skip
+        if (
+          inherits(x, "AsIs") ||
+          grepl(paste0(type, "$"), x, ignore.case = TRUE)
+        ) {
+          x
+        } else {
+          sprintf("%s_%s", x, type)
+        }
+      },
+      FUN.VALUE = NA_character_,
+      USE.NAMES = FALSE
+    )
+  }
 
   if (!isFALSE(package)) {
     if (isTRUE(package)) {

@@ -4,7 +4,7 @@ test_that("new_condition() conditions", {
     "don't change this"
   )
 
-  expect_error(new_condition(class = 1:2), class = "fuj:input_error")
+  expect_error(new_condition(class = 1:2), class = "fuj:class_error")
   expect_error(
     new_condition(class = "foo", package = NA),
     class = "fuj:value_error"
