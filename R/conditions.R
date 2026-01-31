@@ -13,7 +13,7 @@ verbose_message <- function(msg, call = NULL) {
   } else {
     new_condition(
       msg = msg,
-      class = "verbose_message",
+      class = "verbose",
       type = "message",
       package = "fuj",
       call = call
@@ -26,7 +26,7 @@ verbose_message <- function(msg, call = NULL) {
 input_error <- function(msg = "invalid input") {
   new_condition(
     msg = msg,
-    class = "input_error",
+    class = "input",
     type = "error",
     package = "fuj"
   )
@@ -35,7 +35,7 @@ input_error <- function(msg = "invalid input") {
 value_error <- function(msg = "invalid value") {
   new_condition(
     msg = msg,
-    class = "value_error",
+    class = "value",
     type = "error",
     package = "fuj"
   )
@@ -45,7 +45,7 @@ value_error <- function(msg = "invalid value") {
 class_error <- function(msg = "invalid class", ...) {
   new_condition(
     msg = c(msg, ...),
-    class = "class_error",
+    class = "class",
     type = "error",
     package = "fuj"
   )
@@ -54,7 +54,7 @@ class_error <- function(msg = "invalid class", ...) {
 type_error <- function(msg = "invalid type", ...) {
   new_condition(
     msg = c(msg, ...),
-    class = "type_error",
+    class = "type",
     type = "error",
     package = "fuj"
   )
@@ -66,7 +66,7 @@ interactive_error <- function(
 ) {
   new_condition(
     msg = c(msg, ...),
-    class = "interactive_error",
+    class = "interactive",
     type = "error",
     package = "fuj"
   )
@@ -75,7 +75,7 @@ interactive_error <- function(
 namespace_error <- function(package) {
   new_condition(
     msg = sprintf("No package found called '%s'", as.character(package)),
-    class = c("namespace_error", "packageNotFoundError"),
+    class = list("namespace", I("packageNotFoundError")),
     type = "error"
   )
 }
@@ -85,7 +85,7 @@ namespace_error <- function(package) {
 development_warning <- function(...) {
   new_condition(
     msg = c(...),
-    class = "development_warning",
+    class = "development",
     type = "warning",
     package = "fuj"
   )
@@ -94,7 +94,7 @@ development_warning <- function(...) {
 deprecated_warning <- function(...) {
   new_condition(
     msg = c(...),
-    class = c("deprecated_warning", "deprecatedWarning"),
+    class = list("deprecated", I("deprecatedWarning")),
     type = "warning",
     package = "fuj"
   )

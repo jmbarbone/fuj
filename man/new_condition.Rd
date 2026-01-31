@@ -6,9 +6,10 @@
 \usage{
 new_condition(
   msg = "",
-  class = NULL,
-  call = NULL,
+  class = "fuj_condition",
   type = c("error", "warning", "message", "condition"),
+  ...,
+  call = NULL,
   message = msg,
   package = find_package(),
   pkg
@@ -17,12 +18,17 @@ new_condition(
 \arguments{
 \item{msg, message}{A message to print}
 
-\item{class}{Character string of a single condition class}
-
-\item{call}{A call expression}
+\item{class}{Character string of a single condition class.  If \code{class} does
+not end with the value used in \code{class}, the suffix is appended with an
+underscore (\verb{_}).  This can be ignored if passing \code{class} as an \code{AsIs}
+vector (i.e., \code{I("my_class")}).}
 
 \item{type}{The type (additional class) of condition: \verb{error"}, \code{"warning"},
 \code{"message"}, or \code{NA}, which is treated as \code{NULL}.}
+
+\item{...}{Ignored}
+
+\item{call}{A call expression}
 
 \item{package}{Control or adding package name to condition.  If \code{TRUE} will
 try to get the current package name (via \code{.packageName}) from, presumably,

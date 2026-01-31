@@ -1,5 +1,9 @@
 test_that("new_condition() conditions", {
-  expect_error(new_condition(), class = "fuj:input_error")
+  expect_s3_class(
+    new_condition("", I("don't change this")),
+    "don't change this"
+  )
+
   expect_error(new_condition(class = 1:2), class = "fuj:input_error")
   expect_error(
     new_condition(class = "foo", package = NA),

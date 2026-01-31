@@ -52,7 +52,7 @@ colons_error <- function(package, name, n) {
       strrep(":", n),
       as.character(name)
     ),
-    class = "colons_error",
+    class = "colons",
     type = "error",
     package = "fuj"
   )

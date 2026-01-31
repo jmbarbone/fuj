@@ -501,7 +501,7 @@ vapping_handler <- function(expr, fun) {
 
       cond <- struct(
         list(msg, environment(fun)$..call),
-        class = c("vap_error", class(con)),
+        class = list("vap", I(class(con))),
         index = environment(fun)$..i,
         names = c("message", "call")
       )
