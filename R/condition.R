@@ -9,10 +9,14 @@
 #'   created object.
 #'
 #' @param msg,message A message to print
-#' @param class Character string of a single condition class
-#' @param call A call expression
+#' @param class Character string of a single condition class.  If `class` does
+#'   not end with the value used in `class`, the suffix is appended with an
+#'   underscore (`_`).  This can be ignored if passing `class` as an `AsIs`
+#'   vector (i.e., `I("my_class")`).
 #' @param type The type (additional class) of condition: `error"`, `"warning"`,
 #'   `"message"`, or `NA`, which is treated as `NULL`.
+#' @param ... Ignored
+#' @param call A call expression
 #' @param package Control or adding package name to condition.  If `TRUE` will
 #'   try to get the current package name (via `.packageName`) from, presumably,
 #'   the developmental package.  If `FALSE` or `NULL`, no package name is
@@ -34,9 +38,10 @@
 #' @export
 new_condition <- function(
   msg = "",
-  class = NULL,
-  call = NULL,
+  class = "fuj_condition",
   type = c("error", "warning", "message", "condition"),
+  ...,
+  call = NULL,
   message = msg,
   package = find_package(),
   pkg
@@ -51,8 +56,12 @@ new_condition <- function(
     package <- pkg
   }
 
-  if (!length(class) == 1L && !is.character(class)) {
-    stop(input_error("`class` must be a single length character"))
+  # fmt: skip
+  if (!(
+    is.list(class) ||
+    (length(class) == 1L && is.character(class))
+  )) {
+    stop(input_error("`class` must be a single length character or list"))
   }
 
   force(package)
@@ -61,7 +70,24 @@ new_condition <- function(
   }
   type <- as.character(type)
   type <- match.arg(type)
-  class <- as.character(class)
+
+  class <- as.list(class)
+  class <- vapply(
+    class,
+    function(x) {
+      # fmt: skip
+      if (
+        inherits(x, "AsIs") ||
+        grepl(paste0(type, "$"), x, ignore.case = TRUE)
+      ) {
+        x
+      } else {
+        sprintf("%s_%s", x, type)
+      }
+    },
+    FUN.VALUE = NA_character_,
+    USE.NAMES = FALSE
+  )
 
   if (!isFALSE(package)) {
     if (isTRUE(package)) {
