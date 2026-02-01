@@ -4,6 +4,8 @@ with_options <- function(op, code) {
   force(code)
 }
 
-catln <- function(...) {
-  cat(..., "\n", sep = "")
+pairlist_to_string <- function(pair) {
+  nms <- names(pair)
+  vals <- as.character(pair)
+  paste(nms, "=", vals, collapse = ", ")
 }

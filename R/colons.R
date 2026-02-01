@@ -46,7 +46,7 @@ NULL
 
 colons_error <- function(package, name, n) {
   new_condition(
-    msg = sprintf(
+    message = sprintf(
       "`%s%s%s` not found",
       as.character(package),
       strrep(":", n),

@@ -8,7 +8,7 @@
 #'   be successful once the package is build and functions can then utilize this
 #'   created object.
 #'
-#' @param msg,message A message to print
+#' @param message A message to print
 #' @param class Character string of a single condition class.  If `class` does
 #'   not end with the value used in `class`, the suffix is appended with an
 #'   underscore (`_`).  This can be ignored if passing `class` as an `AsIs`
@@ -23,6 +23,7 @@
 #'   prepended to the condition class as a new class.  Otherwise, a package can
 #'   be explicitly set with a single length character.
 #' @param pkg Deprecated, see `package`
+#' @param msg Deprecated, see `message`
 #' @return A `condition` with the classes specified from `class` and `type`
 #' @examples
 #' # empty condition
@@ -37,13 +38,13 @@
 #' try(stop(x))
 #' @export
 new_condition <- function(
-  msg = "",
+  message = "",
   class = "fuj_condition",
   type = c("error", "warning", "message", "condition"),
   ...,
   call = NULL,
-  message = msg,
   package = find_package(),
+  msg,
   pkg
 ) {
   if (!missing(pkg)) {
@@ -56,6 +57,27 @@ new_condition <- function(
     package <- pkg
   }
 
+  if (!missing(msg)) {
+    warning(
+      deprecated_warning(
+        "`new_condition(msg)` is deprecated; use `new_condition(message)`",
+        " instead"
+      )
+    )
+    message <- msg
+  }
+
+  if (...length() > 0L) {
+    mc <- match.call(expand.dots = FALSE)$...
+    warning(
+      dots_warning(
+        "`...` is ignored in `new_condition()`: ",
+        pairlist_to_string(mc)
+      )
+    )
+    return()
+  }
+
   # fmt: skip
   if (!inherits(class, c("list", "character", "AsIs"))) {
     stop(class_error("`class` must be a list, character, or AsIs"))
@@ -65,6 +87,7 @@ new_condition <- function(
   if (is.null(package)) {
     package <- FALSE
   }
+
   type <- as.character(type)
   type <- match.arg(type)
 
@@ -73,12 +96,14 @@ new_condition <- function(
       class,
       function(x) {
         # fmt: skip
-        if (
+        if (is.null(x)) {
+          x <- "condition" # removed
+        } else if (
           inherits(x, "AsIs") ||
           grepl(paste0(type, "$"), x, ignore.case = TRUE)
         ) {
-          x
-        } else {
+          as.character(x)
+        } else  {
           sprintf("%s_%s", x, type)
         }
       },
@@ -86,6 +111,8 @@ new_condition <- function(
       USE.NAMES = FALSE
     )
   }
+
+  class <- unique(class)
 
   if (!isFALSE(package)) {
     if (isTRUE(package)) {

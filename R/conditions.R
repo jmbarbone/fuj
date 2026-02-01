@@ -1,7 +1,7 @@
 # messages ----------------------------------------------------------------
 
 # nolint next: object_name_linter.
-verbose_message <- function(msg, call = NULL) {
+verbose_message <- function(message, call = NULL) {
   do_verbose <- getOption("fuj.verbose", getOption("verbose"))
   if (is.function(do_verbose)) {
     do_verbose <- do_verbose()
@@ -12,7 +12,7 @@ verbose_message <- function(msg, call = NULL) {
     bare_condition("fuj:verbose_condition")
   } else {
     new_condition(
-      msg = msg,
+      message = message,
       class = "verbose",
       type = "message",
       package = "fuj",
@@ -23,18 +23,18 @@ verbose_message <- function(msg, call = NULL) {
 
 # errors ------------------------------------------------------------------
 
-input_error <- function(msg = "invalid input") {
+input_error <- function(message = "invalid input") {
   new_condition(
-    msg = msg,
+    message = message,
     class = "input",
     type = "error",
     package = "fuj"
   )
 }
 
-value_error <- function(msg = "invalid value") {
+value_error <- function(message = "invalid value") {
   new_condition(
-    msg = msg,
+    message = message,
     class = "value",
     type = "error",
     package = "fuj"
@@ -42,18 +42,18 @@ value_error <- function(msg = "invalid value") {
 }
 
 # NOTE currently not being used
-class_error <- function(msg = "invalid class", ...) {
+class_error <- function(message = "invalid class", ...) {
   new_condition(
-    msg = c(msg, ...),
+    message = c(message, ...),
     class = "class",
     type = "error",
     package = "fuj"
   )
 }
 
-type_error <- function(msg = "invalid type", ...) {
+type_error <- function(message = "invalid type", ...) {
   new_condition(
-    msg = c(msg, ...),
+    message = c(message, ...),
     class = "type",
     type = "error",
     package = "fuj"
@@ -61,11 +61,11 @@ type_error <- function(msg = "invalid type", ...) {
 }
 
 interactive_error <- function(
-  msg = "must be used in an interactive session",
+  message = "must be used in an interactive session",
   ...
 ) {
   new_condition(
-    msg = c(msg, ...),
+    message = c(message, ...),
     class = "interactive",
     type = "error",
     package = "fuj"
@@ -74,7 +74,7 @@ interactive_error <- function(
 
 namespace_error <- function(package) {
   new_condition(
-    msg = sprintf("No package found called '%s'", as.character(package)),
+    message = sprintf("No package found called '%s'", as.character(package)),
     class = list("namespace", I("packageNotFoundError")),
     type = "error"
   )
@@ -84,7 +84,7 @@ namespace_error <- function(package) {
 
 development_warning <- function(...) {
   new_condition(
-    msg = c(...),
+    message = c(...),
     class = "development",
     type = "warning",
     package = "fuj"
@@ -93,13 +93,21 @@ development_warning <- function(...) {
 
 deprecated_warning <- function(...) {
   new_condition(
-    msg = c(...),
+    message = c(...),
     class = list("deprecated", I("deprecatedWarning")),
     type = "warning",
     package = "fuj"
   )
 }
 
+dots_warning <- function(...) {
+  new_condition(
+    message = c(...),
+    class = "dots",
+    type = "warning",
+    package = "fuj"
+  )
+}
 
 # conditions --------------------------------------------------------------
 

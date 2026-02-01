@@ -73,7 +73,7 @@ do_require_namespace <- function(package, version, operator) {
 
 namespace_version_error <- function(package, version, operator, found) {
   new_condition(
-    msg = sprintf(
+    message = sprintf(
       "Package version requirement not meet:\n%s: %s %s %s",
       package,
       format(found),
