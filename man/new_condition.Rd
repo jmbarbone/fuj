@@ -5,18 +5,18 @@
 \title{New condition}
 \usage{
 new_condition(
-  msg = "",
+  message = "",
   class = "fuj_condition",
   type = c("error", "warning", "message", "condition"),
   ...,
   call = NULL,
-  message = msg,
   package = find_package(),
+  msg,
   pkg
 )
 }
 \arguments{
-\item{msg, message}{A message to print}
+\item{message}{A message to print}
 
 \item{class}{Character string of a single condition class.  If \code{class} does
 not end with the value used in \code{class}, the suffix is appended with an
@@ -35,6 +35,8 @@ try to get the current package name (via \code{.packageName}) from, presumably,
 the developmental package.  If \code{FALSE} or \code{NULL}, no package name is
 prepended to the condition class as a new class.  Otherwise, a package can
 be explicitly set with a single length character.}
+
+\item{msg}{Deprecated, see \code{message}}
 
 \item{pkg}{Deprecated, see \code{package}}
 }
