@@ -111,8 +111,6 @@ dots_warning <- function(...) {
 
 # conditions --------------------------------------------------------------
 
-# inform("this thing") |> suppress_info()
-
 inform <- function(..., .bare = FALSE, .class = NULL) {
   withRestarts(
     expr = {

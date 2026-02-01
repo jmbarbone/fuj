@@ -36,8 +36,6 @@ yes_no <- function(
     ))
     # apply on exit so we can test continuous bad responses
     on.exit(options(fuj..yes_no.interactive_override = NULL))
-    # do not produce any messages
-    # yes_no_inform <- function(...) invisible()
   }
 
   # basically a rewrite of yesno::yesno()
