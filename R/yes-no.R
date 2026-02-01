@@ -32,12 +32,12 @@ yes_no <- function(
     warning(development_warning(
       "options(fuj..yes_no.interactive_override) was set to ",
       "TRUE.\n This should only be set by developers for testing.\n",
-      "Value is being reset to NULL."
+      "Value will be reset to NULL."
     ))
     # apply on exit so we can test continuous bad responses
     on.exit(options(fuj..yes_no.interactive_override = NULL))
     # do not produce any messages
-    cat <- function(...) invisible()
+    # yes_no_inform <- function(...) invisible()
   }
 
   # basically a rewrite of yesno::yesno()
@@ -67,8 +67,7 @@ yes_no <- function(
     if (length(na)) sample(na, 1)
   )
 
-  cat(msg)
-  catln()
+  yes_no_inform(msg)
   attempt <- 0
 
   repeat {
@@ -82,7 +81,7 @@ yes_no <- function(
     }
 
     if (attempt %% 5L == 0L) {
-      cat(sprintf("[%i] %s\n", seq_along(choices), choices), sep = "")
+      yes_no_inform(sprintf("[%i] %s\n", seq_along(choices), choices))
     }
 
     attempt <- attempt + 1L
@@ -91,7 +90,7 @@ yes_no <- function(
     res <- wuffle(as.integer(res))
 
     if (is.na(res)) {
-      catln("... enter a numeric response")
+      yes_no_inform("... enter a numeric response")
       next
     }
 
@@ -113,6 +112,10 @@ yes_no <- function(
       return(NA)
     }
 
-    catln("... select an appropriate item or 0 to exit")
+    yes_no_inform("... select an appropriate item or 0 to exit")
   }
+}
+
+yes_no_inform <- function(...) {
+  inform(..., .bare = TRUE, .class = I("yes_no_inform"))
 }
