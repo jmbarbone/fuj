@@ -27,11 +27,11 @@
 #' @return A `condition` with the classes specified from `class` and `type`
 #' @examples
 #' # empty condition
-#' x <- new_condition("informative error message", class = "foo")
+#' x <- new_condition("informative error message", class = "foo", type = "error")
 #' try(stop(x))
 #'
 #' # with pkg
-#' x <- new_condition("msg", class = "foo", package = "bar")
+#' x <- new_condition("msg", class = "foo", type = "error", package = "bar")
 #' # class contains multiple identifiers, including a "bar:fooError"
 #' class(x)
 #' # message contains package information at the end
@@ -40,7 +40,7 @@
 new_condition <- function(
   message = "",
   class = "fuj_condition",
-  type = c("error", "warning", "message", "condition"),
+  type = c("condition", "error", "warning", "message"),
   ...,
   call = NULL,
   package = find_package(),

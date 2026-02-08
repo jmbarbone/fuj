@@ -1,4 +1,5 @@
-test_that("new_condition(I(class))", {
+test_that("new_condition() works", {
+  expect_s3_class(new_condition(), "fuj_condition")
   expect_s3_class(
     new_condition("", I("don't change this")),
     "don't change this"
