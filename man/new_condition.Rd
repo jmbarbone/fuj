@@ -55,7 +55,11 @@ created object.
 }
 \examples{
 # empty condition
-x <- new_condition("informative error message", class = "foo", type = "error")
+x <- new_condition(
+  "informative error message",
+  class = "foo",
+  type = "error"
+ )
 try(stop(x))
 
 # with pkg
