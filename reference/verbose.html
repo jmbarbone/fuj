@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9005</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Verbose</h1>
-      <small class="dont-index">Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.2.2.9004/R/verbose.R" class="external-link"><code>R/verbose.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jmbarbone/fuj/blob/main/R/verbose.R" class="external-link"><code>R/verbose.R</code></a></small>
       <div class="d-none name"><code>verbose.Rd</code></div>
     </div>
 
@@ -81,7 +81,7 @@ when the function is evaluate, but is reset to its original value on exit.</p></
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>None, called for its side-effects.  When conditions are met, will
-signal a <code>verboseMessage</code> condition.</p>
+signal a <code>verbose_message</code> condition.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -100,19 +100,23 @@ will be used for conditional evaluation.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>verbose <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">verbose</span><span class="op">(</span><span class="st">"message printed"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> verbose: message printed</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> &lt;verbose_message&gt; verbose: message printed</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> package:fuj</span>
 <span class="r-in"><span><span class="fu">verbose</span><span class="op">(</span><span class="st">"multiple lines "</span>, <span class="st">"will be "</span>, <span class="st">"combined"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> verbose: multiple lines will be combined</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> &lt;verbose_message&gt; verbose: multiple lines will be combined</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> package:fuj</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>fuj.verbose <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">verbose</span><span class="op">(</span><span class="st">"function will evaluate"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> verbose: function will evaluate</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> &lt;verbose_message&gt; verbose: function will evaluate</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> package:fuj</span>
 <span class="r-in"><span><span class="fu">verbose</span><span class="op">(</span><span class="cn">NULL</span><span class="op">)</span> <span class="co"># nothing</span></span></span>
 <span class="r-in"><span><span class="fu">verbose</span><span class="op">(</span><span class="cn">NULL</span>, <span class="st">"something"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> verbose: something</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> &lt;verbose_message&gt; verbose: something</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> package:fuj</span>
 <span class="r-in"><span><span class="fu">verbose</span><span class="op">(</span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="st">"`if` returns `NULL` when not `TRUE`, which makes for additional control"</span></span></span>
+<span class="r-in"><span>  <span class="st">"`if` returns `NULL` when not `TRUE`, which makes for additional control"</span></span></span>
 <span class="r-in"><span><span class="op">}</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
@@ -121,7 +125,8 @@ will be used for conditional evaluation.</p>
 <span class="r-in"><span><span class="fu">verb</span><span class="op">(</span><span class="st">"will not show"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>fuj.foo.bar <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">verb</span><span class="op">(</span><span class="st">"will show"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> verbose: will show</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> &lt;verbose_message&gt; verbose: will show</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> package:fuj</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

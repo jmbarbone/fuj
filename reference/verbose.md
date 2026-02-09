@@ -47,7 +47,7 @@ make_verbose(opt)
 ## Value
 
 None, called for its side-effects. When conditions are met, will signal
-a `verboseMessage` condition.
+a `verbose_message` condition.
 
 ## Details
 
@@ -66,19 +66,23 @@ verbose("will not show")
 
 options(verbose = TRUE)
 verbose("message printed")
-#> verbose: message printed
+#> <verbose_message> verbose: message printed
+#> package:fuj
 verbose("multiple lines ", "will be ", "combined")
-#> verbose: multiple lines will be combined
+#> <verbose_message> verbose: multiple lines will be combined
+#> package:fuj
 options(op)
 
 op <- options(fuj.verbose = function() TRUE)
 verbose("function will evaluate")
-#> verbose: function will evaluate
+#> <verbose_message> verbose: function will evaluate
+#> package:fuj
 verbose(NULL) # nothing
 verbose(NULL, "something")
-#> verbose: something
+#> <verbose_message> verbose: something
+#> package:fuj
 verbose(if (FALSE) {
-"`if` returns `NULL` when not `TRUE`, which makes for additional control"
+  "`if` returns `NULL` when not `TRUE`, which makes for additional control"
 })
 options(op)
 
@@ -87,5 +91,6 @@ verb <- make_verbose("fuj.foo.bar")
 verb("will not show")
 options(fuj.foo.bar = TRUE)
 verb("will show")
-#> verbose: will show
+#> <verbose_message> verbose: will show
+#> package:fuj
 ```

@@ -90,7 +90,7 @@ head(ls("include:fuj"), 20)
 #>  [5] "%len%"           "%names%"         "%out%"           "%wi%"           
 #>  [9] "%wo%"            "%||%"            "%|||%"           "+.file_path"    
 #> [13] "/.file_path"     "add"             "any_match"       "attach2"        
-#> [17] "attach_warn"     "check_conflicts" "collapse"        "colons_check"   
+#> [17] "attach_warn"     "bare_condition"  "check_conflicts" "class_error"    
 detach("include:fuj", character.only = TRUE)
 
 # include a single export

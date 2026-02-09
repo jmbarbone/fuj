@@ -9,8 +9,7 @@ See [base::Extract](https://rdrr.io/r/base/Extract.html)
 ## Examples
 
 ``` r
-df <- quick_dfl(a = 1:5, b = 6:10)
-#> Warning: quick_dfl(...) is deprecated in {fuj} 0.9.0 and will be removed in a future version.  Please use quick_df(list(...)), dataframe(...) instead
+df <- quick_df(list(a = 1:5, b = 6:10))
 # alias of `[`
 subset1(df, 1)
 #>   a

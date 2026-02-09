@@ -1,8 +1,9 @@
 # Quick DF
 
 This is a speedier implementation of
-[`as.data.frame()`](https://rdrr.io/r/base/as.data.frame.html) but does
-not provide the same sort of checks. It should be used with caution.
+[`base::as.data.frame()`](https://rdrr.io/r/base/as.data.frame.html) but
+does not provide the same sort of checks. It should be used with
+caution.
 
 ## Usage
 
@@ -23,14 +24,15 @@ quick_dfl(...)
 - ...:
 
   Columns as `tag = value` (passed to
-  [`list()`](https://rdrr.io/r/base/list.html))
+  [`lst()`](https://jmbarbone.github.io/fuj/reference/list0.md))
 
 ## Value
 
 A `data.frame`; if `x` is `NULL` a `data.frame` with `0` rows and `0`
 columns is returned (similar to calling
-[`data.frame()`](https://rdrr.io/r/base/data.frame.html) but faster).
-`empty_df()` returns a `data.frame` with `0` rows and `0` columns.
+[`base::data.frame()`](https://rdrr.io/r/base/data.frame.html) but
+faster). `empty_df()` returns a `data.frame` with `0` rows and `0`
+columns.
 
 ## Examples
 

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9005</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.2.2.9004/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/jmbarbone/fuj/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
@@ -54,12 +54,40 @@
 <li>
 <code>+</code> and <code>/</code> methods added for <code>file_path</code> classes, allowing path creation (e.g., <code>fp("folder") / "subfolder" / "file" + "extension"</code>) <a href="https://github.com/jmbarbone/fuj/issues/89" class="external-link">#89</a>
 </li>
+</ul><div class="section level3">
+<h3 id="changes-in-conditions-development-version">Changes in <code>conditions</code>
+<a class="anchor" aria-label="anchor" href="#changes-in-conditions-development-version"></a></h3>
+<p>General improvements for <code>conditions</code> <a href="https://github.com/jmbarbone/fuj/issues/90" class="external-link">#90</a></p>
+<ul><li>
+<code>BREAKING</code> <code>new_condition(type)</code> now defaults to <code>"condition"</code> rather than <code>"error"</code>
+</li>
 <li>
-<code>vap</code> family functions added <a href="https://github.com/jmbarbone/fuj/issues/83" class="external-link">#83</a>
+<code><a href="../reference/new_condition.html">new_condition()</a></code> transformations on <code>class</code> have been adjusted
+<ul><li>classes are no longer convert to <code>camelCase</code>; likely, the base <code>fujCondition</code> class is now <code>fuj_condition</code>
+</li>
+<li>classes no longer <em>need</em> their <code>type</code> specified (e.g., <code>my_erro</code>, <code>my_warning</code>); the value of the <code>type</code> field is automatically appended to each element in <code>class</code> if it doesn’t already exist. This behavior can be controlled by using an <code>AsIs</code> class (e.g., class = <code>I("exactly_this_class")</code>)</li>
+<li>
+<code>class</code> can now be a <code>list</code> for more control (e.g., <code>class = list("value", I("exact value"))</code>)</li>
+<li>
+<code>new_condition(pkg)</code> is deprecated in favor of <code>new_condition(package)</code>
+</li>
+<li>
+<code>new_condition(msg)</code> is deprecated in favor of <code>new_condition(message)</code>; <code>message</code> is now the first argument</li>
+<li>
+<code><a href="../reference/new_condition.html">new_condition()</a></code> now only accepts <code>message</code>, <code>class</code>, and <code>type</code> as positional arguments with the include of <code>...</code>; all other arguments must be explicitly named</li>
+</ul></li>
+<li>internally, <a href="https://jmbarbone.github.io/fuj/">fuj</a> now simplifies use of <code><a href="../reference/new_condition.html">new_condition()</a></code>
+<ul><li>many conditions within <a href="https://jmbarbone.github.io/fuj/">fuj</a> have been simplified through the use of <em>generic</em> condition classes (e.g., <code>input_error</code>, <code>type_error</code>, <code>class_error</code>)</li>
+<li>
+<code>verbose_message</code> will try to avoid printing a message when <code>options(fuj.verbose = FALSE)</code> is set</li>
+</ul></li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-vap-family-development-version">New <code>vap</code> family<a class="anchor" aria-label="anchor" href="#new-vap-family-development-version"></a></h3>
+<p>Includes new <code>vap</code> family functions; essentially familiar wrappers for <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply()</a></code> <a href="https://github.com/jmbarbone/fuj/issues/83" class="external-link">#83</a></p>
 <ul><li>
 <code>vaps</code> are vector apply functions, with certain presets to assist with common cases</li>
 <li>all <code>vap</code> functions have type-stable variants:</li>
-</ul></li>
 </ul><p>The below table shows inputs for <code>vap</code> functions and how they behave with the provided functions (<code>f</code>). Arguments to <code>f())</code> can use any name.</p>
 <table class="table"><thead><tr class="header"><th align="left">
 <code>vap</code> function</th>
@@ -105,6 +133,7 @@
 <td>POSIXct</td>
 <td><code>as.POSIXct(as.vector(_, "double"), origin = "1970-01-01", tz = "UTC")</code></td>
 </tr></tbody></table><p><em>Note</em>: these variants do not perform <em>checks</em> on output results, but rather coerce the output to the specified type.</p>
+</div>
 </div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.2.2" id="fuj-022">fuj 0.2.2<a class="anchor" aria-label="anchor" href="#fuj-022"></a></h2><p class="text-muted">CRAN release: 2025-04-23</p>
