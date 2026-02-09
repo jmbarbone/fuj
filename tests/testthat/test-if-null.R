@@ -10,6 +10,7 @@ test_that("%|||%", {
   expect_identical(NA       %|||% 1L, 1L)
   expect_identical(double() %|||% 1L, 1L)
   expect_identical(NULL     %|||% 1L, 1L)
+  expect_identical(2L       %|||% 1L, 2L)
 })
 
 # fmt: skip

@@ -2,11 +2,11 @@ test_that("%colons%", {
   expect_identical(`%colons%`, `%:::%`)
 
   # errors
-  expect_error("fuj" %:::% "not_in_fuj", class = "colonsError")
-  expect_error("fuj" %::% "colons_example", class = "colonsError")
-  expect_error("1" %::% "foo", class = "namespaceError")
-  expect_error(1 %::% "foo", class = "colonsPackageNameError")
-  expect_error(c("a", "b") %::% "foo", class = "colonsPackageNameError")
+  expect_error("fuj" %:::% "not_in_fuj", class = "fuj:colons_error")
+  expect_error("fuj" %::% "colons_example", class = "fuj:colons_error")
+  expect_error("1" %::% "foo", class = "fuj:namespace_error")
+  expect_error(1 %::% "foo", class = "fuj:input_error")
+  expect_error(c("a", "b") %::% "foo", class = "fuj:input_error")
 
   # successes
   expect_identical("fuj" %:::% "colons_example", "Hello, world")

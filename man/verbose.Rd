@@ -33,7 +33,7 @@ when the function is evaluate, but is reset to its original value on exit.}
 }
 \value{
 None, called for its side-effects.  When conditions are met, will
-signal a \code{verboseMessage} condition.
+signal a \code{verbose_message} condition.
 }
 \description{
 Simple verbose condition handling
@@ -61,7 +61,7 @@ verbose("function will evaluate")
 verbose(NULL) # nothing
 verbose(NULL, "something")
 verbose(if (FALSE) {
-"`if` returns `NULL` when not `TRUE`, which makes for additional control"
+  "`if` returns `NULL` when not `TRUE`, which makes for additional control"
 })
 options(op)
 

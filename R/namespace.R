@@ -31,9 +31,7 @@ do_require_namespace <- function(package, version, operator) {
 
   tryCatch(
     loadNamespace(package),
-    packageNotFoundError = function(e) {
-      stop(cond_namespace(package))
-    }
+    packageNotFoundError = function(e) stop(namespace_error(package))
   )
 
   if (identical(operator, character())) {
@@ -59,36 +57,31 @@ do_require_namespace <- function(package, version, operator) {
     # fmt: skip
     !switch(
       operator,
-      `>`  = found >  version,
+      `>` = found > version,
       `>=` = found >= version,
       `==` = found == version,
       `<=` = found <= version,
-      `<`  = found <  version,
+      `<` = found < version,
       any = TRUE
     )
   ) {
-    stop(cond_namespace_version(package, version, operator, found))
+    stop(namespace_version_error(package, version, operator, found))
   }
 }
 
 # conditions --------------------------------------------------------------
 
-cond_namespace <- function(package) {
+namespace_version_error <- function(package, version, operator, found) {
   new_condition(
-    msg = sprintf("No package found called '%s'", as.character(package)),
-    class = "namespace"
-  )
-}
-
-cond_namespace_version <- function(package, version, operator, found) {
-  new_condition(
-    msg = sprintf(
+    message = sprintf(
       "Package version requirement not meet:\n%s: %s %s %s",
       package,
       format(found),
       operator,
       format(version)
     ),
-    class = "namespace_version"
+    class = c("namespace_version", "namespace"),
+    package = "fuj",
+    type = "error"
   )
 }

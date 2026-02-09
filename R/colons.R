@@ -26,7 +26,7 @@ NULL
   colons_check(package, name)
   tryCatch(
     getExportedValue(asNamespace(package), name),
-    error = function(e) stop(cond_colons(package, name, 2))
+    error = function(e) stop(colons_error(package, name, 2))
   )
 }
 
@@ -36,7 +36,7 @@ NULL
   colons_check(package, name)
   tryCatch(
     get(name, envir = asNamespace(package)),
-    error = function(e) stop(cond_colons(package, name, 3))
+    error = function(e) stop(colons_error(package, name, 3))
   )
 }
 
@@ -44,15 +44,17 @@ NULL
 #' @export
 `%colons%` <- `%:::%`
 
-cond_colons <- function(package, name, n) {
+colons_error <- function(package, name, n) {
   new_condition(
-    msg = sprintf(
+    message = sprintf(
       "`%s%s%s` not found",
       as.character(package),
       strrep(":", n),
       as.character(name)
     ),
-    class = "colons"
+    class = "colons",
+    type = "error",
+    package = "fuj"
   )
 }
 
@@ -68,17 +70,11 @@ colons_check <- function(package, name) {
   ))
 
   if (!isTRUE(ok)) {
-    stop(cond_colons_package_name())
+    stop(input_error("`package` and `name` must be strings of length 1"))
   }
 
   require_namespace(package)
 }
 
+# used for documentation and testing
 colons_example <- "Hello, world"
-
-cond_colons_package_name <- function() {
-  new_condition(
-    msg = "`package` and `name` must be strings of length 1",
-    class = "colons_package_name"
-  )
-}

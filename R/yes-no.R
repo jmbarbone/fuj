@@ -21,16 +21,21 @@ yes_no <- function(
   if (!is_override) {
     if (!interactive()) {
       if (noninteractive_error) {
-        stop(cond_yes_no_interactive())
+        stop(interactive_error(
+          "yes_no() must be used in an interactive session when",
+          "`noninteractive_error` is `TRUE`"
+        ))
       }
       return(NA)
     }
   } else {
-    warning(cond_yes_no_interactive_override())
+    warning(development_warning(
+      "options(fuj..yes_no.interactive_override) was set to ",
+      "TRUE.\n This should only be set by developers for testing.\n",
+      "Value will be reset to NULL."
+    ))
     # apply on exit so we can test continuous bad responses
     on.exit(options(fuj..yes_no.interactive_override = NULL))
-    # do not produce any messages
-    cat <- function(...) invisible()
   }
 
   # basically a rewrite of yesno::yesno()
@@ -60,17 +65,21 @@ yes_no <- function(
     if (length(na)) sample(na, 1)
   )
 
-  cat(msg)
-  cat("\n")
+  yes_no_inform(msg)
   attempt <- 0
 
   repeat {
-    if (attempt > 20) {
-      stop("What are you doing?")
+    if (attempt == 20) {
+      stop(new_condition(
+        "I'm stumped.  What are you doing?",
+        class = "twenty_questions",
+        type = "error",
+        package = "fuj"
+      ))
     }
 
     if (attempt %% 5L == 0L) {
-      cat(sprintf("[%i] %s\n", seq_along(choices), choices), sep = "")
+      yes_no_inform(sprintf("[%i] %s\n", seq_along(choices), choices))
     }
 
     attempt <- attempt + 1L
@@ -79,7 +88,7 @@ yes_no <- function(
     res <- wuffle(as.integer(res))
 
     if (is.na(res)) {
-      cat("... enter a numeric response\n")
+      yes_no_inform("... enter a numeric response")
       next
     }
 
@@ -101,29 +110,10 @@ yes_no <- function(
       return(NA)
     }
 
-    cat("... select an appropriate item or 0 to exit\n")
+    yes_no_inform("... select an appropriate item or 0 to exit")
   }
 }
 
-cond_yes_no_interactive <- function() {
-  new_condition(
-    collapse(
-      "yes_no() must be used in an interactive session when",
-      "`noninteractive_error` is `TRUE`"
-    ),
-    "yes_no_interactive"
-  )
-}
-
-# nolint next: object_length_linter.
-cond_yes_no_interactive_override <- function() {
-  new_condition(
-    collapse(
-      "options(fuj..yes_no.interactive_override) was set to TRUE.",
-      "\n This should only be set by developers for testing.",
-      "Value is being reset to NULL."
-    ),
-    "yes_no_interactive_override",
-    type = "warning"
-  )
+yes_no_inform <- function(...) {
+  inform(..., .bare = TRUE, .class = I("yes_no_inform"))
 }

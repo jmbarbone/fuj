@@ -60,10 +60,5 @@ do_muffle <- function(
     return(out)
   }
 
-  stop(cond_muffle(type))
-}
-
-cond_muffle <- function(class = c("muffle", "wuffle")) {
-  class <- match.arg(class)
-  new_condition("only either `expr` or `fun` must be used", class = class)
+  stop(input_error("only either `expr` or `fun` must be used"))
 }

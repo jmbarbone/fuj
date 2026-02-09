@@ -27,11 +27,11 @@ progress_bar <- function(
     char <- as.character(char)
 
     if (!length(char) == 1) {
-      stop("'char' must be a single character")
+      stop(value_error("'char' must be a single character"))
     }
 
     if (is.na(char) || self$nw == 0) {
-      stop("'char' must have a non-zero width")
+      stop(value_error("'char' must have a non-zero width"))
     }
 
     if (is.null(width)) {
@@ -53,6 +53,7 @@ progress_bar <- function(
         return(invisible(self))
       }
 
+      # TODO as 'inform()"?
       cat(paste0("\r  |", strrep(" ", self$nw * width + 6)), file = self$con)
       cat(
         paste(

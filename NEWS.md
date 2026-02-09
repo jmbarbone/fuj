@@ -7,9 +7,30 @@
 * `list0()`'s functionality to ignore empty inputs can be disabled if `options(fuj.list.active = FALSE)` before `{fuj}` is loaded [#91](https://github.com/jmbarbone/fuj/issues/91)
 * `set_file_ext()` and `file_ext<-()` added for controlling file extensions [#89](https://github.com/jmbarbone/fuj/issues/89)
 * `+` and `/` methods added for `file_path` classes, allowing path creation (e.g., `fp("folder") / "subfolder" / "file" + "extension"`) [#89](https://github.com/jmbarbone/fuj/issues/89)
-* `vap` family functions added [#83](https://github.com/jmbarbone/fuj/issues/83)
-  * `vaps` are vector apply functions, with certain presets to assist with common cases
-  * all `vap` functions have type-stable variants:
+
+## Changes in `conditions` 
+
+General improvements for `conditions` [#90](https://github.com/jmbarbone/fuj/issues/90)
+
+* `BREAKING` `new_condition(type)` now defaults to `"condition"` rather than `"error"`
+* `new_condition()` transformations on `class` have been adjusted
+  * classes are no longer convert to `camelCase`; likely, the base `fujCondition` class is now `fuj_condition`
+  * classes no longer _need_ their `type` specified (e.g., `my_erro`, `my_warning`); the value of the `type` field is automatically appended to each element in `class` if it doesn't already exist.
+  This behavior can be controlled by using an `AsIs` class (e.g., class = `I("exactly_this_class")`)
+  * `class` can now be a `list` for more control (e.g., `class = list("value", I("exact value"))`)
+  * `new_condition(pkg)` is deprecated in favor of `new_condition(package)`
+  * `new_condition(msg)` is deprecated in favor of `new_condition(message)`; `message` is now the first argument
+  * `new_condition()` now only accepts `message`, `class`, and `type` as positional arguments with the include of `...`; all other arguments must be explicitly named 
+* internally, `{fuj}` now simplifies use of `new_condition()`
+  * many conditions within `{fuj}` have been simplified through the use of _generic_ condition classes (e.g., `input_error`, `type_error`, `class_error`)
+  * `verbose_message` will try to avoid printing a message when `options(fuj.verbose = FALSE)` is set
+
+## New `vap` family
+
+Includes new `vap` family functions; essentially familiar wrappers for `vapply()` [#83](https://github.com/jmbarbone/fuj/issues/83)
+
+* `vaps` are vector apply functions, with certain presets to assist with common cases
+* all `vap` functions have type-stable variants:
 
 The below table shows inputs for `vap` functions and how they behave with the provided functions (`f`).
 Arguments to `f())` can use any name.

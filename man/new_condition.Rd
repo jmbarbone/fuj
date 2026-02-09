@@ -5,29 +5,40 @@
 \title{New condition}
 \usage{
 new_condition(
-  msg = "",
-  class = NULL,
+  message = "",
+  class = "fuj_condition",
+  type = c("condition", "error", "warning", "message"),
+  ...,
   call = NULL,
-  type = c("error", "warning", "message", NA_character_),
-  message = msg,
-  pkg = package()
+  package = find_package(),
+  msg,
+  pkg
 )
 }
 \arguments{
-\item{msg, message}{A message to print}
+\item{message}{A message to print}
 
-\item{class}{Character string of a single condition class}
-
-\item{call}{A call expression}
+\item{class}{Character string of a single condition class.  If \code{class} does
+not end with the value used in \code{class}, the suffix is appended with an
+underscore (\verb{_}).  This can be ignored if passing \code{class} as an \code{AsIs}
+vector (i.e., \code{I("my_class")}).}
 
 \item{type}{The type (additional class) of condition: \verb{error"}, \code{"warning"},
 \code{"message"}, or \code{NA}, which is treated as \code{NULL}.}
 
-\item{pkg}{Control or adding package name to condition.  If \code{TRUE} will try
-to get the current package name (via \code{.packageName}) from, presumably, the
-developmental package.  If \code{FALSE} or \code{NULL}, no package name is prepended
-to the condition class as a new class.  Otherwise, a package can be
-explicitly set with a single length character.}
+\item{...}{Ignored}
+
+\item{call}{A call expression}
+
+\item{package}{Control or adding package name to condition.  If \code{TRUE} will
+try to get the current package name (via \code{.packageName}) from, presumably,
+the developmental package.  If \code{FALSE} or \code{NULL}, no package name is
+prepended to the condition class as a new class.  Otherwise, a package can
+be explicitly set with a single length character.}
+
+\item{msg}{Deprecated, see \code{message}}
+
+\item{pkg}{Deprecated, see \code{package}}
 }
 \value{
 A \code{condition} with the classes specified from \code{class} and \code{type}
@@ -36,19 +47,23 @@ A \code{condition} with the classes specified from \code{class} and \code{type}
 Template for a new condition.  See more at \link[base:conditions]{base::conditions}
 }
 \details{
-The use of \code{.packageName} when \code{pkg = TRUE} may not be valid during
-active development.  When the attempt to retrieve the \code{.packageName} object
-is unsuccessful, the error is quietly ignored.  However, this should be
-successful once the package is build and functions can then utilize this
+The use of \code{.packageName} when \code{package = TRUE} may not be valid
+during active development.  When the attempt to retrieve the \code{.packageName}
+object is unsuccessful, the error is quietly ignored.  However, this should
+be successful once the package is build and functions can then utilize this
 created object.
 }
 \examples{
 # empty condition
-x <- new_condition("informative error message", class = "foo")
+x <- new_condition(
+  "informative error message",
+  class = "foo",
+  type = "error"
+ )
 try(stop(x))
 
 # with pkg
-x <- new_condition("msg", class = "foo", pkg = "bar")
+x <- new_condition("msg", class = "foo", type = "error", package = "bar")
 # class contains multiple identifiers, including a "bar:fooError"
 class(x)
 # message contains package information at the end

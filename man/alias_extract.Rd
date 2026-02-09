@@ -16,7 +16,7 @@ See \link[base:Extract]{base::Extract}
 Extract and replace aliases
 }
 \examples{
-df <- quick_dfl(a = 1:5, b = 6:10)
+df <- quick_df(list(a = 1:5, b = 6:10))
 # alias of `[`
 subset1(df, 1)
 subset1(df, 1, )

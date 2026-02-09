@@ -187,14 +187,21 @@ attach2 <- function(
       )
     },
     # nolint next: brace_linter.
-    message = function(e)
-      if (grepl("following object", e$message, fixed = TRUE))
+    message = function(e) {
+      if (grepl("following object", e$message, fixed = TRUE)) {
         attach_warn(warn, e$message)
+      }
+    }
   )
 }
 
-cond_include_conflicts <- function(msg) {
-  new_condition(message = msg, class = "includeConflicts", type = "warning")
+include_conflicts_warning <- function(...) {
+  new_condition(
+    message = c(...),
+    class = "include_conflicts_warning",
+    type = "warning",
+    package = "fuj"
+  )
 }
 
 check_conflicts <- function(name, warn = NULL) {
@@ -217,7 +224,7 @@ attach_warn <- function(warn, msg) {
   if (is.null(warn)) {
     verbose(msg)
   } else if (isTRUE(warn)) {
-    warning(cond_include_conflicts(msg))
+    warning(include_conflicts_warning(msg))
   } else if (isTRUE(is.na(warn))) {
     packageStartupMessage(msg)
   }

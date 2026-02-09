@@ -19,7 +19,7 @@
 #' @param .verbose When `TRUE` (or is a function when returns `TRUE`) prints out
 #'   the message.
 #' @returns None, called for its side-effects.  When conditions are met, will
-#'   signal a `verboseMessage` condition.
+#'   signal a `verbose_message` condition.
 #' @examples
 #' op <- options(verbose = FALSE)
 #' verbose("will not show")
@@ -34,7 +34,7 @@
 #' verbose(NULL) # nothing
 #' verbose(NULL, "something")
 #' verbose(if (FALSE) {
-#' "`if` returns `NULL` when not `TRUE`, which makes for additional control"
+#'   "`if` returns `NULL` when not `TRUE`, which makes for additional control"
 #' })
 #' options(op)
 #'
@@ -56,7 +56,7 @@ verbose <- function(
 
   if (isTRUE(.verbose)) {
     if (!(is.null(..1) && ...length() == 1L)) {
-      message(verbose_message(..., .fill = .fill, .label = .label))
+      message(make_verbose_message(..., .fill = .fill, .label = .label))
     }
   }
 
@@ -91,7 +91,7 @@ make_verbose <- function(opt) {
   )
 }
 
-verbose_message <- function(
+make_verbose_message <- function(
   ...,
   .fill = getOption("fuj.verbose.fill"),
   .label = getOption("fuj.verbose.label"),
@@ -103,7 +103,7 @@ verbose_message <- function(
 
   .label <- format(.label)
   if (length(.label) != 1L || !is.character(.label)) {
-    stop(cond_verbose_label())
+    stop(input_error(".label must for a string of length 1L"))
   }
 
   msg <- if (isTRUE(.fill)) {
@@ -119,16 +119,9 @@ verbose_message <- function(
     .makeMessage(.label, ...)
   }
 
-  struct(
-    list(paste0(msg, "\n"), call),
-    names = c("message", "call"),
-    class = c("verboseMessage", "message", "condition")
-  )
+  verbose_message(paste0(msg, collapse = "\n"), .call)
 }
 
-cond_verbose_label <- function() {
-  new_condition(
-    "`.label` must be a string of length 1",
-    class = "verbose_message_label"
-  )
+with_verbose <- function(expr) {
+  with_options(c(fuj.verbose = TRUE), expr)
 }

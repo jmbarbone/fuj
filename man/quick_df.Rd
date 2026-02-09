@@ -15,16 +15,16 @@ quick_dfl(...)
 \arguments{
 \item{x}{A list or \code{NULL} (see return)}
 
-\item{...}{Columns as \code{tag = value} (passed to \code{list()})}
+\item{...}{Columns as \code{tag = value} (passed to \code{\link[=lst]{lst()}})}
 }
 \value{
 A \code{data.frame}; if \code{x} is \code{NULL} a \code{data.frame} with \code{0} rows and \code{0}
-columns is returned (similar to calling \code{data.frame()} but faster).
-\code{empty_df()} returns a \code{data.frame} with \code{0} rows and \code{0} columns.
+columns is returned (similar to calling \code{\link[base:data.frame]{base::data.frame()}} but faster).
+\code{\link[=empty_df]{empty_df()}} returns a \code{data.frame} with \code{0} rows and \code{0} columns.
 }
 \description{
-This is a speedier implementation of \code{as.data.frame()} but does not provide
-the same sort of checks. It should be used with caution.
+This is a speedier implementation of \code{\link[base:as.data.frame]{base::as.data.frame()}} but does not
+provide the same sort of checks. It should be used with caution.
 }
 \examples{
 # unnamed will use make.names()
