@@ -23,18 +23,18 @@ verbose_message <- function(message, call = NULL) {
 
 # errors ------------------------------------------------------------------
 
-input_error <- function(message = "invalid input") {
+input_error <- function(message = "invalid input", ...) {
   new_condition(
-    message = message,
+    message = c(message, ...),
     class = "input",
     type = "error",
     package = "fuj"
   )
 }
 
-value_error <- function(message = "invalid value") {
+value_error <- function(message = "invalid value", ...) {
   new_condition(
-    message = message,
+    message = c(message, ...),
     class = "value",
     type = "error",
     package = "fuj"
