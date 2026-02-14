@@ -43,7 +43,7 @@ flip.matrix <- function(
   ...
 ) {
   switch(
-    match.arg(by),
+    match.arg(by, c("rows", "columns")),
     rows = {
       rows <- nrow(x)
       dims <- dimnames(x)
@@ -87,7 +87,7 @@ flip.data.frame <- function(
   ...
 ) {
   switch(
-    match.arg(by),
+    match.arg(by, c("rows", "columns")),
     rows = {
       rows <- nrow(x)
 

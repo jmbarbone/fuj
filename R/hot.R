@@ -25,14 +25,14 @@
 #' toss(x, i)
 #'
 #' @returns
-#' - [fuj::hold()] will **retain** values in `x` that are returned as `true` through `p`
-#' - [fuj::toss()] will **remove** values in `x` that are returned as `true` through `p`
+#' - [fuj::hold()] **retains** values in `x` that are returned as `true` through `p`
+#' - [fuj::toss()] **removes** values in `x` that are returned as `true` through `p`
 NULL
 
 #' @rdname hot
 #' @export
 hold <- function(x, p, na = c("drop", "keep")) {
-  na <- match.arg(na)
+  na <- match.arg(na, c("drop", "keep"))
 
   if (inherits(p, "logical")) {
     p[is.na(p)] <- na == "keep"
@@ -44,7 +44,7 @@ hold <- function(x, p, na = c("drop", "keep")) {
   }
 
   if (is.function(p)) {
-    return(hold(x, unlist(vap(x, p)), na = na))
+    return(hold(x, vap_vec(x, p), na = na))
   }
 
   stop(hot_input_error())
@@ -54,10 +54,10 @@ hold <- function(x, p, na = c("drop", "keep")) {
 #' @rdname hot
 #' @export
 toss <- function(x, p, na = c("keep", "drop")) {
-  na <- match.arg(na)
+  na <- match.arg(na, c("keep", "drop"))
 
   if (is.logical(p)) {
-    p[is.na(p)] <- na == "keep"
+    p[is.na(p)] <- na == "drop"
     return(x[!p])
   }
 
@@ -66,7 +66,7 @@ toss <- function(x, p, na = c("keep", "drop")) {
   }
 
   if (is.function(p)) {
-    return(toss(x, unlist(vap(x, p)), na = na))
+    return(toss(x, vap_vec(x, p), na = na))
   }
 
   stop(hot_input_error())
