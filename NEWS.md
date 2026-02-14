@@ -7,6 +7,7 @@
 * `list0()`'s functionality to ignore empty inputs can be disabled if `options(fuj.list.active = FALSE)` before `{fuj}` is loaded [#91](https://github.com/jmbarbone/fuj/issues/91)
 * `set_file_ext()` and `file_ext<-()` added for controlling file extensions [#89](https://github.com/jmbarbone/fuj/issues/89)
 * `+` and `/` methods added for `file_path` classes, allowing path creation (e.g., `fp("folder") / "subfolder" / "file" + "extension"`) [#89](https://github.com/jmbarbone/fuj/issues/89)
+* `hold()` and `toss()` are added for retaining and removing values in a vectors [#85](https://github.com/jmbarbone/fuj/issues/85)
 
 ## Changes in `conditions` 
 
@@ -45,7 +46,9 @@ Arguments to `f())` can use any name.
   
 _Note_: `vapi()` uses either the index or names of `x` as the second argument to `f`.
 
-Each `vap` function comes with the following type variants:
+
+Each `vap` function comes with the following type variants.
+If you are not concerned about type safely or `vap_vec()`.
   
   | Function   | Output Type    | Conversion
   |:-----------|----------------|----------------|
