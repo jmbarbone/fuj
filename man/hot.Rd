@@ -24,8 +24,8 @@ is an integer vector, \code{NA} values are always dropped.}
 }
 \value{
 \itemize{
-\item \code{\link[=hold]{hold()}} will \strong{retain} values in \code{x} that are returned as \code{true} through \code{p}
-\item \code{\link[=toss]{toss()}} will \strong{remove} values in \code{x} that are returned as \code{true} through \code{p}
+\item \code{\link[=hold]{hold()}} \strong{retains} values in \code{x} that are returned as \code{true} through \code{p}
+\item \code{\link[=toss]{toss()}} \strong{removes} values in \code{x} that are returned as \code{true} through \code{p}
 }
 }
 \description{
