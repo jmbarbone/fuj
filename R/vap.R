@@ -148,6 +148,11 @@ vap_dates_ <- function(fun, type) {
 #'   in unexpected outputs. Likely, warnings or errors will be signaled
 #'   accordingly.
 #'
+#'   [vap_vec()] is a variant of [vap()] that returns a vector of the same type
+#'   as the first element of the output that isn't `NA`.  If all values are
+#'   `NA`, a `logical` vector is returned.  This only works for
+#'   [atomic][base::vector] modes.
+#'
 #'   [with_vap_progress()] sets an option `vap.progress` to `TRUE` for the
 #'   duration of `expr`, which causes a progress bar to be displayed for any
 #'   `vap*` calls inside `expr`.
@@ -241,6 +246,25 @@ vapp <- function(p, f, ...) {
   out <- vapping_handler(.mapply(f, p, list(...)), f)
   set_vapp_names(out, p[[1L]])
 }
+
+#' @export
+#' @rdname vap
+vap_vec <- function(x, f, ...) {
+  delayedAssign("..call", sys.call())
+  x <- vap(x, f, ...)
+  type <- "logical"
+
+  for (i in x) {
+    if (is.logical(i) && is.na(i)) {
+      next
+    }
+    type <- typeof(i)
+    break
+  }
+
+  set_vap_names(as.vector(x, type), x)
+}
+
 
 # vap ---------------------------------------------------------------------
 
