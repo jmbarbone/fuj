@@ -249,6 +249,7 @@ vapp <- function(p, f, ...) {
 
 #' @export
 #' @rdname vap
+# nolint next: object_usage_linter.
 vap_vec <- function(x, f, ...) {
   delayedAssign("..call", sys.call())
   x <- vap(x, f, ...)
