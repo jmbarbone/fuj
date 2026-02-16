@@ -60,6 +60,16 @@ test_that("dates work", {
   )
 })
 
+test_that("vap_vec() works", {
+  x <- 1:3
+  expect_identical(vap_vec(x, force), x)
+
+  x <- list(1:2, 2L)
+  expect_identical(vap_vec(x, force), x)
+
+  expect_identical(vap_vec(x, \(i) i[1]), 1:2)
+})
+
 test_that("as_vap_fun() works", {
   x <- list(
     list(a = 1L, b = 4L),
