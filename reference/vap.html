@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9005</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9006</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Vector applies</h1>
-      <small class="dont-index">Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.2.2.9005/R/vap.R" class="external-link"><code>R/vap.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jmbarbone/fuj/blob/main/R/vap.R" class="external-link"><code>R/vap.R</code></a></small>
       <div class="d-none name"><code>vap.Rd</code></div>
     </div>
 
@@ -47,6 +47,8 @@
 <span><span class="fu">vap3</span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, <span class="va">z</span>, <span class="va">f</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">vapp</span><span class="op">(</span><span class="va">p</span>, <span class="va">f</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">vap_vec</span><span class="op">(</span><span class="va">x</span>, <span class="va">f</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">vap_lgl</span><span class="op">(</span><span class="va">x</span>, <span class="va">f</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
@@ -168,6 +170,9 @@ which return a vector of the corresponding class, with the same length of
 inputs. These returns are <em>coerced</em>, rather than <em>checked</em>, and may result
 in unexpected outputs. Likely, warnings or errors will be signaled
 accordingly.</p>
+<p><code>vap_vec()</code> is a variant of <code>vap()</code> that returns a <em>flattened</em> vector. This
+has similar behavior as <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">base::sapply()</a></code>, in that a <code>list</code> will be returned
+if the <code><a href="https://rdrr.io/r/base/unlist.html" class="external-link">base::unlist()</a></code>'d output has multiple values in an element.</p>
 <p><code>with_vap_progress()</code> sets an option <code>vap.progress</code> to <code>TRUE</code> for the
 duration of <code>expr</code>, which causes a progress bar to be displayed for any
 <code>vap*</code> calls inside <code>expr</code>.</p>

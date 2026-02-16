@@ -23,6 +23,10 @@
 - `+` and `/` methods added for `file_path` classes, allowing path
   creation (e.g., `fp("folder") / "subfolder" / "file" + "extension"`)
   [\#89](https://github.com/jmbarbone/fuj/issues/89)
+- [`hold()`](https://jmbarbone.github.io/fuj/reference/hot.md) and
+  [`toss()`](https://jmbarbone.github.io/fuj/reference/hot.md) are added
+  for retaining and removing values in a vectors
+  [\#85](https://github.com/jmbarbone/fuj/issues/85)
 
 ### Changes in `conditions`
 
@@ -83,7 +87,9 @@ with the provided functions (`f`). Arguments to `f())` can use any name.
 *Note*: [`vapi()`](https://jmbarbone.github.io/fuj/reference/vap.md)
 uses either the index or names of `x` as the second argument to `f`.
 
-Each `vap` function comes with the following type variants:
+Each `vap` function comes with the following type variants. If you are
+not concerned about type safety,
+use[`vap_vec()`](https://jmbarbone.github.io/fuj/reference/vap.md).
 
 | Function   | Output Type    | Conversion                                                              |
 |:-----------|----------------|-------------------------------------------------------------------------|

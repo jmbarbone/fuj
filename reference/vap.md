@@ -15,6 +15,8 @@ vap3(x, y, z, f, ...)
 
 vapp(p, f, ...)
 
+vap_vec(x, f, ...)
+
 vap_lgl(x, f, ...)
 
 vap_int(x, f, ...)
@@ -136,6 +138,13 @@ of `x`, or following the same recycling rules as
 These returns are *coerced*, rather than *checked*, and may result in
 unexpected outputs. Likely, warnings or errors will be signaled
 accordingly.
+
+`vap_vec()` is a variant of `vap()` that returns a *flattened* vector.
+This has similar behavior as
+[`base::sapply()`](https://rdrr.io/r/base/lapply.html), in that a `list`
+will be returned if the
+[`base::unlist()`](https://rdrr.io/r/base/unlist.html)'d output has
+multiple values in an element.
 
 `with_vap_progress()` sets an option `vap.progress` to `TRUE` for the
 duration of `expr`, which causes a progress bar to be displayed for any

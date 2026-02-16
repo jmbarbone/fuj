@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9005</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9006</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.2.2.9005/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/jmbarbone/fuj/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
@@ -53,6 +53,9 @@
 </li>
 <li>
 <code>+</code> and <code>/</code> methods added for <code>file_path</code> classes, allowing path creation (e.g., <code>fp("folder") / "subfolder" / "file" + "extension"</code>) <a href="https://github.com/jmbarbone/fuj/issues/89" class="external-link">#89</a>
+</li>
+<li>
+<code><a href="../reference/hot.html">hold()</a></code> and <code><a href="../reference/hot.html">toss()</a></code> are added for retaining and removing values in a vectors <a href="https://github.com/jmbarbone/fuj/issues/85" class="external-link">#85</a>
 </li>
 </ul><div class="section level3">
 <h3 id="changes-in-conditions-development-version">Changes in <code>conditions</code>
@@ -104,7 +107,7 @@
 </tr><tr class="odd"><td align="left"><code>vapp(p, f)</code></td>
 <td align="left"><code>f(...)</code></td>
 </tr></tbody></table><p><em>Note</em>: <code><a href="../reference/vap.html">vapi()</a></code> uses either the index or names of <code>x</code> as the second argument to <code>f</code>.</p>
-<p>Each <code>vap</code> function comes with the following type variants:</p>
+<p>Each <code>vap</code> function comes with the following type variants. If you are not concerned about type safety, use<code><a href="../reference/vap.html">vap_vec()</a></code>.</p>
 <table class="table"><colgroup><col width="27%"><col width="36%"><col width="36%"></colgroup><thead><tr class="header"><th align="left">Function</th>
 <th>Output Type</th>
 <th>Conversion</th>

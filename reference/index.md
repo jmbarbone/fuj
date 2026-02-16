@@ -43,6 +43,10 @@
   [`` `file_ext<-`() ``](https://jmbarbone.github.io/fuj/reference/fp.md)
   : File path operations
 
+- [`hold()`](https://jmbarbone.github.io/fuj/reference/hot.md)
+  [`toss()`](https://jmbarbone.github.io/fuj/reference/hot.md) : Hold or
+  Toss
+
 - [`` `%||%` ``](https://jmbarbone.github.io/fuj/reference/if_null.md)
   [`` `%|||%` ``](https://jmbarbone.github.io/fuj/reference/if_null.md)
   [`` `%len%` ``](https://jmbarbone.github.io/fuj/reference/if_null.md)
@@ -102,6 +106,7 @@
   [`vap2()`](https://jmbarbone.github.io/fuj/reference/vap.md)
   [`vap3()`](https://jmbarbone.github.io/fuj/reference/vap.md)
   [`vapp()`](https://jmbarbone.github.io/fuj/reference/vap.md)
+  [`vap_vec()`](https://jmbarbone.github.io/fuj/reference/vap.md)
   [`vap_lgl()`](https://jmbarbone.github.io/fuj/reference/vap.md)
   [`vap_int()`](https://jmbarbone.github.io/fuj/reference/vap.md)
   [`vap_dbl()`](https://jmbarbone.github.io/fuj/reference/vap.md)
