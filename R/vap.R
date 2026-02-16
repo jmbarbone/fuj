@@ -148,10 +148,9 @@ vap_dates_ <- function(fun, type) {
 #'   in unexpected outputs. Likely, warnings or errors will be signaled
 #'   accordingly.
 #'
-#'   [vap_vec()] is a variant of [vap()] that returns a vector of the same type
-#'   as the first element of the output that isn't `NA`.  If all values are
-#'   `NA`, a `logical` vector is returned.  This only works for
-#'   [atomic][base::vector] modes.
+#'   [vap_vec()] is a variant of [vap()] that returns a _flattened_ vector. This
+#'   has similar behavior as [base::sapply()], in that a `list` will be returned
+#'   if the [base::unlist()]'d output has multiple values in an element.
 #'
 #'   [with_vap_progress()] sets an option `vap.progress` to `TRUE` for the
 #'   duration of `expr`, which causes a progress bar to be displayed for any
@@ -253,19 +252,13 @@ vapp <- function(p, f, ...) {
 vap_vec <- function(x, f, ...) {
   delayedAssign("..call", sys.call())
   x <- vap(x, f, ...)
-  type <- "logical"
-
-  for (i in x) {
-    if (is.logical(i) && is.na(i)) {
-      next
-    }
-    type <- typeof(i)
-    break
+  y <- unlist(x, recursive = FALSE, use.names = FALSE)
+  if (length(x) == length(y)) {
+    set_vap_names(y, x)
+  } else {
+    x
   }
-
-  set_vap_names(as.vector(x, type), x)
 }
-
 
 # vap ---------------------------------------------------------------------
 

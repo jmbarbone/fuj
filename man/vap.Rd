@@ -170,10 +170,9 @@ inputs. These returns are \emph{coerced}, rather than \emph{checked}, and may re
 in unexpected outputs. Likely, warnings or errors will be signaled
 accordingly.
 
-\code{\link[=vap_vec]{vap_vec()}} is a variant of \code{\link[=vap]{vap()}} that returns a vector of the same type
-as the first element of the output that isn't \code{NA}.  If all values are
-\code{NA}, a \code{logical} vector is returned.  This only works for
-\link[base:vector]{atomic} modes.
+\code{\link[=vap_vec]{vap_vec()}} is a variant of \code{\link[=vap]{vap()}} that returns a \emph{flattened} vector. This
+has similar behavior as \code{\link[base:lapply]{base::sapply()}}, in that a \code{list} will be returned
+if the \code{\link[base:unlist]{base::unlist()}}'d output has multiple values in an element.
 
 \code{\link[=with_vap_progress]{with_vap_progress()}} sets an option \code{vap.progress} to \code{TRUE} for the
 duration of \code{expr}, which causes a progress bar to be displayed for any

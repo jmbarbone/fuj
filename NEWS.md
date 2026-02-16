@@ -48,7 +48,7 @@ _Note_: `vapi()` uses either the index or names of `x` as the second argument to
 
 
 Each `vap` function comes with the following type variants.
-If you are not concerned about type safely or `vap_vec()`.
+If you are not concerned about type safety, use`vap_vec()`.
   
   | Function   | Output Type    | Conversion
   |:-----------|----------------|----------------|
