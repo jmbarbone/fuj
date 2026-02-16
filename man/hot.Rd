@@ -6,16 +6,16 @@
 \alias{toss}
 \title{Hold or Toss}
 \usage{
-hold(x, p, na = c("drop", "keep"))
+hold(x, i, na = c("drop", "keep"))
 
-toss(x, p, na = c("keep", "drop"))
+toss(x, i, na = c("keep", "drop"))
 }
 \arguments{
 \item{x}{A vector of values}
 
-\item{p}{A preditive.  This can be a logical vector, an integer vector, or a
-function that takes \code{x} as an argument and returns a logical or integer
-vector.}
+\item{i}{An indication of which subset values to action.  This can be a
+logical vector, an integer vector, or a function that takes \code{x} as an
+argument and returns a logical or integer vector}
 
 \item{na}{How to handle \code{NA} values in when \code{p} is a logical vector, or a
 function that returns a logical vector. \code{\link[=hold]{hold()}} defaults to dropping
@@ -24,8 +24,8 @@ is an integer vector, \code{NA} values are always dropped.}
 }
 \value{
 \itemize{
-\item \code{\link[=hold]{hold()}} \strong{retains} values in \code{x} that are returned as \code{true} through \code{p}
-\item \code{\link[=toss]{toss()}} \strong{removes} values in \code{x} that are returned as \code{true} through \code{p}
+\item \code{\link[=hold]{hold()}} \strong{retains} values in \code{x} matched against \code{i}
+\item \code{\link[=toss]{toss()}} \strong{removes} values in \code{x} matched against \code{i}
 }
 }
 \description{
