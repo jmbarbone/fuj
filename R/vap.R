@@ -148,6 +148,10 @@ vap_dates_ <- function(fun, type) {
 #'   in unexpected outputs. Likely, warnings or errors will be signaled
 #'   accordingly.
 #'
+#'   [vap_vec()] is a variant of [vap()] that returns a _flattened_ vector. This
+#'   has similar behavior as [base::sapply()], in that a `list` will be returned
+#'   if the [base::unlist()]'d output has multiple values in an element.
+#'
 #'   [with_vap_progress()] sets an option `vap.progress` to `TRUE` for the
 #'   duration of `expr`, which causes a progress bar to be displayed for any
 #'   `vap*` calls inside `expr`.
@@ -240,6 +244,20 @@ vapp <- function(p, f, ...) {
   p <- as.pairlist(p)
   out <- vapping_handler(.mapply(f, p, list(...)), f)
   set_vapp_names(out, p[[1L]])
+}
+
+#' @export
+#' @rdname vap
+# nolint next: object_usage_linter.
+vap_vec <- function(x, f, ...) {
+  delayedAssign("..call", sys.call())
+  x <- vap(x, f, ...)
+  y <- unlist(x, recursive = FALSE, use.names = FALSE)
+  if (length(x) == length(y)) {
+    set_vap_names(y, x)
+  } else {
+    x
+  }
 }
 
 # vap ---------------------------------------------------------------------

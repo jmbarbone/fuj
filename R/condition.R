@@ -93,7 +93,7 @@ new_condition <- function(
   }
 
   type <- as.character(type)
-  type <- match.arg(type)
+  type <- match.arg(type, c("condition", "error", "warning", "message"))
 
   if (!inherits(class, "AsIs")) {
     class <- vapply(

@@ -6,6 +6,7 @@
 \alias{vap2}
 \alias{vap3}
 \alias{vapp}
+\alias{vap_vec}
 \alias{vap_lgl}
 \alias{vap_int}
 \alias{vap_dbl}
@@ -59,6 +60,8 @@ vap2(x, y, f, ...)
 vap3(x, y, z, f, ...)
 
 vapp(p, f, ...)
+
+vap_vec(x, f, ...)
 
 vap_lgl(x, f, ...)
 
@@ -166,6 +169,10 @@ which return a vector of the corresponding class, with the same length of
 inputs. These returns are \emph{coerced}, rather than \emph{checked}, and may result
 in unexpected outputs. Likely, warnings or errors will be signaled
 accordingly.
+
+\code{\link[=vap_vec]{vap_vec()}} is a variant of \code{\link[=vap]{vap()}} that returns a \emph{flattened} vector. This
+has similar behavior as \code{\link[base:lapply]{base::sapply()}}, in that a \code{list} will be returned
+if the \code{\link[base:unlist]{base::unlist()}}'d output has multiple values in an element.
 
 \code{\link[=with_vap_progress]{with_vap_progress()}} sets an option \code{vap.progress} to \code{TRUE} for the
 duration of \code{expr}, which causes a progress bar to be displayed for any
