@@ -9,6 +9,7 @@
 * `+` and `/` methods added for `file_path` classes, allowing path creation (e.g., `fp("folder") / "subfolder" / "file" + "extension"`) [#89](https://github.com/jmbarbone/fuj/issues/89)
 * `hold()` and `toss()` are added for retaining and removing values in a vectors [#85](https://github.com/jmbarbone/fuj/issues/85)
 * `match_ext` have minor improvements for direct aliases; documentation updates [#86](https://github.com/jmbarbone/fuj/issues/86)
+* adds `negate()` and `not()` to negate functions [#84](https://github.com/jmbarbone/fuj/issues/84)
 
 ## Changes in `conditions` 
 
