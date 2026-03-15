@@ -2,7 +2,7 @@
 #'
 #' Negate an outcome or function
 #'
-#' @description [fuj::not()] is an alias for [base::!].  [fuj::negate()] is
+#' @description [fuj::not()] is an _alias_ for [base::!].  [fuj::negate()] is
 #' a variation of [base::Negate()] with an extra steps to preserve the original
 #' function and maintain the function formals.
 #'
@@ -19,7 +19,18 @@ NULL
 #' @export
 #' @param x An object
 #' @returns [fuj::not()] See [base::!]
-not <- base::`!`
+not <- function(x) !x
+
+# NOTE "!" uses an _unnamed_ argument
+#
+# ```r
+# `!`(x = FALSE)
+# #> TRUE
+# `!`(this_can_be_whatever = FALSE)
+# #> TRUE
+# formals(`!`)
+# #> NULL
+# ```
 
 #' @rdname negate
 #' @export
@@ -32,6 +43,7 @@ negate <- function(fun) {
   formals(neg) <- forms
   body(neg) <- substitute(
     not(..call..),
+    # this has to be formatted as a call so that we appropriate envoke UseMethod
     list(
       ..call.. = eval(substitute(
         as.call(c(..fun.., lapply(names(forms), str2lang))),
