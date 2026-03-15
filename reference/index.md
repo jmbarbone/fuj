@@ -82,6 +82,10 @@
   [`is_named()`](https://jmbarbone.github.io/fuj/reference/names.md) :
   Set names
 
+- [`not()`](https://jmbarbone.github.io/fuj/reference/negate.md)
+  [`negate()`](https://jmbarbone.github.io/fuj/reference/negate.md) :
+  Negations
+
 - [`new_condition()`](https://jmbarbone.github.io/fuj/reference/new_condition.md)
   : New condition
 
