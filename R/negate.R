@@ -21,6 +21,7 @@ NULL
 #' @returns [fuj::not()] See [base::!]
 not <- function(x) !x
 
+# nolint start: commented_code_linter.
 # NOTE "!" uses an _unnamed_ argument
 #
 # ```r
@@ -31,6 +32,7 @@ not <- function(x) !x
 # formals(`!`)
 # #> NULL
 # ```
+# nolint end: commented_code_linter.
 
 #' @rdname negate
 #' @export
