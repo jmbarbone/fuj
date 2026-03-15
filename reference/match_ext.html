@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9006</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9007</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Value matching - Extensions</h1>
-      <small class="dont-index">Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.2.2.9006/R/match.R" class="external-link"><code>R/match.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jmbarbone/fuj/blob/main/R/match.R" class="external-link"><code>R/match.R</code></a></small>
       <div class="d-none name"><code>match_ext.Rd</code></div>
     </div>
 
@@ -74,18 +74,18 @@
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
 
-<ul><li><p><code>%out%</code>: A <code>logical</code> vector of equal length of <code>x</code>, <code>table</code></p></li>
-<li><p><code>%wo%</code>, <code>%wi%</code>: A vector of values of <code>x</code></p></li>
+<ul><li><p>%out%: A <code>logical</code> vector of equal length of <code>x</code>, <code>table</code></p></li>
+<li><p>%wo%, %wi%: A vector of values of <code>x</code></p></li>
 <li><p><code>any_match()</code>, <code>no_match()</code>: <code>TRUE</code> or <code>FALSE</code></p></li>
 <li><p><code>is_in()</code>: see <code><a href="https://rdrr.io/r/base/match.html" class="external-link">base::%in%()</a></code></p></li>
 </ul></div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Contrast with <code><a href="https://rdrr.io/r/base/match.html" class="external-link">base::match()</a></code>, <code><a href="https://rdrr.io/r/base/sets.html" class="external-link">base::intersect()</a></code>, and
-<code><a href="https://rdrr.io/r/base/match.html" class="external-link">base::%in%()</a></code> The functions of <code>%wi%</code> and <code>%wo%</code> can be used in lieu of
-<code><a href="https://rdrr.io/r/base/sets.html" class="external-link">base::intersect()</a></code> and <code><a href="https://rdrr.io/r/base/sets.html" class="external-link">base::setdiff()</a></code>.  The primary difference is that
-the base functions return only unique values, which may not be a desired
-behavior.</p>
+<code><a href="https://rdrr.io/r/base/match.html" class="external-link">base::%in%()</a></code> The functions of %wi% and %wo% can be used
+in lieu of <code><a href="https://rdrr.io/r/base/sets.html" class="external-link">base::intersect()</a></code> and <code><a href="https://rdrr.io/r/base/sets.html" class="external-link">base::setdiff()</a></code>.  The primary
+difference is that the base functions return only unique values, which may
+not be a desired behavior.</p>
     </div>
 
     <div class="section level2">

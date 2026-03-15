@@ -27,6 +27,8 @@
   [`toss()`](https://jmbarbone.github.io/fuj/reference/hot.md) are added
   for retaining and removing values in a vectors
   [\#85](https://github.com/jmbarbone/fuj/issues/85)
+- `match_ext` have minor improvements for direct aliases; documentation
+  updates [\#86](https://github.com/jmbarbone/fuj/issues/86)
 
 ### Changes in `conditions`
 

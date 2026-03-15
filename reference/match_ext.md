@@ -38,9 +38,9 @@ any_match(x, table)
 
 ## Value
 
-- `%out%`: A `logical` vector of equal length of `x`, `table`
+- %out%: A `logical` vector of equal length of `x`, `table`
 
-- `%wo%`, `%wi%`: A vector of values of `x`
+- %wo%, %wi%: A vector of values of `x`
 
 - `any_match()`, `no_match()`: `TRUE` or `FALSE`
 
@@ -51,7 +51,7 @@ any_match(x, table)
 Contrast with [`base::match()`](https://rdrr.io/r/base/match.html),
 [`base::intersect()`](https://rdrr.io/r/base/sets.html), and
 [`base::%in%()`](https://rdrr.io/r/base/match.html) The functions of
-`%wi%` and `%wo%` can be used in lieu of
+%wi% and %wo% can be used in lieu of
 [`base::intersect()`](https://rdrr.io/r/base/sets.html) and
 [`base::setdiff()`](https://rdrr.io/r/base/sets.html). The primary
 difference is that the base functions return only unique values, which
