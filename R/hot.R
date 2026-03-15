@@ -39,7 +39,7 @@ hold <- function(x, i, na = c("drop", "keep")) {
   }
 
   if (integerish(i)) {
-    return(x[i[!is.na(i)]])
+    return(x[remove_na(i)])
   }
 
   if (is.function(i)) {
@@ -61,7 +61,7 @@ toss <- function(x, i, na = c("keep", "drop")) {
   }
 
   if (integerish(i)) {
-    return(x[-i[!is.na(i)]])
+    return(x[-remove_na(i)])
   }
 
   if (is.function(i)) {
