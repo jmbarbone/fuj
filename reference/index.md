@@ -29,6 +29,10 @@
   [`` `%colons%` ``](https://jmbarbone.github.io/fuj/reference/colons.md)
   : Colons
 
+- [`encode()`](https://jmbarbone.github.io/fuj/reference/encode.md)
+  [`fact()`](https://jmbarbone.github.io/fuj/reference/encode.md) :
+  Encode/factor
+
 - [`exattr()`](https://jmbarbone.github.io/fuj/reference/exattr.md)
   [`` `%attr%` ``](https://jmbarbone.github.io/fuj/reference/exattr.md)
   : Exact attributes

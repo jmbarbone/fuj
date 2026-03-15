@@ -29,9 +29,13 @@
   [\#85](https://github.com/jmbarbone/fuj/issues/85)
 - `match_ext` have minor improvements for direct aliases; documentation
   updates [\#86](https://github.com/jmbarbone/fuj/issues/86)
-- adds [`negate()`](https://jmbarbone.github.io/fuj/reference/negate.md)
-  and [`not()`](https://jmbarbone.github.io/fuj/reference/negate.md) to
-  negate functions [\#84](https://github.com/jmbarbone/fuj/issues/84)
+- [`negate()`](https://jmbarbone.github.io/fuj/reference/negate.md) and
+  [`not()`](https://jmbarbone.github.io/fuj/reference/negate.md) added
+  to negate functions [\#84](https://github.com/jmbarbone/fuj/issues/84)
+- [`encode()`](https://jmbarbone.github.io/fuj/reference/encode.md) and
+  [`fact()`](https://jmbarbone.github.io/fuj/reference/encode.md) added
+  to encode values and create `factor`s
+  [\#87](https://github.com/jmbarbone/fuj/issues/87)
 
 ### Changes in `conditions`
 
