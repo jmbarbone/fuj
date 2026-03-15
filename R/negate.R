@@ -31,8 +31,13 @@ negate <- function(fun) {
   neg <- function() {}
   formals(neg) <- forms
   body(neg) <- substitute(
-    not(do.call(..fun.., ..params..)),
-    list(..fun.. = fun, ..params.. = lapply(names(forms), str2lang))
+    not(..call..),
+    list(
+      ..call.. = eval(substitute(
+        as.call(c(..fun.., lapply(names(forms), str2lang))),
+        list(..fun.. = fun)
+      ))
+    )
   )
   neg
 }
