@@ -3,17 +3,17 @@
 #' Non matching alternatives and supplementary functions.
 #'
 #' @details Contrast with [base::match()], [base::intersect()], and
-#'   [base::%in%()] The functions of `%wi%` and `%wo%` can be used in lieu of
-#'   [base::intersect()] and [base::setdiff()].  The primary difference is that
-#'   the base functions return only unique values, which may not be a desired
-#'   behavior.
+#'   [base::%in%()] The functions of [fuj::%wi%] and [fuj::%wo%] can be used
+#'   in lieu of [base::intersect()] and [base::setdiff()].  The primary
+#'   difference is that the base functions return only unique values, which may
+#'   not be a desired behavior.
 #'
 #' @inheritParams base::`%in%`
 #' @return
-#' * `%out%`: A `logical` vector of equal length of `x`, `table`
-#' * `%wo%`, `%wi%`: A vector of values of `x`
-#' * `any_match()`, `no_match()`: `TRUE` or `FALSE`
-#' * `is_in()`: see [base::%in%()]
+#' * [fuj::%out%]: A `logical` vector of equal length of `x`, `table`
+#' * [fuj::%wo%], [fuj::%wi%]: A vector of values of `x`
+#' * [fuj::any_match()], [fuj::no_match()]: `TRUE` or `FALSE`
+#' * [fuj::is_in()]: see [base::%in%()]
 #'
 #' @examples
 #' 1:10 %in% c(1, 3, 5, 9)
