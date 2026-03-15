@@ -46,9 +46,7 @@ is_out <- function(x, table) {
 
 #' @rdname match_ext
 #' @export
-`%out%` <- function(x, table) {
-  is_out(x, table)
-}
+`%out%` <- is_out
 
 #' @rdname match_ext
 #' @export
@@ -58,9 +56,7 @@ is_within <- function(x, table) {
 
 #' @rdname match_ext
 #' @export
-`%wi%` <- function(x, table) {
-  is_within(x, table)
-}
+`%wi%` <- is_within
 
 #' @rdname match_ext
 #' @export
@@ -70,14 +66,12 @@ is_without <- function(x, table) {
 
 #' @rdname match_ext
 #' @export
-`%wo%` <- function(x, table) {
-  is_without(x, table)
-}
+`%wo%` <- is_without
 
 #' @rdname match_ext
 #' @export
 no_match <- function(x, table) {
-  !any(match(x, table, nomatch = 0L) != 0L)
+  all(match(x, table, nomatch = 0L) == 0L)
 }
 
 #' @rdname match_ext
