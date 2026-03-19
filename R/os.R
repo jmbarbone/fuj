@@ -1,3 +1,8 @@
+# overwritten by .onLoad()
+is_windows_ <- FALSE
+is_macos_ <- FALSE
+is_linux_ <- FALSE
+
 #' Determine operating systems
 #'
 #' @return `TRUE` or `FALSE`
@@ -10,18 +15,12 @@ NULL
 
 #' @export
 #' @rdname os
-is_windows <- function() {
-  Sys.info()[["sysname"]] == "Windows"
-}
+is_windows <- function() is_windows_
 
 #' @export
 #' @rdname os
-is_macos <- function() {
-  Sys.info()[["sysname"]] == "Darwin"
-}
+is_macos <- function() is_macos_
 
 #' @export
 #' @rdname os
-is_linux <- function() {
-  Sys.info()[["sysname"]] == "Linux"
-}
+is_linux <- function() is_linux_
