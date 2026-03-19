@@ -28,12 +28,6 @@ op.fuj <- list(
   # set options
   options(op.fuj[!names(op.fuj) %in% names(options())]) # nocov
 }
-#' @keywords internal
-"_PACKAGE"
-
-## usethis namespace: start
-## usethis namespace: end
-NULL
 
 #' `{fuj}` options
 #'
@@ -60,8 +54,8 @@ op.fuj <- list(
 
   # nocov start
   if (isFALSE(getOption("fuj.list.active", TRUE))) {
-    list0 <<- list
-    lst <<- list
+    list0 <<- base::list
+    lst <<- base::list
   }
   # nocov end
 }

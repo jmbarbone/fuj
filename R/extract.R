@@ -26,29 +26,29 @@ NULL
 #' @export
 #' @rdname alias_extract
 #' @usage NULL
-subset1 <- `[`
+subset1 <- base::`[`
 
 #' @export
 #' @rdname alias_extract
 #' @usage NULL
-subset2 <- `[[`
+subset2 <- base::`[[`
 
 #' @export
 #' @rdname alias_extract
 #' @usage NULL
-subset3 <- `$`
+subset3 <- base::`$`
 
 #' @export
 #' @rdname alias_extract
 #' @usage NULL
-subassign1 <- `[<-`
+subassign1 <- base::`[<-`
 
 #' @export
 #' @rdname alias_extract
 #' @usage NULL
-subassign2 <- `[[<-`
+subassign2 <- base::`[[<-`
 
 #' @export
 #' @rdname alias_extract
 #' @usage NULL
-subassign3 <- `$<-`
+subassign3 <- base::`$<-`

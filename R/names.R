@@ -33,9 +33,7 @@ remove_names <- function(x) {
 
 #' @rdname names
 #' @export
-`%names%` <- function(x, nm) {
-  set_names(x, validate_names(nm))
-}
+`%names%` <- set_names
 
 #' @rdname names
 #' @param zero_ok If `TRUE` allows use of `""` as a _special_ name
@@ -46,6 +44,6 @@ is_named <- function(x, zero_ok = TRUE) {
 }
 
 validate_names <- function(x) {
-  x[lengths(x) == 0L] <- NA_character_
+  x[lengths(x) == 0L] <- NA
   as.character(x)
 }

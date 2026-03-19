@@ -1,3 +1,5 @@
+# TODO consider moving this to `mark`
+
 #' Flip
 #'
 #' Flip an object.
