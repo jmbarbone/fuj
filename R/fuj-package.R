@@ -7,7 +7,7 @@ NULL
 
 #' `{fuj}` options
 #'
-#' Options uses for `{fuj}` functions.
+#' Options uses for [fuj::fuj-package] functions.
 #'
 #' @keywords internal
 #' @examples
@@ -16,30 +16,6 @@ NULL
 #' @export
 # nolint next: object_name_linter.
 op.fuj <- list(
-  fuj.vap.progress = FALSE,
-  fuj.vap.indexed_errors = FALSE,
-  fuj.verbose = NULL,
-  fuj.verbose.fill = FALSE,
-  fuj.verbose.label = "verbose: "
-)
-
-.onLoad <- function(libname, pkgname) {
-  # set options
-  options(op.fuj[!names(op.fuj) %in% names(options())]) # nocov
-}
-
-#' `{fuj}` options
-#'
-#' Options uses for `{fuj}` functions.
-#'
-#' @keywords internal
-#' @examples
-#' names(op.fuj)
-#' op.fuj
-#' @export
-# nolint next: object_name_linter.
-op.fuj <- list(
-  fuj.list.active = TRUE,
   fuj.vap.progress = FALSE,
   fuj.vap.indexed_errors = FALSE,
   fuj.verbose = NULL,
