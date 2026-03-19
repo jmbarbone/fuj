@@ -5,17 +5,11 @@
 \title{\code{{fuj}} options}
 \usage{
 op.fuj
-
-op.fuj
 }
 \description{
-Options uses for \code{{fuj}} functions.
-
-Options uses for \code{{fuj}} functions.
+Options uses for \link{fuj-package} functions.
 }
 \examples{
-names(op.fuj)
-op.fuj
 names(op.fuj)
 op.fuj
 }
