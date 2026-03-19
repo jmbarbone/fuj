@@ -4,18 +4,19 @@
 #'
 #' @details Unlike [base::structure()] this does not provide additional checks
 #'   for special names, performs no [base::storage.mode()] conversions for
-#'   `factors` (`x` therefor has to be an `integer`), `attributes` from `x` are
-#'   not retained, and `class` is specified outside of other attributes and
-#'   assigned after [base::attributes()] is called.
+#'   [`factors`][base::factor()] (`x` therefor has to be an `integer`),
+#'   [`attributes`][base::attributes()] from `x` are not retained, and `class`
+#'   is specified outside of other attributes and assigned after
+#'   [base::attributes()] is called.
 #'
 #'   Essentially, this is just a wrapper for calling [base::attributes()] then
 #'   [base::class()].
 #'
 #'   Note that [base::structure()] provides a warning when the first argument is
-#'   `NULL`.  `struct()` does not.  The coercion from `NULL` to `list()` is
+#'   `NULL`.  [fuj::struct()] does not.  The coercion from `NULL` to [base::list()] is
 #'   done, and documented, in [base::attributes()].
 #'
-#' @param x An object; if `NULL`, coerced to `list()`
+#' @param x An object; if `NULL`, coerced to [base::list()]
 #' @param class A vector of classes; can also be `NULL`
 #' @param ... Named attributes to set to `x`; overwrites any attributes in `x`
 #'   even if defined in `.keep_attr`

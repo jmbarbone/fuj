@@ -2,13 +2,13 @@
 #'
 #' Simple verbose condition handling
 #'
-#' @details [verbose()] can be safely placed in scripts to signal additional
-#'   message conditions.  [verbose()] can be controlled with
+#' @details [fuj::verbose()] can be safely placed in scripts to signal
+#'   additional message conditions.  [fuj::verbose()] can be controlled with
 #'   `options("verbose")` (the default) and an override,
 #'   `options("fuj.verbose")`.  The latter can be set to a function whose result
 #'   will be used for conditional evaluation.
 #'
-#'   [make_verbose()] allows for the creation of a custom verbose function.
+#'   [fuj::make_verbose()] allows for the creation of a custom verbose function.
 #'
 #' @param ... A message to display.  When `...` is `NULL` (and only `NULL`), no
 #'   message will display.

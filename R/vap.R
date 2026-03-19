@@ -111,11 +111,12 @@ vap_dates_ <- function(fun, type) {
 #'
 #' Apply a function over elements of a `vector`.
 #'
-#' @details Like [lapply()], [mapply()], and family, the `vap` functions provide
-#'   a means of applying a function to each element of a `vector`, and
-#'   controlling return types.  The `vap` family provides extra tools and
-#'   controls, as well as _date_ outputs (i.e., `_date`, `_dttm` variants that
-#'   work with `Date` and `POSIXct` types).
+#' @details Like [base::lapply()], [base::mapply()], and family, the `vap`
+#'   functions provide a means of applying a function to each element of a
+#'   `vector`, and controlling return types.  The `vap` family provides extra
+#'   tools and controls, as well as _date_ outputs (i.e., `_date`, `_dttm`
+#'   variants that work with [Date][base::Date] and
+#'   [POSIXct][base::DateTimeClasses] types).
 #'
 #' - `vap()` uses a single `x` argument
 #' - `vapi()` uses a single `x` argument and passes the names (when available,
@@ -126,10 +127,11 @@ vap_dates_ <- function(fun, type) {
 #' @section Extras: Two helper functions are provided to set options for a
 #'   progress bars (`options(fuj.vap.progress)`) and reporting an index during
 #'   and error (`options(fuj.vap.index_error)`).  Two wrapper functions are
-#'   provided: [with_vap_progress()] and [with_vap_handlers()], respectively;
-#'   the latter may include other handlers in the future.  These are not turned
-#'   on by default (or rather, the option settings are set to `FALSE` within
-#'   `{fuj}`) as they incur some additional overhead.
+#'   provided: [fuj::with_vap_progress()] and [fuj::with_vap_handlers()],
+#'   respectively; the latter may include other handlers in the future.  These
+#'   are not turned on by default (or rather, the option settings are set to
+#'   `FALSE` within [fuj][fuj::fuj-package]) as they incur some additional
+#'   overhead.
 #'
 #' @param x,y,z Values to map over
 #' @param f Function or specification of function to apply.
@@ -137,28 +139,29 @@ vap_dates_ <- function(fun, type) {
 #' @param ... Additional arguments passed to `f`
 #' @param expr The expression to evaluate.
 #'
-#' @returns For [vap()], [vapi()], returns a `list` with length of `x`. For
-#'   [vap2()], [vap3()], and [vap()], return length is determined by how `...`
-#'   is recycled inside [mapply()].
+#' @returns For [fuj::vap()], [fuj::vapi()], returns a `list` with length of
+#'   `x`. For [fuj::vap2()], [fuj::vap3()], and [fuj::vap()], return length is
+#'   determined by how `...` is recycled inside [base::mapply()].
 #'
-#'   All have type variants (e.g., [vap_chr()], [vapi_int()], [vap3_dbl()])
-#'   which return a vector of the corresponding class, with the same length of
-#'   `x`, or following the same recycling rules as [mapply()] for multiple
-#'   inputs. These returns are _coerced_, rather than _checked_, and may result
-#'   in unexpected outputs. Likely, warnings or errors will be signaled
-#'   accordingly.
+#'   All have type variants (e.g., [fuj::vap_chr()], [fuj::vapi_int()],
+#'   [fuj::vap3_dbl()]) which return a vector of the corresponding class, with
+#'   the same length of `x`, or following the same recycling rules as [mapply()]
+#'   for multiple inputs. These returns are _coerced_, rather than _checked_,
+#'   and may result in unexpected outputs. Likely, warnings or errors will be
+#'   signaled accordingly.
 #'
-#'   [vap_vec()] is a variant of [vap()] that returns a _flattened_ vector. This
-#'   has similar behavior as [base::sapply()], in that a `list` will be returned
-#'   if the [base::unlist()]'d output has multiple values in an element.
+#'   [fuj::vap_vec()] is a variant of [fuj::vap()] that returns a _flattened_
+#'   vector. This has similar behavior as [base::sapply()], in that a `list`
+#'   will be returned if the [base::unlist()]'d output has multiple values in an
+#'   element.
 #'
-#'   [with_vap_progress()] sets an option `vap.progress` to `TRUE` for the
+#'   [fuj::with_vap_progress()] sets an option `vap.progress` to `TRUE` for the
 #'   duration of `expr`, which causes a progress bar to be displayed for any
 #'   `vap*` calls inside `expr`.
 #'
-#'   [with_vap_handlers()] sets an `options(vap.indexed_errors = TRUE)` for the
-#'   duration of `expr`, which causes errors inside `vap` calls to include the
-#'   index at which the error occurred.
+#'   [fuj::with_vap_handlers()] sets an `options(vap.indexed_errors = TRUE)` for
+#'   the duration of `expr`, which causes errors inside `vap` calls to include
+#'   the index at which the error occurred.
 #'
 #' @examples
 #' fruits <- c("apple", "banana", "pear")

@@ -2,8 +2,8 @@
 #'
 #' Include (attach) a package and specific exports to Search Path
 #'
-#' @description [include()] checks whether or not the namespace has been loaded
-#'   to the [base::search()] path.  It uses the naming convention
+#' @description [fuj::include()] checks whether or not the namespace has been
+#'   loaded to the [base::search()] path.  It uses the naming convention
 #'   `include:{package}` to denote the differences from loading via
 #'   [base::library()] or [base::require()]. When `exports` is `NULL`, the
 #'   environment is detached from the search path if found.  When `exports` is
@@ -13,28 +13,28 @@
 #'   path.  Use `options(fuj.verbose = TRUE)` or `options(verbose = TRUE)` for
 #'   more information.
 #'
-#' @section `package` class handling: When `package` is a [name] or [AsIs],
-#'   assumed an installed package.  When `package` is a file path (via
-#'   [is_path()]) then `package` is assumed a file path.  When just a string, a
-#'   viable path is checked first; if it doesn't exist, then it is assumed a
-#'   package.
+#' @section `package` class handling: When `package` is a [base::name] or
+#'   [base::AsIs], assumed an installed package.  When `package` is a file path
+#'   (via [fuj::is_path()]) then `package` is assumed a file path.  When just a
+#'   string, a viable path is checked first; if it doesn't exist, then it is
+#'   assumed a package.
 #'
-#'   When the package is [source()]'d the name of the environment defaults to
-#'   the base name of `x` (file extension removed).  However, if the object
+#'   When the package is [base::source()]'d the name of the environment defaults
+#'   to the base name of `x` (file extension removed).  However, if the object
 #'   `.AttachName` is found in the sourced file, then that is used as the
-#'   environment name for the [search()] path.
+#'   environment name for the [base::search()] path.
 #'
-#'   **Note:** [include()] won't try to _attach_ an environment a second time,
-#'   however, when `package` is a path, it must be [source()]ed each time to
-#'   check for the `.AttachName` object.  If there are any side effects, they
-#'   will be repeated each time `include(path)` is called.
+#'   **Note:** [fuj::include()] won't try to _attach_ an environment a second
+#'   time, however, when `package` is a path, it must be [base::source()]ed each
+#'   time to check for the `.AttachName` object.  If there are any side effects,
+#'   they will be repeated each time `include(path)` is called.
 #'
-#' @param package A package name.  This can be given as a [name] or a character
-#'   string. See section `package` class handling.
+#' @param package A package name.  This can be given as a [base::name] or a
+#'   character string. See section `package` class handling.
 #' @param exports A character vector of exports.  When named, these exports will
 #'   be aliases as such.
 #' @param lib See `lib.loc` in [base::loadNamespace()].
-#' @param pos An integer specifying the position in the [search()] path to
+#' @param pos An integer specifying the position in the [base::search()] path to
 #'   attach the new environment.
 #' @param warn See `warn.conflicts` in [base::attach()], generally.  The default
 #'   `NULL` converts all `messages`s with masking errors to `verboseMessage`s,

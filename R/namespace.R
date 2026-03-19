@@ -1,6 +1,14 @@
 #' Require namespace
 #'
-#' @param package,... Package names
+#' Check that a namespace is available
+#'
+#' @description Provides additional functionality for
+#' [base::requireNamespace()]. Multiple packages can be included in a single
+#' call, and version requirements can be includes with the package name.
+#'
+#'
+#' @param package,... Package names.  These can be optionally followed by a
+#'   version requirement (see examples)
 #' @return `TRUE` (invisibly) if found; otherwise errors
 #' @examples
 #' isTRUE(require_namespace("base")) # returns invisibly

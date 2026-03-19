@@ -2,22 +2,22 @@
 #'
 #' Lightweight file path functions
 #'
-#' @description [is_path()] checks for either a `file_path` class or an
+#' @description [fuj::is_path()] checks for either a `file_path` class or an
 #'   `fs_path`, the latter useful for the `fs` package.
 #'
-#'   [file_path()] is an alias for [fp()] and [is_file_path()] is an alias for
-#'   [is_path()].
+#'   [fuj::file_path()] is an alias for [fuj::fp()] and [fuj::is_file_path()] is an alias for
+#'   [fuj::is_path()].
 #'
-#'   [set_file_ext()] changes the file extension of a file path, removing any
-#'   existing extension first.  [file_ext<-()] serves as an alias.
+#'   [fuj::set_file_ext()] changes the file extension of a file path, removing any
+#'   existing extension first.  [fuj::file_ext<-()] serves as an alias.
 #'
-#' @param ... Path components, passed to [file.path()]
+#' @param ... Path components, passed to [base::file.path()]
 #' @param x An object to test
 #' @return
-#' - [fp()]/[file_path()]: A `character` vector of the normalized path with a
+#' - [fuj::fp()]/[fuj::file_path()]: A `character` vector of the normalized path with a
 #' `"file_path"` class
-#' - [is_path()]/[is_file_path()]: A `TRUE` or `FALSE` value
-#' - [set_file_ext()]/[file_ext<-()]: The file path with the updated extension
+#' - [fuj::is_path()]/[fuj::is_file_path()]: A `TRUE` or `FALSE` value
+#' - [fuj::set_file_ext()]/[fuj::file_ext<-()]: The file path with the updated extension
 #' @export
 #' @examples
 #' fp("here")

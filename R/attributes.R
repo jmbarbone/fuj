@@ -4,7 +4,7 @@
 #'
 #' @inheritParams base::attr
 #' @export
-#' @return See [base::attr]
+#' @return See [base::attr()]
 #' @examples
 #' foo <- struct(list(), "foo", aa = TRUE)
 #'   attr(foo, "a")  # TRUE : partial match successful
@@ -16,6 +16,4 @@ exattr <- function(x, which) {
 
 #' @export
 #' @rdname exattr
-`%attr%` <- function(x, which) {
-  exattr(x, which)
-}
+`%attr%` <- exattr

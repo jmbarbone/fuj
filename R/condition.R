@@ -11,8 +11,9 @@
 #' @param message A message to print
 #' @param class Character string of a single condition class.  If `class` does
 #'   not end with the value used in `class`, the suffix is appended with an
-#'   underscore (`_`).  This can be ignored if passing `class` as an `AsIs`
-#'   vector (i.e., `I("my_class")`).
+#'   underscore (`_`).  This can be ignored if passing `class` as an
+#'   [base::AsIs] vector (i.e., `I("my_class")`); additionally, [base::AsIs]
+#'   objects do not have `package` prepended to the name.
 #' @param type The type (additional class) of condition: `error"`, `"warning"`,
 #'   `"message"`, or `NA`, which is treated as `NULL`.
 #' @param ... Ignored
@@ -95,7 +96,10 @@ new_condition <- function(
   type <- as.character(type)
   type <- match.arg(type, c("condition", "error", "warning", "message"))
 
-  if (!inherits(class, "AsIs")) {
+  if (inherits(class, "AsIs")) {
+    is_asis <- TRUE
+  } else {
+    is_asis <- vapply(class, function(x) inherits(x, "AsIs"), NA)
     class <- vapply(
       class,
       function(x) {
@@ -114,9 +118,10 @@ new_condition <- function(
       FUN.VALUE = NA_character_,
       USE.NAMES = FALSE
     )
+    ok <- duplicated(class)
+    is_asis <- is_asis[!ok]
+    class <- class[!ok]
   }
-
-  class <- unique(class)
 
   if (!isFALSE(package)) {
     if (isTRUE(package)) {
@@ -133,7 +138,7 @@ new_condition <- function(
       length(package) == 1L &&
       !is.na(package)
     ) {
-      class <- c(paste0(package, ":", class), class)
+      class <- c(paste0(package, ":", class[!is_asis]), class)
     } else {
       stop(value_error(
         "`pkg` must be TRUE, FALSE, or a single length character"
