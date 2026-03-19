@@ -7,13 +7,19 @@
 require_namespace(package, ...)
 }
 \arguments{
-\item{package, ...}{Package names}
+\item{package, ...}{Package names.  These can be optionally followed by a
+version requirement (see examples)}
 }
 \value{
 \code{TRUE} (invisibly) if found; otherwise errors
 }
 \description{
-Require namespace
+Provides additional functionality for
+\code{\link[base:ns-load]{base::requireNamespace()}}. Multiple packages can be included in a single
+call, and version requirements can be includes with the package name.
+}
+\details{
+Check that a namespace is available
 }
 \examples{
 isTRUE(require_namespace("base")) # returns invisibly

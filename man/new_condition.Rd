@@ -20,8 +20,9 @@ new_condition(
 
 \item{class}{Character string of a single condition class.  If \code{class} does
 not end with the value used in \code{class}, the suffix is appended with an
-underscore (\verb{_}).  This can be ignored if passing \code{class} as an \code{AsIs}
-vector (i.e., \code{I("my_class")}).}
+underscore (\verb{_}).  This can be ignored if passing \code{class} as an
+\link[base:AsIs]{base::AsIs} vector (i.e., \code{I("my_class")}); additionally, \link[base:AsIs]{base::AsIs}
+objects do not have \code{package} prepended to the name.}
 
 \item{type}{The type (additional class) of condition: \verb{error"}, \code{"warning"},
 \code{"message"}, or \code{NA}, which is treated as \code{NULL}.}

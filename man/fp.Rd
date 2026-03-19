@@ -22,7 +22,7 @@ set_file_ext(x, value, compression = TRUE)
 file_ext(x, compression = TRUE) <- value
 }
 \arguments{
-\item{...}{Path components, passed to \code{\link[=file.path]{file.path()}}}
+\item{...}{Path components, passed to \code{\link[base:file.path]{base::file.path()}}}
 
 \item{x}{An object to test}
 

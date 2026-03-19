@@ -24,7 +24,7 @@ Replace if \code{NULL} or not length
 }
 \details{
 A mostly copy of \code{rlang}'s \verb{\%||\%} except does not use \code{rlang::is_null()},
-which, currently, calls the same primitive \link[base:NULL]{base::is.null} function.
+which, currently, calls the same primitive \code{\link[base:NULL]{base::is.null()}} function.
 
 Note: \verb{\%||\%} is copied from \code{{base}} if available (\strong{R} versions >= 4.4)
 }

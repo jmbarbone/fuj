@@ -7,7 +7,7 @@
 struct(x, class, ..., .keep_attr = FALSE)
 }
 \arguments{
-\item{x}{An object; if \code{NULL}, coerced to \code{list()}}
+\item{x}{An object; if \code{NULL}, coerced to \code{\link[base:list]{base::list()}}}
 
 \item{class}{A vector of classes; can also be \code{NULL}}
 
@@ -28,15 +28,16 @@ Create simple structures
 \details{
 Unlike \code{\link[base:structure]{base::structure()}} this does not provide additional checks
 for special names, performs no \code{\link[base:mode]{base::storage.mode()}} conversions for
-\code{factors} (\code{x} therefor has to be an \code{integer}), \code{attributes} from \code{x} are
-not retained, and \code{class} is specified outside of other attributes and
-assigned after \code{\link[base:attributes]{base::attributes()}} is called.
+\code{\link[base:factor]{factors}} (\code{x} therefor has to be an \code{integer}),
+\code{\link[base:attributes]{attributes}} from \code{x} are not retained, and \code{class}
+is specified outside of other attributes and assigned after
+\code{\link[base:attributes]{base::attributes()}} is called.
 
 Essentially, this is just a wrapper for calling \code{\link[base:attributes]{base::attributes()}} then
 \code{\link[base:class]{base::class()}}.
 
 Note that \code{\link[base:structure]{base::structure()}} provides a warning when the first argument is
-\code{NULL}.  \code{struct()} does not.  The coercion from \code{NULL} to \code{list()} is
+\code{NULL}.  \code{\link[=struct]{struct()}} does not.  The coercion from \code{NULL} to \code{\link[base:list]{base::list()}} is
 done, and documented, in \code{\link[base:attributes]{base::attributes()}}.
 }
 \examples{

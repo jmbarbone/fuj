@@ -13,7 +13,7 @@ collapse(..., sep = "")
     \code{\link[base]{NA_character_}}.}
 }
 \value{
-A \code{character} vector of concatenated values.  See \link[base:paste]{base::paste} for
+A \code{character} vector of concatenated values.  See \code{\link[base:paste]{base::paste()}} for
 more details.
 }
 \description{

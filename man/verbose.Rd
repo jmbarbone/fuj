@@ -39,8 +39,8 @@ signal a \code{verbose_message} condition.
 Simple verbose condition handling
 }
 \details{
-\code{\link[=verbose]{verbose()}} can be safely placed in scripts to signal additional
-message conditions.  \code{\link[=verbose]{verbose()}} can be controlled with
+\code{\link[=verbose]{verbose()}} can be safely placed in scripts to signal
+additional message conditions.  \code{\link[=verbose]{verbose()}} can be controlled with
 \code{options("verbose")} (the default) and an override,
 \code{options("fuj.verbose")}.  The latter can be set to a function whose result
 will be used for conditional evaluation.

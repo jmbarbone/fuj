@@ -7,15 +7,15 @@
 include(package, exports = NULL, lib = .libPaths(), pos = 2L, warn = NULL)
 }
 \arguments{
-\item{package}{A package name.  This can be given as a \link{name} or a character
-string. See section \code{package} class handling.}
+\item{package}{A package name.  This can be given as a \link[base:name]{base::name} or a
+character string. See section \code{package} class handling.}
 
 \item{exports}{A character vector of exports.  When named, these exports will
 be aliases as such.}
 
 \item{lib}{See \code{lib.loc} in \code{\link[base:ns-load]{base::loadNamespace()}}.}
 
-\item{pos}{An integer specifying the position in the \code{\link[=search]{search()}} path to
+\item{pos}{An integer specifying the position in the \code{\link[base:search]{base::search()}} path to
 attach the new environment.}
 
 \item{warn}{See \code{warn.conflicts} in \code{\link[base:attach]{base::attach()}}, generally.  The default
@@ -27,8 +27,8 @@ attach the new environment.}
 The attached environment, invisibly.
 }
 \description{
-\code{\link[=include]{include()}} checks whether or not the namespace has been loaded
-to the \code{\link[base:search]{base::search()}} path.  It uses the naming convention
+\code{\link[=include]{include()}} checks whether or not the namespace has been
+loaded to the \code{\link[base:search]{base::search()}} path.  It uses the naming convention
 \code{include:{package}} to denote the differences from loading via
 \code{\link[base:library]{base::library()}} or \code{\link[base:library]{base::require()}}. When \code{exports} is \code{NULL}, the
 environment is detached from the search path if found.  When \code{exports} is
@@ -42,21 +42,21 @@ more information.
 Include (attach) a package and specific exports to Search Path
 }
 \section{\code{package} class handling}{
- When \code{package} is a \link{name} or \link{AsIs},
-assumed an installed package.  When \code{package} is a file path (via
-\code{\link[=is_path]{is_path()}}) then \code{package} is assumed a file path.  When just a string, a
-viable path is checked first; if it doesn't exist, then it is assumed a
-package.
+ When \code{package} is a \link[base:name]{base::name} or
+\link[base:AsIs]{base::AsIs}, assumed an installed package.  When \code{package} is a file path
+(via \code{\link[=is_path]{is_path()}}) then \code{package} is assumed a file path.  When just a
+string, a viable path is checked first; if it doesn't exist, then it is
+assumed a package.
 
-When the package is \code{\link[=source]{source()}}'d the name of the environment defaults to
-the base name of \code{x} (file extension removed).  However, if the object
+When the package is \code{\link[base:source]{base::source()}}'d the name of the environment defaults
+to the base name of \code{x} (file extension removed).  However, if the object
 \code{.AttachName} is found in the sourced file, then that is used as the
-environment name for the \code{\link[=search]{search()}} path.
+environment name for the \code{\link[base:search]{base::search()}} path.
 
-\strong{Note:} \code{\link[=include]{include()}} won't try to \emph{attach} an environment a second time,
-however, when \code{package} is a path, it must be \code{\link[=source]{source()}}ed each time to
-check for the \code{.AttachName} object.  If there are any side effects, they
-will be repeated each time \code{include(path)} is called.
+\strong{Note:} \code{\link[=include]{include()}} won't try to \emph{attach} an environment a second
+time, however, when \code{package} is a path, it must be \code{\link[base:source]{base::source()}}ed each
+time to check for the \code{.AttachName} object.  If there are any side effects,
+they will be repeated each time \code{include(path)} is called.
 }
 
 \examples{

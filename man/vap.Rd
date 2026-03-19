@@ -159,38 +159,40 @@ with_vap_handlers(expr)
 \item{expr}{The expression to evaluate.}
 }
 \value{
-For \code{\link[=vap]{vap()}}, \code{\link[=vapi]{vapi()}}, returns a \code{list} with length of \code{x}. For
-\code{\link[=vap2]{vap2()}}, \code{\link[=vap3]{vap3()}}, and \code{\link[=vap]{vap()}}, return length is determined by how \code{...}
-is recycled inside \code{\link[=mapply]{mapply()}}.
+For \code{\link[=vap]{vap()}}, \code{\link[=vapi]{vapi()}}, returns a \code{list} with length of
+\code{x}. For \code{\link[=vap2]{vap2()}}, \code{\link[=vap3]{vap3()}}, and \code{\link[=vap]{vap()}}, return length is
+determined by how \code{...} is recycled inside \code{\link[base:mapply]{base::mapply()}}.
 
-All have type variants (e.g., \code{\link[=vap_chr]{vap_chr()}}, \code{\link[=vapi_int]{vapi_int()}}, \code{\link[=vap3_dbl]{vap3_dbl()}})
-which return a vector of the corresponding class, with the same length of
-\code{x}, or following the same recycling rules as \code{\link[=mapply]{mapply()}} for multiple
-inputs. These returns are \emph{coerced}, rather than \emph{checked}, and may result
-in unexpected outputs. Likely, warnings or errors will be signaled
-accordingly.
+All have type variants (e.g., \code{\link[=vap_chr]{vap_chr()}}, \code{\link[=vapi_int]{vapi_int()}},
+\code{\link[=vap3_dbl]{vap3_dbl()}}) which return a vector of the corresponding class, with
+the same length of \code{x}, or following the same recycling rules as \code{\link[=mapply]{mapply()}}
+for multiple inputs. These returns are \emph{coerced}, rather than \emph{checked},
+and may result in unexpected outputs. Likely, warnings or errors will be
+signaled accordingly.
 
-\code{\link[=vap_vec]{vap_vec()}} is a variant of \code{\link[=vap]{vap()}} that returns a \emph{flattened} vector. This
-has similar behavior as \code{\link[base:lapply]{base::sapply()}}, in that a \code{list} will be returned
-if the \code{\link[base:unlist]{base::unlist()}}'d output has multiple values in an element.
+\code{\link[=vap_vec]{vap_vec()}} is a variant of \code{\link[=vap]{vap()}} that returns a \emph{flattened}
+vector. This has similar behavior as \code{\link[base:lapply]{base::sapply()}}, in that a \code{list}
+will be returned if the \code{\link[base:unlist]{base::unlist()}}'d output has multiple values in an
+element.
 
 \code{\link[=with_vap_progress]{with_vap_progress()}} sets an option \code{vap.progress} to \code{TRUE} for the
 duration of \code{expr}, which causes a progress bar to be displayed for any
 \verb{vap*} calls inside \code{expr}.
 
-\code{\link[=with_vap_handlers]{with_vap_handlers()}} sets an \code{options(vap.indexed_errors = TRUE)} for the
-duration of \code{expr}, which causes errors inside \code{vap} calls to include the
-index at which the error occurred.
+\code{\link[=with_vap_handlers]{with_vap_handlers()}} sets an \code{options(vap.indexed_errors = TRUE)} for
+the duration of \code{expr}, which causes errors inside \code{vap} calls to include
+the index at which the error occurred.
 }
 \description{
 Apply a function over elements of a \code{vector}.
 }
 \details{
-Like \code{\link[=lapply]{lapply()}}, \code{\link[=mapply]{mapply()}}, and family, the \code{vap} functions provide
-a means of applying a function to each element of a \code{vector}, and
-controlling return types.  The \code{vap} family provides extra tools and
-controls, as well as \emph{date} outputs (i.e., \verb{_date}, \verb{_dttm} variants that
-work with \code{Date} and \code{POSIXct} types).
+Like \code{\link[base:lapply]{base::lapply()}}, \code{\link[base:mapply]{base::mapply()}}, and family, the \code{vap}
+functions provide a means of applying a function to each element of a
+\code{vector}, and controlling return types.  The \code{vap} family provides extra
+tools and controls, as well as \emph{date} outputs (i.e., \verb{_date}, \verb{_dttm}
+variants that work with \link[base:Dates]{Date} and
+\link[base:DateTimeClasses]{POSIXct} types).
 \itemize{
 \item \code{vap()} uses a single \code{x} argument
 \item \code{vapi()} uses a single \code{x} argument and passes the names (when available,
@@ -203,10 +205,11 @@ otherwise index) as the second argument
  Two helper functions are provided to set options for a
 progress bars (\code{options(fuj.vap.progress)}) and reporting an index during
 and error (\code{options(fuj.vap.index_error)}).  Two wrapper functions are
-provided: \code{\link[=with_vap_progress]{with_vap_progress()}} and \code{\link[=with_vap_handlers]{with_vap_handlers()}}, respectively;
-the latter may include other handlers in the future.  These are not turned
-on by default (or rather, the option settings are set to \code{FALSE} within
-\code{{fuj}}) as they incur some additional overhead.
+provided: \code{\link[=with_vap_progress]{with_vap_progress()}} and \code{\link[=with_vap_handlers]{with_vap_handlers()}},
+respectively; the latter may include other handlers in the future.  These
+are not turned on by default (or rather, the option settings are set to
+\code{FALSE} within \link[=fuj-package]{fuj}) as they incur some additional
+overhead.
 }
 
 \examples{
