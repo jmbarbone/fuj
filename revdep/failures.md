@@ -1,13 +1,9 @@
-# mark
+# mark ()
 
-<details>
+* GitHub: <https://github.com/jmbarbone/fuj>
+* Email: <mailto:jmbarbone@gmail.com>
 
-* Version: 
-* GitHub: https://github.com/jmbarbone/fuj
-* Source code: NA
-* Number of recursive dependencies: 0
-
-</details>
+Run `revdepcheck::revdep_details(, "mark")` for more info
 
 ## Error before installation
 
