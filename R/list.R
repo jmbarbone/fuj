@@ -2,9 +2,9 @@
 #'
 #' Tries to not complain about empty arguments
 #'
-#' If `options(fuj.list.active = FALSE)` is set to prior to package loading,
-#' this function becomes an alias for [base::list()], disabling the special
-#' behavior.
+#' If `options(fuj.list.active = FALSE)` is set to prior to package loading
+#' (i.e., prior to `.onLoad()` called), this function becomes an alias for
+#' [base::list()], disabling the special behavior.
 #'
 #' @param ... Arguments to collect in a list
 #' @return A `list` of `...`
