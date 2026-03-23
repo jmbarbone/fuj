@@ -1,6 +1,6 @@
 ## Test environments
 
-* local R installation, R 4.4.0
+* local R installation, R 4.5.2
 * windows-latest, release
 * macOS-latest, release
 * ubuntu-latest devel, release, oldrel-1
@@ -9,8 +9,8 @@
 
 0 errors | 0 warnings | 0 notes
 
-* This is a patch release
+* This is a minor release
 
 ## Notes
 
-* fixes failing test for `structure()`
+* No current CRAN failures
