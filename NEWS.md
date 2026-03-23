@@ -1,11 +1,10 @@
 # fuj 0.3.0
 
-
 ## Deprecations
 
 * `quick_dfl()` is now deprecated [#91](https://github.com/jmbarbone/fuj/issues/91)
 
-## Improvements and bug fices
+## Improvements and bug fixes
 
 * `match_ext` functions have minor improvements for direct aliases and documentation updates [#86](https://github.com/jmbarbone/fuj/issues/86)
 * `quick_df()` no longer allows `NULL` values in the input list [#81](https://github.com/jmbarbone/fuj/issues/81)
