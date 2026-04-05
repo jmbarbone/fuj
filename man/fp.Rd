@@ -33,21 +33,22 @@ extension}
 }
 \value{
 \itemize{
-\item \code{\link[=fp]{fp()}}/\code{\link[=file_path]{file_path()}}: A \code{character} vector of the normalized path with a
-\code{"file_path"} class
+\item \code{\link[=fp]{fp()}}/\code{\link[=file_path]{file_path()}}: A \code{character} vector of the normalized path
+with a \code{"file_path"} class
 \item \code{\link[=is_path]{is_path()}}/\code{\link[=is_file_path]{is_file_path()}}: A \code{TRUE} or \code{FALSE} value
-\item \code{\link[=set_file_ext]{set_file_ext()}}/\code{\link[=file_ext<-]{file_ext<-()}}: The file path with the updated extension
+\item \code{\link[=set_file_ext]{set_file_ext()}}/\code{\link[=file_ext<-]{file_ext<-()}}: The file path with the updated
+extension
 }
 }
 \description{
 \code{\link[=is_path]{is_path()}} checks for either a \code{file_path} class or an
 \code{fs_path}, the latter useful for the \code{fs} package.
 
-\code{\link[=file_path]{file_path()}} is an alias for \code{\link[=fp]{fp()}} and \code{\link[=is_file_path]{is_file_path()}} is an alias for
-\code{\link[=is_path]{is_path()}}.
+\code{\link[=file_path]{file_path()}} is an alias for \code{\link[=fp]{fp()}} and \code{\link[=is_file_path]{is_file_path()}} is
+an alias for \code{\link[=is_path]{is_path()}}.
 
-\code{\link[=set_file_ext]{set_file_ext()}} changes the file extension of a file path, removing any
-existing extension first.  \code{\link[=file_ext<-]{file_ext<-()}} serves as an alias.
+\code{\link[=set_file_ext]{set_file_ext()}} changes the file extension of a file path, removing
+any existing extension first.  \code{\link[=file_ext<-]{file_ext<-()}} serves as an alias.
 }
 \details{
 Lightweight file path functions
