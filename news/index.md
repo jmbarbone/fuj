@@ -36,6 +36,12 @@
   [`fact()`](https://jmbarbone.github.io/fuj/reference/encode.md) added
   to encode values and create `factor`s
   [\#87](https://github.com/jmbarbone/fuj/issues/87)
+- [`np()`](https://jmbarbone.github.io/fuj/reference/fp.md) added for
+  normalizing file paths
+  [\#100](https://github.com/jmbarbone/fuj/issues/100)
+- [`fp()`](https://jmbarbone.github.io/fuj/reference/fp.md) no longer
+  normalizes file paths
+  [\#100](https://github.com/jmbarbone/fuj/issues/100)
 
 ### Changes in `conditions`
 

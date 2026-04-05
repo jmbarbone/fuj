@@ -131,7 +131,9 @@ sapply(x, wuffle(fun = as.integer))
 - [`flip()`](https://jmbarbone.github.io/fuj/reference/flip.md) : Flip
 
 - [`fp()`](https://jmbarbone.github.io/fuj/reference/fp.md)
+  [`np()`](https://jmbarbone.github.io/fuj/reference/fp.md)
   [`file_path()`](https://jmbarbone.github.io/fuj/reference/fp.md)
+  [`norm_path()`](https://jmbarbone.github.io/fuj/reference/fp.md)
   [`is_path()`](https://jmbarbone.github.io/fuj/reference/fp.md)
   [`is_file_path()`](https://jmbarbone.github.io/fuj/reference/fp.md)
   [`set_file_ext()`](https://jmbarbone.github.io/fuj/reference/fp.md)

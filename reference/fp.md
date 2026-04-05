@@ -9,12 +9,27 @@ for `is_path()`.
 `set_file_ext()` changes the file extension of a file path, removing any
 existing extension first. `file_ext<-()` serves as an alias.
 
+`np()` will [normalize](https://rdrr.io/r/base/normalizePath.html) the
+file path, always using `"/"` as the path separator, and without
+signaling errors or warnings for non-existent paths.
+
+Paths can be constructed with `/` and `+` methods:
+
+    fp("here") / "subdir" + "ext"
+
+This will create a file path for `here/subdir.ext`, with the extension
+added after. **Note**: fp() can be replaced with np().
+
 ## Usage
 
 ``` r
 fp(...)
 
+np(...)
+
 file_path(...)
+
+norm_path(...)
 
 is_path(x)
 
@@ -30,7 +45,7 @@ file_ext(x, compression = TRUE) <- value
 - ...:
 
   Path components, passed to
-  [`file.path()`](https://rdrr.io/r/base/file.path.html)
+  [`base::file.path()`](https://rdrr.io/r/base/file.path.html)
 
 - x:
 
@@ -46,8 +61,10 @@ file_ext(x, compression = TRUE) <- value
 
 ## Value
 
-- `fp()`/`file_path()`: A `character` vector of the normalized path with
-  a `"file_path"` class
+- `fp()`/`file_path()`: A `character` vector with a `"file_path"` class
+
+- `np()`/`norm_path()`: A `character` vector with a `"file_path"` class,
+  with [normalized](https://rdrr.io/r/base/normalizePath.html) paths
 
 - `is_path()`/`is_file_path()`: A `TRUE` or `FALSE` value
 
@@ -64,7 +81,7 @@ Lightweight file path functions
 fp("here")
 #> here
 fp("~/there")
-#> /home/runner/there
+#> ~/there
 fp("back\\slash")
 #> back/slash
 fp("remove//extra\\\\slashes")
