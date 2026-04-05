@@ -19,6 +19,8 @@
 * `hold()` and `toss()` are added for retaining and removing values in a vectors [#85](https://github.com/jmbarbone/fuj/issues/85)
 * `negate()` and `not()` added to negate functions [#84](https://github.com/jmbarbone/fuj/issues/84)
 * `encode()` and `fact()` added to encode values and create `factor`s [#87](https://github.com/jmbarbone/fuj/issues/87)
+* `np()` added for normalizing file paths [#100](https://github.com/jmbarbone/fuj/issues/100)
+* `fp()` no longer normalizes file paths [#100](https://github.com/jmbarbone/fuj/issues/100)
 
 ## Changes in `conditions` 
 

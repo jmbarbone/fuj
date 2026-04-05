@@ -11,14 +11,28 @@
 #'   [fuj::set_file_ext()] changes the file extension of a file path, removing
 #'   any existing extension first.  [fuj::file_ext<-()] serves as an alias.
 #'
+#'   [fuj::np()] will [normalize][base::normalizePath()] the file path, always
+#'   using `"/"` as the path separator, and without signaling errors or warnings
+#'   for non-existent paths.
+#'
+#'   Paths can be constructed with `/` and `+` methods:
+#'   ```r
+#'   fp("here") / "subdir" + "ext"
+#'   ```
+#'   This will create a file path for `here/subdir.ext`, with the extension
+#'   added after.  **Note**: [fp()][fuj::fp()] can be replaced with
+#'   [np()][fuj::np()].
+#'
 #' @param ... Path components, passed to [base::file.path()]
 #' @param x An object to test
-#' @return
-#' - [fuj::fp()]/[fuj::file_path()]: A `character` vector of the normalized path
-#' with a `"file_path"` class
+#' @returns
+#' - [fuj::fp()]/[fuj::file_path()]: A `character` vector with a `"file_path"`
+#'   class
+#' - [fuj::np()]/[fuj::norm_path()]: A `character` vector with a `"file_path"`
+#'   class, with [normalized][base::normalizePath()] paths
 #' - [fuj::is_path()]/[fuj::is_file_path()]: A `TRUE` or `FALSE` value
 #' - [fuj::set_file_ext()]/[fuj::file_ext<-()]: The file path with the updated
-#' extension
+#'   extension
 #' @export
 #' @examples
 #' fp("here")
@@ -39,7 +53,6 @@
 #' x
 fp <- function(...) {
   x <- file.path(..., fsep = "/")
-  x <- normalizePath(x, "/", FALSE)
   x <- gsub("\\", "/", x, fixed = TRUE)
   x <- gsub("/+", "/", x)
   struct(x, class = c("file_path", "character"))
@@ -47,7 +60,18 @@ fp <- function(...) {
 
 #' @export
 #' @rdname fp
+np <- function(...) {
+  x <- normalizePath(fp(...), "/", FALSE)
+  struct(x, class = c("file_path", "character"))
+}
+
+#' @export
+#' @rdname fp
 file_path <- fp
+
+#' @export
+#' @rdname fp
+norm_path <- np
 
 #' @export
 print.file_path <- function(x, ...) {

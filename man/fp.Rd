@@ -2,7 +2,9 @@
 % Please edit documentation in R/fs.R
 \name{fp}
 \alias{fp}
+\alias{np}
 \alias{file_path}
+\alias{norm_path}
 \alias{is_path}
 \alias{is_file_path}
 \alias{set_file_ext}
@@ -11,7 +13,11 @@
 \usage{
 fp(...)
 
+np(...)
+
 file_path(...)
+
+norm_path(...)
 
 is_path(x)
 
@@ -33,8 +39,10 @@ extension}
 }
 \value{
 \itemize{
-\item \code{\link[=fp]{fp()}}/\code{\link[=file_path]{file_path()}}: A \code{character} vector of the normalized path
-with a \code{"file_path"} class
+\item \code{\link[=fp]{fp()}}/\code{\link[=file_path]{file_path()}}: A \code{character} vector with a \code{"file_path"}
+class
+\item \code{\link[=np]{np()}}/\code{\link[=norm_path]{norm_path()}}: A \code{character} vector with a \code{"file_path"}
+class, with \link[base:normalizePath]{normalized} paths
 \item \code{\link[=is_path]{is_path()}}/\code{\link[=is_file_path]{is_file_path()}}: A \code{TRUE} or \code{FALSE} value
 \item \code{\link[=set_file_ext]{set_file_ext()}}/\code{\link[=file_ext<-]{file_ext<-()}}: The file path with the updated
 extension
@@ -49,6 +57,19 @@ an alias for \code{\link[=is_path]{is_path()}}.
 
 \code{\link[=set_file_ext]{set_file_ext()}} changes the file extension of a file path, removing
 any existing extension first.  \code{\link[=file_ext<-]{file_ext<-()}} serves as an alias.
+
+\code{\link[=np]{np()}} will \link[base:normalizePath]{normalize} the file path, always
+using \code{"/"} as the path separator, and without signaling errors or warnings
+for non-existent paths.
+
+Paths can be constructed with \code{/} and \code{+} methods:
+
+\if{html}{\out{<div class="sourceCode r">}}\preformatted{fp("here") / "subdir" + "ext"
+}\if{html}{\out{</div>}}
+
+This will create a file path for \code{here/subdir.ext}, with the extension
+added after.  \strong{Note}: \link[=fp]{fp()} can be replaced with
+\link[=np]{np()}.
 }
 \details{
 Lightweight file path functions
