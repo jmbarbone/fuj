@@ -11,6 +11,8 @@
 * `match_ext` have minor improvements for direct aliases; documentation updates [#86](https://github.com/jmbarbone/fuj/issues/86)
 * `negate()` and `not()` added to negate functions [#84](https://github.com/jmbarbone/fuj/issues/84)
 * `encode()` and `fact()` added to encode values and create `factor`s [#87](https://github.com/jmbarbone/fuj/issues/87)
+* `np()` added for normalizing file paths [#100](https://github.com/jmbarbone/fuj/issues/100)
+* `fp()` no longer normalizes file paths [#100](https://github.com/jmbarbone/fuj/issues/100)
 
 ## Changes in `conditions` 
 
