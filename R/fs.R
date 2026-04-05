@@ -37,7 +37,7 @@
 #' file_ext(x) <- NULL
 #' x
 fp <- function(...) {
-  x <- normalizePath(file.path(..., fsep = "/"), "/", FALSE)
+  x <- file.path(..., fsep = "/")
   x <- gsub("\\", "/", x, fixed = TRUE)
   x <- gsub("/+", "/", x)
   struct(x, class = c("file_path", "character"))
@@ -45,7 +45,18 @@ fp <- function(...) {
 
 #' @export
 #' @rdname fp
+np <- function(...) {
+  x <- normalizePath(fp(...), "/", FALSE)
+  struct(x, class = c("file_path", "character"))
+}
+
+#' @export
+#' @rdname fp
 file_path <- fp
+
+#' @export
+#' @rdname fp
+norm_path <- np
 
 #' @export
 print.file_path <- function(x, ...) {
