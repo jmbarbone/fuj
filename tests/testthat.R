@@ -6,6 +6,7 @@
 # * https://r-pkgs.org/tests.html
 # * https://testthat.r-lib.org/reference/test_package.html#special-files
 
+options(fuj.list.active = FALSE)
 library(testthat)
 library(fuj)
 
