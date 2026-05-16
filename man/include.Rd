@@ -13,7 +13,7 @@ string. See section \code{package} class handling.}
 \item{exports}{A character vector of exports.  When named, these exports will
 be aliases as such.}
 
-\item{lib}{See \code{lib.loc} in \code{\link[base:ns-load]{base::loadNamespace()}}.}
+\item{lib}{See \code{lib.loc} in \code{\link[base:loadNamespace]{base::loadNamespace()}}.}
 
 \item{pos}{An integer specifying the position in the \code{\link[=search]{search()}} path to
 attach the new environment.}
@@ -30,7 +30,7 @@ The attached environment, invisibly.
 \code{\link[=include]{include()}} checks whether or not the namespace has been loaded
 to the \code{\link[base:search]{base::search()}} path.  It uses the naming convention
 \code{include:{package}} to denote the differences from loading via
-\code{\link[base:library]{base::library()}} or \code{\link[base:library]{base::require()}}. When \code{exports} is \code{NULL}, the
+\code{\link[base:library]{base::library()}} or \code{\link[base:require]{base::require()}}. When \code{exports} is \code{NULL}, the
 environment is detached from the search path if found.  When \code{exports} is
 not \code{NULL},
 
