@@ -9,6 +9,7 @@ level tools for other packages by
 Install [fuj](https://jmbarbone.github.io/fuj/) from CRAN with:
 
 ``` r
+
 install.packages("fuj")
 ```
 
@@ -24,12 +25,14 @@ devtools::install_github("jmbarbone/fuj")
 ## Example
 
 ``` r
+
 library(fuj)
 ```
 
 Quicker `data.frame`s:
 
 ``` r
+
 quick_df(list(a = 1:5, b = letters[1:5]))
 #>   a b
 #> 1 1 a
@@ -47,6 +50,7 @@ quick_dfl(a = 1:3, b = list(1:5, 6:10, 11:15))
 More extensions:
 
 ``` r
+
 1:10 %out% c(1, 3, 5, 9)       # opposite of %in% 
 #>  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE
 letters[1:5] %wo% letters[3:7]
@@ -58,6 +62,7 @@ letters[1:5] %wi% letters[3:7]
 Simple structures:
 
 ``` r
+
 struct(list(a = 1, b = 2), class = "foo", c = 3, d = 3)
 #> [[1]]
 #> [1] 1
@@ -76,6 +81,7 @@ struct(list(a = 1, b = 2), class = "foo", c = 3, d = 3)
 Suppress messages and warnings:
 
 ``` r
+
 foo <- function(...) { message(paste0(list(...))) ; c(...) }
 muffle(foo(1:3))
 #> [1] 1 2 3

@@ -67,6 +67,9 @@
   [`lst()`](https://jmbarbone.github.io/fuj/reference/list0.md) :
   Listing for dots
 
+- [`match_arg()`](https://jmbarbone.github.io/fuj/reference/match_arg.md)
+  : Match arguments
+
 - [`is_in()`](https://jmbarbone.github.io/fuj/reference/match_ext.md)
   [`is_out()`](https://jmbarbone.github.io/fuj/reference/match_ext.md)
   [`` `%out%` ``](https://jmbarbone.github.io/fuj/reference/match_ext.md)

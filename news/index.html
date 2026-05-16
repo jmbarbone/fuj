@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9010</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9011</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.2.2.9010/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/jmbarbone/fuj/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
@@ -72,6 +72,9 @@
 <li>
 <code><a href="../reference/fp.html">fp()</a></code> no longer normalizes file paths <a href="https://github.com/jmbarbone/fuj/issues/100" class="external-link">#100</a>
 </li>
+<li>
+<code><a href="../reference/match_arg.html">match_arg()</a></code> added for and internally used <a href="https://github.com/jmbarbone/fuj/issues/102" class="external-link">#102</a>
+</li>
 </ul><div class="section level3">
 <h3 id="changes-in-conditions-development-version">Changes in <code>conditions</code>
 <a class="anchor" aria-label="anchor" href="#changes-in-conditions-development-version"></a></h3>
@@ -107,47 +110,47 @@
 <code>vaps</code> are vector apply functions, with certain presets to assist with common cases</li>
 <li>all <code>vap</code> functions have type-stable variants:</li>
 </ul><p>The below table shows inputs for <code>vap</code> functions and how they behave with the provided functions (<code>f</code>). Arguments to <code>f())</code> can use any name.</p>
-<table class="table"><thead><tr class="header"><th align="left">
+<table class="table"><thead><tr><th align="left">
 <code>vap</code> function</th>
 <th align="left">
 <code>f</code> args</th>
-</tr></thead><tbody><tr class="odd"><td align="left"><code>vap(x, f)</code></td>
+</tr></thead><tbody><tr><td align="left"><code>vap(x, f)</code></td>
 <td align="left"><code>f(x)</code></td>
-</tr><tr class="even"><td align="left"><code>vap2(x, y, f)</code></td>
+</tr><tr><td align="left"><code>vap2(x, y, f)</code></td>
 <td align="left"><code>f(x, y)</code></td>
-</tr><tr class="odd"><td align="left"><code>vap3(x, y, z, f)</code></td>
+</tr><tr><td align="left"><code>vap3(x, y, z, f)</code></td>
 <td align="left"><code>f(x, y, z)</code></td>
-</tr><tr class="even"><td align="left"><code>vapi(x, f)</code></td>
+</tr><tr><td align="left"><code>vapi(x, f)</code></td>
 <td align="left"><code>f(x, i)</code></td>
-</tr><tr class="odd"><td align="left"><code>vapp(p, f)</code></td>
+</tr><tr><td align="left"><code>vapp(p, f)</code></td>
 <td align="left"><code>f(...)</code></td>
 </tr></tbody></table><p><em>Note</em>: <code><a href="../reference/vap.html">vapi()</a></code> uses either the index or names of <code>x</code> as the second argument to <code>f</code>.</p>
 <p>Each <code>vap</code> function comes with the following type variants. If you are not concerned about type safety, use<code><a href="../reference/vap.html">vap_vec()</a></code>.</p>
-<table class="table"><colgroup><col width="27%"><col width="36%"><col width="36%"></colgroup><thead><tr class="header"><th align="left">Function</th>
+<table class="table"><colgroup><col width="27%"><col width="36%"><col width="36%"></colgroup><thead><tr><th align="left">Function</th>
 <th>Output Type</th>
 <th>Conversion</th>
-</tr></thead><tbody><tr class="odd"><td align="left"><code>*_chr()</code></td>
+</tr></thead><tbody><tr><td align="left"><code>*_chr()</code></td>
 <td>character</td>
 <td><code>as.vector(_, "character")</code></td>
-</tr><tr class="even"><td align="left"><code>*_dbl()</code></td>
+</tr><tr><td align="left"><code>*_dbl()</code></td>
 <td>double/numeric</td>
 <td><code>as.vector(_, "double")</code></td>
-</tr><tr class="odd"><td align="left"><code>*_int()</code></td>
+</tr><tr><td align="left"><code>*_int()</code></td>
 <td>integer</td>
 <td><code>as.vector(_, "integer")</code></td>
-</tr><tr class="even"><td align="left"><code>*_lgl()</code></td>
+</tr><tr><td align="left"><code>*_lgl()</code></td>
 <td>logical</td>
 <td><code>as.vector(_, "logical")</code></td>
-</tr><tr class="odd"><td align="left"><code>*_raw()</code></td>
+</tr><tr><td align="left"><code>*_raw()</code></td>
 <td>raw</td>
 <td><code>as.vector(_, "raw")</code></td>
-</tr><tr class="even"><td align="left"><code>*_cpl()</code></td>
+</tr><tr><td align="left"><code>*_cpl()</code></td>
 <td>complex</td>
 <td><code>as.vector(_, "complex")</code></td>
-</tr><tr class="odd"><td align="left"><code>*_date()</code></td>
+</tr><tr><td align="left"><code>*_date()</code></td>
 <td>Date</td>
 <td><code>as.Date(as.vector(_, "double"), origin = "1970-01-01")</code></td>
-</tr><tr class="even"><td align="left"><code>*_dttm()</code></td>
+</tr><tr><td align="left"><code>*_dttm()</code></td>
 <td>POSIXct</td>
 <td><code>as.POSIXct(as.vector(_, "double"), origin = "1970-01-01", tz = "UTC")</code></td>
 </tr></tbody></table><p><em>Note</em>: these variants do not perform <em>checks</em> on output results, but rather coerce the output to the specified type.</p>

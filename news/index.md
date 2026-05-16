@@ -42,6 +42,9 @@
 - [`fp()`](https://jmbarbone.github.io/fuj/reference/fp.md) no longer
   normalizes file paths
   [\#100](https://github.com/jmbarbone/fuj/issues/100)
+- [`match_arg()`](https://jmbarbone.github.io/fuj/reference/match_arg.md)
+  added for and internally used
+  [\#102](https://github.com/jmbarbone/fuj/issues/102)
 
 ### Changes in `conditions`
 
@@ -106,16 +109,16 @@ Each `vap` function comes with the following type variants. If you are
 not concerned about type safety,
 use[`vap_vec()`](https://jmbarbone.github.io/fuj/reference/vap.md).
 
-| Function   | Output Type    | Conversion                                                              |
-|:-----------|----------------|-------------------------------------------------------------------------|
-| `*_chr()`  | character      | `as.vector(_, "character")`                                             |
-| `*_dbl()`  | double/numeric | `as.vector(_, "double")`                                                |
-| `*_int()`  | integer        | `as.vector(_, "integer")`                                               |
-| `*_lgl()`  | logical        | `as.vector(_, "logical")`                                               |
-| `*_raw()`  | raw            | `as.vector(_, "raw")`                                                   |
-| `*_cpl()`  | complex        | `as.vector(_, "complex")`                                               |
-| `*_date()` | Date           | `as.Date(as.vector(_, "double"), origin = "1970-01-01")`                |
-| `*_dttm()` | POSIXct        | `as.POSIXct(as.vector(_, "double"), origin = "1970-01-01", tz = "UTC")` |
+| Function | Output Type | Conversion |
+|:---|----|----|
+| `*_chr()` | character | `as.vector(_, "character")` |
+| `*_dbl()` | double/numeric | `as.vector(_, "double")` |
+| `*_int()` | integer | `as.vector(_, "integer")` |
+| `*_lgl()` | logical | `as.vector(_, "logical")` |
+| `*_raw()` | raw | `as.vector(_, "raw")` |
+| `*_cpl()` | complex | `as.vector(_, "complex")` |
+| `*_date()` | Date | `as.Date(as.vector(_, "double"), origin = "1970-01-01")` |
+| `*_dttm()` | POSIXct | `as.POSIXct(as.vector(_, "double"), origin = "1970-01-01", tz = "UTC")` |
 
 *Note*: these variants do not perform *checks* on output results, but
 rather coerce the output to the specified type.
@@ -204,6 +207,7 @@ CRAN release: 2024-05-07
   [`list0()`](https://jmbarbone.github.io/fuj/reference/list0.md)
 
 ``` r
+
 library(fuj)
 options(fuj.verbose = FALSE)
 verbose("will not show")

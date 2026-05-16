@@ -33,6 +33,7 @@ The result of `expr` or a `function` wrapping `fun`
 ## Examples
 
 ``` r
+
 # load function
 foo <- function(...) {
   message("You entered :", paste0(...))

@@ -84,9 +84,7 @@ struct(1L, "factor", levels = "a")
 
 # When first argument is NULL -- attributes() coerces
 try(structure(NULL))    # NULL, no call to attributes()
-#> Warning: Calling 'structure(NULL, *)' is deprecated, as NULL cannot have attributes.
-#>   Consider 'structure(list(), *)' instead.
-#> NULL
+#> Error in structure(NULL) : attempt to set an attribute on NULL
 struct(NULL, NULL)      # list(), without warning
 #> list()
 x <- NULL

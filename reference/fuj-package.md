@@ -16,15 +16,12 @@ Useful links:
 
 - Report bugs at <https://github.com/jmbarbone/fuj/issues>
 
-Useful links:
-
-- <https://jmbarbone.github.io/fuj/>
-
-- <https://github.com/jmbarbone/fuj>
-
-- Report bugs at <https://github.com/jmbarbone/fuj/issues>
-
 ## Author
 
 **Maintainer**: Jordan Mark Barbone <jmbarbone@gmail.com>
 ([ORCID](https://orcid.org/0000-0001-9788-3628)) \[copyright holder\]
+
+Authors:
+
+- Jordan Mark Barbone <jmbarbone@gmail.com>
+  ([ORCID](https://orcid.org/0000-0001-9788-3628)) \[copyright holder\]

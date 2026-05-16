@@ -12,12 +12,6 @@ op.fuj
 op.fuj
 ```
 
-## Format
-
-An object of class `list` of length 6.
-
-An object of class `list` of length 6.
-
 ## Examples
 
 ``` r
