@@ -52,33 +52,27 @@ new_condition <- function(
   pkg
 ) {
   if (!missing(pkg)) {
-    warning(
-      deprecated_warning(
-        "`new_condition(pkg)` is deprecated; use `new_condition(package)`",
-        " instead"
-      )
-    )
+    warning(deprecated_warning(
+      "`new_condition(pkg)` is deprecated; use `new_condition(package)`",
+      " instead"
+    ))
     package <- pkg
   }
 
   if (!missing(msg)) {
-    warning(
-      deprecated_warning(
-        "`new_condition(msg)` is deprecated; use `new_condition(message)`",
-        " instead"
-      )
-    )
+    warning(deprecated_warning(
+      "`new_condition(msg)` is deprecated; use `new_condition(message)`",
+      " instead"
+    ))
     message <- msg
   }
 
   if (...length() > 0L) {
     mc <- match.call(expand.dots = FALSE)$...
-    warning(
-      dots_warning(
-        "`...` is ignored in `new_condition()`: ",
-        pairlist_to_string(mc)
-      )
-    )
+    warning(dots_warning(
+      "`...` is ignored in `new_condition()`: ",
+      pairlist_to_string(mc)
+    ))
     return()
   }
 
@@ -93,7 +87,7 @@ new_condition <- function(
   }
 
   type <- as.character(type)
-  type <- match.arg(type, c("condition", "error", "warning", "message"))
+  type <- match_arg(type, c("condition", "error", "warning", "message"))
 
   if (!inherits(class, "AsIs")) {
     class <- vapply(
@@ -143,12 +137,7 @@ new_condition <- function(
     package <- NULL
   }
 
-  message <- sprintf(
-    "<%s> %s",
-    if (is.null(package)) class else class[2L],
-    collapse(message)
-  )
-
+  message <- collapse(message)
   class <- unique(c(class, type, "fuj_condition", "condition"))
 
   struct(
@@ -161,11 +150,16 @@ new_condition <- function(
 
 #' @export
 conditionMessage.fuj_condition <- function(c) {
-  pkg <- attr(c, "package")
-  if (!is.null(pkg)) {
-    c$message <- paste0(c$message, sprintf("\npackage:%s", pkg))
-  }
-
+  c$message <- paste0(
+    sprintf(
+      "<%s> ",
+      collapse(
+        class(c)[if (is.null(attr(c, "package", TRUE))) 2L else 1L],
+        sep = "/"
+      )
+    ),
+    c$message
+  )
   NextMethod(c)
 }
 
