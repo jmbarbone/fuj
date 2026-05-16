@@ -15,7 +15,7 @@ version requirement (see examples)}
 }
 \description{
 Provides additional functionality for
-\code{\link[base:ns-load]{base::requireNamespace()}}. Multiple packages can be included in a single
+\code{\link[base:requireNamespace]{base::requireNamespace()}}. Multiple packages can be included in a single
 call, and version requirements can be includes with the package name.
 }
 \details{
