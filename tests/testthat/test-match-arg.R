@@ -20,7 +20,7 @@ test_that("match_arg() match_arg_error", {
   )
 
   expect_error(
-    match_arg(-1, list(1L ~ 0:1, 2L, \() {} ~ 3:5)),
+    match_arg(-1, list(1L ~ 0:1, 2L, \() {} ~ 3:5)), # nolint: brace_linter.
     class = "match_arg_error"
   )
 })
