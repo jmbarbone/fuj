@@ -20,7 +20,7 @@ wuffle(expr, fun, classes = "warning")
 The result of \code{expr} or a \code{function} wrapping \code{fun}
 }
 \description{
-Aliases for \code{\link[base:message]{base::suppressMessages()}} and \code{\link[base:warning]{base::suppressWarnings()}}
+Aliases for \code{\link[base:suppressMessages]{base::suppressMessages()}} and \code{\link[base:suppressWarnings]{base::suppressWarnings()}}
 }
 \examples{
 

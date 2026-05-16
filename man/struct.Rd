@@ -27,7 +27,7 @@ Create simple structures
 }
 \details{
 Unlike \code{\link[base:structure]{base::structure()}} this does not provide additional checks
-for special names, performs no \code{\link[base:mode]{base::storage.mode()}} conversions for
+for special names, performs no \code{\link[base:storage.mode]{base::storage.mode()}} conversions for
 \code{factors} (\code{x} therefor has to be an \code{integer}), \code{attributes} from \code{x} are
 not retained, and \code{class} is specified outside of other attributes and
 assigned after \code{\link[base:attributes]{base::attributes()}} is called.

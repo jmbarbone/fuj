@@ -42,7 +42,7 @@ do_muffle <- function(
   classes,
   env = parent.frame()
 ) {
-  type <- match.arg(type, c("muffle", "wuffle"))
+  type <- match_arg(type, c("muffle", "wuffle"))
 
   if (missing(fun)) {
     fun <- switch(type, muffle = suppressMessages, wuffle = suppressWarnings)

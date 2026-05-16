@@ -14,3 +14,5 @@
 ^revdep$
 ^bench$
 ^air\.toml$
+^\.positai$
+^\.claude$

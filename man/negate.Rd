@@ -15,13 +15,13 @@ negate(fun)
 \item{fun}{A function}
 }
 \value{
-\code{\link[=not]{not()}} See \link[base:Logic]{base::!}
+\code{\link[=not]{not()}} See \link[base:!]{base::!}
 
 \code{\link[=negate]{negate()}} A \code{function}, which is the negation of \code{fun}
 }
 \description{
-\code{\link[=not]{not()}} is an \emph{alias} for \link[base:Logic]{base::!}.  \code{\link[=negate]{negate()}} is
-a variation of \code{\link[base:funprog]{base::Negate()}} with an extra steps to preserve the original
+\code{\link[=not]{not()}} is an \emph{alias} for \link[base:!]{base::!}.  \code{\link[=negate]{negate()}} is
+a variation of \code{\link[base:Negate]{base::Negate()}} with an extra steps to preserve the original
 function and maintain the function formals.
 }
 \details{
