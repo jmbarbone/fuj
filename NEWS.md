@@ -28,8 +28,8 @@ General improvements for `conditions` [#90](https://github.com/jmbarbone/fuj/iss
 
 * `BREAKING` `new_condition(type)` now defaults to `"condition"` rather than `"error"`
 * `new_condition()` transformations on `class` have been adjusted
-  * classes are no longer convert to `camelCase`; likely, the base `fujCondition` class is now `fuj_condition`
-  * classes no longer _need_ their `type` specified (e.g., `my_erro`, `my_warning`); the value of the `type` field is automatically appended to each element in `class` if it doesn't already exist.
+  * classes are no longer convert to `camelCase`; likewise, the base `fujCondition` class is now `fuj_condition`
+  * classes no longer _need_ their `type` specified (e.g., `my_error`, `my_warning`); the value of the `type` field is automatically appended to each element in `class` if it doesn't already exist.
   This behavior can be controlled by using an `AsIs` class (e.g., class = `I("exactly_this_class")`)
   * `class` can now be a `list` for more control (e.g., `class = list("value", I("exact value"))`)
   * `new_condition(pkg)` is deprecated in favor of `new_condition(package)`
@@ -41,7 +41,7 @@ General improvements for `conditions` [#90](https://github.com/jmbarbone/fuj/iss
 
 ## New `vap` family
 
-Includes new `vap` family functions; essentially familiar wrappers for `vapply()` [#83](https://github.com/jmbarbone/fuj/issues/83)
+Includes new `vap` family functions; essentially familiar wrappers for _apply_ functions [#83](https://github.com/jmbarbone/fuj/issues/83)
 
 * `vaps` are vector apply functions, with certain presets to assist with common cases
 * all `vap` functions have type-stable variants:
@@ -63,9 +63,9 @@ _Note_: `vapi()` uses either the index or names of `x` as the second argument to
 Each `vap` function comes with the following type variants.
 If you are not concerned about type safety, use`vap_vec()`.
   
-  | Function   | Output Type    | Conversion
-  |:-----------|----------------|----------------|
-  | `*_chr()`  | character      | `as.vector(_, "character")` |
+  | Function   | Output Type    | Conversion                  |
+  |:-----------|----------------|-----------------------------|
+  | `*_chr()`  | character      | `as.vector(_, "character")` |2
   | `*_dbl()`  | double/numeric | `as.vector(_, "double")`    |
   | `*_int()`  | integer        | `as.vector(_, "integer")`   |
   | `*_lgl()`  | logical        | `as.vector(_, "logical")`   |
@@ -75,6 +75,7 @@ If you are not concerned about type safety, use`vap_vec()`.
   | `*_dttm()` | POSIXct        | `as.POSIXct(as.vector(_, "double"), origin = "1970-01-01", tz = "UTC")` |
   
 _Note_: these variants do not perform _checks_ on output results, but rather coerce the output to the specified type.
+These do not function the same as `vapply()`, which is recommended for more aggressive type checking.
   
 # fuj 0.2.2
 
