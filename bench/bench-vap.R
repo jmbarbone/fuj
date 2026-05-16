@@ -74,9 +74,10 @@ autoplot(print(mark(
 local({
   x <- y <- z <- runif(n)
   autoplot(print(mark(
-    mapply(sum, x, y, z, SIMPLIFY = FALSE),
-    .mapply(sum, list(x, y, z), list()), # best, barely
-    .mapply(sum, list(x, y, z), NULL),
+    mapply = mapply(sum, x, y, z, SIMPLIFY = FALSE),
+    `list()` = .mapply(sum, list(x, y, z), list()), # best, barely
+    `NULL` = .mapply(sum, list(x, y, z), NULL),
+    purrr = pmap(list(x, y, z), sum),
     iterations = I / 2
   )))
 })
