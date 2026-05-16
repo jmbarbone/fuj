@@ -31,7 +31,7 @@ NULL
 #' @rdname hot
 #' @export
 hold <- function(x, i, na = c("drop", "keep")) {
-  na <- match.arg(na, c("drop", "keep"))
+  na <- match_arg(na, c("drop", "keep"))
 
   if (inherits(i, "logical")) {
     i[is.na(i)] <- na == "keep"
@@ -53,7 +53,7 @@ hold <- function(x, i, na = c("drop", "keep")) {
 #' @rdname hot
 #' @export
 toss <- function(x, i, na = c("keep", "drop")) {
-  na <- match.arg(na, c("keep", "drop"))
+  na <- match_arg(na, c("keep", "drop"))
 
   if (is.logical(i)) {
     i[is.na(i)] <- na == "drop"

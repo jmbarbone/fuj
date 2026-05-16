@@ -38,7 +38,7 @@ do_require_namespace <- function(package, version, operator) {
     return()
   }
 
-  operator <- match.arg(trimws(operator), c(">", ">=", "==", "<=", "<"))
+  operator <- match_arg(trimws(operator), c(">", ">=", "==", "<=", "<"))
   version <- as.package_version(trimws(version))
 
   package_version <- function(package) {
