@@ -80,6 +80,17 @@ namespace_error <- function(package) {
   )
 }
 
+# nocov start
+internal_error <- function() {
+  new_condition(
+    message = "An internal error occurred. Please report this to the package maintainer.",
+    class = "internal",
+    type = "error",
+    package = "fuj"
+  )
+}
+# nocov end
+
 # warnings ----------------------------------------------------------------
 
 development_warning <- function(...) {
