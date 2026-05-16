@@ -17,12 +17,12 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Language: en-US
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Depends:
-    R (>= 3.6)
+    R (>= 4.1)
 Suggests:
     spelling,
     testthat (>= 3.0.0)
-Config/testthat/edition: 3
 URL: https://jmbarbone.github.io/fuj/, https://github.com/jmbarbone/fuj
 BugReports: https://github.com/jmbarbone/fuj/issues
+Config/testthat/edition: 3
+Config/roxygen2/version: 8.0.0

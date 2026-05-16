@@ -16,6 +16,7 @@ NULL
 #' @export
 # nolint next: object_name_linter.
 op.fuj <- list(
+  fuj.list.active = TRUE,
   fuj.vap.progress = FALSE,
   fuj.vap.indexed_errors = FALSE,
   fuj.verbose = NULL,

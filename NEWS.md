@@ -21,6 +21,7 @@
 * `encode()` and `fact()` added to encode values and create `factor`s [#87](https://github.com/jmbarbone/fuj/issues/87)
 * `np()` added for normalizing file paths [#100](https://github.com/jmbarbone/fuj/issues/100)
 * `fp()` no longer normalizes file paths [#100](https://github.com/jmbarbone/fuj/issues/100)
+* `match_arg()` added for and internally used [#102](https://github.com/jmbarbone/fuj/issues/102)
 
 ## Changes in `conditions` 
 

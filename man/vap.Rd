@@ -171,7 +171,7 @@ and may result in unexpected outputs. Likely, warnings or errors will be
 signaled accordingly.
 
 \code{\link[=vap_vec]{vap_vec()}} is a variant of \code{\link[=vap]{vap()}} that returns a \emph{flattened}
-vector. This has similar behavior as \code{\link[base:lapply]{base::sapply()}}, in that a \code{list}
+vector. This has similar behavior as \code{\link[base:sapply]{base::sapply()}}, in that a \code{list}
 will be returned if the \code{\link[base:unlist]{base::unlist()}}'d output has multiple values in an
 element.
 
@@ -191,7 +191,7 @@ Like \code{\link[base:lapply]{base::lapply()}}, \code{\link[base:mapply]{base::m
 functions provide a means of applying a function to each element of a
 \code{vector}, and controlling return types.  The \code{vap} family provides extra
 tools and controls, as well as \emph{date} outputs (i.e., \verb{_date}, \verb{_dttm}
-variants that work with \link[base:Dates]{Date} and
+variants that work with \link[base:Date]{Date} and
 \link[base:DateTimeClasses]{POSIXct} types).
 \itemize{
 \item \code{vap()} uses a single \code{x} argument
