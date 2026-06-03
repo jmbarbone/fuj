@@ -154,7 +154,7 @@ conditionMessage.fuj_condition <- function(c) {
     sprintf(
       "<%s> ",
       collapse(
-        class(c)[if (is.null(attr(c, "package", TRUE))) 2L else 1L],
+        class(c)[1:(!is.null(attr(c, "package", TRUE)) + 1L)],
         sep = "/"
       )
     ),
@@ -164,8 +164,25 @@ conditionMessage.fuj_condition <- function(c) {
 }
 
 find_package <- function(env = parent.frame(2L)) {
+  if (is.integer(env)) {
+    env <- parent.frame(env + 1L)
+  }
   top <- topenv(env)
   if (isNamespace(top)) {
-    unname(getNamespaceName(top))
+    ns <- asNamespace(top)
+    if (isBaseNamespace(ns)) {
+      "base"
+    } else {
+      ns[[".__NAMESPACE__."]][["spec"]][["name"]]
+    }
   }
+}
+
+dots_warning <- function(...) {
+  new_condition(
+    message = c(...),
+    class = "dots",
+    type = "warning",
+    package = "fuj"
+  )
 }
