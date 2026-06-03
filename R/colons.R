@@ -1,3 +1,6 @@
+# used for documentation and testing
+colons_example <- "Hello, world"
+
 #' Colons
 #'
 #' Get an object from a namespace
@@ -44,6 +47,9 @@ NULL
 #' @export
 `%colons%` <- `%:::%`
 
+
+# conditions --------------------------------------------------------------
+
 colons_error <- function(package, name, n) {
   new_condition(
     message = sprintf(
@@ -75,6 +81,3 @@ colons_check <- function(package, name) {
 
   require_namespace(package)
 }
-
-# used for documentation and testing
-colons_example <- "Hello, world"
