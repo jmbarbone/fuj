@@ -7,7 +7,7 @@ test_that("new_condition() works", {
 })
 
 test_that("new_condition() conditions", {
-  expect_error(new_condition(class = 1:2), class = "fuj:class_error")
+  expect_error(new_condition(class = 1:2), class = "class_error")
   expect_error(
     new_condition(class = "foo", package = NA),
     class = "fuj:value_error"

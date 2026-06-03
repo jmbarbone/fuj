@@ -1,6 +1,6 @@
 test_that("quick_df()", {
-  expect_error(quick_df(1L), class = "fuj:type_error")
-  expect_error(quick_df(list(a = 1:2, b = 1:3)), class = "fuj:input_error")
+  expect_error(quick_df(1L), class = "type_error")
+  expect_error(quick_df(list(a = 1:2, b = 1:3)), class = "input_error")
 
   expect_identical(
     quick_df(list(a = logical())),
