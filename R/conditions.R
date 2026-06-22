@@ -9,6 +9,35 @@ error_to_warning <- function(fun) {
   fun
 }
 
+# 'experimental' -- may not be exported
+raise <- function(expr) {
+  expr <- substitute(expr)
+  cond <- eval(
+    expr,
+    list2env(list(
+      err = error_condition,
+      error = error_condition,
+      warning = warning_condition,
+      warn = warning_condition,
+      message = message_condition,
+      msg = message_condition
+    ))
+  )
+
+  if (inherits(cond, "error")) {
+    stop(cond)
+  }
+
+  if (inherits(cond, "warning")) {
+    warning(cond)
+  } else if (inherits(cond, "message")) {
+    message(cond)
+  } else {
+    signalCondition(cond)
+    cat(conditionMessage(cond))
+  }
+}
+
 #' Default Conditions
 #'
 #' @name conditions
@@ -24,7 +53,7 @@ NULL
 
 #' @export
 #' @rdname conditions
-msg <- function(...) {
+message_condition <- function(...) {
   new_condition(
     message = c(...),
     class = "message",
@@ -32,6 +61,10 @@ msg <- function(...) {
     package = NULL
   )
 }
+
+#' @export
+#' @rdname conditions
+msg <- message_condition
 
 #' @export
 #' @rdname conditions
@@ -43,7 +76,7 @@ verbose_message <- function(message, call = NULL) {
 
   if (!isTRUE(do_verbose)) {
     # returns a silent condition, I think
-    bare_condition("verbose_condition")
+    bare_condition(class = "verbose_condition")
   } else {
     new_condition(
       message = message,
@@ -59,13 +92,17 @@ verbose_message <- function(message, call = NULL) {
 
 #' @export
 #' @rdname conditions
-err <- function(...) {
+error_condition <- function(...) {
   new_condition(
     message = c(...),
     type = "error",
     package = NULL
   )
 }
+
+#' @export
+#' @rdname conditions
+err <- error_condition
 
 #' @export
 #' @rdname conditions
@@ -180,13 +217,17 @@ internal_error <- function(
 
 #' @export
 #' @rdname conditions
-warn <- function(...) {
+warning_condition <- function(...) {
   new_condition(
     message = c(...),
     type = "warning",
     package = NULL
   )
 }
+
+#' @export
+#' @rdname conditions
+wrn <- warning_condition
 
 #' @export
 #' @rdname conditions
@@ -231,17 +272,18 @@ deprecated_warning <- function(..., package = find_package()) {
 
 # conditions --------------------------------------------------------------
 
-cond <- function(message, ...) {
+condition <- function(message, ...) {
   new_condition(
     message = c(message, ...),
     type = "condition",
     package = NULL
   )
 }
+cdn <- condition
 
-bare_condition <- function(class = NULL) {
+bare_condition <- function(message = NULL, class = NULL) {
   structure(
-    list(message = NULL, call = NULL),
+    list(message = as.character(message), call = NULL),
     class = unique(c(class, "condition"))
   )
 }
