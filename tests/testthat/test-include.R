@@ -77,7 +77,7 @@ test_that("include() works with conflicts", {
   with_include_fuj({
     expect_message(
       include("fuj", c(foo = "include"), warn = NULL),
-      class = "fuj:verbose_message",
+      class = "verbose_message",
     )
   })
 
@@ -129,7 +129,7 @@ test_that("attach2() works", {
     })
   }
 
-  expect_message(with_attach(NULL), class = "fuj:verbose_message")
+  expect_message(with_attach(NULL), class = "verbose_message")
   expect_message(with_attach(NA), class = "packageStartupMessage")
   expect_warning(with_attach(TRUE), class = "fuj:include_conflicts_warning")
 

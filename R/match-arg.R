@@ -112,6 +112,20 @@ match_arg <- function(
   res$value
 }
 
+match_arg_error <- function(expr, value, choices) {
+  new_condition(
+    message = sprintf(
+      "fuj::match_arg(%s) failed: `%s` is not one of `%s`",
+      as.character(expr),
+      deparse(value),
+      deparse(choices)
+    ),
+    class = "match_arg",
+    type = "error",
+    package = "fuj"
+  )
+}
+
 do_match_arg <- function(arg, choices, multiple, partial) {
   m <- (if (partial) pmatch else match)(arg, choices)
   m <- remove_na(m)
@@ -150,18 +164,4 @@ cleanup_arg_list <- function(x) {
   out$values <- rep(out$values, lengths(out$choices))
   out$choices <- unlist(lapply(out$choices, as.list), recursive = FALSE)
   out
-}
-
-match_arg_error <- function(expr, value, choices) {
-  new_condition(
-    message = sprintf(
-      "fuj::match_arg(%s) failed: `%s` is not one of `%s`",
-      as.character(expr),
-      deparse(value),
-      deparse(choices)
-    ),
-    class = "match_arg",
-    type = "error",
-    package = "fuj"
-  )
 }

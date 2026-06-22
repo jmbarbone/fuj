@@ -1,6 +1,73 @@
+error_to_warning <- function(fun) {
+  do.call(substitute, list(body(fun), list(error = warning)))
+  body(fun) <- str2expression(gsub(
+    "\"error\"",
+    "\"warning\"",
+    deparse(body(fun)),
+    fixed = TRUE
+  ))
+  fun
+}
+
+# 'experimental' -- may not be exported
+raise <- function(expr) {
+  expr <- substitute(expr)
+  cond <- eval(
+    expr,
+    list2env(list(
+      err = error_condition,
+      error = error_condition,
+      warning = warning_condition,
+      warn = warning_condition,
+      message = message_condition,
+      msg = message_condition
+    ))
+  )
+
+  if (inherits(cond, "error")) {
+    stop(cond)
+  }
+
+  if (inherits(cond, "warning")) {
+    warning(cond)
+  } else if (inherits(cond, "message")) {
+    message(cond)
+  } else {
+    signalCondition(cond)
+    cat(conditionMessage(cond))
+  }
+}
+
+#' Default Conditions
+#'
+#' @name conditions
+#' @param message,... A character vector of message components; `message` is
+#'   used for anything with a default message.
+#' @param package Package name.  Default will attempt to find the package by
+#'   the calling environment, which must return a character value.  This will
+#'   also be passed to the `package` argument in [fuj::new_condition()]
+#' @param call The call that generated the condition
+NULL
+
 # messages ----------------------------------------------------------------
 
-# nolint next: object_name_linter.
+#' @export
+#' @rdname conditions
+message_condition <- function(...) {
+  new_condition(
+    message = c(...),
+    class = "message",
+    type = "message",
+    package = NULL
+  )
+}
+
+#' @export
+#' @rdname conditions
+msg <- message_condition
+
+#' @export
+#' @rdname conditions
 verbose_message <- function(message, call = NULL) {
   do_verbose <- getOption("fuj.verbose", getOption("verbose"))
   if (is.function(do_verbose)) {
@@ -9,26 +76,42 @@ verbose_message <- function(message, call = NULL) {
 
   if (!isTRUE(do_verbose)) {
     # returns a silent condition, I think
-    bare_condition("fuj:verbose_condition")
+    bare_condition(class = "verbose_condition")
   } else {
     new_condition(
       message = message,
       class = "verbose",
       type = "message",
-      package = "fuj",
-      call = call
+      call = call,
+      package = NULL
     )
   }
 }
 
 # errors ------------------------------------------------------------------
 
+#' @export
+#' @rdname conditions
+error_condition <- function(...) {
+  new_condition(
+    message = c(...),
+    type = "error",
+    package = NULL
+  )
+}
+
+#' @export
+#' @rdname conditions
+err <- error_condition
+
+#' @export
+#' @rdname conditions
 input_error <- function(message = "invalid input", ...) {
   new_condition(
     message = c(message, ...),
     class = "input",
     type = "error",
-    package = "fuj"
+    package = NULL
   )
 }
 
@@ -36,30 +119,34 @@ value_error <- function(message = "invalid value", ...) {
   new_condition(
     message = c(message, ...),
     class = "value",
-    type = "error",
-    package = "fuj"
+    type = "error"
   )
 }
 
-# NOTE currently not being used
+#' @export
+#' @rdname conditions
 class_error <- function(message = "invalid class", ...) {
   new_condition(
     message = c(message, ...),
     class = "class",
     type = "error",
-    package = "fuj"
+    package = NULL
   )
 }
 
+#' @export
+#' @rdname conditions
 type_error <- function(message = "invalid type", ...) {
   new_condition(
     message = c(message, ...),
     class = "type",
     type = "error",
-    package = "fuj"
+    package = NULL
   )
 }
 
+#' @export
+#' @rdname conditions
 interactive_error <- function(
   message = "must be used in an interactive session",
   ...
@@ -68,102 +155,144 @@ interactive_error <- function(
     message = c(message, ...),
     class = "interactive",
     type = "error",
-    package = "fuj"
+    package = NULL
   )
 }
 
+#' @export
+#' @rdname conditions
 namespace_error <- function(package) {
   new_condition(
     message = sprintf("No package found called '%s'", as.character(package)),
     class = list("namespace", I("packageNotFoundError")),
-    type = "error"
-  )
-}
-
-# nocov start
-internal_error <- function() {
-  new_condition(
-    message = c(
-      "An internal error occurred. Please report this to the package",
-      " maintainer."
-    ),
-    class = "internal",
     type = "error",
-    package = "fuj"
+    package = NULL
   )
 }
-# nocov end
 
-# warnings ----------------------------------------------------------------
-
-development_warning <- function(...) {
+#' @export
+#' @rdname conditions
+development_error <- function(..., package = find_package()) {
+  check_package(package)
   new_condition(
     message = c(...),
     class = "development",
-    type = "warning",
-    package = "fuj"
+    type = "error",
+    package = package
   )
 }
 
-deprecated_warning <- function(...) {
+#' @export
+#' @rdname conditions
+defunct_error <- function(..., package = find_package()) {
+  check_package(package)
+  new_condition(
+    message = c(...),
+    class = list("defunct", I("defunctError")),
+    type = "error",
+    package = package
+  )
+}
+
+#' @export
+#' @rdname conditions
+internal_error <- function(
+  message = c(
+    sprintf("An internal error occurred in '%s'.", package),
+    "  Please report this to the package maintainer."
+  ),
+  ...,
+  package = find_package()
+) {
+  check_package(package)
+  new_condition(
+    message = c(message, ...),
+    class = "internal",
+    type = "error",
+    package = package
+  )
+}
+
+# warnings ----------------------------------------------------------------
+
+#' @export
+#' @rdname conditions
+warning_condition <- function(...) {
+  new_condition(
+    message = c(...),
+    type = "warning",
+    package = NULL
+  )
+}
+
+#' @export
+#' @rdname conditions
+wrn <- warning_condition
+
+#' @export
+#' @rdname conditions
+input_warning <- error_to_warning(input_error)
+
+#' @export
+#' @rdname conditions
+value_warning <- error_to_warning(value_error)
+
+
+#' @export
+#' @rdname conditions
+class_warning <- error_to_warning(class_error)
+
+#' @export
+#' @rdname conditions
+interactive_warning <- error_to_warning(interactive_error)
+
+#' @export
+#' @rdname conditions
+namespace_warning <- error_to_warning(namespace_error)
+
+#' @export
+#' @rdname conditions
+development_warning <- error_to_warning(development_error)
+
+#' @export
+#' @rdname conditions
+internal_warning <- error_to_warning(internal_error)
+
+#' @export
+#' @rdname conditions
+deprecated_warning <- function(..., package = find_package()) {
+  check_package(package)
   new_condition(
     message = c(...),
     class = list("deprecated", I("deprecatedWarning")),
     type = "warning",
-    package = "fuj"
-  )
-}
-
-dots_warning <- function(...) {
-  new_condition(
-    message = c(...),
-    class = "dots",
-    type = "warning",
-    package = "fuj"
+    package = package
   )
 }
 
 # conditions --------------------------------------------------------------
 
-# NOTE This might be subject to change.
-inform <- function(..., .bare = FALSE, .class = NULL) {
-  withRestarts(
-    expr = {
-      info <- info_condition(..., .bare = .bare, .class = .class)
-      signalCondition(info)
-      cat(conditionMessage(info), "\n", sep = "")
-    },
-    muffle_condition = function(cnd) NULL
-  )
-}
-
-suppress_info <- function(expr, classes = "info_condition") {
-  withCallingHandlers(
-    expr,
-    info_condition = function(cnd) {
-      if (inherits(cnd, classes)) {
-        tryInvokeRestart("muffle_condition")
-      }
-    }
-  )
-}
-
-info_condition <- function(..., .bare = FALSE, .class = NULL) {
-  cond <- new_condition(
-    message = c(...),
-    class = list("info", .class),
+condition <- function(message, ...) {
+  new_condition(
+    message = c(message, ...),
     type = "condition",
-    package = "fuj"
+    package = NULL
   )
-  if (.bare) {
-    cond$message <- c(...)
-  }
-  cond
 }
+cdn <- condition
 
-bare_condition <- function(class = NULL) {
+bare_condition <- function(message = NULL, class = NULL) {
   structure(
-    list(message = NULL, call = NULL),
+    list(message = as.character(message), call = NULL),
     class = unique(c(class, "condition"))
   )
+}
+
+
+# helpers -----------------------------------------------------------------
+
+check_package <- function(package) {
+  if (!isTRUE(nzchar(package))) {
+    stop(input_error("`package` must be a non-empty string"))
+  }
 }

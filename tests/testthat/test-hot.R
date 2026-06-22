@@ -33,6 +33,6 @@ test_that("toss works", {
 })
 
 test_that("hot errors", {
-  expect_error(hold(1:5, "foo"), class = "fuj:input_error")
-  expect_error(toss(1:5, "foo"), class = "fuj:input_error")
+  expect_error(hold(1:5, "foo"), class = "input_error")
+  expect_error(toss(1:5, "foo"), class = "input_error")
 })

@@ -5,7 +5,7 @@ test_that(
     op <- options(fuj..yes_no.interactive_override = NULL)
     on.exit(options(op))
 
-    expect_error(yes_no(), class = "fuj:interactive_error")
+    expect_error(yes_no(), class = "interactive_error")
     expect_identical(yes_no(noninteractive_error = FALSE), NA)
 
     options(fuj..yes_no.interactive_override = 0)
