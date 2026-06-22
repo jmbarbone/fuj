@@ -2,8 +2,10 @@
 % Please edit documentation in R/conditions.R
 \name{conditions}
 \alias{conditions}
+\alias{message_condition}
 \alias{msg}
 \alias{verbose_message}
+\alias{error_condition}
 \alias{err}
 \alias{input_error}
 \alias{class_error}
@@ -13,7 +15,8 @@
 \alias{development_error}
 \alias{defunct_error}
 \alias{internal_error}
-\alias{warn}
+\alias{warning_condition}
+\alias{wrn}
 \alias{input_warning}
 \alias{value_warning}
 \alias{class_warning}
@@ -24,9 +27,13 @@
 \alias{deprecated_warning}
 \title{Default Conditions}
 \usage{
+message_condition(...)
+
 msg(...)
 
 verbose_message(message, call = NULL)
+
+error_condition(...)
 
 err(...)
 
@@ -51,7 +58,9 @@ internal_error(
   package = find_package()
 )
 
-warn(...)
+warning_condition(...)
+
+wrn(...)
 
 input_warning(message = "invalid input", ...)
 
