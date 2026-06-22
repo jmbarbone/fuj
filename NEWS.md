@@ -30,7 +30,7 @@ General improvements for `conditions` [#90](https://github.com/jmbarbone/fuj/iss
   * `new_condition()` now only accepts `message`, `class`, and `type` as positional arguments with the include of `...`; all other arguments must be explicitly named 
 * default condition functions exported
   * include `input_error()`, `class_error()`, `value_error()`, warning equivalents and more (see all with `?fuj::conditions`)
-  * `err()`, `wrn()`, `msg()` exported for _simple_ conditions (e.g., `message(msg("this is a message"))`
+  * `error_condition()`/`err()`, `warning_condition()`/`wrn()`, `message_condition()`/`msg()` exported for _simple_ conditions (e.g., `message(msg("this is a message"))` [#105]
 * internally, `{fuj}` now simplifies use of `new_condition()`
   * many conditions within `{fuj}` have been simplified through the use of _generic_ condition classes (e.g., `input_error`, `type_error`, `class_error`)
   * `verbose_message` will try to avoid printing a message when `options(fuj.verbose = FALSE)` is set
