@@ -57,7 +57,7 @@ General improvements for `conditions`
   transformations on `class` have been adjusted
   - classes are no longer convert to `camelCase`; likely, the base
     `fujCondition` class is now `fuj_condition`
-  - classes no longer *need* their `type` specified (e.g., `my_erro`,
+  - classes no longer *need* their `type` specified (e.g., `my_error`,
     `my_warning`); the value of the `type` field is automatically
     appended to each element in `class` if it doesn’t already exist.
     This behavior can be controlled by using an `AsIs` class (e.g.,
@@ -72,6 +72,17 @@ General improvements for `conditions`
     now only accepts `message`, `class`, and `type` as positional
     arguments with the include of `...`; all other arguments must be
     explicitly named
+- default condition functions exported
+  - include
+    [`input_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md),
+    [`class_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md),
+    `value_error()`, warning equivalents and more (see all with
+    [`?fuj::conditions`](https://jmbarbone.github.io/fuj/reference/conditions.md))
+  - [`error_condition()`](https://jmbarbone.github.io/fuj/reference/conditions.md)/[`err()`](https://jmbarbone.github.io/fuj/reference/conditions.md),
+    [`warning_condition()`](https://jmbarbone.github.io/fuj/reference/conditions.md)/[`wrn()`](https://jmbarbone.github.io/fuj/reference/conditions.md),
+    [`message_condition()`](https://jmbarbone.github.io/fuj/reference/conditions.md)/[`msg()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+    exported for *simple* conditions (e.g.,
+    `message(msg("this is a message"))` \[#105\]
 - internally, [fuj](https://jmbarbone.github.io/fuj/) now simplifies use
   of
   [`new_condition()`](https://jmbarbone.github.io/fuj/reference/new_condition.md)

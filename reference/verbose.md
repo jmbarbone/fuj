@@ -66,17 +66,17 @@ verbose("will not show")
 
 options(verbose = TRUE)
 verbose("message printed")
-#> <fuj:verbose_message> verbose: message printed
+#> <verbose_message> verbose: message printed
 verbose("multiple lines ", "will be ", "combined")
-#> <fuj:verbose_message> verbose: multiple lines will be combined
+#> <verbose_message> verbose: multiple lines will be combined
 options(op)
 
 op <- options(fuj.verbose = function() TRUE)
 verbose("function will evaluate")
-#> <fuj:verbose_message> verbose: function will evaluate
+#> <verbose_message> verbose: function will evaluate
 verbose(NULL) # nothing
 verbose(NULL, "something")
-#> <fuj:verbose_message> verbose: something
+#> <verbose_message> verbose: something
 verbose(if (FALSE) {
   "`if` returns `NULL` when not `TRUE`, which makes for additional control"
 })
@@ -87,5 +87,5 @@ verb <- make_verbose("fuj.foo.bar")
 verb("will not show")
 options(fuj.foo.bar = TRUE)
 verb("will show")
-#> <fuj:verbose_message> verbose: will show
+#> <verbose_message> verbose: will show
 ```

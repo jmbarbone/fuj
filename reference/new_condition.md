@@ -82,7 +82,7 @@ x <- new_condition(
   type = "error"
  )
 try(stop(x))
-#> Error : <error> informative error message
+#> Error : <foo_error> informative error message
 
 # with pkg
 x <- new_condition("msg", class = "foo", type = "error", package = "bar")

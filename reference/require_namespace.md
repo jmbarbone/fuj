@@ -24,9 +24,9 @@ require_namespace(package, ...)
 isTRUE(require_namespace("base")) # returns invisibly
 #> [1] TRUE
 try(require_namespace("1package")) # (using a purposefully bad name)
-#> Error : <fuj:namespace_error> No package found called '1package'
+#> Error : <namespace_error> No package found called '1package'
 require_namespace("base", "utils")
 try(require_namespace("base>=3.5", "utils>4.0", "fuj==10.0"))
 #> Error : <fuj:namespace_version_error> Package version requirement not meet:
-#> fuj: 0.2.2.9011 == 10.0
+#> fuj: 0.2.2.9012 == 10.0
 ```

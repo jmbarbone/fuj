@@ -126,6 +126,31 @@ sapply(x, wuffle(fun = as.integer))
   [`` `%colons%` ``](https://jmbarbone.github.io/fuj/reference/colons.md)
   : Colons
 
+- [`message_condition()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`msg()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`verbose_message()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`error_condition()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`err()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`input_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`class_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`type_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`interactive_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`namespace_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`development_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`defunct_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`internal_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`warning_condition()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`wrn()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`input_warning()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`value_warning()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`class_warning()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`interactive_warning()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`namespace_warning()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`development_warning()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`internal_warning()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`deprecated_warning()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  : Default Conditions
+
 - [`encode()`](https://jmbarbone.github.io/fuj/reference/encode.md)
   [`fact()`](https://jmbarbone.github.io/fuj/reference/encode.md) :
   Encode/factor
