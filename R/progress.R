@@ -54,16 +54,11 @@ progress_bar <- function(
       }
 
       # TODO as 'inform()"?
-      cat(paste0("\r  |", strrep(" ", self$nw * width + 6)), file = self$con)
       cat(
-        paste(
-          c(
-            "\r  |",
-            rep.int(char, nb),
-            rep.int(" ", self$nw * (width - nb)),
-            sprintf("| %3d%%", pc)
-          ),
-          collapse = ""
+        sprintf(
+          "\r  |%s| %3d%%",
+          paste0(rep.int(char, nb), collapse = ""),
+          pc
         ),
         file = self$con
       )
