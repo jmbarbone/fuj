@@ -5,10 +5,7 @@
 vap_ <- function(type) {
   # nolint next: object_usage_linter.
   expr <- substitute(
-    {
-      delayedAssign("..call", sys.call())
-      set_vap_names(as.vector(vap(x, f, ...), ..type..), x)
-    },
+    set_vap_names(as.vector(vap(x, f, ...), ..type..), x),
     list(..type.. = type)
   )
   eval(substitute(as.function(alist(x = , f = , ... = , expr))))
@@ -19,10 +16,7 @@ vapi_ <- function(type) {
   # nolint next: object_usage_linter.
   expr <- substitute(
     set_vap_names(
-      {
-        delayedAssign("..call", sys.call())
-        as.vector(vap2(x, names(x) %||% seq_along(x), f, ...), ..type..)
-      },
+      as.vector(vap2(x, names(x) %||% seq_along(x), f, ...), ..type..),
       x
     ),
     list(..type.. = type)
@@ -34,10 +28,7 @@ vapi_ <- function(type) {
 vap2_ <- function(type) {
   # nolint next: object_usage_linter.
   expr <- substitute(
-    {
-      delayedAssign("..call", sys.call())
-      set_vap_names(as.vector(vap2(x, y, f, ...), ..type..), x)
-    },
+    set_vap_names(as.vector(vap2(x, y, f, ...), ..type..), x),
     list(..type.. = type)
   )
   eval(substitute(as.function(alist(x = , y = , f = , ... = , expr))))
@@ -47,10 +38,7 @@ vap2_ <- function(type) {
 vap3_ <- function(type) {
   # nolint next: object_usage_linter.
   expr <- substitute(
-    {
-      delayedAssign("..call", sys.call())
-      set_vap_names(as.vector(vap3(x, y, z, f, ...), ..type..), x)
-    },
+    set_vap_names(as.vector(vap3(x, y, z, f, ...), ..type..), x),
     list(..type.. = type)
   )
   eval(substitute(as.function(alist(x = , y = , z = , f = , ... = , expr))))
@@ -60,10 +48,7 @@ vap3_ <- function(type) {
 vapp_ <- function(type) {
   # nolint next: object_usage_linter.
   expr <- substitute(
-    {
-      delayedAssign("..call", sys.call())
-      set_vapp_names(as.vector(vapp(p, f, ...), ..type..), p[[1L]])
-    },
+    set_vapp_names(as.vector(vapp(p, f, ...), ..type..), p[[1L]]),
     list(..type.. = type)
   )
   eval(substitute(as.function(alist(p = , f = , ... = , expr))))
@@ -199,7 +184,6 @@ NULL
 #' @rdname vap
 # nolint next: object_usage_linter.
 vap <- function(x, f, ...) {
-  delayedAssign("..call", sys.call())
   f <- vapper(f, list(x))
   vapping_handler(lapply(x, f, ...), f)
 }
@@ -208,7 +192,6 @@ vap <- function(x, f, ...) {
 #' @rdname vap
 # nolint next: object_usage_linter.
 vapi <- function(x, f, ...) {
-  delayedAssign("..call", sys.call())
   i <- names(x) %||% seq_along(x)
   f <- vapper(f, list(x))
   out <- vapping_handler(.mapply(f, list(x, i), list(...)), f)
@@ -219,7 +202,6 @@ vapi <- function(x, f, ...) {
 #' @rdname vap
 # nolint next: object_usage_linter.
 vap2 <- function(x, y, f, ...) {
-  delayedAssign("..call", sys.call())
   f <- vapper(f, list(x, y))
   out <- vapping_handler(.mapply(f, list(x, y), list(...)), f)
   set_vap_names(out, x)
@@ -229,7 +211,6 @@ vap2 <- function(x, y, f, ...) {
 #' @rdname vap
 # nolint next: object_usage_linter.
 vap3 <- function(x, y, z, f, ...) {
-  delayedAssign("..call", sys.call())
   f <- vapper(f, list(x, y, z))
   out <- vapping_handler(.mapply(f, list(x, y, z), list(...)), f)
   set_vap_names(out, x)
@@ -239,7 +220,6 @@ vap3 <- function(x, y, z, f, ...) {
 #' @rdname vap
 # nolint next: object_usage_linter.
 vapp <- function(p, f, ...) {
-  delayedAssign("..call", sys.call())
   f <- vapper(f, p)
   p <- as.pairlist(p)
   out <- vapping_handler(.mapply(f, p, list(...)), f)
@@ -250,7 +230,6 @@ vapp <- function(p, f, ...) {
 #' @rdname vap
 # nolint next: object_usage_linter.
 vap_vec <- function(x, f, ...) {
-  delayedAssign("..call", sys.call())
   x <- vap(x, f, ...)
   y <- unlist(x, recursive = FALSE, use.names = FALSE)
   if (length(x) == length(y)) {
@@ -440,44 +419,68 @@ with_vap_progress <- function(expr) {
 
 #' @export
 #' @rdname vap
-with_vap_handlers <- function(expr) {
+with_vap_indexed_errors <- function(expr) {
   with_options(list(fuj.vap.indexed_errors = TRUE), expr)
+}
+
+#' @export
+#' @rdname vap
+with_vap_handlers <- function(expr) {
+  with_options(
+    list(
+      fuj.vap.indexed_errors = TRUE,
+      fuj.vap.progress = TRUE
+    ),
+    expr
+  )
 }
 
 # helpers -----------------------------------------------------------------
 
-# nolint next: object_usage_linter.
+# nolint next: object_usage_linter. ..call
 vapper <- function(f, l) {
-  # could just do an S3 dispatch, but I don't feel like exporting this
-  delayedAssign("..i", 0L)
-  delayedAssign("..call", dynGet("..call"))
+  for (i in seq_along(sys.calls())) {
+    ..f <- substitute(f, parent.frame(i)) # nolint: object_name_linter.
+    if (..f != as.name("f")) {
+      break
+    }
+  }
 
+  # could just do an S3 dispatch, but I don't feel like exporting this
   fun <- if (is.function(f)) {
     f
-  } else if (is.character(f)) {
-    eval(substitute(as.function(alist(x = , subset2(x, f)))))
-  } else if (is.numeric(f)) {
-    f <- as.integer(f)
-    eval(substitute(as.function(alist(x = , subset2(x, f)))))
+  } else if (is.character(f) || is.numeric(f)) {
+    eval(substitute(as.function(alist(x = , subset2(x, f))), list(f = f)))
   } else {
-    match.fun(f)
+    match.fun(f) # symbol
   }
 
   if (getOption("fuj.vap.progress", FALSE)) {
     # progress bar requires passing the index, so reporting errors is included
-    n <- do.call(max, as.list(lengths(l)))
-    # nolint next: object_name_linter.
-    ..pb <- progress_bar(n)
-    function(...) {
-      ..i <<- ..i + 1L # nolint: object_name_linter.
-      on.exit(..pb$set(..i), add = TRUE)
-      fun(...)
-    }
+    local({
+      ..i <- 0L # nolint: object_name_linter.
+      # nolint next: object_name_linter.
+      ..pb <- progress_bar(do.call(max, as.list(lengths(l))))
+      function(...) {
+        ..i <<- ..i + 1L # nolint: object_name_linter.
+        ..pb$set(..i)
+        fun(...)
+      }
+    })
   } else if (getOption("fuj.vap.indexed_errors", FALSE)) {
-    function(...) {
-      ..i <<- ..i + 1L # nolint: object_name_linter.
-      fun(...)
-    }
+    local({
+      ..f <- ..f # nolint: object_name_linter.
+      ..i <- 0L # nolint: object_name_linter, object_usage_linter.
+      f <- function(...) NULL
+      body(f) <- substitute(
+        {
+          ..i <<- ..i + 1L # nolint: object_name_linter.
+          fun(...)
+        },
+        list(fun = fun)
+      )
+      f
+    })
   } else {
     fun
   }
@@ -492,17 +495,24 @@ vapping_handler <- function(expr, fun) {
     expr,
     # TODO include warning?
     warning = function(con) {
-      e <- environment(fun)
+      index <- environment(fun)[["..i"]]
+      fun <- environment(fun)[["..f"]]
       msg <- sprintf(
-        "warning at index: %i:\n %s",
-        get("..i", e, inherits = FALSE),
+        "%s at index [%i] \n %s",
+        class(con)[[1L]],
+        index,
         conditionMessage(con)
       )
 
+      if (is.call(fun)) {
+        cll <- fun
+      } else {
+        cll <- call(as.character(fun))
+      }
       cond <- struct(
-        list(msg, environment(fun)$..call),
+        list(msg, cll),
         class = c("vap_warning", class(con)),
-        index = environment(fun)$..i,
+        index = index,
         names = c("message", "call")
       )
 
@@ -510,17 +520,18 @@ vapping_handler <- function(expr, fun) {
       tryInvokeRestart("muffleWarning")
     },
     error = function(con) {
-      e <- environment(fun)
+      index <- environment(fun)[["..i"]]
       msg <- sprintf(
-        "error at index: %i:\n %s",
-        get("..i", e, inherits = FALSE),
+        "%s at index [%i]:\n %s",
+        class(con)[[1L]],
+        index,
         conditionMessage(con)
       )
 
       cond <- struct(
-        list(msg, environment(fun)$..call),
+        list(msg, conditionCall(con)),
         class = c("vap", class(con)),
-        index = environment(fun)$..i,
+        index = index,
         names = c("message", "call")
       )
 
