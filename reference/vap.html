@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9013</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9012</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Vector applies</h1>
-      <small class="dont-index">Source: <a href="https://github.com/jmbarbone/fuj/blob/main/R/vap.R" class="external-link"><code>R/vap.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.2.2.9013/R/vap.R" class="external-link"><code>R/vap.R</code></a></small>
       <div class="d-none name"><code>vap.Rd</code></div>
     </div>
 
@@ -131,8 +131,6 @@
 <span><span class="fu">vapp_dttm</span><span class="op">(</span><span class="va">p</span>, <span class="va">f</span>, <span class="va">...</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">with_vap_progress</span><span class="op">(</span><span class="va">expr</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">with_vap_indexed_errors</span><span class="op">(</span><span class="va">expr</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">with_vap_handlers</span><span class="op">(</span><span class="va">expr</span><span class="op">)</span></span></code></pre></div>
     </div>
@@ -257,7 +255,7 @@ on by default (or rather, the option settings are set to <code>FALSE</code> with
 <span class="r-in"><span>    <span class="fu">vap</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span> <span class="op">/</span> <span class="fl">20</span>, <span class="va">Sys.sleep</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ||   0%  |=======|  10%  |==============|  20%  |=====================|  30%  |============================|  40%  |===================================|  50%  |==========================================|  60%  |=================================================|  70%  |========================================================|  80%  |===============================================================|  90%  |======================================================================| 100%</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   |                                                                              |                                                                      |   0%  |                                                                              |=======                                                               |  10%  |                                                                              |==============                                                        |  20%  |                                                                              |=====================                                                 |  30%  |                                                                              |============================                                          |  40%  |                                                                              |===================================                                   |  50%  |                                                                              |==========================================                            |  60%  |                                                                              |=================================================                     |  70%  |                                                                              |========================================================              |  80%  |                                                                              |===============================================================       |  90%  |                                                                              |======================================================================| 100%</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># wrap in [with_vap_handlers()] to report index on error</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/try.html" class="external-link">try</a></span><span class="op">(</span></span></span>
@@ -265,7 +263,8 @@ on by default (or rather, the option settings are set to <code>FALSE</code> with
 <span class="r-in"><span>    <span class="fu">vap</span><span class="op">(</span><span class="fl">10</span><span class="op">:</span><span class="fl">1</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="kw">if</span> <span class="op">(</span><span class="va">x</span> <span class="op">==</span> <span class="fl">3</span><span class="op">)</span> <span class="kw"><a href="https://rdrr.io/r/base/stop.html" class="external-link">stop</a></span><span class="op">(</span><span class="st">"bad"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span>  <span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ||   0%  |=======|  10%  |==============|  20%  |=====================|  30%  |============================|  40%  |===================================|  50%  |==========================================|  60%  |=================================================|  70%  |========================================================|  80%Error in fun(...) : simpleError at index [8]:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Error in vap(10:1, function(x) if (x == 3) stop("bad")) : </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   error at index: 8:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  bad</span>
 </code></pre></div>
     </div>
