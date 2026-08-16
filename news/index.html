@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9012</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9013</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,6 +75,9 @@
 <li>
 <code><a href="../reference/match_arg.html">match_arg()</a></code> added for and internally used <a href="https://github.com/jmbarbone/fuj/issues/102" class="external-link">#102</a>
 </li>
+<li>
+<code><a href="../reference/delay.html">delay()</a></code> added as a wrapper for passing an expression into <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code>
+</li>
 </ul><div class="section level3">
 <h3 id="changes-in-conditions-development-version">Changes in <code>conditions</code>
 <a class="anchor" aria-label="anchor" href="#changes-in-conditions-development-version"></a></h3>
@@ -98,7 +101,7 @@
 <code><a href="../reference/new_condition.html">new_condition()</a></code> now only accepts <code>message</code>, <code>class</code>, and <code>type</code> as positional arguments with the include of <code>...</code>; all other arguments must be explicitly named</li>
 </ul></li>
 <li>default condition functions exported
-<ul><li>include <code><a href="../reference/conditions.html">input_error()</a></code>, <code><a href="../reference/conditions.html">class_error()</a></code>, <code>value_error()</code>, warning equivalents and more (see all with <code><a href="../reference/conditions.html">?fuj::conditions</a></code>)</li>
+<ul><li>include <code><a href="../reference/conditions.html">input_error()</a></code>, <code><a href="../reference/conditions.html">class_error()</a></code>, <code><a href="../reference/conditions.html">value_error()</a></code>, warning equivalents and more (see all with <code><a href="../reference/conditions.html">?fuj::conditions</a></code>)</li>
 <li>
 <code><a href="../reference/conditions.html">error_condition()</a></code>/<code><a href="../reference/conditions.html">err()</a></code>, <code><a href="../reference/conditions.html">warning_condition()</a></code>/<code><a href="../reference/conditions.html">wrn()</a></code>, <code><a href="../reference/conditions.html">message_condition()</a></code>/<code><a href="../reference/conditions.html">msg()</a></code> exported for <em>simple</em> conditions (e.g., <code>message(msg("this is a message"))</code> [#105]</li>
 </ul></li>

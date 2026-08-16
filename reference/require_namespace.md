@@ -28,5 +28,5 @@ try(require_namespace("1package")) # (using a purposefully bad name)
 require_namespace("base", "utils")
 try(require_namespace("base>=3.5", "utils>4.0", "fuj==10.0"))
 #> Error : <fuj:namespace_version_error> Package version requirement not meet:
-#> fuj: 0.2.2.9012 == 10.0
+#> fuj: 0.2.2.9013 == 10.0
 ```

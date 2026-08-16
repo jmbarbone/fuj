@@ -17,6 +17,8 @@ err(...)
 
 input_error(message = "invalid input", ...)
 
+value_error(message = "invalid value", ...)
+
 class_error(message = "invalid class", ...)
 
 type_error(message = "invalid type", ...)
