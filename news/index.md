@@ -45,6 +45,9 @@
 - [`match_arg()`](https://jmbarbone.github.io/fuj/reference/match_arg.md)
   added for and internally used
   [\#102](https://github.com/jmbarbone/fuj/issues/102)
+- [`delay()`](https://jmbarbone.github.io/fuj/reference/delay.md) added
+  as a wrapper for passing an expression into
+  [`on.exit()`](https://rdrr.io/r/base/on.exit.html)
 
 ### Changes in `conditions`
 
@@ -76,7 +79,8 @@ General improvements for `conditions`
   - include
     [`input_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md),
     [`class_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md),
-    `value_error()`, warning equivalents and more (see all with
+    [`value_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md),
+    warning equivalents and more (see all with
     [`?fuj::conditions`](https://jmbarbone.github.io/fuj/reference/conditions.md))
   - [`error_condition()`](https://jmbarbone.github.io/fuj/reference/conditions.md)/[`err()`](https://jmbarbone.github.io/fuj/reference/conditions.md),
     [`warning_condition()`](https://jmbarbone.github.io/fuj/reference/conditions.md)/[`wrn()`](https://jmbarbone.github.io/fuj/reference/conditions.md),

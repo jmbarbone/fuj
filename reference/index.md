@@ -35,6 +35,7 @@
   [`error_condition()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
   [`err()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
   [`input_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
+  [`value_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
   [`class_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
   [`type_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
   [`interactive_error()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
@@ -53,6 +54,10 @@
   [`internal_warning()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
   [`deprecated_warning()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
   : Default Conditions
+
+- [`delay()`](https://jmbarbone.github.io/fuj/reference/delay.md) :
+  Delay the evaluation of an expression until the end of a function or
+  block.
 
 - [`encode()`](https://jmbarbone.github.io/fuj/reference/encode.md)
   [`fact()`](https://jmbarbone.github.io/fuj/reference/encode.md) :
@@ -186,6 +191,7 @@
   [`vapp_date()`](https://jmbarbone.github.io/fuj/reference/vap.md)
   [`vapp_dttm()`](https://jmbarbone.github.io/fuj/reference/vap.md)
   [`with_vap_progress()`](https://jmbarbone.github.io/fuj/reference/vap.md)
+  [`with_vap_indexed_errors()`](https://jmbarbone.github.io/fuj/reference/vap.md)
   [`with_vap_handlers()`](https://jmbarbone.github.io/fuj/reference/vap.md)
   : Vector applies
 
