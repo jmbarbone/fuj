@@ -9,6 +9,9 @@ library(ggplot2)
 library(bench)
 library(purrr)
 
+fuj_set_names <- fuj::set_names
+purrr_set_names <- purrr::set_names
+
 mark_vap_int <- mark::vap_int
 mark_vap_dbl <- mark::vap_dbl
 
@@ -20,7 +23,11 @@ I <- 99
 
 autoplot(print(mark(
   vap_dbl(x, force),
+  with_vap_handlers(vap_dbl(x, force)),
+  with_vap_indexed_errors(vap_dbl(x, force)),
+  with_vap_progress(vap_dbl(x, force)),
   map_dbl(x, force),
+  map_dbl(x, force, .progress = TRUE),
   mark_vap_dbl(x, force),
   vapply(x, force, NA_real_),
   as.vector(lapply(x, force), "double"),
@@ -36,7 +43,10 @@ autoplot(print(mark(
 autoplot(print(mark(
   vapp_dbl(list(x, y, z), sum),
   with_vap_handlers(vapp_dbl(list(x, y, z), sum)),
+  with_vap_indexed_errors(vapp_dbl(list(x, y, z), sum)),
+  with_vap_progress(vapp_dbl(list(x, y, z), sum)),
   pmap_dbl(list(x, y, z), sum),
+  pmap_dbl(list(x, y, z), sum, .progress = TRUE),
   as.vector(vapp(list(x, y, z), sum), "double"),
   iterations = I
 )))
@@ -61,12 +71,12 @@ local({
 
 autoplot(print(mark(
   purrr = c("foo", "bar") |>
-    purrr::set_names() |>
-    purrr::map_chr(paste0, ":suffix"),
+    purrr_set_names() |>
+    map_chr(paste0, ":suffix"),
   # fuj wins a bit here
   fuj = c("foo", "bar") |>
-    fuj::set_names() |>
-    fuj::vap_chr(paste0, ":suffix"),
+    fuj_set_names() |>
+    vap_chr(paste0, ":suffix"),
   iterations = I
 )))
 
@@ -78,5 +88,18 @@ local({
     .mapply(sum, list(x, y, z), list()), # best, barely
     .mapply(sum, list(x, y, z), NULL),
     iterations = I / 2
+  )))
+
+  is_even <- function(x) floor(x * 1000) %% 2 == 0
+  autoplot(print(mark(
+    Filter(is_even, x),
+    hold(x, is_even),
+    keep(x, is_even)
+  )))
+
+  autoplot(print(mark(
+    Filter(Negate(is_even), x),
+    toss(x, is_even),
+    discard(x, is_even)
   )))
 })
