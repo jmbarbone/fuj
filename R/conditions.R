@@ -1,3 +1,5 @@
+# nocov start
+# it doesn't pick up that this is called here
 error_to_warning <- function(fun) {
   do.call(substitute, list(body(fun), list(error = warning)))
   body(fun) <- str2expression(gsub(
@@ -8,6 +10,7 @@ error_to_warning <- function(fun) {
   ))
   fun
 }
+# nocov end
 
 # 'experimental' -- may not be exported
 raise <- function(expr) {
@@ -115,6 +118,8 @@ input_error <- function(message = "invalid input", ...) {
   )
 }
 
+#' @export
+#' @rdname conditions
 value_error <- function(message = "invalid value", ...) {
   new_condition(
     message = c(message, ...),
@@ -287,7 +292,6 @@ bare_condition <- function(message = NULL, class = NULL) {
     class = unique(c(class, "condition"))
   )
 }
-
 
 # helpers -----------------------------------------------------------------
 
