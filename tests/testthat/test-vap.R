@@ -91,18 +91,18 @@ test_that("vap_progress() works", {
 
 test_that("index reporting works", {
   expect_error(
-    with_vap_handlers(
+    with_vap_indexed_errors(
       vap(10:1, function(x) if (x == 3) stop("bad"))
     ),
-    "index: 8",
+    "index [8]",
     fixed = TRUE
   )
 
   expect_warning(
-    with_vap_handlers(
+    with_vap_indexed_errors(
       vap(10:1, function(x) if (x == 3) warning("bad"))
     ),
-    "index: 8",
+    "index [8]",
     fixed = TRUE
   )
 
@@ -115,25 +115,25 @@ test_that("index reporting works", {
   }
 
   expect_snapshot_error(
-    with_vap_handlers(
+    with_vap_indexed_errors(
       vap(10:1, my_erroring_fun)
     )
   )
 
   expect_snapshot_warning(
-    with_vap_handlers(
+    with_vap_indexed_errors(
       vap(10:1, my_warninging_fun)
     )
   )
 
   foo_error <- function() {
-    with_vap_handlers(
+    with_vap_indexed_errors(
       vap(10:1, my_erroring_fun)
     )
   }
 
   foo_warning <- function() {
-    with_vap_handlers(
+    with_vap_indexed_errors(
       vap(10:1, my_warninging_fun)
     )
   }

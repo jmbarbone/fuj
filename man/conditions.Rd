@@ -8,6 +8,7 @@
 \alias{error_condition}
 \alias{err}
 \alias{input_error}
+\alias{value_error}
 \alias{class_error}
 \alias{type_error}
 \alias{interactive_error}
@@ -38,6 +39,8 @@ error_condition(...)
 err(...)
 
 input_error(message = "invalid input", ...)
+
+value_error(message = "invalid value", ...)
 
 class_error(message = "invalid class", ...)
 

@@ -48,6 +48,7 @@
 \alias{vapp_date}
 \alias{vapp_dttm}
 \alias{with_vap_progress}
+\alias{with_vap_indexed_errors}
 \alias{with_vap_handlers}
 \title{Vector applies}
 \usage{
@@ -144,6 +145,8 @@ vapp_date(p, f, ...)
 vapp_dttm(p, f, ...)
 
 with_vap_progress(expr)
+
+with_vap_indexed_errors(expr)
 
 with_vap_handlers(expr)
 }
