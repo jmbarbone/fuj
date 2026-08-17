@@ -130,7 +130,7 @@ new_condition <- function(
       length(package) == 1L &&
       !is.na(package)
     ) {
-      class <- c(paste0(package, ":", class), class)
+      class <- c(paste0(package, "::", class), class)
     } else {
       stop(value_error(
         "`pkg` must be TRUE, FALSE, or a single length character"

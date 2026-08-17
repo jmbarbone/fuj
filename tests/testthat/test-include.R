@@ -63,7 +63,7 @@ test_that("include() works with conflicts", {
   with_include_fuj({
     expect_warning(
       include("fuj", c(foo = "include"), warn = TRUE),
-      class = "fuj:include_conflicts_warning",
+      class = "fuj::include_conflicts_warning",
     )
   })
 
@@ -84,7 +84,7 @@ test_that("include() works with conflicts", {
   with_include_fuj({
     expect_warning(
       include("fuj", c(foo = "include"), warn = TRUE),
-      class = "fuj:include_conflicts_warning",
+      class = "fuj::include_conflicts_warning",
     )
   })
 
@@ -131,7 +131,7 @@ test_that("attach2() works", {
 
   expect_message(with_attach(NULL), class = "verbose_message")
   expect_message(with_attach(NA), class = "packageStartupMessage")
-  expect_warning(with_attach(TRUE), class = "fuj:include_conflicts_warning")
+  expect_warning(with_attach(TRUE), class = "fuj::include_conflicts_warning")
 
   do_attach <- function() {
     on.exit(detach2("foo"))

@@ -124,7 +124,8 @@ value_error <- function(message = "invalid value", ...) {
   new_condition(
     message = c(message, ...),
     class = "value",
-    type = "error"
+    type = "error",
+    package = NULL
   )
 }
 

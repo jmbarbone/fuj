@@ -22,7 +22,7 @@ test_that("quick_df()", {
       quick_df(list(a = integer())),
       quick_dfl(a = integer())
     ),
-    class = "fuj:deprecated_warning"
+    class = "fuj::deprecated_warning"
   )
 
   expect_identical(quick_df(NULL), empty_df())
