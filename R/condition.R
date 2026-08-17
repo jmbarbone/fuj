@@ -114,15 +114,18 @@ new_condition <- function(
 
   if (!isFALSE(package)) {
     if (isTRUE(package)) {
+      # nocov start
       # may fail to get the package during development
-      env <- parent.frame() # nocov
-      package <- try(eval(substitute(.packageName), env), silent = TRUE) # nocov
+      env <- parent.frame()
+      package <- tryCatch(
+        eval(substitute(.packageName), env),
+        error = function(e) NULL
+      )
+      # nocov end
     }
 
     # fmt: skip
-    if (inherits(package, "try-error")) {
-      package <- NULL # nocov
-    } else if (
+    if (
       is.character(package) &&
       length(package) == 1L &&
       !is.na(package)

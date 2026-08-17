@@ -31,9 +31,9 @@ local_install_and_attach <- function(path, lib, envir = parent.frame()) {
   package <- basename(path)
   ("base" %::% "library")(package, character.only = TRUE)
   delay(
-    try(
+    tryCatch(
       ("base" %::% "detach")(paste0("package:", package), unload = TRUE),
-      silent = TRUE
+      error = function(e) NULL
     ),
     envir = envir
   )

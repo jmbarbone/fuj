@@ -41,3 +41,7 @@ integerish <- function(x) {
       !any(is.infinite(x)) &&
       all(x == as.integer(x), na.rm = TRUE))
 }
+
+isNA <- function(x) {
+  is.logical(x) && length(x) == 1L && is.na(x)
+}
