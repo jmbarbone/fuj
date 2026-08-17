@@ -21,6 +21,7 @@
 General improvements for `conditions` [#90](https://github.com/jmbarbone/fuj/issues/90)
 
 * `BREAKING` `new_condition(type)` now defaults to `"condition"` rather than `"error"`
+* `BREAKING` `new_condition()` with a package not uses `<package>::<class>` names, rather than `<package>:<class>` names
 * `new_condition()` transformations on `class` have been adjusted
   * classes are no longer convert to `camelCase`; likely, the base `fujCondition` class is now `fuj_condition`
   * classes no longer _need_ their `type` specified (e.g., `my_error`, `my_warning`); the value of the `type` field is automatically appended to each element in `class` if it doesn't already exist.
