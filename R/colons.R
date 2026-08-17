@@ -65,19 +65,14 @@ colons_error <- function(package, name, n) {
 }
 
 colons_check <- function(package, name) {
-  ok <- wuffle(try(
-    {
-      length(package) == 1 &&
-        is.character(package) &&
-        length(name) == 1 &&
-        is.character(name)
-    },
-    silent = TRUE
-  ))
-
-  if (!isTRUE(ok)) {
+  if (
+    length(package) == 1 &&
+      is.character(package) &&
+      length(name) == 1 &&
+      is.character(name)
+  ) {
+    require_namespace(package)
+  } else {
     stop(input_error("`package` and `name` must be strings of length 1"))
   }
-
-  require_namespace(package)
 }
