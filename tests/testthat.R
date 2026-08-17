@@ -8,6 +8,6 @@
 
 options(fuj.list.active = TRUE)
 library(testthat)
-library(fuj)
+library(fuj, mask.ok = list(testthat = "not"))
 
 test_check("fuj")
