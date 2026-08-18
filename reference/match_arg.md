@@ -67,7 +67,7 @@ fruits <- function(x = c("apple", "banana", "orange")) {
 fruits()         # apple
 #> [1] "apple"
 try(fruits("b")) # must be exact fruits("banana")
-#> Error : <fuj:match_arg_error> fuj::match_arg(x) failed: `"b"` is not one of `c("apple", "banana", "orange")`
+#> Error : <fuj::match_arg_error> fuj::match_arg(x) failed: `"b"` is not one of `c("apple", "banana", "orange")`
 
 pfruits <- function(x = c("apple", "apricot", "banana")) {
   match_arg(x, partial = TRUE)
@@ -75,7 +75,7 @@ pfruits <- function(x = c("apple", "apricot", "banana")) {
 pfruits()          # apple
 #> [1] "apple"
 try(pfruits("ap")) # fuj:arg_match_error
-#> Error : <fuj:match_arg_error> fuj::match_arg(x) failed: `"ap"` is not one of `c("apple", "apricot", "banana")`
+#> Error : <fuj::match_arg_error> fuj::match_arg(x) failed: `"ap"` is not one of `c("apple", "apricot", "banana")`
 pfruits("app")     # apple
 #> [1] "apple"
 

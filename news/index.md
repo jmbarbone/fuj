@@ -56,6 +56,10 @@ General improvements for `conditions`
 
 - `BREAKING` `new_condition(type)` now defaults to `"condition"` rather
   than `"error"`
+- `BREAKING`
+  [`new_condition()`](https://jmbarbone.github.io/fuj/reference/new_condition.md)
+  with a package not uses `<package>::<class>` names, rather than
+  `<package>:<class>` names
 - [`new_condition()`](https://jmbarbone.github.io/fuj/reference/new_condition.md)
   transformations on `class` have been adjusted
   - classes are no longer convert to `camelCase`; likely, the base

@@ -88,9 +88,9 @@ try(stop(x))
 x <- new_condition("msg", class = "foo", type = "error", package = "bar")
 # class contains multiple identifiers, including a "bar:fooError"
 class(x)
-#> [1] "bar:foo_error" "foo_error"     "error"         "fuj_condition"
-#> [5] "condition"    
+#> [1] "bar::foo_error" "foo_error"      "error"          "fuj_condition" 
+#> [5] "condition"     
 # message contains package information at the end
 try(stop(x))
-#> Error : <bar:foo_error> msg
+#> Error : <bar::foo_error> msg
 ```

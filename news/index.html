@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9013</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9014</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.2.2.9013/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/jmbarbone/fuj/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
@@ -85,6 +85,8 @@
 <ul><li>
 <code>BREAKING</code> <code>new_condition(type)</code> now defaults to <code>"condition"</code> rather than <code>"error"</code>
 </li>
+<li>
+<code>BREAKING</code> <code><a href="../reference/new_condition.html">new_condition()</a></code> with a package not uses <code>&lt;package&gt;::&lt;class&gt;</code> names, rather than <code>&lt;package&gt;:&lt;class&gt;</code> names</li>
 <li>
 <code><a href="../reference/new_condition.html">new_condition()</a></code> transformations on <code>class</code> have been adjusted
 <ul><li>classes are no longer convert to <code>camelCase</code>; likely, the base <code>fujCondition</code> class is now <code>fuj_condition</code>
