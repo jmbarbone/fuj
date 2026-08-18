@@ -10,7 +10,7 @@ test_that("new_condition() conditions", {
   expect_error(new_condition(class = 1:2), class = "class_error")
   expect_error(
     new_condition(class = "foo", package = NA),
-    class = "fuj:value_error"
+    class = "value_error"
   )
 
   expect_error(new_condition(class = "foo", package = FALSE), NA)
@@ -18,9 +18,9 @@ test_that("new_condition() conditions", {
 
   expect_warning(
     new_condition(.not_an_argument = 1),
-    class = "fuj:dots_warning"
+    class = "fuj::dots_warning"
   )
 
-  expect_warning(new_condition(pkg = "this"), class = "fuj:deprecated_warning")
-  expect_warning(new_condition(msg = "this"), class = "fuj:deprecated_warning")
+  expect_warning(new_condition(pkg = "this"), class = "fuj::deprecated_warning")
+  expect_warning(new_condition(msg = "this"), class = "fuj::deprecated_warning")
 })
