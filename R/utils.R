@@ -46,3 +46,5 @@ integerish <- function(x) {
 isNA <- function(x) {
   is.logical(x) && length(x) == 1L && is.na(x)
 }
+
+null <- function(...) invisible()

@@ -2,22 +2,52 @@
 % Please edit documentation in R/namespace.R
 \name{require_namespace}
 \alias{require_namespace}
+\alias{available_namespace}
+\alias{is_namespace_available}
 \title{Require namespace}
 \usage{
 require_namespace(package, ...)
+
+available_namespace(package, ...)
+
+is_namespace_available(package, ...)
 }
 \arguments{
 \item{package, ...}{Package names}
 }
 \value{
-\code{TRUE} (invisibly) if found; otherwise errors
+\itemize{
+\item \code{\link[=require_namespace]{require_namespace()}} \code{TRUE} (invisibly) if found; otherwise errors
+}
+
+\itemize{
+\item \code{\link[=available_namespace]{available_namespace()}} A named \code{logical} vector of same length as input.
+Vector names are packages and values are \code{TRUE} if the package is available
+and meets the version requirement, otherwise \code{FALSE}.
+}
 }
 \description{
-Require namespace
+\code{\link[=require_namespace]{require_namespace()}} is ultimately a \emph{check} which will produce an error on
+the first package that is not available or meets version requirements.
+Although this returns \code{TRUE}, it is not intended to be used in a conditional
+statement.  Future version may return \code{invisible()}.  For conditional checks
+use \code{\link[=available_namespace]{available_namespace()}}, which will return a named logical instead.
+
+\code{\link[=is_namespace_available]{is_namespace_available()}} is an alias for \code{\link[=available_namespace]{available_namespace()}}.
+}
+\details{
+Checks if a package is available and optionally meets a specific version
+requirement.
 }
 \examples{
 isTRUE(require_namespace("base")) # returns invisibly
 try(require_namespace("1package")) # (using a purposefully bad name)
 require_namespace("base", "utils")
-try(require_namespace("base>=3.5", "utils>4.0", "fuj==10.0"))
+try(require_namespace("base >= 3.5", "utils > 4.0", "fuj == 0.0"))
+
+# no error check
+fuj0 <- if (!available_namespace("fuj == 0.0")) {
+  "fuj 0.0 does not exist"
+}
+fuj0
 }

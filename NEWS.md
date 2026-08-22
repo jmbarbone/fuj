@@ -14,7 +14,10 @@
 * `np()` added for normalizing file paths [#100](https://github.com/jmbarbone/fuj/issues/100)
 * `fp()` no longer normalizes file paths [#100](https://github.com/jmbarbone/fuj/issues/100)
 * `match_arg()` added for and internally used [#102](https://github.com/jmbarbone/fuj/issues/102)
-* `delay()` added as a wrapper for passing an expression into `on.exit()`
+* `delay()` added as a wrapper for passing an expression into `on.exit()` (similar to `withr::defer()`)
+* `require_namespace()` no longer loads the namespace being checked [#111](https://github.com/jmbarbone/fuj/issues/111)
+* **BREAKING** `require_namespace()` now requires `<package> <op> <version>` to be space deliminated.
+Optionally, a `list()` can be used with the three components included (e.g., `require_namespace(list("fuj", ">=", "0.2.2"), list("base", "==", getRversion()))`
 
 ## Changes in `conditions` 
 

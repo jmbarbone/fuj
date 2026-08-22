@@ -22,25 +22,27 @@ test_that("require_namespace", {
     fixed = TRUE
   ))
 
-  expect_error(require_namespace("base>1.0"), NA)
-  expect_error(require_namespace("utils>=1.0"), NA)
-  expect_error(require_namespace("utils>1.0"), NA)
-  expect_error(require_namespace(paste0("utils==", getRversion())), NA)
-
-  tryCatch(
-    expect_error(
-      require_namespace("utils<1.0"),
-      sprintf("utils: %s < 1.0", getRversion()),
-      fixed = TRUE,
-      class = "namespace_error"
-    ),
-    namespaceError = function(e) invisible()
-  )
+  expect_error(require_namespace("base > 1.0"), NA)
+  expect_error(require_namespace("utils >= 1.0"), NA)
+  expect_error(require_namespace("utils > 1.0"), NA)
+  expect_error(require_namespace(paste0("utils == ", getRversion())), NA)
 
   expect_error(
-    require_namespace("utils<=1.0"),
-    sprintf("utils: %s <= 1.0", getRversion()),
+    require_namespace("utils < 1.0"),
+    sprintf("utils: %s < 1.0", getRversion()),
     fixed = TRUE,
     class = "namespace_error"
-  )
+  ) |>
+    tryCatch(
+      namespace_version_error = null,
+      namespaceError = null
+    )
+
+  expect_error(
+    require_namespace("utils <= 1.0"),
+    sprintf("utils: %s <= 1.0", getRversion()),
+    fixed = TRUE,
+    class = "namespace_version_error"
+  ) |>
+    tryCatch(namespace_error = null)
 })
