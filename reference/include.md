@@ -86,11 +86,13 @@ be repeated each time `include(path)` is called.
 # include(package) will ensure that the entire package is attached
 include(fuj)
 head(ls("include:fuj"), 20)
-#>  [1] "%::%"            "%:::%"           "%attr%"          "%colons%"       
-#>  [5] "%len%"           "%names%"         "%out%"           "%wi%"           
-#>  [9] "%wo%"            "%||%"            "%|||%"           "+.file_path"    
-#> [13] "/.file_path"     "add"             "any_match"       "attach2"        
-#> [17] "attach_warn"     "bare_condition"  "cdn"             "check_conflicts"
+#>  [1] "%::%"                "%:::%"               "%attr%"             
+#>  [4] "%colons%"            "%len%"               "%names%"            
+#>  [7] "%out%"               "%wi%"                "%wo%"               
+#> [10] "%||%"                "%|||%"               "+.file_path"        
+#> [13] "/.file_path"         "add"                 "any_match"          
+#> [16] "attach2"             "attach_warn"         "available_namespace"
+#> [19] "bare_condition"      "cdn"                
 detach("include:fuj", character.only = TRUE)
 
 # include a single export

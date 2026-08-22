@@ -139,6 +139,8 @@
   : Quick DF
 
 - [`require_namespace()`](https://jmbarbone.github.io/fuj/reference/require_namespace.md)
+  [`available_namespace()`](https://jmbarbone.github.io/fuj/reference/require_namespace.md)
+  [`is_namespace_available()`](https://jmbarbone.github.io/fuj/reference/require_namespace.md)
   : Require namespace
 
 - [`struct()`](https://jmbarbone.github.io/fuj/reference/struct.md) :

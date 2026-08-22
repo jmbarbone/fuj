@@ -47,7 +47,17 @@
   [\#102](https://github.com/jmbarbone/fuj/issues/102)
 - [`delay()`](https://jmbarbone.github.io/fuj/reference/delay.md) added
   as a wrapper for passing an expression into
-  [`on.exit()`](https://rdrr.io/r/base/on.exit.html)
+  [`on.exit()`](https://rdrr.io/r/base/on.exit.html) (similar to
+  [`withr::defer()`](https://withr.r-lib.org/reference/defer.html))
+- [`require_namespace()`](https://jmbarbone.github.io/fuj/reference/require_namespace.md)
+  no longer loads the namespace being checked
+  [\#111](https://github.com/jmbarbone/fuj/issues/111)
+- **BREAKING**
+  [`require_namespace()`](https://jmbarbone.github.io/fuj/reference/require_namespace.md)
+  now requires `<package> <op> <version>` to be space deliminated.
+  Optionally, a [`list()`](https://rdrr.io/r/base/list.html) can be used
+  with the three components included (e.g.,
+  `require_namespace(list("fuj", ">=", "0.2.2"), list("base", "==", getRversion()))`
 
 ### Changes in `conditions`
 

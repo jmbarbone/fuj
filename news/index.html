@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9014</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9015</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.2.2.9014/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/jmbarbone/fuj/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
@@ -76,7 +76,12 @@
 <code><a href="../reference/match_arg.html">match_arg()</a></code> added for and internally used <a href="https://github.com/jmbarbone/fuj/issues/102" class="external-link">#102</a>
 </li>
 <li>
-<code><a href="../reference/delay.html">delay()</a></code> added as a wrapper for passing an expression into <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code>
+<code><a href="../reference/delay.html">delay()</a></code> added as a wrapper for passing an expression into <code><a href="https://rdrr.io/r/base/on.exit.html" class="external-link">on.exit()</a></code> (similar to <code><a href="https://withr.r-lib.org/reference/defer.html" class="external-link">withr::defer()</a></code>)</li>
+<li>
+<code><a href="../reference/require_namespace.html">require_namespace()</a></code> no longer loads the namespace being checked <a href="https://github.com/jmbarbone/fuj/issues/111" class="external-link">#111</a>
+</li>
+<li>
+<strong>BREAKING</strong> <code><a href="../reference/require_namespace.html">require_namespace()</a></code> now requires <code>&lt;package&gt; &lt;op&gt; &lt;version&gt;</code> to be space deliminated. Optionally, a <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code> can be used with the three components included (e.g., <code>require_namespace(list("fuj", "&gt;=", "0.2.2"), list("base", "==", getRversion()))</code>
 </li>
 </ul><div class="section level3">
 <h3 id="changes-in-conditions-development-version">Changes in <code>conditions</code>
