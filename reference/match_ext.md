@@ -44,14 +44,14 @@ any_match(x, table)
 
 - `any_match()`, `no_match()`: `TRUE` or `FALSE`
 
-- `is_in()`: see [`base::%in%()`](https://rdrr.io/r/base/match.html)
+- `is_in()`: see [base::%in%](https://rdrr.io/r/base/match.html)
 
 ## Details
 
 Contrast with [`base::match()`](https://rdrr.io/r/base/match.html),
 [`base::intersect()`](https://rdrr.io/r/base/sets.html), and
-[`base::%in%()`](https://rdrr.io/r/base/match.html) The functions of
-%wi% and %wo% can be used in lieu of
+[base::%in%](https://rdrr.io/r/base/match.html) The functions of %wi%
+and %wo% can be used in lieu of
 [`base::intersect()`](https://rdrr.io/r/base/sets.html) and
 [`base::setdiff()`](https://rdrr.io/r/base/sets.html). The primary
 difference is that the base functions return only unique values, which

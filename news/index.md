@@ -54,7 +54,7 @@
   [\#111](https://github.com/jmbarbone/fuj/issues/111)
 - **BREAKING**
   [`require_namespace()`](https://jmbarbone.github.io/fuj/reference/require_namespace.md)
-  now requires `<package> <op> <version>` to be space deliminated.
+  now requires `<package> <op> <version>` to be space delimited.
   Optionally, a [`list()`](https://rdrr.io/r/base/list.html) can be used
   with the three components included (e.g.,
   `require_namespace(list("fuj", ">=", "0.2.2"), list("base", "==", getRversion()))`

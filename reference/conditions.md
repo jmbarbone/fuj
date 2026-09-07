@@ -5,15 +5,15 @@ Default Conditions
 ## Usage
 
 ``` r
-message_condition(...)
+message_condition(..., class = NULL)
 
-msg(...)
+msg(..., class = NULL)
 
 verbose_message(message, call = NULL)
 
-error_condition(...)
+error_condition(..., class = NULL)
 
-err(...)
+err(..., class = NULL)
 
 input_error(message = "invalid input", ...)
 
@@ -38,9 +38,9 @@ internal_error(
   package = find_package()
 )
 
-warning_condition(...)
+warning_condition(..., class = NULL)
 
-wrn(...)
+wrn(..., class = NULL)
 
 input_warning(message = "invalid input", ...)
 
@@ -65,6 +65,12 @@ deprecated_warning(..., package = find_package())
 ```
 
 ## Arguments
+
+- class:
+
+  A class names for the condition; `message_condition()`,
+  `warning_condition()`, `error_condition()` will always use classes
+  `"message"`, `"warning"`, `"error"`, respectively.
 
 - message, ...:
 
