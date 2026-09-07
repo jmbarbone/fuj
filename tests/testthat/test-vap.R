@@ -27,7 +27,7 @@ test_that("vapi() works", {
   expect_true(Reduce(`&&`, vapi(x, identical)))
 
   names(x) <- c("a", "b", "c")
-  expect_true(all(vapi_lgl(x, function(x, i) i == letters[x])))
+  expect_true(all(vapi_lgl(x, \(x, i) i == letters[x])))
 })
 
 test_that("dates work", {
@@ -91,27 +91,27 @@ test_that("vap_progress() works", {
 
 test_that("index reporting works", {
   expect_error(
-    with_vap_indexed_errors(
-      vap(10:1, function(x) if (x == 3) stop("bad"))
-    ),
+    with_vap_indexed_errors(vap(10:1, \(x) if (x == 3) stop("bad"))),
     "index [8]",
     fixed = TRUE
   )
 
   expect_warning(
-    with_vap_indexed_errors(
-      vap(10:1, function(x) if (x == 3) warning("bad"))
-    ),
+    with_vap_handlers(vap(10:1, \(x) if (x == 3) warning("bad"))),
     "index [8]",
     fixed = TRUE
   )
 
   my_erroring_fun <- function(x) {
-    if (x == 3) stop("this is an error message")
+    if (x == 3) {
+      stop("this is an error message")
+    }
   }
 
   my_warninging_fun <- function(x) {
-    if (x == 3) warning("this is a warning message")
+    if (x == 3) {
+      warning("this is a warning message")
+    }
   }
 
   expect_snapshot_error(
