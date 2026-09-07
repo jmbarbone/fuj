@@ -25,4 +25,4 @@ Suggests:
 URL: https://jmbarbone.github.io/fuj/, https://github.com/jmbarbone/fuj
 BugReports: https://github.com/jmbarbone/fuj/issues
 Config/testthat/edition: 3
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.0
