@@ -38,3 +38,48 @@ data.frame(
   ) +
   # ggplot2::coord_transform(x = "log10") +
   ggplot2::labs()
+
+all_packages <- available.packages()
+packages <- sample(
+  c(rownames(all_packages), as.character(OlsonNames())),
+  TIMES * 100,
+  TRUE
+)
+versions <- sample(
+  unname(as.package_version(all_packages[, "Version"])),
+  TIMES * 100,
+  TRUE
+)
+ops <- sample(c(">", ">=", "==", "<=", "<", "!="), TIMES * 100, TRUE)
+
+res <- bench::press(
+  .grid = data.frame(
+    package = packages,
+    op = ops,
+    version = versions
+  ),
+  .quiet = TRUE,
+  bench::mark(
+    base = requireNamespace(
+      package,
+      versionCheck = list(op, version),
+      quietly = TRUE
+    ),
+    fuj = available_namespace(list(package, op, version)),
+    iterations = 2,
+    check = FALSE
+  )
+)
+
+res |>
+  dplyr::summarise(
+    min = base::min(min),
+    median = stats::median(median),
+    `itr/sec` = 1 / mean(1 / `itr/sec`),
+    mem_alloc = sum(mem_alloc),
+    `gc/sec` = 1 / mean(1 / `gc/sec`),
+    n_gc = sum(n_gc),
+    total_time = sum(total_time),
+    n_itr = sum(n_itr),
+    .by = "expression"
+  )

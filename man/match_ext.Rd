@@ -43,7 +43,7 @@ any_match(x, table)
 \item \link{\%out\%}: A \code{logical} vector of equal length of \code{x}, \code{table}
 \item \link{\%wo\%}, \link{\%wi\%}: A vector of values of \code{x}
 \item \code{\link[=any_match]{any_match()}}, \code{\link[=no_match]{no_match()}}: \code{TRUE} or \code{FALSE}
-\item \code{\link[=is_in]{is_in()}}: see \code{\link[base:\%in\%]{base::\%in\%()}}
+\item \code{\link[=is_in]{is_in()}}: see \link[base:\%in\%]{base::\%in\%}
 }
 }
 \description{
@@ -51,7 +51,7 @@ Non matching alternatives and supplementary functions.
 }
 \details{
 Contrast with \code{\link[base:match]{base::match()}}, \code{\link[base:intersect]{base::intersect()}}, and
-\code{\link[base:\%in\%]{base::\%in\%()}} The functions of \link{\%wi\%} and \link{\%wo\%} can be used
+\link[base:\%in\%]{base::\%in\%} The functions of \link{\%wi\%} and \link{\%wo\%} can be used
 in lieu of \code{\link[base:intersect]{base::intersect()}} and \code{\link[base:setdiff]{base::setdiff()}}.  The primary
 difference is that the base functions return only unique values, which may
 not be a desired behavior.

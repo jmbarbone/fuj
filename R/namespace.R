@@ -61,25 +61,23 @@ is_namespace_available <- available_namespace
 pkg_req_spec <- function(package, op, version) {
   if (missing(op) && missing(version)) {
     splits <- strsplit(package, " ", fixed = TRUE)[[1L]]
-    switch(
-      length(splits),
-      {
-        op <- NULL
-        version <- NULL
-      },
+    n <- length(splits)
+    if (n == 1L) {
+      op <- NULL
+      version <- NULL
+    } else if (n == 3L) {
+      package <- splits[1L]
+      op <- splits[2L]
+      version <- splits[3L]
+    } else {
       stop(input_error(
         "Invalid package requirement specification.  Package requirements must",
         " be in the form of '<package> <op> <version>' ",
         " (e.g., \"fuj >= 0.2.2\") or as a list of three elements, (e.g.,",
         " list(\"fuj\", \">=\", \"0.2.2\")).  Bad spec: ",
         package
-      )),
-      {
-        package <- splits[1L]
-        op <- splits[2L]
-        version <- splits[3L]
-      }
-    )
+      ))
+    }
   }
 
   res <- list(
@@ -96,7 +94,7 @@ print.pkg_req_spec <- function(x, ...) {
   if (is.null(x$op) && is.null(x$version)) {
     cat(x$package, "\n")
   } else {
-    cat(x$package, x$op, x$version, "\n")
+    cat(x$package, x$op, format(x$version), "\n")
   }
   invisible(x)
 }
@@ -114,6 +112,7 @@ do_require_namespace <- function(spec) {
     ))
   }
 }
+
 
 do_available_namespace <- function(package, version, op) {
   if (!is_pkg_available(package)) {
@@ -145,14 +144,16 @@ is_pkg_available <- function(package, lib = .libPaths()) {
   package %in% .packages(all.available = TRUE, lib.loc = lib)
 }
 
-get_pkg_path <- function(package, lib = .libPaths()) {
+get_pkg_path <- function(package) {
   if (isNamespaceLoaded(package)) {
-    return(.getNamespaceInfo(asNamespace(package), "path"))
+    return(asNamespace(package)[[".__NAMESPACE__."]][["path"]])
   }
 
-  for (loc in lib) {
-    if (dir.exists(file.path(loc, package))) {
-      return(file.path(loc, package))
+  for (path in file.path(.libPaths(), package)) {
+    # getNamespaceInfo() uses file.access(), but I don't think we _need_ to?
+    # if (file.access(path, 5L) == 0L) {
+    if (file.exists(path)) {
+      return(path)
     }
   }
 }
@@ -163,12 +164,15 @@ get_pkg_version <- function(package) {
     return(getRversion())
   }
 
-  ns <- .getNamespace(package)
-
-  version <- if (is.null(ns)) {
-    read.dcf(file.path(get_pkg_path(package), "DESCRIPTION"))[, "Version"]
+  version <- if (isNamespaceLoaded(package)) {
+    asNamespace(package)[[".__NAMESPACE__."]][["spec"]][["version"]]
   } else {
-    getNamespaceVersion(ns)
+    path <- get_pkg_path(package)
+    if (file.exists(file <- file.path(path, "Meta", "package.rds"))) {
+      readRDS(file)[["DESCRIPTION"]][["Version"]]
+    } else if (file.exists(file <- file.path(path, "DESCRIPTION"))) {
+      read.dcf(file)[, "Version"]
+    }
   }
 
   as.package_version(version)
@@ -190,7 +194,6 @@ get_pkg_version <- function(package) {
   "tcltk",
   "compiler"
 )
-
 
 # conditions --------------------------------------------------------------
 

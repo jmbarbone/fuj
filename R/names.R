@@ -19,7 +19,9 @@
 #' @name names
 #' @export
 set_names <- function(x, nm = x) {
-  if (is.null(x)) return(NULL)
+  if (is.null(x)) {
+    return(NULL)
+  }
   `names<-`(x, validate_names(nm))
 }
 

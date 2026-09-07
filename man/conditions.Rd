@@ -28,15 +28,15 @@
 \alias{deprecated_warning}
 \title{Default Conditions}
 \usage{
-message_condition(...)
+message_condition(..., class = NULL)
 
-msg(...)
+msg(..., class = NULL)
 
 verbose_message(message, call = NULL)
 
-error_condition(...)
+error_condition(..., class = NULL)
 
-err(...)
+err(..., class = NULL)
 
 input_error(message = "invalid input", ...)
 
@@ -61,9 +61,9 @@ internal_error(
   package = find_package()
 )
 
-warning_condition(...)
+warning_condition(..., class = NULL)
 
-wrn(...)
+wrn(..., class = NULL)
 
 input_warning(message = "invalid input", ...)
 
@@ -87,6 +87,10 @@ internal_warning(
 deprecated_warning(..., package = find_package())
 }
 \arguments{
+\item{class}{A class names for the condition; \code{\link[=message_condition]{message_condition()}},
+\code{\link[=warning_condition]{warning_condition()}}, \code{\link[=error_condition]{error_condition()}} will always use
+classes \code{"message"}, \code{"warning"}, \code{"error"}, respectively.}
+
 \item{message, ...}{A character vector of message components; \code{message} is
 used for anything with a default message.}
 
