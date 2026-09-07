@@ -3,17 +3,17 @@
 #' Non matching alternatives and supplementary functions.
 #'
 #' @details Contrast with [base::match()], [base::intersect()], and
-#'   [base::%in%()] The functions of [fuj::%wi%] and [fuj::%wo%] can be used
+#'   [base::%in%] The functions of [fuj::%wi%] and [fuj::%wo%] can be used
 #'   in lieu of [base::intersect()] and [base::setdiff()].  The primary
 #'   difference is that the base functions return only unique values, which may
 #'   not be a desired behavior.
 #'
-#' @inheritParams base::`%in%`
+#' @inheritParams base::match
 #' @return
 #' * [fuj::%out%]: A `logical` vector of equal length of `x`, `table`
 #' * [fuj::%wo%], [fuj::%wi%]: A vector of values of `x`
 #' * [fuj::any_match()], [fuj::no_match()]: `TRUE` or `FALSE`
-#' * [fuj::is_in()]: see [base::%in%()]
+#' * [fuj::is_in()]: see [base::%in%]
 #'
 #' @examples
 #' 1:10 %in% c(1, 3, 5, 9)
@@ -29,8 +29,8 @@
 #'           c(1:6, 7:2) %wi% c(3, 7, 12)  # -> keeps duplicates
 #' intersect(c(1:6, 7:2),     c(3, 7, 12)) # -> unique values
 #'
-#' @export
 #' @name match_ext
+NULL
 
 #' @rdname match_ext
 #' @export

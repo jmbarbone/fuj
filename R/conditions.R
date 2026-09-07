@@ -13,6 +13,7 @@ error_to_warning <- function(fun) {
 # nocov end
 
 # 'experimental' -- may not be exported
+# nocov start
 raise <- function(expr) {
   expr <- substitute(expr)
   cond <- eval(
@@ -40,6 +41,7 @@ raise <- function(expr) {
     cat(conditionMessage(cond))
   }
 }
+# nocov end
 
 #' Default Conditions
 #'
@@ -50,16 +52,19 @@ raise <- function(expr) {
 #'   the calling environment, which must return a character value.  This will
 #'   also be passed to the `package` argument in [fuj::new_condition()]
 #' @param call The call that generated the condition
+#' @param class A class names for the condition; [fuj::message_condition()],
+#'   [fuj::warning_condition()], [fuj::error_condition()] will always use
+#'   classes `"message"`, `"warning"`, `"error"`, respectively.
 NULL
 
 # messages ----------------------------------------------------------------
 
 #' @export
 #' @rdname conditions
-message_condition <- function(...) {
+message_condition <- function(..., class = NULL) {
   new_condition(
     message = c(...),
-    class = "message",
+    class = c(class, "message"),
     type = "message",
     package = NULL
   )
@@ -95,9 +100,10 @@ verbose_message <- function(message, call = NULL) {
 
 #' @export
 #' @rdname conditions
-error_condition <- function(...) {
+error_condition <- function(..., class = NULL) {
   new_condition(
     message = c(...),
+    class = c(class, "error"),
     type = "error",
     package = NULL
   )
@@ -223,9 +229,10 @@ internal_error <- function(
 
 #' @export
 #' @rdname conditions
-warning_condition <- function(...) {
+warning_condition <- function(..., class = NULL) {
   new_condition(
     message = c(...),
+    class = c(class, "warning"),
     type = "warning",
     package = NULL
   )
