@@ -506,6 +506,8 @@ vapping_handler <- function(expr, fun) {
 
       if (is.call(fun)) {
         cll <- fun
+      } else if (is.null(fun)) {
+        cll <- NULL
       } else {
         cll <- call(as.character(fun))
       }
