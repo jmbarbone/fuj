@@ -118,9 +118,9 @@ foo <- function(x) {
 }
 
 try(foo(1))
-#> Error : <error> This is an example
+#> Error : <example_error> This is an example
 try(foo(2))
-#> Error : <error> Another message
+#> Error : <example_error> Another message
 ```
 
 Vector apply functions:
