@@ -1,3 +1,4 @@
+options(fuj.list.active = FALSE)
 devtools::load_all(here::here())
 
 library(ggplot2)
