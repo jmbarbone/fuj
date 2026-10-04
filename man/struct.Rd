@@ -37,8 +37,8 @@ Essentially, this is just a wrapper for calling \code{\link[base:attributes]{bas
 \code{\link[base:class]{base::class()}}.
 
 Note that \code{\link[base:structure]{base::structure()}} provides a warning when the first argument is
-\code{NULL}.  \code{\link[=struct]{struct()}} does not.  The coercion from \code{NULL} to \code{\link[base:list]{base::list()}} is
-done, and documented, in \code{\link[base:attributes]{base::attributes()}}.
+\code{NULL}.  \code{\link[=struct]{struct()}} does not.  The coercion from \code{NULL} to
+\code{\link[base:list]{base::list()}} is done, and documented, in \code{\link[base:attributes]{base::attributes()}}.
 }
 \examples{
 x <- list(a = 1, b = 2)

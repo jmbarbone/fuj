@@ -13,8 +13,8 @@
 #'   [base::class()].
 #'
 #'   Note that [base::structure()] provides a warning when the first argument is
-#'   `NULL`.  [fuj::struct()] does not.  The coercion from `NULL` to [base::list()] is
-#'   done, and documented, in [base::attributes()].
+#'   `NULL`.  [fuj::struct()] does not.  The coercion from `NULL` to
+#'   [base::list()] is done, and documented, in [base::attributes()].
 #'
 #' @param x An object; if `NULL`, coerced to [base::list()]
 #' @param class A vector of classes; can also be `NULL`
