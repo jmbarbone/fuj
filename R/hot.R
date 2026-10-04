@@ -73,7 +73,7 @@ toss <- function(x, i, na = c("keep", "drop")) {
 
 hot_input_error <- function() {
   input_error(
-    "i must be logical, integer, integer-like numeric, or function which",
+    "'i' must be logical, integer, integer-like numeric, or function which",
     " returns a logical, integer, or integer-like numeric"
   )
 }
