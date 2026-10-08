@@ -23,7 +23,7 @@ x %attr% which
 
 ## Value
 
-See [base::attr](https://rdrr.io/r/base/attr.html)
+See [`base::attr()`](https://rdrr.io/r/base/attr.html)
 
 ## Examples
 

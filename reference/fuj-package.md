@@ -3,9 +3,6 @@
 Provides core functions and utilities for packages and other code
 developed by Jordan Mark Barbone.
 
-Provides core functions and utilities for packages and other code
-developed by Jordan Mark Barbone.
-
 ## See also
 
 Useful links:

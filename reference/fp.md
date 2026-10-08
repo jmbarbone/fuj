@@ -18,7 +18,7 @@ Paths can be constructed with `/` and `+` methods:
     fp("here") / "subdir" + "ext"
 
 This will create a file path for `here/subdir.ext`, with the extension
-added after. **Note**: fp() can be replaced with np().
+added after. **Note**: `fp()` can be replaced with `np()`.
 
 ## Usage
 

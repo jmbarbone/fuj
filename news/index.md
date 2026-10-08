@@ -1,15 +1,25 @@
 # Changelog
 
-## fuj (development version)
+## fuj 0.3.0
 
+CRAN release: 2026-10-08
+
+### Deprecations
+
+- [`quick_dfl()`](https://jmbarbone.github.io/fuj/reference/quick_df.md)
+  is now deprecated [\#91](https://github.com/jmbarbone/fuj/issues/91)
+
+### Improvements and bug fixes
+
+- `match_ext` functions have minor improvements for direct aliases and
+  documentation updates
+  [\#86](https://github.com/jmbarbone/fuj/issues/86)
 - [`quick_df()`](https://jmbarbone.github.io/fuj/reference/quick_df.md)
   no longer allows `NULL` values in the input list
   [\#81](https://github.com/jmbarbone/fuj/issues/81)
 - [`quick_df()`](https://jmbarbone.github.io/fuj/reference/quick_df.md)
   is now a little faster
   [\#91](https://github.com/jmbarbone/fuj/issues/91)
-- [`quick_dfl()`](https://jmbarbone.github.io/fuj/reference/quick_df.md)
-  is now deprecated [\#91](https://github.com/jmbarbone/fuj/issues/91)
 - [`list()`](https://rdrr.io/r/base/list.html) is now a little faster
   [\#91](https://github.com/jmbarbone/fuj/issues/91)
 - [`list0()`](https://jmbarbone.github.io/fuj/reference/list0.md)’s
@@ -17,6 +27,9 @@
   `options(fuj.list.active = FALSE)` before
   [fuj](https://jmbarbone.github.io/fuj/) is loaded
   [\#91](https://github.com/jmbarbone/fuj/issues/91)
+
+### New functions and methods
+
 - [`set_file_ext()`](https://jmbarbone.github.io/fuj/reference/fp.md)
   and `file_ext<-()` added for controlling file extensions
   [\#89](https://github.com/jmbarbone/fuj/issues/89)
@@ -27,8 +40,6 @@
   [`toss()`](https://jmbarbone.github.io/fuj/reference/hot.md) are added
   for retaining and removing values in a vectors
   [\#85](https://github.com/jmbarbone/fuj/issues/85)
-- `match_ext` have minor improvements for direct aliases; documentation
-  updates [\#86](https://github.com/jmbarbone/fuj/issues/86)
 - [`negate()`](https://jmbarbone.github.io/fuj/reference/negate.md) and
   [`not()`](https://jmbarbone.github.io/fuj/reference/negate.md) added
   to negate functions [\#84](https://github.com/jmbarbone/fuj/issues/84)
@@ -72,7 +83,7 @@ General improvements for `conditions`
   `<package>:<class>` names
 - [`new_condition()`](https://jmbarbone.github.io/fuj/reference/new_condition.md)
   transformations on `class` have been adjusted
-  - classes are no longer convert to `camelCase`; likely, the base
+  - classes are no longer convert to `camelCase`; likewise, the base
     `fujCondition` class is now `fuj_condition`
   - classes no longer *need* their `type` specified (e.g., `my_error`,
     `my_warning`); the value of the `type` field is automatically
@@ -113,8 +124,7 @@ General improvements for `conditions`
 ### New `vap` family
 
 Includes new `vap` family functions; essentially familiar wrappers for
-[`vapply()`](https://rdrr.io/r/base/lapply.html)
-[\#83](https://github.com/jmbarbone/fuj/issues/83)
+*apply* functions [\#83](https://github.com/jmbarbone/fuj/issues/83)
 
 - `vaps` are vector apply functions, with certain presets to assist with
   common cases
@@ -150,7 +160,9 @@ use[`vap_vec()`](https://jmbarbone.github.io/fuj/reference/vap.md).
 | `*_dttm()` | POSIXct | `as.POSIXct(as.vector(_, "double"), origin = "1970-01-01", tz = "UTC")` |
 
 *Note*: these variants do not perform *checks* on output results, but
-rather coerce the output to the specified type.
+rather coerce the output to the specified type. These do not function
+the same as [`vapply()`](https://rdrr.io/r/base/lapply.html), which is
+recommended for more aggressive type checking.
 
 ## fuj 0.2.2
 

@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9016</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>New condition</h1>
-      <small class="dont-index">Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.2.2.9016/R/condition.R" class="external-link"><code>R/condition.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.3.0/R/condition.R" class="external-link"><code>R/condition.R</code></a></small>
       <div class="d-none name"><code>new_condition.Rd</code></div>
     </div>
 
@@ -61,8 +61,9 @@
 <dt id="arg-class">class<a class="anchor" aria-label="anchor" href="#arg-class"></a></dt>
 <dd><p>Character string of a single condition class.  If <code>class</code> does
 not end with the value used in <code>class</code>, the suffix is appended with an
-underscore (<code>_</code>).  This can be ignored if passing <code>class</code> as an <code>AsIs</code>
-vector (i.e., <code>I("my_class")</code>).</p></dd>
+underscore (<code>_</code>).  This can be ignored if passing <code>class</code> as an
+<a href="https://rdrr.io/r/base/AsIs.html" class="external-link">base::AsIs</a> vector (i.e., <code>I("my_class")</code>); additionally, <a href="https://rdrr.io/r/base/AsIs.html" class="external-link">base::AsIs</a>
+objects do not have <code>package</code> prepended to the name.</p></dd>
 
 
 <dt id="arg-type">type<a class="anchor" aria-label="anchor" href="#arg-type"></a></dt>

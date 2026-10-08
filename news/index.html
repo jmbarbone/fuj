@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9016</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,19 +28,27 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.2.2.9016/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.3.0/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="fuj-development-version">fuj (development version)<a class="anchor" aria-label="anchor" href="#fuj-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.3.0" id="fuj-030">fuj 0.3.0<a class="anchor" aria-label="anchor" href="#fuj-030"></a></h2><p class="text-muted">CRAN release: 2026-10-08</p>
+<div class="section level3">
+<h3 id="deprecations-0-3-0">Deprecations<a class="anchor" aria-label="anchor" href="#deprecations-0-3-0"></a></h3>
 <ul><li>
+<code><a href="../reference/quick_df.html">quick_dfl()</a></code> is now deprecated <a href="https://github.com/jmbarbone/fuj/issues/91" class="external-link">#91</a>
+</li>
+</ul></div>
+<div class="section level3">
+<h3 id="improvements-and-bug-fixes-0-3-0">Improvements and bug fixes<a class="anchor" aria-label="anchor" href="#improvements-and-bug-fixes-0-3-0"></a></h3>
+<ul><li>
+<code>match_ext</code> functions have minor improvements for direct aliases and documentation updates <a href="https://github.com/jmbarbone/fuj/issues/86" class="external-link">#86</a>
+</li>
+<li>
 <code><a href="../reference/quick_df.html">quick_df()</a></code> no longer allows <code>NULL</code> values in the input list <a href="https://github.com/jmbarbone/fuj/issues/81" class="external-link">#81</a>
 </li>
 <li>
 <code><a href="../reference/quick_df.html">quick_df()</a></code> is now a little faster <a href="https://github.com/jmbarbone/fuj/issues/91" class="external-link">#91</a>
-</li>
-<li>
-<code><a href="../reference/quick_df.html">quick_dfl()</a></code> is now deprecated <a href="https://github.com/jmbarbone/fuj/issues/91" class="external-link">#91</a>
 </li>
 <li>
 <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code> is now a little faster <a href="https://github.com/jmbarbone/fuj/issues/91" class="external-link">#91</a>
@@ -48,7 +56,10 @@
 <li>
 <code><a href="../reference/list0.html">list0()</a></code>’s functionality to ignore empty inputs can be disabled if <code>options(fuj.list.active = FALSE)</code> before <a href="https://jmbarbone.github.io/fuj/">fuj</a> is loaded <a href="https://github.com/jmbarbone/fuj/issues/91" class="external-link">#91</a>
 </li>
-<li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-functions-and-methods-0-3-0">New functions and methods<a class="anchor" aria-label="anchor" href="#new-functions-and-methods-0-3-0"></a></h3>
+<ul><li>
 <code><a href="../reference/fp.html">set_file_ext()</a></code> and <code>file_ext&lt;-()</code> added for controlling file extensions <a href="https://github.com/jmbarbone/fuj/issues/89" class="external-link">#89</a>
 </li>
 <li>
@@ -56,9 +67,6 @@
 </li>
 <li>
 <code><a href="../reference/hot.html">hold()</a></code> and <code><a href="../reference/hot.html">toss()</a></code> are added for retaining and removing values in a vectors <a href="https://github.com/jmbarbone/fuj/issues/85" class="external-link">#85</a>
-</li>
-<li>
-<code>match_ext</code> have minor improvements for direct aliases; documentation updates <a href="https://github.com/jmbarbone/fuj/issues/86" class="external-link">#86</a>
 </li>
 <li>
 <code><a href="../reference/negate.html">negate()</a></code> and <code><a href="../reference/negate.html">not()</a></code> added to negate functions <a href="https://github.com/jmbarbone/fuj/issues/84" class="external-link">#84</a>
@@ -83,9 +91,10 @@
 <li>
 <strong>BREAKING</strong> <code><a href="../reference/require_namespace.html">require_namespace()</a></code> now requires <code>&lt;package&gt; &lt;op&gt; &lt;version&gt;</code> to be space delimited. Optionally, a <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code> can be used with the three components included (e.g., <code>require_namespace(list("fuj", "&gt;=", "0.2.2"), list("base", "==", getRversion()))</code>
 </li>
-</ul><div class="section level3">
-<h3 id="changes-in-conditions-development-version">Changes in <code>conditions</code>
-<a class="anchor" aria-label="anchor" href="#changes-in-conditions-development-version"></a></h3>
+</ul></div>
+<div class="section level3">
+<h3 id="changes-in-conditions-0-3-0">Changes in <code>conditions</code>
+<a class="anchor" aria-label="anchor" href="#changes-in-conditions-0-3-0"></a></h3>
 <p>General improvements for <code>conditions</code> <a href="https://github.com/jmbarbone/fuj/issues/90" class="external-link">#90</a></p>
 <ul><li>
 <code>BREAKING</code> <code>new_condition(type)</code> now defaults to <code>"condition"</code> rather than <code>"error"</code>
@@ -94,7 +103,7 @@
 <code>BREAKING</code> <code><a href="../reference/new_condition.html">new_condition()</a></code> with a package not uses <code>&lt;package&gt;::&lt;class&gt;</code> names, rather than <code>&lt;package&gt;:&lt;class&gt;</code> names</li>
 <li>
 <code><a href="../reference/new_condition.html">new_condition()</a></code> transformations on <code>class</code> have been adjusted
-<ul><li>classes are no longer convert to <code>camelCase</code>; likely, the base <code>fujCondition</code> class is now <code>fuj_condition</code>
+<ul><li>classes are no longer convert to <code>camelCase</code>; likewise, the base <code>fujCondition</code> class is now <code>fuj_condition</code>
 </li>
 <li>classes no longer <em>need</em> their <code>type</code> specified (e.g., <code>my_error</code>, <code>my_warning</code>); the value of the <code>type</code> field is automatically appended to each element in <code>class</code> if it doesn’t already exist. This behavior can be controlled by using an <code>AsIs</code> class (e.g., class = <code>I("exactly_this_class")</code>)</li>
 <li>
@@ -119,8 +128,8 @@
 </ul></li>
 </ul></div>
 <div class="section level3">
-<h3 id="new-vap-family-development-version">New <code>vap</code> family<a class="anchor" aria-label="anchor" href="#new-vap-family-development-version"></a></h3>
-<p>Includes new <code>vap</code> family functions; essentially familiar wrappers for <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply()</a></code> <a href="https://github.com/jmbarbone/fuj/issues/83" class="external-link">#83</a></p>
+<h3 id="new-vap-family-0-3-0">New <code>vap</code> family<a class="anchor" aria-label="anchor" href="#new-vap-family-0-3-0"></a></h3>
+<p>Includes new <code>vap</code> family functions; essentially familiar wrappers for <em>apply</em> functions <a href="https://github.com/jmbarbone/fuj/issues/83" class="external-link">#83</a></p>
 <ul><li>
 <code>vaps</code> are vector apply functions, with certain presets to assist with common cases</li>
 <li>all <code>vap</code> functions have type-stable variants:</li>
@@ -141,7 +150,7 @@
 <td align="left"><code>f(...)</code></td>
 </tr></tbody></table><p><em>Note</em>: <code><a href="../reference/vap.html">vapi()</a></code> uses either the index or names of <code>x</code> as the second argument to <code>f</code>.</p>
 <p>Each <code>vap</code> function comes with the following type variants. If you are not concerned about type safety, use<code><a href="../reference/vap.html">vap_vec()</a></code>.</p>
-<table class="table"><colgroup><col width="27%"><col width="36%"><col width="36%"></colgroup><thead><tr><th align="left">Function</th>
+<table class="table"><colgroup><col width="21%"><col width="28%"><col width="50%"></colgroup><thead><tr><th align="left">Function</th>
 <th>Output Type</th>
 <th>Conversion</th>
 </tr></thead><tbody><tr><td align="left"><code>*_chr()</code></td>
@@ -168,7 +177,7 @@
 </tr><tr><td align="left"><code>*_dttm()</code></td>
 <td>POSIXct</td>
 <td><code>as.POSIXct(as.vector(_, "double"), origin = "1970-01-01", tz = "UTC")</code></td>
-</tr></tbody></table><p><em>Note</em>: these variants do not perform <em>checks</em> on output results, but rather coerce the output to the specified type.</p>
+</tr></tbody></table><p><em>Note</em>: these variants do not perform <em>checks</em> on output results, but rather coerce the output to the specified type. These do not function the same as <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply()</a></code>, which is recommended for more aggressive type checking.</p>
 </div>
 </div>
     <div class="section level2">

@@ -131,7 +131,7 @@ with_vap_handlers(expr)
 For `vap()`, `vapi()`, returns a `list` with length of `x`. For
 `vap2()`, `vap3()`, and `vap()`, return length is determined by how
 `...` is recycled inside
-[`mapply()`](https://rdrr.io/r/base/mapply.html).
+[`base::mapply()`](https://rdrr.io/r/base/mapply.html).
 
 All have type variants (e.g., `vap_chr()`, `vapi_int()`, `vap3_dbl()`)
 which return a vector of the corresponding class, with the same length
@@ -158,12 +158,14 @@ include the index at which the error occurred.
 
 ## Details
 
-Like [`lapply()`](https://rdrr.io/r/base/lapply.html),
-[`mapply()`](https://rdrr.io/r/base/mapply.html), and family, the `vap`
-functions provide a means of applying a function to each element of a
-`vector`, and controlling return types. The `vap` family provides extra
-tools and controls, as well as *date* outputs (i.e., `_date`, `_dttm`
-variants that work with `Date` and `POSIXct` types).
+Like [`base::lapply()`](https://rdrr.io/r/base/lapply.html),
+[`base::mapply()`](https://rdrr.io/r/base/mapply.html), and family, the
+`vap` functions provide a means of applying a function to each element
+of a `vector`, and controlling return types. The `vap` family provides
+extra tools and controls, as well as *date* outputs (i.e., `_date`,
+`_dttm` variants that work with
+[Date](https://rdrr.io/r/base/Dates.html) and
+[POSIXct](https://rdrr.io/r/base/DateTimeClasses.html) types).
 
 - `vap()` uses a single `x` argument
 
@@ -182,7 +184,8 @@ Two helper functions are provided to set options for a progress bars
 `with_vap_progress()` and `with_vap_handlers()`, respectively; the
 latter may include other handlers in the future. These are not turned on
 by default (or rather, the option settings are set to `FALSE` within
-`{fuj}`) as they incur some additional overhead.
+[fuj](https://jmbarbone.github.io/fuj/reference/fuj-package.md)) as they
+incur some additional overhead.
 
 ## Examples
 

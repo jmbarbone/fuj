@@ -1,8 +1,12 @@
 # fuj
 
 The goal of [fuj](https://jmbarbone.github.io/fuj/) is to provide low
-level tools for other packages by
-[Jordan](https://github.com/jmbarbone).
+level tools for other packages by [Jordan](https://github.com/jmbarbone)
+(i.e., *Functions and Utilities for Jordan*). This package is developed
+with restrictions to just *base* **R**, which aids in stability and
+reduces frivolous errors/warnings from dependencies. Some of these
+functions may exist in other, more well-known packages in one form or
+another.
 
 ## Installation
 
@@ -29,7 +33,7 @@ devtools::install_github("jmbarbone/fuj")
 library(fuj)
 ```
 
-Quicker `data.frame`s:
+Quicker, simple `data.frame`s:
 
 ``` r
 
@@ -40,14 +44,9 @@ quick_df(list(a = 1:5, b = letters[1:5]))
 #> 3 3 c
 #> 4 4 d
 #> 5 5 e
-quick_dfl(a = 1:3, b = list(1:5, 6:10, 11:15))
-#>   a                  b
-#> 1 1      1, 2, 3, 4, 5
-#> 2 2     6, 7, 8, 9, 10
-#> 3 3 11, 12, 13, 14, 15
 ```
 
-More extensions:
+Matching extensions:
 
 ``` r
 
@@ -93,4 +92,46 @@ wuffle(as.integer(x))
 #> [1] NA  1
 sapply(x, wuffle(fun = as.integer))
 #> [1] NA  1
+```
+
+Build conditions:
+
+``` r
+
+example_error <- function(x = "This is an example", ...) {
+  new_condition(
+    message = paste0(x, ..., collapse = ""),
+    class = "example_error",
+    type = "error"
+  )
+}
+
+foo <- function(x) {
+  switch(
+    x,
+    stop(example_error()),
+    stop(example_error("Another message"))
+  )
+}
+
+try(foo(1))
+#> Error : <example_error> This is an example
+try(foo(2))
+#> Error : <example_error> Another message
+```
+
+Vector apply functions:
+
+``` r
+
+vap_int(1:5, \(x) x^2)
+#> [1]  1  4  9 16 25
+vap_chr(1:5, \(x) paste0("Number ", x))
+#> [1] "Number 1" "Number 2" "Number 3" "Number 4" "Number 5"
+
+vapp_date(
+  list(year = 2020:2022, month = 1:3, day = 15:17),
+  \(year, month, day) as.Date(paste(year, month, day, sep = "-"))
+)
+#> [1] "2020-01-15" "2021-02-16" "2022-03-17"
 ```

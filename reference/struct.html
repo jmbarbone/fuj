@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9016</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Simple structures</h1>
-      <small class="dont-index">Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.2.2.9016/R/struct.R" class="external-link"><code>R/struct.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.3.0/R/struct.R" class="external-link"><code>R/struct.R</code></a></small>
       <div class="d-none name"><code>struct.Rd</code></div>
     </div>
 
@@ -46,7 +46,7 @@
 
 
 <dl><dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
-<dd><p>An object; if <code>NULL</code>, coerced to <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code></p></dd>
+<dd><p>An object; if <code>NULL</code>, coerced to <code><a href="https://rdrr.io/r/base/list.html" class="external-link">base::list()</a></code></p></dd>
 
 
 <dt id="arg-class">class<a class="anchor" aria-label="anchor" href="#arg-class"></a></dt>
@@ -73,14 +73,15 @@ will be used</p></dd>
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Unlike <code><a href="https://rdrr.io/r/base/structure.html" class="external-link">base::structure()</a></code> this does not provide additional checks
 for special names, performs no <code><a href="https://rdrr.io/r/base/mode.html" class="external-link">base::storage.mode()</a></code> conversions for
-<code>factors</code> (<code>x</code> therefor has to be an <code>integer</code>), <code>attributes</code> from <code>x</code> are
-not retained, and <code>class</code> is specified outside of other attributes and
-assigned after <code><a href="https://rdrr.io/r/base/attributes.html" class="external-link">base::attributes()</a></code> is called.</p>
+<code><a href="https://rdrr.io/r/base/factor.html" class="external-link">factors</a></code> (<code>x</code> therefor has to be an <code>integer</code>),
+<code><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></code> from <code>x</code> are not retained, and <code>class</code>
+is specified outside of other attributes and assigned after
+<code><a href="https://rdrr.io/r/base/attributes.html" class="external-link">base::attributes()</a></code> is called.</p>
 <p>Essentially, this is just a wrapper for calling <code><a href="https://rdrr.io/r/base/attributes.html" class="external-link">base::attributes()</a></code> then
 <code><a href="https://rdrr.io/r/base/class.html" class="external-link">base::class()</a></code>.</p>
 <p>Note that <code><a href="https://rdrr.io/r/base/structure.html" class="external-link">base::structure()</a></code> provides a warning when the first argument is
-<code>NULL</code>.  <code>struct()</code> does not.  The coercion from <code>NULL</code> to <code><a href="https://rdrr.io/r/base/list.html" class="external-link">list()</a></code> is
-done, and documented, in <code><a href="https://rdrr.io/r/base/attributes.html" class="external-link">base::attributes()</a></code>.</p>
+<code>NULL</code>.  <code>struct()</code> does not.  The coercion from <code>NULL</code> to
+<code><a href="https://rdrr.io/r/base/list.html" class="external-link">base::list()</a></code> is done, and documented, in <code><a href="https://rdrr.io/r/base/attributes.html" class="external-link">base::attributes()</a></code>.</p>
     </div>
 
     <div class="section level2">

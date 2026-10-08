@@ -28,8 +28,11 @@ new_condition(
 
   Character string of a single condition class. If `class` does not end
   with the value used in `class`, the suffix is appended with an
-  underscore (`_`). This can be ignored if passing `class` as an `AsIs`
-  vector (i.e., `I("my_class")`).
+  underscore (`_`). This can be ignored if passing `class` as an
+  [base::AsIs](https://rdrr.io/r/base/AsIs.html) vector (i.e.,
+  `I("my_class")`); additionally,
+  [base::AsIs](https://rdrr.io/r/base/AsIs.html) objects do not have
+  `package` prepended to the name.
 
 - type:
 

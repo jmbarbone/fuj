@@ -22,7 +22,7 @@ collapse(..., sep = "")
 ## Value
 
 A `character` vector of concatenated values. See
-[base::paste](https://rdrr.io/r/base/paste.html) for more details.
+[`base::paste()`](https://rdrr.io/r/base/paste.html) for more details.
 
 ## Examples
 

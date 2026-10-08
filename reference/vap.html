@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">fuj</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2.9016</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,7 +28,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Vector applies</h1>
-      <small class="dont-index">Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.2.2.9016/R/vap.R" class="external-link"><code>R/vap.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/jmbarbone/fuj/blob/v0.3.0/R/vap.R" class="external-link"><code>R/vap.R</code></a></small>
       <div class="d-none name"><code>vap.Rd</code></div>
     </div>
 
@@ -163,32 +163,34 @@
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>For <code>vap()</code>, <code>vapi()</code>, returns a <code>list</code> with length of <code>x</code>. For
-<code>vap2()</code>, <code>vap3()</code>, and <code>vap()</code>, return length is determined by how <code>...</code>
-is recycled inside <code><a href="https://rdrr.io/r/base/mapply.html" class="external-link">mapply()</a></code>.</p>
-<p>All have type variants (e.g., <code>vap_chr()</code>, <code>vapi_int()</code>, <code>vap3_dbl()</code>)
-which return a vector of the corresponding class, with the same length of
-<code>x</code>, or following the same recycling rules as <code><a href="https://rdrr.io/r/base/mapply.html" class="external-link">mapply()</a></code> for multiple
-inputs. These returns are <em>coerced</em>, rather than <em>checked</em>, and may result
-in unexpected outputs. Likely, warnings or errors will be signaled
-accordingly.</p>
-<p><code>vap_vec()</code> is a variant of <code>vap()</code> that returns a <em>flattened</em> vector. This
-has similar behavior as <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">base::sapply()</a></code>, in that a <code>list</code> will be returned
-if the <code><a href="https://rdrr.io/r/base/unlist.html" class="external-link">base::unlist()</a></code>'d output has multiple values in an element.</p>
+    <p>For <code>vap()</code>, <code>vapi()</code>, returns a <code>list</code> with length of
+<code>x</code>. For <code>vap2()</code>, <code>vap3()</code>, and <code>vap()</code>, return length is
+determined by how <code>...</code> is recycled inside <code><a href="https://rdrr.io/r/base/mapply.html" class="external-link">base::mapply()</a></code>.</p>
+<p>All have type variants (e.g., <code>vap_chr()</code>, <code>vapi_int()</code>,
+<code>vap3_dbl()</code>) which return a vector of the corresponding class, with
+the same length of <code>x</code>, or following the same recycling rules as <code><a href="https://rdrr.io/r/base/mapply.html" class="external-link">mapply()</a></code>
+for multiple inputs. These returns are <em>coerced</em>, rather than <em>checked</em>,
+and may result in unexpected outputs. Likely, warnings or errors will be
+signaled accordingly.</p>
+<p><code>vap_vec()</code> is a variant of <code>vap()</code> that returns a <em>flattened</em>
+vector. This has similar behavior as <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">base::sapply()</a></code>, in that a <code>list</code>
+will be returned if the <code><a href="https://rdrr.io/r/base/unlist.html" class="external-link">base::unlist()</a></code>'d output has multiple values in an
+element.</p>
 <p><code>with_vap_progress()</code> sets an option <code>vap.progress</code> to <code>TRUE</code> for the
 duration of <code>expr</code>, which causes a progress bar to be displayed for any
 <code>vap*</code> calls inside <code>expr</code>.</p>
-<p><code>with_vap_handlers()</code> sets an <code>options(vap.indexed_errors = TRUE)</code> for the
-duration of <code>expr</code>, which causes errors inside <code>vap</code> calls to include the
-index at which the error occurred.</p>
+<p><code>with_vap_handlers()</code> sets an <code>options(vap.indexed_errors = TRUE)</code> for
+the duration of <code>expr</code>, which causes errors inside <code>vap</code> calls to include
+the index at which the error occurred.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Like <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply()</a></code>, <code><a href="https://rdrr.io/r/base/mapply.html" class="external-link">mapply()</a></code>, and family, the <code>vap</code> functions provide
-a means of applying a function to each element of a <code>vector</code>, and
-controlling return types.  The <code>vap</code> family provides extra tools and
-controls, as well as <em>date</em> outputs (i.e., <code>_date</code>, <code>_dttm</code> variants that
-work with <code>Date</code> and <code>POSIXct</code> types).</p><ul><li><p><code>vap()</code> uses a single <code>x</code> argument</p></li>
+    <p>Like <code><a href="https://rdrr.io/r/base/lapply.html" class="external-link">base::lapply()</a></code>, <code><a href="https://rdrr.io/r/base/mapply.html" class="external-link">base::mapply()</a></code>, and family, the <code>vap</code>
+functions provide a means of applying a function to each element of a
+<code>vector</code>, and controlling return types.  The <code>vap</code> family provides extra
+tools and controls, as well as <em>date</em> outputs (i.e., <code>_date</code>, <code>_dttm</code>
+variants that work with <a href="https://rdrr.io/r/base/Dates.html" class="external-link">Date</a> and
+<a href="https://rdrr.io/r/base/DateTimeClasses.html" class="external-link">POSIXct</a> types).</p><ul><li><p><code>vap()</code> uses a single <code>x</code> argument</p></li>
 <li><p><code>vapi()</code> uses a single <code>x</code> argument and passes the names (when available,
 otherwise index) as the second argument</p></li>
 <li><p><code>vap2()</code>, <code>vap3()</code> use two and three arguments, respectively</p></li>
@@ -199,10 +201,11 @@ otherwise index) as the second argument</p></li>
     <p>Two helper functions are provided to set options for a
 progress bars (<code>options(fuj.vap.progress)</code>) and reporting an index during
 and error (<code>options(fuj.vap.index_error)</code>).  Two wrapper functions are
-provided: <code>with_vap_progress()</code> and <code>with_vap_handlers()</code>, respectively;
-the latter may include other handlers in the future.  These are not turned
-on by default (or rather, the option settings are set to <code>FALSE</code> within
-<code>{fuj}</code>) as they incur some additional overhead.</p>
+provided: <code>with_vap_progress()</code> and <code>with_vap_handlers()</code>,
+respectively; the latter may include other handlers in the future.  These
+are not turned on by default (or rather, the option settings are set to
+<code>FALSE</code> within <a href="fuj-package.html">fuj</a>) as they incur some additional
+overhead.</p>
     </div>
 
     <div class="section level2">

@@ -27,7 +27,7 @@ x %len% y
 A mostly copy of `rlang`'s `%||%` except does not use
 [`rlang::is_null()`](https://rlang.r-lib.org/reference/type-predicates.html),
 which, currently, calls the same primitive
-[base::is.null](https://rdrr.io/r/base/NULL.html) function.
+[`base::is.null()`](https://rdrr.io/r/base/NULL.html) function.
 
 Note: `%||%` is copied from `{base}` if available (**R** versions \>=
 4.4)

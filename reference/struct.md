@@ -13,7 +13,7 @@ struct(x, class, ..., .keep_attr = FALSE)
 - x:
 
   An object; if `NULL`, coerced to
-  [`list()`](https://rdrr.io/r/base/list.html)
+  [`base::list()`](https://rdrr.io/r/base/list.html)
 
 - class:
 
@@ -40,8 +40,9 @@ An object with class defined as `class` and attributes `...`
 Unlike [`base::structure()`](https://rdrr.io/r/base/structure.html) this
 does not provide additional checks for special names, performs no
 [`base::storage.mode()`](https://rdrr.io/r/base/mode.html) conversions
-for `factors` (`x` therefor has to be an `integer`), `attributes` from
-`x` are not retained, and `class` is specified outside of other
+for [`factors`](https://rdrr.io/r/base/factor.html) (`x` therefor has to
+be an `integer`), [`attributes`](https://rdrr.io/r/base/attributes.html)
+from `x` are not retained, and `class` is specified outside of other
 attributes and assigned after
 [`base::attributes()`](https://rdrr.io/r/base/attributes.html) is
 called.
@@ -53,7 +54,8 @@ Essentially, this is just a wrapper for calling
 Note that [`base::structure()`](https://rdrr.io/r/base/structure.html)
 provides a warning when the first argument is `NULL`. `struct()` does
 not. The coercion from `NULL` to
-[`list()`](https://rdrr.io/r/base/list.html) is done, and documented, in
+[`base::list()`](https://rdrr.io/r/base/list.html) is done, and
+documented, in
 [`base::attributes()`](https://rdrr.io/r/base/attributes.html).
 
 ## Examples

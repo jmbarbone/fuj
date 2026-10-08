@@ -23,8 +23,8 @@ include(package, exports = NULL, lib = .libPaths(), pos = 2L, warn = NULL)
 - package:
 
   A package name. This can be given as a
-  [name](https://rdrr.io/r/base/name.html) or a character string. See
-  section `package` class handling.
+  [base::name](https://rdrr.io/r/base/name.html) or a character string.
+  See section `package` class handling.
 
 - exports:
 
@@ -39,8 +39,8 @@ include(package, exports = NULL, lib = .libPaths(), pos = 2L, warn = NULL)
 - pos:
 
   An integer specifying the position in the
-  [`search()`](https://rdrr.io/r/base/search.html) path to attach the
-  new environment.
+  [`base::search()`](https://rdrr.io/r/base/search.html) path to attach
+  the new environment.
 
 - warn:
 
@@ -61,24 +61,25 @@ Include (attach) a package and specific exports to Search Path
 
 ## `package` class handling
 
-When `package` is a [name](https://rdrr.io/r/base/name.html) or
-[AsIs](https://rdrr.io/r/base/AsIs.html), assumed an installed package.
-When `package` is a file path (via
+When `package` is a [base::name](https://rdrr.io/r/base/name.html) or
+[base::AsIs](https://rdrr.io/r/base/AsIs.html), assumed an installed
+package. When `package` is a file path (via
 [`is_path()`](https://jmbarbone.github.io/fuj/reference/fp.md)) then
 `package` is assumed a file path. When just a string, a viable path is
 checked first; if it doesn't exist, then it is assumed a package.
 
-When the package is [`source()`](https://rdrr.io/r/base/source.html)'d
-the name of the environment defaults to the base name of `x` (file
-extension removed). However, if the object `.AttachName` is found in the
-sourced file, then that is used as the environment name for the
-[`search()`](https://rdrr.io/r/base/search.html) path.
+When the package is
+[`base::source()`](https://rdrr.io/r/base/source.html)'d the name of the
+environment defaults to the base name of `x` (file extension removed).
+However, if the object `.AttachName` is found in the sourced file, then
+that is used as the environment name for the
+[`base::search()`](https://rdrr.io/r/base/search.html) path.
 
 **Note:** `include()` won't try to *attach* an environment a second
 time, however, when `package` is a path, it must be
-[`source()`](https://rdrr.io/r/base/source.html)ed each time to check
-for the `.AttachName` object. If there are any side effects, they will
-be repeated each time `include(path)` is called.
+[`base::source()`](https://rdrr.io/r/base/source.html)ed each time to
+check for the `.AttachName` object. If there are any side effects, they
+will be repeated each time `include(path)` is called.
 
 ## Examples
 

@@ -44,23 +44,31 @@ according to `from` and `to`.
 `fact()` A `factor` vector with levels corresponding to the unique
 values in `x` (or `levels` if provided).
 
+## Details
+
+`encode()` is a general purpose function for replacing values in a
+vector.
+
+`fact()` is a low-level function for building `factor` vectors. It does
+not perform any [`sort()`](https://rdrr.io/r/base/sort.html)ing of
+levels (unlink [`base::factor()`](https://rdrr.io/r/base/factor.html)).
+Re-leveling can be done by applying `encode()` to the levels of a
+`factor` object.
+
 ## Examples
 
 ``` r
-fact(strsplit("factor function", "")[[1L]])
-#>  [1] f a c t o r   f u n c t i o n
-#> Levels: f a c t o r   u n i
+fact(strsplit("factor function", "")[[1L]], exclude = " ")
+#>  [1] f    a    c    t    o    r    <NA> f    u    n    c    t    i    o    n   
+#> Levels: f a c t o r u n i
 
 # encode() can be used to for the same utility as factor(x, levels, labels)
-en <- encode(
-  strsplit("jordan", "")[[1L]],
-  from = c("a", "o"),
-  to = "*",
-)
-
-en
-#> [1] "j" "*" "r" "d" "*" "n"
-fact(en)
+# (note: applying to levels can be more efficient)
+(x <- fact(strsplit("jordan", "")[[1L]]))
+#> [1] j o r d a n
+#> Levels: j o r d a n
+levels(x) <- encode(levels(x), from = c("a", "o"), to = "*")
+x
 #> [1] j * r d * n
 #> Levels: j * r d n
 ```
