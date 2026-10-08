@@ -27,11 +27,12 @@ and meets the version requirement, otherwise \code{FALSE}.
 }
 }
 \description{
-\code{\link[=require_namespace]{require_namespace()}} is ultimately a \emph{check} which will produce an error on
-the first package that is not available or meets version requirements.
-Although this returns \code{TRUE}, it is not intended to be used in a conditional
-statement.  Future version may return \code{invisible()}.  For conditional checks
-use \code{\link[=available_namespace]{available_namespace()}}, which will return a named logical instead.
+\code{\link[=require_namespace]{require_namespace()}} is ultimately a \emph{check} which will produce an
+error on the first package that is not available or meets version
+requirements.  Although this returns \code{TRUE}, it is not intended to be used in
+a conditional statement.  Future version may return \code{invisible()}.  For
+conditional checks use \code{\link[=available_namespace]{available_namespace()}}, which will return a
+named logical instead.
 
 \code{\link[=is_namespace_available]{is_namespace_available()}} is an alias for \code{\link[=available_namespace]{available_namespace()}}.
 }

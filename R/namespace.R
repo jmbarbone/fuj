@@ -4,14 +4,14 @@
 #' requirement.
 #'
 #' @description
-#' [require_namespace()] is ultimately a _check_ which will produce an error on
-#' the first package that is not available or meets version requirements.
-#' Although this returns `TRUE`, it is not intended to be used in a conditional
-#' statement.  Future version may return `invisible()`.  For conditional checks
-#' use [available_namespace()], which will return a named logical instead.
+#' [fuj::require_namespace()] is ultimately a _check_ which will produce an
+#' error on the first package that is not available or meets version
+#' requirements.  Although this returns `TRUE`, it is not intended to be used in
+#' a conditional statement.  Future version may return `invisible()`.  For
+#' conditional checks use [fuj::available_namespace()], which will return a
+#' named logical instead.
 #'
-#' [is_namespace_available()] is an alias for [available_namespace()].
-#'
+#' [fuj::is_namespace_available()] is an alias for [fuj::available_namespace()].
 #'
 #' @param package,... Package names
 #' @examples

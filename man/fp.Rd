@@ -68,8 +68,7 @@ Paths can be constructed with \code{/} and \code{+} methods:
 }\if{html}{\out{</div>}}
 
 This will create a file path for \code{here/subdir.ext}, with the extension
-added after.  \strong{Note}: \link[=fp]{fp()} can be replaced with
-\link[=np]{np()}.
+added after.  \strong{Note}: \code{\link[=fp]{fp()}} can be replaced with \code{\link[=np]{np()}}.
 }
 \details{
 Lightweight file path functions

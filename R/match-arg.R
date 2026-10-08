@@ -64,7 +64,7 @@ match_arg <- function(
 
   if (inherits(null_arg, "_match_arg_error")) {
     stop(match_arg_error(
-      expr = str2lang("null"),
+      expr = quote(null),
       value = null,
       choices = eval(formals(match_arg)$null)
     ))
@@ -117,8 +117,8 @@ match_arg_error <- function(expr, value, choices) {
     message = sprintf(
       "fuj::match_arg(%s) failed: `%s` is not one of `%s`",
       as.character(expr),
-      deparse(value),
-      deparse(choices)
+      deparse1(value),
+      deparse1(choices)
     ),
     class = "match_arg",
     type = "error",

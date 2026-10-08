@@ -1,14 +1,22 @@
-# fuj (development version)
+# fuj 0.3.0
 
+## Deprecations
+
+* `quick_dfl()` is now deprecated [#91](https://github.com/jmbarbone/fuj/issues/91)
+
+## Improvements and bug fixes
+
+* `match_ext` functions have minor improvements for direct aliases and documentation updates [#86](https://github.com/jmbarbone/fuj/issues/86)
 * `quick_df()` no longer allows `NULL` values in the input list [#81](https://github.com/jmbarbone/fuj/issues/81)
 * `quick_df()` is now a little faster [#91](https://github.com/jmbarbone/fuj/issues/91)
-* `quick_dfl()` is now deprecated [#91](https://github.com/jmbarbone/fuj/issues/91)
 * `list()` is now a little faster [#91](https://github.com/jmbarbone/fuj/issues/91)
 * `list0()`'s functionality to ignore empty inputs can be disabled if `options(fuj.list.active = FALSE)` before `{fuj}` is loaded [#91](https://github.com/jmbarbone/fuj/issues/91)
+
+## New functions and methods
+
 * `set_file_ext()` and `file_ext<-()` added for controlling file extensions [#89](https://github.com/jmbarbone/fuj/issues/89)
 * `+` and `/` methods added for `file_path` classes, allowing path creation (e.g., `fp("folder") / "subfolder" / "file" + "extension"`) [#89](https://github.com/jmbarbone/fuj/issues/89)
 * `hold()` and `toss()` are added for retaining and removing values in a vectors [#85](https://github.com/jmbarbone/fuj/issues/85)
-* `match_ext` have minor improvements for direct aliases; documentation updates [#86](https://github.com/jmbarbone/fuj/issues/86)
 * `negate()` and `not()` added to negate functions [#84](https://github.com/jmbarbone/fuj/issues/84)
 * `encode()` and `fact()` added to encode values and create `factor`s [#87](https://github.com/jmbarbone/fuj/issues/87)
 * `np()` added for normalizing file paths [#100](https://github.com/jmbarbone/fuj/issues/100)
@@ -26,7 +34,7 @@ General improvements for `conditions` [#90](https://github.com/jmbarbone/fuj/iss
 * `BREAKING` `new_condition(type)` now defaults to `"condition"` rather than `"error"`
 * `BREAKING` `new_condition()` with a package not uses `<package>::<class>` names, rather than `<package>:<class>` names
 * `new_condition()` transformations on `class` have been adjusted
-  * classes are no longer convert to `camelCase`; likely, the base `fujCondition` class is now `fuj_condition`
+  * classes are no longer convert to `camelCase`; likewise, the base `fujCondition` class is now `fuj_condition`
   * classes no longer _need_ their `type` specified (e.g., `my_error`, `my_warning`); the value of the `type` field is automatically appended to each element in `class` if it doesn't already exist.
   This behavior can be controlled by using an `AsIs` class (e.g., class = `I("exactly_this_class")`)
   * `class` can now be a `list` for more control (e.g., `class = list("value", I("exact value"))`)
@@ -42,7 +50,7 @@ General improvements for `conditions` [#90](https://github.com/jmbarbone/fuj/iss
 
 ## New `vap` family
 
-Includes new `vap` family functions; essentially familiar wrappers for `vapply()` [#83](https://github.com/jmbarbone/fuj/issues/83)
+Includes new `vap` family functions; essentially familiar wrappers for _apply_ functions [#83](https://github.com/jmbarbone/fuj/issues/83)
 
 * `vaps` are vector apply functions, with certain presets to assist with common cases
 * all `vap` functions have type-stable variants:
@@ -64,9 +72,9 @@ _Note_: `vapi()` uses either the index or names of `x` as the second argument to
 Each `vap` function comes with the following type variants.
 If you are not concerned about type safety, use`vap_vec()`.
   
-  | Function   | Output Type    | Conversion
-  |:-----------|----------------|----------------|
-  | `*_chr()`  | character      | `as.vector(_, "character")` |
+  | Function   | Output Type    | Conversion                  |
+  |:-----------|----------------|-----------------------------|
+  | `*_chr()`  | character      | `as.vector(_, "character")` |2
   | `*_dbl()`  | double/numeric | `as.vector(_, "double")`    |
   | `*_int()`  | integer        | `as.vector(_, "integer")`   |
   | `*_lgl()`  | logical        | `as.vector(_, "logical")`   |
@@ -76,8 +84,8 @@ If you are not concerned about type safety, use`vap_vec()`.
   | `*_dttm()` | POSIXct        | `as.POSIXct(as.vector(_, "double"), origin = "1970-01-01", tz = "UTC")` |
   
 _Note_: these variants do not perform _checks_ on output results, but rather coerce the output to the specified type.
+These do not function the same as `vapply()`, which is recommended for more aggressive type checking.
   
-
 # fuj 0.2.2
 
 * `require_namespace()` now produces a more reasonable error when specifying a version [#63](https://github.com/jmbarbone/fuj/issues/63)

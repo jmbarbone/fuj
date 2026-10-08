@@ -20,8 +20,7 @@
 #'   fp("here") / "subdir" + "ext"
 #'   ```
 #'   This will create a file path for `here/subdir.ext`, with the extension
-#'   added after.  **Note**: [fp()][fuj::fp()] can be replaced with
-#'   [np()][fuj::np()].
+#'   added after.  **Note**: [fuj::fp()] can be replaced with [fuj::np()].
 #'
 #' @param ... Path components, passed to [base::file.path()]
 #' @param x An object to test

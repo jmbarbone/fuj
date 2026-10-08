@@ -15,34 +15,34 @@ NULL
 #' @export
 #' @usage NULL
 #' @rdname alias_arithmetic
-add <- `+`
+add <- base::`+`
 
 #' @export
 #' @rdname alias_arithmetic
 #' @usage NULL
-subtract <- `-`
+subtract <- base::`-`
 
 #' @export
 #' @rdname alias_arithmetic
 #' @usage NULL
-multiply <- `*`
+multiply <- base::`*`
 
 #' @export
 #' @rdname alias_arithmetic
 #' @usage NULL
-divide <- `/`
+divide <- base::`/`
 
 #' @export
 #' @rdname alias_arithmetic
 #' @usage NULL
-raise_power <- `^`
+raise_power <- base::`^`
 
 #' @export
 #' @rdname alias_arithmetic
 #' @usage NULL
-remainder <- `%%`
+remainder <- base::`%%`
 
 #' @export
 #' @rdname alias_arithmetic
 #' @usage NULL
-divide_int <- `%/%`
+divide_int <- base::`%/%`

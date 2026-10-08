@@ -2,6 +2,13 @@
 #'
 #' Low-level encoding and `factor` building
 #'
+#' [fuj::encode()] is a general purpose function for replacing values in a
+#' vector.
+#'
+#' [fuj::fact()] is a low-level function for building `factor` vectors. It does
+#' not perform any `sort()`ing of levels (unlink [base::factor()]).  Re-leveling
+#' can be done by applying [fuj::encode()] to the levels of a `factor` object.
+#'
 #' @param x A vector of values
 #' @param levels A vector of unique values. If `NULL`, the unique values in `x`
 #'   are used.
@@ -12,17 +19,13 @@
 #' @param exclude Values in `x` that will not be matched when recoding;
 #'   `exclude` will take priority over `from` in [fuj::encode()].
 #' @examples
-#' fact(strsplit("factor function", "")[[1L]])
+#' fact(strsplit("factor function", "")[[1L]], exclude = " ")
 #'
 #' # encode() can be used to for the same utility as factor(x, levels, labels)
-#' en <- encode(
-#'   strsplit("jordan", "")[[1L]],
-#'   from = c("a", "o"),
-#'   to = "*",
-#' )
-#'
-#' en
-#' fact(en)
+#' # (note: applying to levels can be more efficient)
+#' (x <- fact(strsplit("jordan", "")[[1L]]))
+#' levels(x) <- encode(levels(x), from = c("a", "o"), to = "*")
+#' x
 #' @name encode
 NULL
 
@@ -68,10 +71,11 @@ encode <- function(x, from, to, strict = FALSE, exclude = NULL) {
 fact <- function(x, levels = NULL, exclude = NULL) {
   if (is.null(levels)) {
     # slightly more efficient
-    levels <- remove_na(unique(x, exclude = NULL))
+    levels <- remove_na(unique(x))
   }
 
-  res <- match(x, levels, incomparables = exclude)
+  levels <- is_without(levels, exclude)
+  res <- match(x, levels, )
   attr(res, "levels") <- as.character(levels)
   class(res) <- "factor"
   res

@@ -3,7 +3,7 @@
 #' Simple wrapper for concatenating strings
 #'
 #' @inheritParams base::paste
-#' @return A `character` vector of concatenated values.  See [base::paste] for
+#' @return A `character` vector of concatenated values.  See [base::paste()] for
 #'   more details.
 #'
 #' @examples

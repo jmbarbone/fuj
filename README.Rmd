@@ -22,7 +22,9 @@ knitr::opts_chunk$set(
 [![Codecov test coverage](https://codecov.io/gh/jmbarbone/fuj/graph/badge.svg)](https://app.codecov.io/gh/jmbarbone/fuj)
 <!-- badges: end -->
 
-The goal of `{fuj}` is to provide low level tools for other packages by [Jordan](https://github.com/jmbarbone).
+The goal of `{fuj}` is to provide low level tools for other packages by [Jordan](https://github.com/jmbarbone)  (i.e., _Functions and Utilities for Jordan_).
+This package is developed with restrictions to just _base_ **R**, which aids in stability and reduces frivolous errors/warnings from dependencies.
+Some of these functions may exist in other, more well-known packages in one form or another.
 
 ## Installation
 
@@ -41,20 +43,22 @@ devtools::install_github("jmbarbone/fuj")
 
 ## Example
 
-```{r examples}
+```{r}
+#| label: library
 library(fuj)
 ```
 
-Quicker `data.frame`s:
+Quicker, simple `data.frame`s:
 
-```{r quick_df}
+```{r}
+#| label: quick_df
 quick_df(list(a = 1:5, b = letters[1:5]))
-quick_dfl(a = 1:3, b = list(1:5, 6:10, 11:15))
 ```
 
-More extensions:
+Matching extensions:
 
-```{r matching}
+```{r}
+#| label: matching
 1:10 %out% c(1, 3, 5, 9)       # opposite of %in% 
 letters[1:5] %wo% letters[3:7]
 letters[1:5] %wi% letters[3:7]
@@ -62,13 +66,15 @@ letters[1:5] %wi% letters[3:7]
 
 Simple structures:
 
-```{r struct}
+```{r}
+#| label: struct
 struct(list(a = 1, b = 2), class = "foo", c = 3, d = 3)
 ```
 
 Suppress messages and warnings:
 
 ```{r}
+#| label: muffle
 foo <- function(...) { message(paste0(list(...))) ; c(...) }
 muffle(foo(1:3))
 sapply(1:3, muffle(fun = foo))
@@ -78,3 +84,39 @@ wuffle(as.integer(x))
 sapply(x, wuffle(fun = as.integer))
 ```
 
+Build conditions:
+
+```{r}
+#| label: conditions
+example_error <- function(x = "This is an example", ...) {
+  new_condition(
+    message = paste0(x, ..., collapse = ""),
+    class = "example_error",
+    type = "error"
+  )
+}
+
+foo <- function(x) {
+  switch(
+    x,
+    stop(example_error()),
+    stop(example_error("Another message"))
+  )
+}
+
+try(foo(1))
+try(foo(2))
+```
+
+Vector apply functions:
+
+```{r}
+#| label: vap
+vap_int(1:5, \(x) x^2)
+vap_chr(1:5, \(x) paste0("Number ", x))
+
+vapp_date(
+  list(year = 2020:2022, month = 1:3, day = 15:17),
+  \(year, month, day) as.Date(paste(year, month, day, sep = "-"))
+)
+```

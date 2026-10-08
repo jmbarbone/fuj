@@ -16,7 +16,7 @@ x \%attr\% which
     is to be accessed.}
 }
 \value{
-See \link[base:attr]{base::attr}
+See \code{\link[base:attr]{base::attr()}}
 }
 \description{
 Get the exact attributes of an object

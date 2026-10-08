@@ -34,16 +34,20 @@ unique values in \code{x} (or \code{levels} if provided).
 \description{
 Low-level encoding and \code{factor} building
 }
+\details{
+\code{\link[=encode]{encode()}} is a general purpose function for replacing values in a
+vector.
+
+\code{\link[=fact]{fact()}} is a low-level function for building \code{factor} vectors. It does
+not perform any \code{sort()}ing of levels (unlink \code{\link[base:factor]{base::factor()}}).  Re-leveling
+can be done by applying \code{\link[=encode]{encode()}} to the levels of a \code{factor} object.
+}
 \examples{
-fact(strsplit("factor function", "")[[1L]])
+fact(strsplit("factor function", "")[[1L]], exclude = " ")
 
 # encode() can be used to for the same utility as factor(x, levels, labels)
-en <- encode(
-  strsplit("jordan", "")[[1L]],
-  from = c("a", "o"),
-  to = "*",
-)
-
-en
-fact(en)
+# (note: applying to levels can be more efficient)
+(x <- fact(strsplit("jordan", "")[[1L]]))
+levels(x) <- encode(levels(x), from = c("a", "o"), to = "*")
+x
 }

@@ -4,7 +4,7 @@
 #'
 #' @details
 #' A mostly copy of `rlang`'s `%||%` except does not use `rlang::is_null()`,
-#'   which, currently, calls the same primitive [base::is.null] function.
+#'   which, currently, calls the same primitive [base::is.null()] function.
 #'
 #'   Note: `%||%` is copied from `{base}` if available (**R** versions >= 4.4)
 #'
