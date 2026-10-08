@@ -1,5 +1,7 @@
 # Changelog
 
+## fuj (development version)
+
 ## fuj 0.3.0
 
 CRAN release: 2026-10-08

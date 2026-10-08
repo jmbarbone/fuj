@@ -50,7 +50,7 @@ try(require_namespace("1package")) # (using a purposefully bad name)
 #> Error : <namespace_error> No package found called '1package'
 require_namespace("base", "utils")
 try(require_namespace("base >= 3.5", "utils > 4.0", "fuj == 0.0"))
-#> Error : <fuj::namespace_version_error> Package version require not met: fuj is 0.3.0 but ==0.0 is required.
+#> Error : <fuj::namespace_version_error> Package version require not met: fuj is 0.3.0.9000 but ==0.0 is required.
 
 # no error check
 fuj0 <- if (!available_namespace("fuj == 0.0")) {
