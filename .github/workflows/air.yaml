@@ -26,13 +26,33 @@ jobs:
       - id: check
         run: air format . --check
       
-      - name: suggest
+      - id: format
         if: failure() && steps.check.outcome == 'failure'
         run: |
           air format . || true
+          git diff -U0 | awk '
+            /^\+\+\+ b\// {
+              file = substr($0, 7)
+            }
+            /^@@ / {
+              # Extract the "+start,count" token
+              split($0, parts, " ")
+              new_range = parts[3]
+              sub(/^\+/, "", new_range)
+              split(new_range, lines, ",")
+              
+              start = lines[1]
+              count = (lines[2] == "" ? 1 : lines[2])
+              
+              if (count > 0) {
+                end = start + count - 1
+                printf "::warning file=%s,line=%d,endLine=%d,title=air format::Formatted lines %d-%d\n", file, start, end, start, end
+              }
+            }
+          '
           exit 0
       
-      - name: suggest
+      - id: suggest
         if: failure() && steps.check.outcome == 'failure'
         uses: reviewdog/action-suggester@v1.27
         with:
