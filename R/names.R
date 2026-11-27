@@ -3,7 +3,8 @@
 #' Sets or removes names
 #'
 #' @param x A vector of values
-#' @param nm A vector of names
+#' @param nm A vector of names or a function to apply to the names of `x`, or to
+#' `x` if there are no names.
 #' @return `x` with `nm` values assigned to names (if `x` is `NULL`, `NULL` is
 #'   returned)
 #'
@@ -22,6 +23,11 @@ set_names <- function(x, nm = x) {
   if (is.null(x)) {
     return(NULL)
   }
+
+  if (is.function(nm)) {
+    nm <- nm(names(x) %||% x)
+  }
+
   `names<-`(x, validate_names(nm))
 }
 
