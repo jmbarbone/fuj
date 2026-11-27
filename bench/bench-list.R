@@ -4,11 +4,13 @@ library(bench)
 
 .is_empty1 <- function(x) {
   # https://jmbarbone.github.io/posts/wat-na-list/
-  vapply(x, identical, NA, quote(expr = ))
+  vapply(x, 
+         identical, NA, quote(expr = ))
 }
 
 .is_empty2 <- function(x) {
-  as.logical(lapply(x, \(i) identical(i, quote(expr = ))))
+  as.logical(lapply(x, 
+                    \(i) identical(i, quote(expr = ))))
 }
 
 microbenchmark::microbenchmark(
