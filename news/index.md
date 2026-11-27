@@ -4,6 +4,10 @@
 
 - fixes CRAN development failure
   [\#115](https://github.com/jmbarbone/fuj/issues/115)
+- [`list0()`](https://jmbarbone.github.io/fuj/reference/list0.md)/[`lst()`](https://jmbarbone.github.io/fuj/reference/list0.md)
+  are slightly more performent
+- `set_names(nm = <function>)` can now be used for applying a function
+  to `x` names
 
 ## fuj 0.3.0
 

@@ -22,7 +22,8 @@ is_named(x, zero_ok = TRUE)
 
 - nm:
 
-  A vector of names
+  A vector of names or a function to apply to the names of `x`, or to
+  `x` if there are no names.
 
 - zero_ok:
 
