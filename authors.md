@@ -8,7 +8,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/jmbarbone/fuj/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/jmbarbone/fuj/blob/v0.3.0.9002/DESCRIPTION)
 
 Barbone J (2026). *fuj: Functions and Utilities for Jordan*. R package
 version 0.3.0.9002, <https://jmbarbone.github.io/fuj/>.
