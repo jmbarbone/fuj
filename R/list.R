@@ -17,8 +17,8 @@
 #' list0(a = 1, , c = 3, )
 #' @export
 list0 <- function(...) {
-  e <- as.list(substitute((...)))[-1L]
-  eval(as.call(c(list, e[!is_empty(e)])), envir = parent.frame(2L))
+  e <- as.call(substitute(list(...)))
+  Exec(e[!is_empty(e)], parent.frame(2L))
 }
 
 #' @export
@@ -27,5 +27,5 @@ lst <- list0
 
 is_empty <- function(x) {
   # https://jmbarbone.github.io/posts/wat-na-list/
-  vapply(x, identical, NA, quote(expr = ))
+  as.logical(lapply(x, \(i) identical(i, quote(expr = ))))
 }
