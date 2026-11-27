@@ -33,12 +33,6 @@
 #' struct(x, "data.frame", row.names = 1L)
 #' struct(x, "data.frame", row.names = 1L, names = names(x))
 #'
-#' # structure() corrects entries for "factor" class
-#' # but struct() demands the data to be an integer
-#' structure(1, class = "factor", levels = "a")
-#' try(struct(1, "factor", levels = "a"))
-#' struct(1L, "factor", levels = "a")
-#'
 #' # When first argument is NULL -- attributes() coerces
 #' try(structure(NULL))    # NULL, no call to attributes()
 #' struct(NULL, NULL)      # list(), without warning
