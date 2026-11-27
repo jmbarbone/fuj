@@ -27,13 +27,13 @@ jobs:
         run: air format . --check
       
       - name: suggest
-        if: steps.check.outcome == 'failure'
+        if: failure() && steps.check.outcome == 'failure'
         run: |
           air format . || true
           exit 0
       
       - name: suggest
-        if: steps.check.outcome == 'failure'
+        if: failure() && steps.check.outcome == 'failure'
         uses: reviewdog/action-suggester@v1.27
         with:
           tool_name: air
