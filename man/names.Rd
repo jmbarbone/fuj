@@ -19,7 +19,8 @@ is_named(x, zero_ok = TRUE)
 \arguments{
 \item{x}{A vector of values}
 
-\item{nm}{A vector of names}
+\item{nm}{A vector of names or a function to apply to the names of \code{x}, or to
+\code{x} if there are no names.}
 
 \item{zero_ok}{If \code{TRUE} allows use of \code{""} as a \emph{special} name}
 }

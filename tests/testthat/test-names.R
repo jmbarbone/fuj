@@ -30,3 +30,17 @@ test_that("is_named()", {
   expect_true(is_named(x))
   expect_false(is_named(x, zero_ok = FALSE))
 })
+
+test_that("set_names(nm = function)", {
+  x <- 1:2
+  expect_identical(
+    set_names(x, \(i) paste0("name", i)),
+    c(name1 = 1L, name2 = 2L)
+  )
+
+  x <- list(a = 1, b = 2)
+  expect_identical(
+    set_names(x, toupper),
+    list(A = 1, B = 2)
+  )
+})
