@@ -1,5 +1,7 @@
 # fuj (development version)
 
+* fixes CRAN development failure [#115](https://github.com/jmbarbone/fuj/issues/115)
+
 # fuj 0.3.0
 
 ## Deprecations
@@ -29,7 +31,7 @@
 * **BREAKING** `require_namespace()` now requires `<package> <op> <version>` to be space delimited.
 Optionally, a `list()` can be used with the three components included (e.g., `require_namespace(list("fuj", ">=", "0.2.2"), list("base", "==", getRversion()))`
 
-## Changes in `conditions` 
+## Changes in `conditions`
 
 General improvements for `conditions` [#90](https://github.com/jmbarbone/fuj/issues/90)
 
@@ -45,7 +47,7 @@ General improvements for `conditions` [#90](https://github.com/jmbarbone/fuj/iss
   * `new_condition()` now only accepts `message`, `class`, and `type` as positional arguments with the include of `...`; all other arguments must be explicitly named 
 * default condition functions exported
   * include `input_error()`, `class_error()`, `value_error()`, warning equivalents and more (see all with `?fuj::conditions`)
-  * `error_condition()`/`err()`, `warning_condition()`/`wrn()`, `message_condition()`/`msg()` exported for _simple_ conditions (e.g., `message(msg("this is a message"))` [#105]
+  * `error_condition()`/`err()`, `warning_condition()`/`wrn()`, `message_condition()`/`msg()` exported for _simple_ conditions (e.g., `message(msg("this is a message"))` [#105](https://github.com/jmbarbone/fuj/issues/105)
 * internally, `{fuj}` now simplifies use of `new_condition()`
   * many conditions within `{fuj}` have been simplified through the use of _generic_ condition classes (e.g., `input_error`, `type_error`, `class_error`)
   * `verbose_message` will try to avoid printing a message when `options(fuj.verbose = FALSE)` is set

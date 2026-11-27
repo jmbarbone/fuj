@@ -29,7 +29,7 @@ test_that("struct() works for factors", {
 
   expect_identical(
     struct(1L, class = "factor", levels = c("a", "b")),
-    structure(1, class = "factor", levels = c("a", "b"))
+    structure(1L, class = "factor", levels = c("a", "b"))
   )
 })
 
