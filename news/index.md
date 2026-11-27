@@ -2,6 +2,9 @@
 
 ## fuj (development version)
 
+- fixes CRAN development failure
+  [\#115](https://github.com/jmbarbone/fuj/issues/115)
+
 ## fuj 0.3.0
 
 CRAN release: 2026-10-08
@@ -113,7 +116,8 @@ General improvements for `conditions`
     [`warning_condition()`](https://jmbarbone.github.io/fuj/reference/conditions.md)/[`wrn()`](https://jmbarbone.github.io/fuj/reference/conditions.md),
     [`message_condition()`](https://jmbarbone.github.io/fuj/reference/conditions.md)/[`msg()`](https://jmbarbone.github.io/fuj/reference/conditions.md)
     exported for *simple* conditions (e.g.,
-    `message(msg("this is a message"))` \[#105\]
+    `message(msg("this is a message"))`
+    [\#105](https://github.com/jmbarbone/fuj/issues/105)
 - internally, [fuj](https://jmbarbone.github.io/fuj/) now simplifies use
   of
   [`new_condition()`](https://jmbarbone.github.io/fuj/reference/new_condition.md)

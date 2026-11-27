@@ -73,17 +73,6 @@ struct(x, "data.frame", row.names = 1L, names = names(x))
 #>   a b
 #> 1 1 2
 
-# structure() corrects entries for "factor" class
-# but struct() demands the data to be an integer
-structure(1, class = "factor", levels = "a")
-#> [1] a
-#> Levels: a
-try(struct(1, "factor", levels = "a"))
-#> Error in class(x) <- class : adding class "factor" to an invalid object
-struct(1L, "factor", levels = "a")
-#> [1] a
-#> Levels: a
-
 # When first argument is NULL -- attributes() coerces
 try(structure(NULL))    # NULL, no call to attributes()
 #> Error in structure(NULL) : attempt to set an attribute on NULL
